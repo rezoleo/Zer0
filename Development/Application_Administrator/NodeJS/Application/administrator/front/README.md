@@ -18,7 +18,7 @@ Version : 1.0.0
 
 * To install the different required packages:
 
-```console
+```bash
 ./scripts/install.sh
 ```
 
@@ -26,7 +26,7 @@ Version : 1.0.0
 
 * To compile the source code in dist/ directory
 
-```console
+```bash
 ./scripts/production.sh
 ```
 

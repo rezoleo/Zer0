@@ -27,7 +27,7 @@ Note : You have to type 'HTTP_PROXY' (in capital letter), not 'http_proxy' (in s
 
 Moreover, the proxy settings must be typed in the same console window that the installation scripts; if you close the console window you will have to retype the proxy settings commands.
 
-```console
+```bash
 export HTTP_PROXY="http://<proxy_adress>:<proxy_port>"
 export HTTPS_PROXY="http://<proxy_adress>:<proxy_port>"
 npm config set proxy http://<proxy_adress>:<proxy_port>
@@ -38,12 +38,12 @@ npm config set https-proxy http://<proxy_adress>:<proxy_port>
 
 Note : This script must be launched with root user.
 
-```console
+```bash
 ./Development/Utils/scripts/dependancy-installation.sh
 ```
 
 * Create a symbolic link to the project
-```console
+```bash
 ln -s <path_of_the_git_project> /opt/centrale-datacore;
 ```
 
@@ -53,7 +53,7 @@ Note :
 Some error messages can appear during the execution of install-modules.sh
 Moreover, sometimes the install-module freezes with a root user, then do not use it.
 
-```console
+```bash
 ./Development/Utils/scripts/create-log-dir.sh
 ./Development/Utils/scripts/create-module-links.sh
 ./Development/Utils/scripts/install-modules.sh
@@ -71,24 +71,24 @@ Moreover, during the module installation choose :
 
 * Prepare the data in Mongo databases for unit test suites
 ! WARNING ! The bases used by the services and the applications are cleared by this script
-```console
+```bash
 ./Development/Utils/scripts/prepare-mongo.sh
 ```
 
 ### To manage the NodeJS servers
 
 * Start all the NodeJS servers
-```console
+```bash
 ./Development/Utils/scripts/start-servers.sh
 ```
 
 * Restart all the NodeJS servers
-```console
+```bash
 ./Development/Utils/scripts/restart-servers.sh
 ```
 
 * Stop all the NodeJS servers
-```console
+```bash
 ./Development/Utils/scripts/stop-servers.sh
 ```
 
@@ -102,7 +102,7 @@ The final JAR librairies will be in the directory Integration/packages/All/JAR.
 
 Note : This script doesn't copy the tools yet.
 
-```console
+```bash
 ./Integration/packages/copy-nodejs.sh
 ```
 
@@ -110,12 +110,12 @@ Note : This script doesn't copy the tools yet.
 
 Note : This script must be launched with root user.
 
-```console
+```bash
 ./Integration/packages/compile-deb.sh
 ```
 
 * Copy the JAR packages from the Development branch to Integration branch
-```console
+```bash
 ./Integration/packages/copy-jar.sh
 ```
 
@@ -123,22 +123,22 @@ Note : This script must be launched with root user.
 ### Something else useful
 
 * To create new (self-signed) SSL certificate
-```console
+```bash
 ./Development/Utils/scripts/generate-ssl.sh
 ```
 
 * To purge log directories
-```console
+```bash
 ./Development/Utils/scripts/purge-log.sh
 ```
 
 * To purge the database
-```console
+```bash
 ./Development/Utils/scripts/prepare-mongo.sh
 ```
 
 * To remove the dependancies in node_modules/ and bower_components/
-```console
+```bash
 ./Development/Utils/scripts/purge-modules.sh
 ```
 

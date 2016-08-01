@@ -22,13 +22,13 @@ Scripts tested for `Ubuntu 14.04` or `Debian 8`
 
 * To install the different required packages:
 
-```console
+```bash
 bin/dependancy-installation.sh
 ```
 
 * To install the different NodeJS required modules:
 
-```console
+```bash
 bin/modules-update.sh
 ```
 
@@ -36,7 +36,7 @@ bin/modules-update.sh
 
 * To start the NodeJS server
 
-```console
+```bash
 npm start
 ```
 

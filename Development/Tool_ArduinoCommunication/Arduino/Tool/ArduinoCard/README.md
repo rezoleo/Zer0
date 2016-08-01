@@ -19,7 +19,7 @@ Scripts tested for `Ubuntu 14.04`
 
 * To install the Arduino libraries :
 
-```console
+```bash
 dependancy-installation.sh
 ```
 
