@@ -1,0 +1,24 @@
+{
+	"name"              : "cache",
+	"author"            : {
+		"name"	 : "Emmanuel ZIDEL-CAUFFET",
+		"pseudo" : "Zidmann",
+		"email"	 : "emmanuel.zidel@gmail.com"
+	},
+	"description"       : "Module used in some NodeJS projects to store information coming from other servers and to indicate when information changed on the local server by POST, PUT or DELETE requests. It is used to reduce the number of requests between a NodeJS server and a client in order to save bandwidth.",
+	"version"           : "1.0.0",
+	"private"           : false,
+	"repository"	    : {
+		"type"	: "git",
+		"url"	: "https://bitbucket.org/zidmann/"
+	},
+	"main"              : "./index.js",
+	"license"           : "GNU v3",
+	"readmeFilename"    : "README.md",
+	"engines": {
+		"node": ">0.10.0"
+	},
+	"dependencies": {
+		"underscore" : "~1.8.3"
+	}
+}

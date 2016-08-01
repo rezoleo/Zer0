@@ -1,0 +1,25 @@
+# Nginx configuration file for Arduino communication betwen an arduino card and a web page for HTTP
+server {
+        listen 80 default_server;
+        server_name localhost;
+
+        root /opt/arduino-listener;
+
+        # Route to the web page to read information coming from the arduino card
+        location /arduino/ {
+                rewrite ^/arduino/(.*)$ /page/$1 last;
+                index /index.html;
+                expires 0;
+        }
+
+        # Routes to the JSON files
+        location /arduino/api/signal/ {
+                rewrite (.*) /signal/signal.json last;
+                expires 0;
+        }
+        location /arduino/api/system/ {
+                rewrite (.*) /signal/system.json last;
+                expires 0;
+        }
+}
+

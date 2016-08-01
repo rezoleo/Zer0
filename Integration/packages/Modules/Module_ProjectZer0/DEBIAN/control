@@ -1,0 +1,10 @@
+Package: Module-ProjectZer0
+Version: 1.0.0
+Section: base
+Priority: optional
+Architecture: all
+Depends: bash, openssl, mongodb, nano, nodejs, npm
+Maintainer: Emmanuel ZIDEL-CAUFFET <emmanuel.zidel@gmail.com>
+Description: Several custom modules designed to be used in the tools, the services and the applications of the project Zer0 (and other projects of RezoLution)
+Homepage: 
+

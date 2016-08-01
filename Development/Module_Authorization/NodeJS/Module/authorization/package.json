@@ -1,0 +1,24 @@
+{
+	"name"              : "authorization",
+	"author"            : {
+		"name"	 : "Emmanuel ZIDEL-CAUFFET",
+		"pseudo" : "Zidmann",
+		"email"	 : "emmanuel.zidel@gmail.com"
+	},
+	"description"       : "Module designed to store rights of an application to know which functionalities are granted for a user",
+	"version"           : "1.0.0",
+	"private"           : false,
+	"repository"	    : {
+		"type"	: "git",
+		"url"	: "https://bitbucket.org/zidmann/"
+	},
+	"main"              : "./index.js",
+	"license"           : "GNU v3",
+	"readmeFilename"    : "README.md",
+	"engines": {
+		"node": ">0.10.0"
+	},
+	"dependencies": {
+		"underscore"	  : "~1.8.3"
+	}
+}

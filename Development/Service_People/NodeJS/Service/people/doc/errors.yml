@@ -1,0 +1,109 @@
+#All the errors use in the NodeJS server for 404 code
+
+# Global errors
+- code: WSCORE.1.1.1
+  message: Api inexistante
+- code: WSCORE.2.1.1
+  message: Api inexistante
+
+# Token errors
+- code: WSCORE.3.1.1
+  message: Le jeton transmis est invalide ou absent
+- code: WSCORE.3.1.2
+  message: L'adresse IP du client n'est pas compatible avec ce jeton
+- code: WSCORE.3.1.3
+  message: Le nom de service source n'est pas compatible avec ce jeton
+- code: WSCORE.3.1.4
+  message: Le nom de service de destination n'est pas compatible avec ce jeton
+- code: WSCORE.3.1.5
+  message: La période d'utisation n'est pas exploitable avec ce jeton
+- code: WSCORE.3.1.6
+  message: Le jeton ne contient aucune règle d'accès
+- code: WSCORE.3.1.7
+  message: Le jeton n'est pas reconnu dans la base de données
+- code: WSCORE.3.1.8
+  message: Le jeton ne dispose pas des droits suffisants pour accéder à cet API
+- code: WSCORE.3.1.9
+  message: Erreur lors de la vérification des permissions
+- code: WSCORE.3.1.10
+  message: Erreur lors de l'exécution du contrôleur
+
+
+# API
+## GET people : 
+
+## GET people : 
+- code: PEOPLE.1.1.1
+  message: L'identifiant ID de la personne est absent
+- code: PEOPLE.1.1.2
+  message: Aucune personne identifiée avec cet identifiant
+- code: PEOPLE.1.2.1
+  message: Le login de la personne est absent
+- code: PEOPLE.1.2.2
+  message: Aucune personne identifiée avec ce login
+- code: PEOPLE.1.3.1
+  message: L'e-mail de la personne est absent
+- code: PEOPLE.1.3.2
+  message: Aucune personne identifiée avec cet e-mail
+
+
+## POST people : 
+- code: PEOPLE.1.4.1
+  message: Le login de la personne n'a pas été précisé
+- code: PEOPLE.1.4.2
+  message: Le nom de famille de la personne n'a pas été précisé
+- code: PEOPLE.1.4.3
+  message: Le prénom de la personne n'a pas été précisé
+- code: PEOPLE.1.4.4
+  message: Impossible d'ajouter la personne dans le système comme le login est déja utilisé par une autre personne
+- code: PEOPLE.1.4.5
+  message: Impossible d'ajouter la personne dans le système comme l'e-mail est déja utilisé par une autre personne
+- code: PEOPLE.1.4.6
+  message: Impossible d'ajouter la personne dans le système
+- code: PEOPLE.1.5.1
+  message: L'identifiant ID de la personne est absent
+- code: PEOPLE.1.5.2
+  message: Le tag à ajouter pour la personne est absent
+- code: PEOPLE.1.5.3
+  message: Aucune personne identifiée avec cet identifiant
+- code: PEOPLE.1.5.4
+  message: Un tag avec ce libellé existe déjà pour l'utilisateur désigné
+- code: PEOPLE.1.5.5
+  message: Impossible de trouver la personne après la mise à jour
+
+
+## PUT people : 
+- code: PEOPLE.1.6.1
+  message: L'identifiant ID de la personne est absent
+- code: PEOPLE.1.6.2
+  message: Le login de la personne n'a pas été précisé
+- code: PEOPLE.1.6.3
+  message: Le nom de famille de la personne n'a pas été précisé
+- code: PEOPLE.1.6.4
+  message: Le prénom de la personne n'a pas été précisé
+- code: PEOPLE.1.6.5
+  message: Aucune personne identifiée avec cet identifiant
+- code: PEOPLE.1.6.6
+  message: Impossible d'ajouter la personne dans le système comme le login est déja utilisé par une autre personne
+- code: PEOPLE.1.6.7
+  message: Impossible d'ajouter la personne dans le système comme l'e-mail est déja utilisé par une autre personne
+- code: PEOPLE.1.6.8
+  message: Impossible de trouver la personne après la mise à jour
+- code: PEOPLE.1.7.1
+  message: L'identifiant ID de la personne est absent
+- code: PEOPLE.1.7.2
+  message: Le tag à retirer pour la personne est absent
+- code: PEOPLE.1.7.3
+  message: Aucune personne identifiée avec cet identifiant
+- code: PEOPLE.1.7.4
+  message: Aucun tag avec ce libellé n'existe pour l'utilisateur désigné
+- code: PEOPLE.1.7.5
+  message: Impossible de trouver la personne après la mise à jour
+
+
+## DELETE people : 
+- code: PEOPLE.1.8.1
+  message: L'identifiant ID de la personne est absent
+- code: PEOPLE.1.8.2
+  message: Aucune personne identifiée avec cet identifiant
+

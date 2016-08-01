@@ -1,0 +1,48 @@
+#spec : 
+resourcePath: /api
+apis:
+- path: /api/passwd-reset
+  description: Operations about password regeneration
+  operations:
+# GET /link
+  - httpMethod: GET/:token
+    summary: Get information of one token
+    errorResponses:
+    - code: 404
+      reason: PASSWDRESET.1.1.1 - Le jeton n'a pas été précisée
+    - code: 404
+      reason: PASSWDRESET.1.1.2 - Aucune demande de renouvellement n'est associée à ce jeton
+# POST /request
+  - httpMethod: POST
+    summary: Create a passwd-reset in the system
+    parameters:
+    - name: new_password
+      datatype: string
+      required: true
+    errorResponses:
+    - code: 404
+      reason: PASSWDRESET.1.2.1 - Le login de la personne est absent
+    - code: 404
+      reason: PASSWDRESET.1.2.2 - Une demande de renouvellement est déjà en cours pour ce login
+    - code: 404
+      reason: PASSWDRESET.1.2.3 - Aucun accès n'existe pour ce login
+    - code: 404
+      reason: PASSWDRESET.1.2.4 - Aucune adresse e-mail n'est associée à ce login
+    - code: 404
+      reason: PASSWDRESET.1.2.5 - Impossible de trouver le jeton après son insertion dans la base de données
+    - code: 404
+      reason: PASSWDRESET.1.2.6 - Echec lors de l'envoi du mail
+# POST /link
+  - httpMethod: POST/:token
+    summary: Send a request to change the password
+    errorResponses:
+    - code: 404
+      reason: PASSWDRESET.2.2.1 - Le jeton n'a pas été précisée
+    - code: 404
+      reason: PASSWDRESET.2.2.2 - Le nouveau mot de passe n'a pas été précisé
+    - code: 404
+      reason: PASSWDRESET.2.2.3 - Aucune demande de renouvellement n'est associée à ce jeton
+    - code: 404
+      reason: PASSWDRESET.2.2.4 - Aucun accès n'existe pour ce login
+    - code: 404
+      reason: PASSWDRESET.2.2.5 - Echec lors de l'envoi du mail de confirmation

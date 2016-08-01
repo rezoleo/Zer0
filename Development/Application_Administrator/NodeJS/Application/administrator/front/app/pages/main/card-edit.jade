@@ -1,0 +1,27 @@
+include ../_formHelper
+include ../_menu-editHelper
+
+form(my-forms, name='form')
+  div(layout, ng-show='data._id')
+    h1(, flex) Carte {{data.code ? data.code : '????????' }} détenue par {{data.owner ? data.owner : '(?)' }}
+    div.md-actions(layout='row', flex=10, layout-align='end center')
+      md-button.md-warn(ui-sref='cardView({_id: data._id})', ng-show='data._id')
+        +backButton()
+  div(layout, ng-hide='data._id')
+    h1(ng-hide='data._id', flex) Ajout d'une carte
+    div.md-actions(layout='row', flex=10, layout-align='end center')
+      md-button.md-warn(ui-sref='card', ng-hide='data._id')
+        +backButton()
+
+  div(layout, layout-md='column')
+    +inputText('code',  'Code carte *')(required=true)
+    +select('status', 'Statut *', 'options.card.status')(required=true)
+  div(layout, layout-md='column')
+    md-autocomplete(placeholder='Login propriétaire *', md-search-text='data.owner', md-selected-item='ctrl.selectedItem', md-items='item in querySearch(data.owner)', md-item-text='item.display', md-min-length='0', md-selected-item-change='selectedItemChange(item)', md-search-text-change='searchTextChange(data.owner)', required=true)
+      md-item-template
+        span(md-highlight-text='data.owner', md-highlight-flags='^i') {{item.display}}
+      md-not-found
+        | Aucun résultat pour "{{data.owner}}".
+
+
++footBar('hasPermission({category : "CARD", require : "WRITE"})')

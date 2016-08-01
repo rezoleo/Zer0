@@ -1,0 +1,25 @@
+{
+	"name"              : "floodprotection",
+	"author"            : {
+		"name"	 : "Emmanuel ZIDEL-CAUFFET",
+		"pseudo" : "Zidmann",
+		"email"	 : "emmanuel.zidel@gmail.com"
+	},
+	"description"       : "Module designed to protect against brute force attacks",
+	"version"           : "1.0.0",
+	"private"           : false,
+	"repository"	    : {
+		"type"	: "git",
+		"url"	: "https://bitbucket.org/zidmann/"
+	},
+	"main"              : "./index.js",
+	"license"           : "GNU v3",
+	"readmeFilename"    : "README.md",
+	"engines": {
+		"node": ">0.10.0"
+	},
+	"dependencies": {
+		"node.extend"     : "~1.1.2",
+		"util"            : "~0.10.3"
+	}
+}

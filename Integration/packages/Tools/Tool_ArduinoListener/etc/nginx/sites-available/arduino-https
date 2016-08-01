@@ -1,0 +1,35 @@
+# Nginx configuration file for Arduino communication betwen an arduino card and a web page for HTTPS
+server {
+        listen 443;
+        server_name localhost;
+
+        root /opt/arduino-listener;
+
+        ssl on;
+        ssl_certificate /opt/arduino-listener/certificates/server-cert.pem;
+        ssl_certificate_key /opt/arduino-listener/certificates/server-key.pem;
+
+        ssl_session_timeout 5m;
+
+        ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers "HIGH:!aNULL:!MD5 or HIGH:!aNULL:!MD5:!3DES";
+        ssl_prefer_server_ciphers on;
+
+        # Route to the web page to read information coming from the arduino card
+        location /arduino/ {
+                rewrite ^/arduino/(.*)$ /page/$1 last;
+                index /index.html;
+                expires 0;
+        }
+
+        # Routes to the JSON files
+        location /arduino/api/signal/ {
+                rewrite (.*) /signal/signal.json last;
+                expires 0;
+        }
+        location /arduino/api/system/ {
+                rewrite (.*) /signal/system.json last;
+                expires 0;
+        }
+}
+

@@ -1,0 +1,1 @@
+../../../NodeJS/Service/authentification/server/conf/mongo.js

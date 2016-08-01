@@ -1,0 +1,77 @@
+mixin createButton()
+  md-icon create
+  div Modifier
+
+mixin backButton()
+  md-icon arrow_back
+  div Retour
+
+mixin portraitDeleteButton()
+  md-icon tag_faces
+  div Effacer portrait
+
+mixin errorMessage(name)
+  div(ng-messages="form.#{name}.$error", ng-if='form.#{name}.$touched')
+    div(ng-message='required') Ce Champ est requis
+    div(ng-message='md-maxlength') Ce Champ est trop long
+    div(ng-message='md-minlength') Ce Champ est trop court
+    div(ng-message='email') Le format de l'email est incorrect
+
+mixin input(name, label)
+  md-input-container(flex='')
+    label #{label}
+    input(type='text', ng-model="data.#{name}", name=name)&attributes(attributes)
+    +errorMessage(name)
+
+mixin inputText(name, label)
+  md-input-container(flex='')
+    label #{label}
+    input(type='text', ng-model="data.#{name}", name=name)&attributes(attributes)
+    +errorMessage(name)
+
+mixin inputEmail(name, label)
+  md-input-container(flex='')
+    label #{label}
+    input(type='email', ng-model="data.#{name}", name=name)&attributes(attributes)
+    +errorMessage(name)
+
+mixin inputTel(name, label)
+  md-input-container(flex='')
+    label #{label}
+    input(type='text', ng-model="data.#{name}", name=name, placeholder='__ __ __ __ __', ui-mask='99 99 99 99 99')&attributes(attributes)
+    +errorMessage(name)
+
+mixin inputDate(name, label)
+  md-input-container(flex='')
+    label #{label}
+    mb-datepicker(element-id="date_#{name}", date="data.#{name}", date-format='DD-MM-YYYY', input-name="date_#{name}", arrows='arrows', calendarHeader='header')&attributes(attributes)
+    +errorMessage(name)
+
+mixin inputAutoComplete(name, label, placeholder)
+  label #{label}
+  md-autocomplete(placeholder="#{placeholder}", md-selected-item='ctrl.selectedItem', md-search-text='ctrl.searchText', md-items='item in querySearch(ctrl.searchText)', md-item-text='item.display', md-min-length='0', ng-model="data.#{name}")
+    md-item-template
+      span(md-highlight-text='ctrl.searchText', md-highlight-flags='^i') {{item.display}}
+    md-not-found
+      | Aucun résultat pour "{{ctrl.searchText}}".
+
+mixin inputChips(name, placeholder, placeholder_bis)
+  md-chips(ng-model="data.#{name}", readonly="false", placeholder="#{placeholder}", secondary-placeholder="#{placeholder_bis}")
+    md-autocomplete(md-selected-item='selectedItem', md-search-text='searchText', md-items='item in querySearch(searchText)', md-item-text='item', placeholder="#{placeholder}")
+      span(md-highlight-text='searchText') {{item}}
+
+mixin select(name, label, options)
+  md-input-container(flex='')
+    md-select(placeholder="#{label}", ng-model="data.#{name}", name="#{name}")&attributes(attributes)
+      md-option(value='{{v.value}}', ng-repeat='v in #{options}') {{v.label}}
+    +errorMessage(name)
+
+mixin static(value, label)
+  md-input-container.md-input-has-value.static-input(flex='')
+    label #{label}
+    input(type='text', value="#{value}", readonly)&attributes(attributes)
+
+mixin staticSeveral(list, label)
+  md-input-container.md-input-has-value.static-input(flex='')
+    md-chips(ng-model="#{list}", readonly="true")
+

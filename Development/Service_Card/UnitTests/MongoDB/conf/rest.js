@@ -1,0 +1,1 @@
+../../../NodeJS/Service/card/server/conf/rest.js

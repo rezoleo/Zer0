@@ -1,0 +1,28 @@
+include ../_formHelper
+
+div(layout)
+  h1(flex)
+    div(ng-switch='data.person!=null && data.person._id!=null')
+      div(ng-switch-when='true')
+        Carte {{data.code ? data.code : '????????' }} détenue par 
+        a(ui-sref='peopleView({_id: data.person._id})') {{data.person.firstname+' '+data.person.lastname}}
+      div(ng-switch-default)
+        Carte {{data.code ? data.code : '????????' }} détenue par {{data.owner}}
+
+  div.md-actions(layout='row', flex=20, layout-align='end center')
+    md-button.md-primary(ui-sref='cardEdit({_id: data._id})', ng-disabled='!hasPermission({category : "CARD", require : "WRITE"})')
+      +createButton()
+    md-button.md-warn(ui-sref='card')
+      +backButton()
+
+div.view-fields
+  div(layout='column', layout-gt-sm='row')
+    +static('{{data.code}}', null)
+    +static('{{getOptionLabel(options.card.status, data.status)}}', null)
+  div(layout='column', layout-gt-sm='row')
+    +static('{{data.owner}}', null)
+  div(layout='column', layout-gt-sm='row')
+    +static("{{data.created | amCalendar}} par {{data.creator ? data.creator : '(?)'}} depuis {{data.creatorService ? data.creatorService : '(?)' }}", 'Création')
+    +static("{{data.updated | amCalendar}} par {{data.updator ? data.updator : '(?)'}} depuis {{data.updatorService ? data.updatorService : '(?)' }}",
+'Modification')(ng-show='data.updator')
+

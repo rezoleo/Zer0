@@ -1,0 +1,32 @@
+{
+	"name"              : "service_picture",
+	"author"            : {
+		"name"	 : "Emmanuel ZIDEL-CAUFFET",
+		"pseudo" : "Zidmann",
+		"email"	 : "emmanuel.zidel@gmail.com"
+	},
+	"description"       : "Webservice designed to store pictures on a server",
+	"version"           : "1.0.0",
+	"private"           : false,
+	"repository"	    : {
+		"type"	: "git",
+		"url"	: "https://bitbucket.org/zidmann/"
+	},
+	"main"              : "./server/index.js",
+	"scripts"           : {
+		"start" : "./bin/start-server.sh Serv_Picture",
+		"stop"  : "./bin/stop-server.sh Serv_Picture"
+	},
+	"license"           : "GNU v3",
+	"readmeFilename"    : "README.md",
+	"engines": {
+		"node": ">0.10.0"
+	},
+	"dependencies": {
+		"express"       : "~4.12.3",
+		"formidable"    : "~1.0.17",
+		"fs"            : "~0.0.2",
+		"mongoose"      : "~4.3.4",
+		"underscore"    : "~1.8.3"
+	}
+}

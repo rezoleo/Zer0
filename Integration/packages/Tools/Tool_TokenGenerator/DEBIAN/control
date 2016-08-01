@@ -1,0 +1,10 @@
+Package: Tool-TokenGenerator
+Version: 1.0.0
+Section: base
+Priority: optional
+Architecture: all
+Depends: bash, nodejs, npm
+Maintainer: Emmanuel ZIDEL-CAUFFET <emmanuel.zidel@gmail.com>
+Description: Tool designed to generate easily some tokens for webservices
+Homepage: 
+

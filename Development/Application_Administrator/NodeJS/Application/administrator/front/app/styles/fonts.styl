@@ -1,0 +1,18 @@
+add-font(font-family, font-code, type, bold_, italic_)
+  name = fonts-path + font-code + "/" + font-code + "-" + type + "-webfont"
+  @font-face
+    font-family: font-family
+    src: url(name+ '.eot')
+    src: url(name+ '.eot?#iefix') format('embedded-opentype'),
+      url(name+ '.woff') format('woff'),
+      url(name+ '.ttf') format('truetype'),
+      url(name+ '.svg#caviar_dreamsregular') format('svg')
+    font-weight: bold_
+    font-style: italic_
+
+// config
+fonts-path = '../fonts/'
+
+// fonts (font-family, font-code, type, bold, italic)
+//add-font('Firasans', 'firasans', 'regular', normal, normal)
+

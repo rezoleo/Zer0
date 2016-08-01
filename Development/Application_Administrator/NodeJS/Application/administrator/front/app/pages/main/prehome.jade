@@ -1,0 +1,9 @@
+include ../_formHelper
+
+div(layout)
+  md-card(flex, flex-gt-md=50, offset-gt-md=25)
+    md-card-content
+      form
+        +input('login', 'Login *')(required=true, my-focus='!data._id')
+        +input('password', 'Mot de passe *')(required=true, type='password')
+        md-button.md-raised.md-primary(type='submit', ng-click='submit(data)', ng-disabled='form.$invalid') Connexion

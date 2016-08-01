@@ -1,0 +1,16 @@
+include ../_menuHelper
+
++headBar('Recherche d\'un groupe', 'groupNew', 'hasPermission({category : "GROUP", require : "WRITE"})')
+
+div.view-fields
+  div(layout='column', layout-gt-sm='row')
+    +static('{{data.type}}', null)
+    +static('{{data.name}}', null)
+  div(layout='column', layout-gt-sm='row')
+    +static('{{data.description}}', null)
+  +static('{{data.mail}}', null)
+  div(layout='column', layout-gt-sm='row')
+    +static("{{data.created | amCalendar}} par {{data.creator ? data.creator : '(?)'}} depuis {{data.creatorService ? data.creatorService : '(?)' }}", 'Création')
+    +static("{{data.updated | amCalendar}} par {{data.updator ? data.updator : '(?)'}} depuis {{data.updatorService ? data.updatorService : '(?)' }}",
+'Modification')(ng-show='data.updator')
+

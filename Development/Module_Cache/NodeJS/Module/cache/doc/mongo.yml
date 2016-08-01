@@ -1,0 +1,10 @@
+db: 'defined by the server using this module'
+collections:
+- cache.info:
+    description: Cache information
+    properties:
+      	_id		 : ObjectID,
+	lastUpdate	 : { type : Date },
+	lastPostUpdate	 : { type : Date },
+	lastPutUpdate	 : { type : Date },
+	lastDeleteUpdate : { type : Date }

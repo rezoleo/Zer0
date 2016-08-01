@@ -1,0 +1,30 @@
+{
+	"name"              : "service_mail",
+	"author"            : {
+		"name"	 : "Emmanuel ZIDEL-CAUFFET",
+		"pseudo" : "Zidmann",
+		"email"	 : "emmanuel.zidel@gmail.com"
+	},
+	"description"       : "Webservice designed to send mail through Google mail server",
+	"version"           : "1.0.0",
+	"private"           : false,
+	"repository"	    : {
+		"type"	: "git",
+		"url"	: "https://bitbucket.org/zidmann/"
+	},
+	"main"              : "./server/index.js",
+	"scripts"           : {
+		"start" : "./bin/start-server.sh Serv_Mail",
+		"stop"  : "./bin/stop-server.sh Serv_Mail"
+	},
+	"license"           : "GNU v3",
+	"readmeFilename"    : "README.md",
+	"engines": {
+		"node": ">0.10.0"
+	},
+	"dependencies": {
+		"nodemailer" : "~1.3.0",
+		"mongoose"   : "~4.3.4",
+		"underscore" : "~1.7.0"
+	}
+}

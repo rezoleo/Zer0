@@ -1,0 +1,19 @@
+#!/bin/bash
+
+LOG_DIR="/var/log/zero-project"
+LOG_FILE="$LOG_DIR/tool_arduinoforadministrator.log"
+mkdir -p "$LOG_DIR"
+
+echo "[+] End of installation step" | tee -a "$LOG_FILE";
+
+echo | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+echo "!!! STARTING POST INSTALLATION STEP !!!" | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+
+# Reloading nginx server
+echo "[+] Reloading nginx server" | tee -a "$LOG_FILE";
+/etc/init.d/nginx reload | tee -a "$LOG_FILE";
+
+echo "[+] End of post installation step" | tee -a "$LOG_FILE";
+echo | tee -a "$LOG_FILE";

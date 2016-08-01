@@ -1,0 +1,31 @@
+{
+	"name"              : "service_people",
+	"author"            : {
+		"name"	 : "Emmanuel ZIDEL-CAUFFET",
+		"pseudo" : "Zidmann",
+		"email"	 : "emmanuel.zidel@gmail.com"
+	},
+	"description"       : "Webservice designed to manage people information",
+	"version"           : "1.0.0",
+	"private"           : false,
+	"repository"	    : {
+		"type"	: "git",
+		"url"	: "https://bitbucket.org/zidmann/"
+	},
+	"main"              : "./server/index.js",
+	"scripts"           : {
+		"start" : "./bin/start-server.sh Serv_People",
+		"stop"  : "./bin/stop-server.sh Serv_People"
+	},
+	"license"           : "GNU v3",
+	"readmeFilename"    : "README.md",
+	"engines": {
+		"node": ">0.10.0"
+	},
+	"dependencies": {
+		"moment"         	: "~2.10.3",
+		"mongoose"		: "~4.3.4",
+		"underscore"      	: "~1.8.3",
+		"underscore.string"	: "~3.0.3"
+	}
+}

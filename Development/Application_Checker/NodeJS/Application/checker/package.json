@@ -1,0 +1,32 @@
+{
+	"name"              : "application_checker",
+	"author"            : {
+		"name"	 : "Emmanuel ZIDEL-CAUFFET",
+		"pseudo" : "Zidmann",
+		"email"	 : "emmanuel.zidel@gmail.com"
+	},
+	"description"       : "Application designed to check information about cards and people",
+	"version"           : "1.0.0",
+	"private"           : false,
+	"repository"	    : {
+		"type"	: "git",
+		"url"	: "https://bitbucket.org/zidmann/"
+	},
+	"main"              : "./server/index.js",
+	"scripts"           : { 
+		"start" : "./bin/start-server.sh App_Checker",
+		"stop"  : "./bin/stop-server.sh App_Checker"
+	},
+	"license"           : "GNU v3",
+	"readmeFilename"    : "README.md",
+	"engines": {
+		"node": ">0.10.0"
+	},
+	"dependencies": {
+		"connect-mongo"   : "~0.8.2",
+		"express-session" : "~1.11.3",
+		"moment"	  : "~2.10.2",
+		"mongoose"        : "~4.3.4",
+		"underscore"      : "~1.8.3"
+	}
+}

@@ -1,0 +1,40 @@
+include ../_formHelper
+include ../_menu-editHelper
+
+form(my-forms, name='form')
+  div(layout, ng-show='data._id')
+    h1(, flex) Authentifiant {{data.login ? data.login : '(?)' }}
+    div.md-actions(layout='row', flex=10, layout-align='end center')
+      md-button.md-warn(ui-sref='authentificationView({_id: data._id, login: data.login})', ng-show='data._id')
+        +backButton()
+  div(layout, ng-hide='data._id')
+    h1(, flex) Ajout d'un authentifiant
+    div.md-actions(layout='row', flex=10, layout-align='end center')
+      md-button.md-warn(ui-sref='authentification')
+        +backButton()
+
+  div(layout, layout-md='column')
+    div(ng-show='data._id')
+      +static('{{data.login}}', null)
+    div(ng-hide='data._id')
+      md-autocomplete(placeholder='Login *', md-search-text='data.login', md-selected-item='ctrl.selectedItem', md-items='item in querySearch(data.login)', md-item-text='item.display', md-min-length='0', md-selected-item-change='selectedItemChange(item)', md-search-text-change='searchTextChange(data.login)', required=true)
+        md-item-template
+          span(md-highlight-text='data.login', md-highlight-flags='^i') {{item.display}}
+        md-not-found
+          | Aucun résultat pour "{{data.login}}".
+    +select('status',   'Status *', 'options.authentification.status')(required=true)
+  div(layout, layout-md='column')
+    +inputEmail('mail', '- Mail *')(required=true)
+  div(layout, layout-md='column')
+    div(ng-show='data._id')
+      div(layout, layout-md='row')
+        +inputText('password', 'Mot de passe (laisser vide pour conserver l\'ancien)')(required=true, my-focus='!data._id', type="{{ switchStatus ? 'password' : 'text' }}", autocomplete="off")
+        md-switch.md-primary(md-no-ink='', ng-model='switchStatus', ng-change='switchType(switchStatus)')
+          | Mode discret: {{ switchStatus ? 'Activé' : 'Désactivé' }}
+    div(ng-hide='data._id')
+      div(layout, layout-md='row')
+        +inputText('password', 'Mot de passe *')(required=true, my-focus='!data._id', type="{{ switchStatus ? 'password' : 'text' }}", autocomplete="off")
+        md-switch.md-primary(md-no-ink='', ng-model='switchStatus', ng-change='switchType(switchStatus)')
+          | Mode discret: {{ switchStatus ? 'Activé' : 'Désactivé' }}
+
++footBarAuthentficateEdit('hasPermission({category : "AUTHENTIFICATION", require : "WRITE"})')

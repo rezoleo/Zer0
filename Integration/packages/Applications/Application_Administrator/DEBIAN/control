@@ -1,0 +1,9 @@
+Package: Application-Administrator
+Version: 1.0.0
+Section: base
+Priority: optional
+Architecture: all
+Depends: bash, openssl, mongodb, nano, nodejs, npm
+Maintainer: Emmanuel ZIDEL-CAUFFET <emmanuel.zidel@gmail.com>
+Description: Application designed to manage all the centrale-datacore services
+

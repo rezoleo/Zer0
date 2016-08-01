@@ -1,0 +1,1 @@
+../../../NodeJS/Service/people/server/conf/rest.js

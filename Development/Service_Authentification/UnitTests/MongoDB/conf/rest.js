@@ -1,0 +1,1 @@
+../../../NodeJS/Service/authentification/server/conf/rest.js

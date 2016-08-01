@@ -1,0 +1,12 @@
+include ../_authorizationHelper
+
+div
+  md-content.md-padding
+    md-tabs(md-dynamic-height='', md-border-bottom='')
+      +tabSection('Authentification', 'authentification', 'hasPermission({category : "AUTHENTIFICATION", require : "ADMIN"})')
+      +tabSection('Carte', 'card', 'hasPermission({category : "CARD", require : "ADMIN"})')
+      +tabSection('Cotisation', 'contributor', 'hasPermission({category : "CONTRIBUTOR", require : "ADMIN"})')
+      +tabSection('Groupe', 'group', 'hasPermission({category : "GROUP", require : "ADMIN"})')
+      +tabSection('Personne', 'people', 'hasPermission({category : "PEOPLE", require : "ADMIN"})')
+      +tabSection('Alertes', 'alert', 'hasPermission({category : "ALERT", require : "ADMIN"})')
+

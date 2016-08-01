@@ -1,0 +1,71 @@
+#All the errors use in the NodeJS server for 404 code
+
+# Global errors
+- code: WSCORE.1.1.1
+  message: Api inexistante
+- code: WSCORE.2.1.1
+  message: Api inexistante
+
+# Token errors
+- code: WSCORE.3.1.1
+  message: Le jeton transmis est invalide ou absent
+- code: WSCORE.3.1.2
+  message: L'adresse IP du client n'est pas compatible avec ce jeton
+- code: WSCORE.3.1.3
+  message: Le nom de service source n'est pas compatible avec ce jeton
+- code: WSCORE.3.1.4
+  message: Le nom de service de destination n'est pas compatible avec ce jeton
+- code: WSCORE.3.1.5
+  message: La période d'utisation n'est pas exploitable avec ce jeton
+- code: WSCORE.3.1.6
+  message: Le jeton ne contient aucune règle d'accès
+- code: WSCORE.3.1.7
+  message: Le jeton n'est pas reconnu dans la base de données
+- code: WSCORE.3.1.8
+  message: Le jeton ne dispose pas des droits suffisants pour accéder à cet API
+- code: WSCORE.3.1.9
+  message: Erreur lors de la vérification des permissions
+- code: WSCORE.3.1.10
+  message: Erreur lors de l'exécution du contrôleur
+
+
+# API
+## GET link : 
+- code: PASSWDRESET.1.1.1
+  message: Le jeton n'a pas été précisée
+- code: PASSWDRESET.1.1.2
+  message: Aucune demande de renouvellement n'est associée à ce jeton
+
+## POST request : 
+- code: PASSWDRESET.1.2.1
+  message: Le login de la personne est absent
+- code: PASSWDRESET.1.2.2
+  message: Une demande de renouvellement est déjà en cours pour ce login
+- code: PASSWDRESET.1.2.3
+  message: Aucun accès n'existe pour ce login
+- code: PASSWDRESET.1.2.4
+  message: Aucune adresse e-mail n'est associée à ce login
+- code: PASSWDRESET.1.2.5
+  message: Impossible de trouver le jeton après son insertion dans la base de données
+- code: PASSWDRESET.1.2.6
+  message: Echec lors de l'envoi du mail
+
+## POST link : 
+- code: PASSWDRESET.2.1.1
+  message: Le jeton n'a pas été précisée
+- code: PASSWDRESET.2.1.2
+  message: Le nouveau mot de passe n'a pas été précisé
+- code: PASSWDRESET.2.1.3
+  message: Aucune demande de renouvellement n'est associée à ce jeton
+- code: PASSWDRESET.2.1.4
+  message: Aucun accès n'existe pour ce login
+- code: PASSWDRESET.2.1.5
+  message: Echec lors de l'envoi du mail de confirmation
+
+# WEBSERVICE CLIENTS
+## AUTHENTIFICATION
+- code: PASSWDRESET.A.1.1
+  message: Le connecteur vers le service des authentifiants a généré une uri avec au moins un caractère interdit
+- code: PASSWDRESET.A.2.1
+  message: Le connecteur vers le service des authentifiants a généré une uri avec au moins un caractère interdit
+

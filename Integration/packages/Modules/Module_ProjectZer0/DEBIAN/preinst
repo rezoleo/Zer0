@@ -1,0 +1,15 @@
+#!/bin/bash
+
+LOG_DIR="/var/log/zero-project"
+LOG_FILE="$LOG_DIR/modules.log"
+mkdir -p "$LOG_DIR"
+
+echo "" >> "$LOG_FILE";
+echo "Package = Module-ProjectZer0" >> "$LOG_FILE";
+echo "Time = $(date +%Y-%m-%dT%H:%M:%S%:z)" >> "$LOG_FILE";
+
+echo | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+echo "!!!   STARTING INSTALLATION STEP   !!!" | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+echo | tee -a "$LOG_FILE";

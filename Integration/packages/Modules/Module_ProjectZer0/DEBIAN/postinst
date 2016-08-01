@@ -1,0 +1,36 @@
+#!/bin/bash
+
+LOG_DIR="/var/log/zero-project"
+LOG_FILE="$LOG_DIR/modules.log"
+mkdir -p "$LOG_DIR"
+
+echo "[+] End of installation step" | tee -a "$LOG_FILE";
+
+echo | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+echo "!!! STARTING POST INSTALLATION STEP !!!" | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+		
+# Definition of the constants
+PERMISSION="nobody:root";
+DIR="/usr/local/lib/node_modules";
+NODEJS_DIR="/usr/lib/nodejs";
+MODULE_LIST=("applicationcore" "authorization" "cache" "core" "floodprotection" "token_generator" "toolbox" "webservicecore");
+
+# Change in the owner of the different modules
+for module in ${MODULE_LIST[@]};
+do
+	echo "[+] Processing the module called $module" | tee -a "$LOG_FILE";
+	echo "Changing the owner and the group" | tee -a "$LOG_FILE";
+	chown -R  "$PERMISSION" "$DIR/$module" | tee -a "$LOG_FILE";
+	echo "Updating the permissions and the owner" | tee -a "$LOG_FILE";
+	chmod a+r  "$DIR/$module" | tee -a "$LOG_FILE";
+	chmod go-w "$DIR/$module" | tee -a "$LOG_FILE";
+	chown nobody:root -R "$DIR/$module" | tee -a "$LOG_FILE";
+	echo "Creating the symbolic link" | tee -a "$LOG_FILE";
+	ln -s "$DIR/$module/" "$NODEJS_DIR/$module" | tee -a "$LOG_FILE";
+	echo | tee -a "$LOG_FILE";
+done
+
+echo "[+] End of post installation step" | tee -a "$LOG_FILE";
+echo | tee -a "$LOG_FILE";

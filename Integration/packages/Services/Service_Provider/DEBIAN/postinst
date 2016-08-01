@@ -1,0 +1,128 @@
+#!/bin/bash
+
+LOG_DIR="/var/log/zero-project"
+LOG_FILE="$LOG_DIR/serv_provider.log"
+mkdir -p "$LOG_DIR"
+
+echo "[+] End of installation step" | tee -a "$LOG_FILE";
+
+echo | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+echo "!!! STARTING POST INSTALLATION STEP !!!" | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+
+# Definition of the constants
+USER="serv_provider";
+GROUP="services";
+HOME_DIR="/home/$USER";
+CERT_DIR="$HOME_DIR/service/certificates";
+
+TODAY=$(date +%Y%m%d)
+BACKUP_DIR="$HOME_DIR/backup/$TODAY"
+
+# Generation of SSL certificates
+CHECK_SSL=`ls "$BACKUP_DIR/certificates" 2>/dev/null | wc -l`
+GENERATE_SSL=1
+if [ $CHECK_SSL -ne 0 ]
+then
+	RESTORE_SSL=42
+	while [[ "$RESTORE_SSL" != "" && "$RESTORE_SSL" != "Y" && "$RESTORE_SSL" != "y" && "$RESTORE_SSL" != "N" && "$RESTORE_SSL" != "n" ]]
+	do
+		echo "[?] A backup created today is detected for the certificates" | tee -a "$LOG_FILE";
+		echo "Do you want to restore them [Y/n] ?" | tee -a "$LOG_FILE";
+		read RESTORE_SSL
+	done
+
+	if [[ "$RESTORE_SSL" == "" || "$RESTORE_SSL" == "Y" || "$RESTORE_SSL" == "y" ]]
+	then
+		echo "[+] Restoring the certificate files" | tee -a "$LOG_FILE";
+		cp -rf "$BACKUP_DIR/certificates" "$HOME_DIR/service/." | tee -a "$LOG_FILE";
+		GENERATE_SSL=0
+	fi
+fi
+
+if [ $GENERATE_SSL -eq 1 ]
+then
+	echo "[+] Generation of SSL certificates" | tee -a "$LOG_FILE";
+
+	openssl genrsa -out "$CERT_DIR/server-key.pem" 1024
+	openssl req -new -key "$CERT_DIR/server-key.pem" -out "$CERT_DIR/server-csr.pem"
+	openssl x509 -req -in "$CERT_DIR/server-csr.pem" -signkey "$CERT_DIR/server-key.pem" -out "$CERT_DIR/server-cert.pem"
+fi
+
+# Installation of PM2
+echo "[+] Installation of the node process management" | tee -a "$LOG_FILE";
+
+# Check if pm2 is already installed and installed if it is not the case
+rslt=`npm list -g pm2 | grep "pm2@" | wc -l`
+
+if [ "$rslt" -eq "0" ]
+then
+	npm install pm2 -g > /tmp/serv.log 2>&1;
+else
+	echo "PM2 is already installed" | tee -a "$LOG_FILE";
+fi
+
+# Check and restore the configuration if a backup was made
+CHECK_CONF=`ls "$BACKUP_DIR/conf" 2>/dev/null | wc -l`
+if [ $CHECK_CONF -ne 0 ]
+then
+	RESTORE_CONF=42
+	while [[ "$RESTORE_CONF" != "" && "$RESTORE_CONF" != "Y" && "$RESTORE_CONF" != "y" && "$RESTORE_CONF" != "N" && "$RESTORE_CONF" != "n" ]]
+	do
+		echo "[?] A backup created today is detected for the configuration files" | tee -a "$LOG_FILE";
+		echo "Do you want to restore them [Y/n] ?" | tee -a "$LOG_FILE";
+		read RESTORE_CONF
+	done
+
+	if [[ "$RESTORE_CONF" == "" || "$RESTORE_CONF" == "Y" || "$RESTORE_CONF" == "y" ]]
+	then
+		echo "[+] Restoring the configuration files" | tee -a "$LOG_FILE";
+		cp -rf "$BACKUP_DIR/conf" "$HOME_DIR/service/server/." | tee -a "$LOG_FILE";
+	fi
+fi
+
+# Directories and files receives the correct user and group
+echo "[+] Set on the files the user and group properties" | tee -a "$LOG_FILE";
+chown $USER:$GROUP /etc/init.d/$USER | tee -a "$LOG_FILE";
+chown $USER:$GROUP /etc/$USER/ | tee -a "$LOG_FILE";
+chown $USER:$GROUP $HOME_DIR/ | tee -a "$LOG_FILE";
+chown $USER:$GROUP $HOME_DIR/service -R | tee -a "$LOG_FILE";
+
+echo "[+] Remove all the ACLs of the user" | tee -a "$LOG_FILE";
+setfacl -b  /etc/init.d/$USER | tee -a "$LOG_FILE";
+setfacl -b  /etc/$USER/ | tee -a "$LOG_FILE";
+setfacl -bR $HOME_DIR | tee -a "$LOG_FILE";
+
+# Directories and files receives the correct permissions
+echo "[+] Set the file permissions" | tee -a "$LOG_FILE";
+chmod 540 /etc/init.d/$USER | tee -a "$LOG_FILE";
+chmod 540 /etc/$USER/ | tee -a "$LOG_FILE";
+chmod go-rwx $HOME_DIR/ | tee -a "$LOG_FILE";
+chmod go-rwx $HOME_DIR/service -R | tee -a "$LOG_FILE";
+chmod u+w $HOME_DIR/service/log -R | tee -a "$LOG_FILE";
+
+# Open the configuration files to let the user to change the settings
+OPEN_CONF=42
+while [[ "$OPEN_CONF" != "" && "$OPEN_CONF" != "Y" && "$OPEN_CONF" != "y" && "$OPEN_CONF" != "N" && "$OPEN_CONF" != "n" ]]
+do
+	echo "[?] Do you want to open the configuration files [Y/n] ?" | tee -a "$LOG_FILE";
+	read OPEN_CONF
+done
+
+if [[ "$OPEN_CONF" == "" || "$OPEN_CONF" == "Y" || "$OPEN_CONF" == "y" ]]
+then
+	echo "[+] Opening the configuration files" | tee -a "$LOG_FILE";
+	nano /etc/$USER/*
+fi
+
+# Make the service running automatically when the computer is started
+echo "[+] Autostart for the service" | tee -a "$LOG_FILE";
+update-rc.d serv_provider defaults | tee -a "$LOG_FILE";
+
+# Starting the webservice
+echo "[+] Starting the service" | tee -a "$LOG_FILE";
+/etc/init.d/$USER start | tee -a "$LOG_FILE";
+
+echo "[+] End of post installation step" | tee -a "$LOG_FILE";
+echo | tee -a "$LOG_FILE";

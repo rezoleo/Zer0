@@ -1,0 +1,217 @@
+#spec : 
+resourcePath: /api
+apis:
+- path: /api/group
+  description: Operations about group information
+  operations:
+
+# GET /group
+  - httpMethod: GET
+    summary: Get information of all the group refered
+
+  - httpMethod: GET/:id
+    summary: Get information of one specifiq group refered by its id
+    parameters:
+    - name: id
+      datatype: string
+      required: true
+    errorResponses:
+    - code: 404
+      reason: GROUP.1.1.1 - L'identifiant ID du groupe est absent
+    - code: 404
+      reason: GROUP.1.1.2 - Aucun groupe identifié avec cet identifiant
+  - httpMethod: GET/name/:name
+    summary: Get information of one specifiq group refered by its name
+    parameters:
+    - name: login
+      datatype: string
+      required: true
+    errorResponses:
+    - code: 404
+      reason: GROUP.1.2.1 - Le nom du groupe est absent
+    - code: 404
+      reason: GROUP.1.2.2 - Aucun groupe identifié avec ce nom
+
+  - httpMethod: GET/search/:login
+    summary: Get the list of all the groups where a login belongs to the members
+    parameters:
+    errorResponses:
+    - code: 404
+      reason: GROUP.1.3.1 - Le nom du groupe est absent
+
+# POST /group
+  - httpMethod: POST
+    summary: Create information of one group in the system
+    parameters:
+    - name: name
+      datatype: string
+      required: true
+    - name: type
+      datatype: string
+      required: true
+    - name: description
+      datatype: string
+      required: false
+    - name: mail
+      datatype: string
+      required: false
+    - name: logo
+      datatype: string
+      required: false
+    - name: picture
+      datatype: string
+      required: false
+    - name: creator
+      datatype: string
+      required: false
+    errorResponses:
+    - code: 404	
+      reason: GROUP.1.4.1 - Le nom du groupe n'a pas été précisé
+    - code: 404	
+      reason: GROUP.1.4.2 - Le type du groupe n'a pas été précisé
+    - code: 404	
+      reason: GROUP.1.4.3 - Impossible d'ajouter le groupe dans le système comme le nom est déja utilisé par un autre groupe
+    - code: 404	
+      reason: GROUP.1.4.4 - Impossible d'ajouter le groupe dans le système
+
+  - httpMethod: POST/:id/member
+    summary: Add one login inside member list of one specifiq group
+    parameters:
+    - name: id
+      datatype: string
+      required: true
+    - name: login
+      datatype: string
+      required: true
+    errorResponses:
+    - code: 404
+      reason: GROUP.1.7.1 - L'identifiant ID du groupe est absent
+    - code: 404
+      reason: GROUP.1.7.2 - Le login à ajouter dans le groupe est absent
+    - code: 404
+      reason: GROUP.1.7.3 - Aucun groupe identifié avec cet identifiant
+    - code: 404
+      reason: GROUP.1.7.4 - Un login existe déjà dans le groupe désigné
+    - code: 404
+      reason: GROUP.1.7.5 - Impossible de trouver le groupe après la mise à jour
+
+  - httpMethod: POST/:id/responsable
+    summary: Add one responsable of one specifiq group
+    parameters:
+    - name: id
+      datatype: string
+      required: true
+    - name: login
+      datatype: string
+      required: true
+    - name: responsability
+      datatype: string
+      required: true
+    errorResponses:
+    - code: 404
+      reason: GROUP.1.8.1 - L'identifiant ID du groupe est absent
+    - code: 404
+      reason: GROUP.1.8.2 - Le login à ajouter dans les responsables du groupe est absent
+    - code: 404
+      reason: GROUP.1.8.3 - La responsabilité à ajouter dans le groupe pour ce login est absente
+    - code: 404
+      reason: GROUP.1.8.4 - Aucun groupe identifié avec cet identifiant
+    - code: 404
+      reason: GROUP.1.8.5 - Le login a déjà cette responsabilité d'affectée dans le groupe désigné
+    - code: 404
+      reason: GROUP.1.8.6 - Impossible de trouver le groupe après la mise à jour
+
+# PUT /group
+  - httpMethod: PUT/:id
+    summary: Updates information of one specific group
+    parameters:
+    - name: name
+      datatype: string
+      required: true
+    - name: type
+      datatype: string
+      required: true
+    - name: description
+      datatype: string
+      required: false
+    - name: mail
+      datatype: string
+      required: false
+    - name: logo
+      datatype: string
+      required: false
+    - name: picture
+      datatype: string
+      required: false
+    - name: updator
+      datatype: string
+      required: false
+    errorResponses:
+    - code: 404
+      reason: GROUP.1.5.1 - L'identifiant ID du groupe n'a pas été précisé
+    - code: 404
+      reason: GROUP.1.5.2 - Le nom du groupe n'a pas été précisé
+    - code: 404
+      reason: GROUP.1.5.3 - Le type du groupe n'a pas été précisé
+    - code: 404
+      reason: GROUP.1.5.4 - Aucun groupe identifié avec cet identifiant
+    - code: 404
+      reason: GROUP.1.5.5 - Impossible d'ajouter le groupe dans le système comme le nom est déja utilisé par un autre groupe
+    - code: 404
+      reason: GROUP.1.5.6 - Impossible d'ajouter le groupe dans le système comme l'adresse e-mail est déja utilisée par un autre groupe
+    - code: 404
+      reason: GROUP.1.5.7 - Impossible de trouver le groupe après la mise à jour
+
+  - httpMethod: PUT/:id/member
+    summary: Remove one login inside member list of one specifiq group
+    parameters:
+    - name: id
+      datatype: string
+      required: true
+    - name: login
+      datatype: string
+      required: true
+    errorResponses:
+    - code: 404
+      reason: GROUP 1.9.1 - L'identifiant ID du groupe est absent
+    - code: 404
+      reason: GROUP 1.9.2 - Le login du membre à retirer est absent
+    - code: 404
+      reason: GROUP 1.9.3 - Aucun groupe identifié avec cet identifiant
+    - code: 404
+      reason: GROUP 1.9.4 - Aucun membre avec ce login n'existe pour le groupe désigné
+    - code: 404
+      reason: GROUP 1.9.5 - Impossible de trouver le groupe après la mise à jour
+
+  - httpMethod: PUT/:id/responsable
+    summary: Remove one responsable of one specifiq group
+    parameters:
+    - name: id
+      datatype: string
+      required: true
+    - name: login
+      datatype: string
+      required: true
+    errorResponses:
+    - code: 404
+      reason: GROUP 1.10.1 - L'identifiant ID du groupe est absent
+    - code: 404
+      reason: GROUP 1.10.2 - Le login du responsable à retirer est absent
+    - code: 404
+      reason: GROUP 1.10.3 - La responsabilité du responsable à retirer est absente
+    - code: 404
+      reason: GROUP 1.10.4 - Aucun groupe identifié avec cet identifiant
+    - code: 404
+      reason: GROUP 1.10.5 - Aucun responsable avec cette responsabilité n'existe pour le groupe désigné
+    - code: 404
+      reason: GROUP 1.10.6 - Impossible de trouver le groupe après la mise à jour
+
+# DEL /group
+  - httpMethod: DEL/:id
+    summary: remove one group in the system
+    errorResponses:
+    - code: 404
+      reason: GROUP.1.6.1 - L'identifiant ID du groupe est absent
+    - code: 404
+      reason: GROUP.1.6.2 - Aucun groupe identifié avec cet identifiant
+

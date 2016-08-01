@@ -1,0 +1,63 @@
+#spec : 
+resourcePath: /api
+
+apis:
+- path: /api/login
+  description: Operations about signin, signout for the user
+  operations:
+# GET /login
+
+# POST /login
+
+# DELETE /login
+
+- path: /api/authentification
+  description: Operations about authentification information (login/password)
+  operations:
+# POST /authentification
+
+# PUT /authentification
+
+# DELETE /authentification
+
+- path: /api/roles
+  description: Operations about 
+  operations:
+# GET /roles
+
+# POST /roles
+
+# DELETE /roles
+
+- path: /api/card
+  description: Operations about user card
+  operations:
+# GET /card
+
+# POST /card
+
+# PUT /card
+
+# DELETE /card
+
+- path: /api/people
+  description: Operations about people information
+  operations:
+# GET /people
+
+# POST /people
+
+# PUT /people
+
+# DELETE /people
+
+- path: /api/picture
+  description: Operations about pictures
+  operations:
+# GET /picture
+
+# POST /picture
+
+# DELETE /picture
+
+

@@ -1,0 +1,36 @@
+include ../_formHelper
+
+div(layout)
+  h1(flex) {{data.firstname}} {{data.lastname}}
+
+  div.md-actions(layout='row', flex=20, layout-align='end center')
+    md-button.md-primary(ng-click='delete($event)', ng-disabled='!hasPermission({category : "PEOPLE", require : "WRITE"}) || data.picture==null || data.picture==""')
+      +portraitDeleteButton()
+    md-button.md-primary(ui-sref='peopleEdit({_id: data._id})', ng-disabled='!hasPermission({category : "PEOPLE", require : "WRITE"})')
+      +createButton()
+    md-button.md-warn(ui-sref='people')
+      +backButton()
+
+div.view-fields
+  div(layout, layout-wrap, layout-md='row')
+    div(flex=15)
+      center
+        img(ng-src='{{picture}}', width='100%')
+    div(flex=85)
+      div(layout='column', layout-gt-sm='row')
+        +static('{{data.firstname}}', '- Prénom')
+        +static('{{data.lastname}}', '- Nom')
+      div(layout='column', layout-gt-sm='row')
+        +static('{{data.login}}', '- Login')
+        //+static("{{data.birthdate}}", '- Date de naissance')
+        +static('{{getOptionLabel(options.people.major, data.major)}}', '- Majorité')
+        +static('{{getOptionLabel(options.people.sex, data.sex)}}', '- Sexe')
+      div(layout='column', layout-gt-sm='row')
+        +static('{{data.mail}}', '- Mail')
+        +static('{{data.tel}}', '- Téléphone')
+      div(layout='column', layout-gt-sm='row')
+        +staticSeveral('data.tags')
+  div(layout='column', layout-gt-sm='row')
+    +static("{{data.created | amCalendar}} par {{data.creator ? data.creator : '(?)'}} depuis {{data.creatorService ? data.creatorService : '(?)' }}", 'Création')
+    +static("{{data.updated | amCalendar}} par {{data.updator ? data.updator : '(?)'}} depuis {{data.updatorService ? data.updatorService : '(?)' }}", 'Modification')(ng-show='data.updator')
+

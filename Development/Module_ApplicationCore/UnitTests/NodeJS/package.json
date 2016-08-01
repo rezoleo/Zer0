@@ -1,0 +1,32 @@
+{
+	"name"              : "testing_applicationcore",
+	"author"            : {
+		"name"	 : "Emmanuel ZIDEL-CAUFFET",
+		"pseudo" : "Zidmann",
+		"email"	 : "emmanuel.zidel@gmail.com"
+	},
+	"description"       : "Server designed to use the applicationcore module to test it by a client with a JUnit project",
+	"version"           : "1.0.0",
+	"private"           : false,
+	"repository"	    : {
+		"type"	: "git",
+		"url"	: "https://bitbucket.org/zidmann/"
+	},
+	"main"              : "./server/index.js",
+	"scripts"           : { 
+		"start" : "./bin/start-server.sh Testing_ApplicationCore",
+		"stop"  : "./bin/stop-server.sh Testing_ApplicationCore"
+	},
+	"license"           : "GNU v3",
+	"readmeFilename"    : "README.md",
+	"engines": {
+		"node": ">0.10.0"
+	},
+	"dependencies": {
+		"fs"		  : "~0.0.2",
+		"mongoose"        : "~4.0.2",
+		"node.extend"     : "~1.1.3",
+		"request"	  : "~2.55.0",
+		"underscore"      : "~1.8.3"
+	}
+}

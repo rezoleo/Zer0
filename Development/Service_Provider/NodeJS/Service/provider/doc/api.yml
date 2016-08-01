@@ -1,0 +1,232 @@
+#spec : 
+resourcePath: /api
+apis:
+- path: /api/authentification
+  description: Operations about authentification operations
+  operations:
+	# GET /authentification
+	  - httpMethod: GET
+	    summary: Get information of all the password refered
+	  
+	  - httpMethod: GET/:login
+	    summary: GET an access
+	    errorResponses:
+	    - code: 404
+	      reason: AUTH.1.1.1 - Le login de la personne n'a pas été précisé
+	    - code: 404
+	      reason: AUTH.1.1.2 - Aucun accès accessible avec ce login
+	    - code: 404
+	      reason: PROVIDER.A.1.1 - Le connecteur vers le service des authentifiants a généré une uri avec au moins un caractère interdit
+
+	# POST /authentification
+	  - httpMethod: POST/:login
+	    summary: Check an access AND test if password is correct
+	    parameters:
+	    - name: password
+	      datatype: string
+	      required: true
+	    errorResponses:
+	    - code: 404
+	      reason: AUTH.1.3.1 - Le login de la personne n'a pas été précisé
+	    - code: 404
+	      reason: AUTH.1.3.2 - Le mot de passe n'a pas été précisé
+	    - code: 404
+	      reason: AUTH.1.3.3 - Aucun accès accessible avec ces identifiants
+	    - code: 404
+	      reason: PROVIDER.A.2.1 - Le connecteur vers le service des authentifiants a généré une uri avec au moins un caractère interdit
+
+- path: /api/card
+  description: Operations about user card
+  operations:
+	  - httpMethod: GET/:id
+	    summary: Get card information of one specifiq card refered by its id (note : for an offline card, the owner is hidden)
+	    parameters:
+	    - name: id
+	      datatype: string
+	      required: true
+	    errorResponses:
+	    - code: 404
+	      reason: CARD.1.1.1 - Le propriétaire (owner) de la carte n'a pas été précisé
+	    - code: 404
+	      reason: CARD.1.1.2 - Aucune carte identifiée avec cet identifiant
+	    - code: 404
+	      reason: PROVIDER.B.1.1 - Le connecteur vers le service des cartes a généré une uri avec au moins un caractère interdit
+
+	  - httpMethod: GET/code/:code
+	    summary: Get card information of one specifiq card refered by its code (note : for an offline card, the owner is hidden)
+	    parameters:
+	    - name: code
+	      datatype: string
+	      required: true
+	    errorResponses:
+	    - code: 404
+	      reason: CARD.1.2.1 - Le code de la carte est absent
+	    - code: 404
+	      reason: CARD.1.2.2 - Aucune carte identifiée avec ce code
+	    - code: 404
+	      reason: PROVIDER.B.2.1 - Le connecteur vers le service des cartes a généré une uri avec au moins un caractère interdit
+
+- path: /api/contributor
+  description: Operations about contributors
+  operations:
+	  - httpMethod: GET
+	    summary: Get information of all the contributors refered
+
+	  - httpMethod: GET/:id
+	    summary: Get information of one specifiq contributor refered by his/her id
+	    parameters:
+	    - name: id
+	      datatype: string
+	      required: true
+	      errorResponses:
+	    - code: 404
+	      reason: CONTRIBUTOR.1.1.1 - L'identifiant ID du cotisant est absent
+	    - code: 404
+	      reason: CONTRIBUTOR.1.1.2 - Aucun cotisant identifié avec cet identifiant
+	    - code: 404
+	      reason: PROVIDER.C.1.1 - Le connecteur vers le service des cotisants a généré une uri avec au moins un caractère interdit
+
+	  - httpMethod: GET/login/:login
+	    summary: Get information of one specifiq contributor refered by his/her login
+	    parameters:
+	    - name: login
+	      datatype: string
+	      required: true
+ 	    errorResponses:
+	    - code: 404
+	      reason: CONTRIBUTOR.1.2.1 - Le login du cotisant est absent
+	    - code: 404
+	      reason: CONTRIBUTOR.1.2.2 - Aucun cotisant identifié avec ce login
+	    - code: 404
+	      reason: PROVIDER.C.2.1 - Le connecteur vers le service des cotisants a généré une uri avec au moins un caractère interdit
+
+- path: /api/group
+  description: Operations about groups
+  operations:
+          - httpMethod: GET
+            summary: Get information of all the group refered
+
+          - httpMethod: GET/:id
+            summary: Get information of one specifiq group refered by its id
+            parameters:
+            - name: id
+              datatype: string
+              required: true
+              errorResponses:
+            - code: 404
+              reason: GROUP.1.1.1 - L'identifiant ID du groupe est absent
+            - code: 404
+              reason: GROUP.1.1.2 - Aucun groupe identifié avec cet identifiant
+	    - code: 404
+	      reason: PROVIDER.D.1.1 - Le connecteur vers le service des groupes a généré une uri avec au moins un caractère interdit
+          - httpMethod: GET/name/:name
+            summary: Get information of one specifiq group refered by its name
+            parameters:
+            - name: login
+              datatype: string
+              required: true
+            errorResponses:
+            - code: 404
+              reason: GROUP.1.2.1 - Le nom du groupe est absent
+            - code: 404
+              reason: GROUP.1.2.2 - Aucun groupe identifié avec ce nom
+	    - code: 404
+	      reason: PROVIDER.D.2.1 - Le connecteur vers le service des groupes a généré une uri avec au moins un caractère interdit
+          - httpMethod: GET/search/:login
+            summary: Get the list of all the groups where a login belongs to the members
+            parameters:
+            errorResponses:
+            - code: 404
+            reason: GROUP.1.3.1 - Le nom du groupe est absent
+	    - code: 404
+	      reason: PROVIDER.D.3.1 - Le connecteur vers le service des groupes a généré une uri avec au moins un caractère interdit
+
+
+- path: /api/people
+  description: Operations about people information
+  operations:
+	# GET /card
+	  - httpMethod: GET
+	    summary: Get information of all the cards refered
+
+	# GET /people
+	  - httpMethod: GET
+	    summary: Get information of all the people refered
+
+	  - httpMethod: GET/:id
+	    summary: Get information of one specifiq person refered by its id
+	    parameters:
+	    - name: id
+	      datatype: string
+	      required: true
+	    errorResponses:
+	    - code: 404
+	      reason: PEOPLE.1.1.1 - L'identifiant ID de la personne est absent
+	    - code: 404
+	      reason: PEOPLE.1.1.2 - Aucune personne identifiée avec cet identifiant
+	    - code: 404
+	      reason: PROVIDER.E.1.1 - Le connecteur vers le service des personnes a généré une uri avec au moins un caractère interdit
+	  - httpMethod: GET/login/:login
+	    summary: Get information of one specifiq person refered by its login
+	    parameters:
+	    - name: login
+	      datatype: string
+	      required: true
+	    errorResponses:
+	    - code: 404
+	      reason: PEOPLE.1.2.1 - Le login de la personne est absent
+	    - code: 404
+	      reason: PEOPLE.1.2.2 - Aucune personne identifiée avec ce login
+	    - code: 404
+	      reason: PROVIDER.E.2.1 - Le connecteur vers le service des personnes a généré une uri avec au moins un caractère interdit
+	  - httpMethod: GET/mail/:mail
+	    summary: Get information of one specifiq person refered by its mail
+	    parameters:
+	    - name: mail
+	      datatype: string
+	      required: true
+	    errorResponses:
+	    - code: 404
+	      reason: PEOPLE.1.3.1 - L'e-mail de la personne est absent
+	    - code: 404
+	      reason: PEOPLE.1.3.2 - Aucune personne identifiée avec cet e-mail
+	    - code: 404
+	      reason: PROVIDER.E.3.1 - Le connecteur vers le service des personnes a généré une uri avec au moins un caractère interdit
+
+- path: /api/file
+  description: Operations about files
+  operations:
+	# GET /file/:file
+	  - httpMethod: GET
+	    summary: Get information about one specific file (file_path and checksum)
+	    parameters:
+	    - name: dir
+	      datatype: string
+	      required: true
+	    - name: file
+	      datatype: string
+	      required: true
+	    errorResponses:
+	    - code: 404
+	      reason: PICTURE.1.1.1 - Le répertoire du fichier est absent
+	    - code: 404
+	      reason: PICTURE.1.1.2 - Le nom du fichier est absent
+	    - code: 404
+	      reason: PICTURE.1.1.3 - Le répertoire du fichier contient des caractères non-autorisés
+	    - code: 404
+	      reason: PICTURE.1.1.4 - Le nom du fichier ne respecte pas la règle de gestion
+	    - code: 404
+	      reason: PICTURE.1.1.5 - L'extension du fichier ne respecte pas la règle de gestion
+	    - code: 404
+	      reason: PICTURE.1.1.6 - Le jeton transmis ne contient pas les droits pour accéder à ce répertoire
+	    - code: 404
+	      reason: PICTURE.1.1.7 - Erreur lors de la lecture du fichier source
+	    - code: 404
+	      reason: PICTURE.1.1.8 - Erreur lors du calcul du checksum
+	    - code: 404
+	      reason: PROVIDER.1.1.1 - Le jeton transmis ne contient pas les droits pour accéder au répertoire distant
+	    - code: 404
+	      reason: PROVIDER.F.1.1 - Le connecteur vers le service des images a généré une uri avec au moins un caractère interdit
+	    - code: 404
+	      reason: PROVIDER.F.2.1 - Le connecteur vers le service des images a généré une uri avec au moins un caractère interdit
+

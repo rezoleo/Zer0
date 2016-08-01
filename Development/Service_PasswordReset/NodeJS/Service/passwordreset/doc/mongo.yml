@@ -1,0 +1,13 @@
+db: Service_PasswordReset
+collections:
+- link:
+    description: Password Reset links
+    properties:
+    _id       : ObjectID,
+	login     : { type : String, required : true, trim : true, match : /^([a-z0-9-_]){1,8}$/, index : { unique: true, sparse: true } },
+	mail      : { type : String, trim : true, match : /^[_a-zA-Z0-9+-]+[_.a-zA-Z0-9+-]*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-z]{2,4})$/, index: { unique: true, sparse: true } },
+	secretkey : { type : String, required : true, trim : true, match : /^([a-z0-9]){8,}$/,    index : { unique: true, sparse: true } },
+	lifespan  : { type : Number, required : true, min: 0 },
+	created   : { type : Date,   required : true },
+	endDate   : { type : Date,   required : true, index : { unique: false, sparse: true }  }
+

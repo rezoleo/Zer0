@@ -1,0 +1,13 @@
+db: 'defined in configuration file'
+collections:
+- authorization:
+    description: Registered authorizations
+    properties:
+      	_id     : ObjectID,
+	login   : { type : String, required : true, trim : true, match : /^([a-z0-9-_]){1,8}$/, index: { unique: true, sparse: true } },
+	roles 	:[{ type : String, trim : true, match : /^([A-Z])+([A-Z- ]){0,}$/, uppercase : true }],
+	creator : { type : String, trim : true, match : /^([a-z0-9-_]){1,8}$/ },
+	created : { type : Date,   required: true },
+	updator : { type : String, trim : true, match : /^([a-z0-9-_]){1,8}$/ },
+	updated : { type : Date }
+

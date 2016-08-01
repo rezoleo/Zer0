@@ -1,0 +1,18 @@
+db: Service_Card
+collections:
+- cards:
+    description: User cards information
+    properties:
+      	_id       	: ObjectID,
+	owner     	: { type : String, required : true, trim : true, match : /^([a-z0-9-_]){1,8}$/ },
+	code      	: { type : String, required : true, trim : true, match : /^([a-f0-9]){8}$/, index : { unique: true, sparse: true } },
+	status    	: { type : String, required : true, enum : ['ON', 'OFF'] },
+	creator   	: { type : String, trim : true, match : /^([a-z0-9-_]){1,8}$/ },
+	created   	: { type : Date,   required: true },
+	creatorIP 	: { type : String, trim : true },
+	creatorService 	: { type : String, trim : true },
+	updator   	: { type : String, trim : true, match : /^([a-z0-9-_]){1,8}$/ },
+	updated   	: { type : Date },
+	updatorIP 	: { type : String, trim : true },
+	updatorService 	: { type : String, trim : true }
+

@@ -1,0 +1,19 @@
+db: Service_Authentification
+collections:
+- authentifications:
+    description: Authentification information
+    properties:
+      	_id            : ObjectID
+	login          : { type : String, required : true, trim : true, match : /^([a-z0-9-_]){1,8}$/, index: { unique: true, sparse: true } },
+	mail           : { type : String, trim : true, match : /^[_a-zA-Z0-9+-]+[_.a-zA-Z0-9+-]*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-z]{2,4})$/, index: { unique: true, sparse: true } },
+	password       : { type : String, required : true, trim : true},
+	status         : { type : String, required : true, 		enum : ['ON', 'OFF'] },
+	creator        : { type : String,                  trim : true, match : /^([a-z0-9-_]){1,8}$/ },
+	created        : { type : Date,   required: true },
+	creatorIP      : { type : String, trim : true },
+	creatorService : { type : String, trim : true },
+	updator        : { type : String, trim : true, match : /^([a-z0-9-_]){1,8}$/ },
+	updated        : { type : Date },
+	updatorIP      : { type : String, trim : true },
+	updatorService : { type : String, trim : true }
+

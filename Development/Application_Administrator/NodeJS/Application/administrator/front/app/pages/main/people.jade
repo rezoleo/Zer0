@@ -1,0 +1,14 @@
+include ../_menuHelper
+
++headBar('Recherche d\'une personne', 'peopleNew', 'hasPermission({category : "PEOPLE", require : "WRITE"})')
+
+md-list(ng-show='list').result-list
+  md-list-item.md-3-line(ng-repeat='item in filtered', ng-click="$state.go('peopleView', {_id: item._id})")
+    img.md-avatar(src='{{getOptionIcon(options.people.sex, item.sex)}}')
+    div.md-list-item-text
+      h3 {{item.firstname}} {{item.lastname}}
+      h4 {{item.sex}} - {{item.login}}
+      p {{item.mail || '&nbsp;'}}
+    div.md-actions.md-secondary-container()
+
++loadSymbol()

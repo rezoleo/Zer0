@@ -1,0 +1,27 @@
+{
+	"name"              : "token_contributor",
+	"author"            : {
+		"name"	 : "Emmanuel ZIDEL-CAUFFET",
+		"pseudo" : "Zidmann",
+		"email"	 : "emmanuel.zidel@gmail.com"
+	},
+	"description"       : "Tool designed to generate the different tokens for testing with JUnit the contributor service",
+	"version"           : "1.0.0",
+	"private"           : false,
+	"repository"	    : {
+		"type"	: "git",
+		"url"	: "https://bitbucket.org/zidmann/"
+	},
+	"main"              : "./scripts/generate-token.js",
+	"scripts"           : { "start" : "./bin/generate-token.sh" },
+	"license"           : "GNU v3",
+	"readmeFilename"    : "README.md",
+	"engines": {
+		"node": ">0.10.0"
+	},
+	"dependencies": {
+		"jwt-simple"      : "~0.2.0",
+		"node.extend"     : "~1.1.2",
+		"password-hash"   : "~1.2.2"
+	}
+}

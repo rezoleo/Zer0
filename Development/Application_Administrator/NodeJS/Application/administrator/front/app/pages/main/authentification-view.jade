@@ -1,0 +1,28 @@
+include ../_formHelper
+
+div(layout)
+  h1(flex)
+    div(ng-switch='data.person!=null && data.person._id!=null')
+      div(ng-switch-when='true')
+        Authentifiant {{data.login ? data.login : '(?)' }} attribué à 
+        a(ui-sref='peopleView({_id: data.person._id})') {{data.person.firstname+' '+data.person.lastname}}
+      div(ng-switch-default)
+        Authentifiant {{data.login ? data.login : '(?)' }} attribué à (?)
+
+  div.md-actions(layout='row', flex=20, layout-align='end center')
+    md-button.md-primary(ui-sref='authentificationEdit({_id: data._id, login: data.login})', ng-disabled='!hasPermission({category : "AUTHENTIFICATION", require : "WRITE"})')
+      +createButton()
+    md-button.md-warn(ui-sref='authentification')
+      +backButton()
+
+div.view-fields
+  div(layout='column', layout-gt-sm='row')
+    +static('{{data.login}}', '- Login')
+    +static('{{getOptionLabel(options.authentification.status, data.status)}}', '- Statut')
+  div(layout='column', layout-gt-sm='row')
+    +static('{{data.mail}}', '- Mail')
+  div(layout='column', layout-gt-sm='row')
+    +static("{{data.created | amCalendar}} par {{data.creator ? data.creator : '(?)'}} depuis {{data.creatorService ? data.creatorService : '(?)'}}", 'Création')
+    +static("{{data.updated | amCalendar}} par {{data.updator ? data.updator : '(?)'}} depuis {{data.updatorService ? data.updatorService : '(?)' }}",
+'Modification')(ng-show='data.updator')
+

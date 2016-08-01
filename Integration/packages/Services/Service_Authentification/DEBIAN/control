@@ -1,0 +1,10 @@
+Package: Service-Authentification
+Version: 1.0.0
+Section: base
+Priority: optional
+Architecture: all
+Depends: bash, openssl, mongodb, nano, nodejs, npm
+Maintainer: Emmanuel ZIDEL-CAUFFET <emmanuel.zidel@gmail.com>
+Description: Webservice designed to manage passwords and check access
+Homepage: 
+

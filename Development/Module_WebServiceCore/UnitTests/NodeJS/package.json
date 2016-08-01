@@ -1,0 +1,30 @@
+{
+	"name"              : "testing_webservicecore_https",
+	"author"            : {
+		"name"	 : "Emmanuel ZIDEL-CAUFFET",
+		"pseudo" : "Zidmann",
+		"email"	 : "emmanuel.zidel@gmail.com"
+	},
+	"description"       : "Server designed to use the HTTPS part webservicecore module to test it by a client with a JUnit project",
+	"version"           : "1.0.0",
+	"private"           : false,
+	"repository"	    : {
+		"type"	: "git",
+		"url"	: "https://bitbucket.org/zidmann/"
+	},
+	"main"              : "./server/index.js",
+	"scripts"           : { 
+		"start" : "./bin/start-server.sh Testing_WebServiceCore",
+		"stop"  : "./bin/stop-server.sh Testing_WebServiceCore"
+	},
+	"license"           : "GNU v3",
+	"readmeFilename"    : "README.md",
+	"engines": {
+		"node": ">0.10.0"
+	},
+	"dependencies": {
+		"mongoose"        : "~4.0.2",
+		"node.extend"     : "~1.1.3",
+		"underscore"      : "~1.8.3"
+	}
+}

@@ -1,0 +1,28 @@
+#spec : 
+resourcePath: /api
+apis:
+- path: /api/mail
+  description: Operations about mail
+  operations:
+# POST /
+  - httpMethod: POST
+    summary: Send an email through Google service
+    parameters:
+    - name: to
+      datatype: string
+      required: true
+    - name: content
+      datatype: string
+      required: true
+    errorResponses:
+    - code: 404
+      reason: MAIL.1.1.1 - Le jeton transmis ne contient pas l'expéditeur du message
+    - code: 404
+      reason: MAIL.1.1.2 - Le jeton transmis ne contient pas le sujet du message
+    - code: 404
+      reason: MAIL.1.1.3 - Le destinataire du message est absent
+    - code: 404
+      reason: MAIL.1.1.4 - Le contenu du message est absent
+    - code: 404
+      reason: MAIL.1.1.5 - Une erreur est survenue lors de l'envoi du message
+

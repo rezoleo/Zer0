@@ -1,0 +1,83 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          serv_mail
+# Required-Start:    $local_fs $remote_fs $network
+# Required-Stop:     $local_fs $remote_fs $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: start/stop serv_mail
+### END INIT INFO
+
+########################################################################################################
+# File      : /etc/init.d/serv_mail                                                                    #
+# Author(s) : Zidmann (emmanuel.zidel@gmail.com)                                                       #
+# Function  : Script to start NodeJS server running mail webservice                                    #
+# Version   : 1.0.0                                                                                    #
+# Note      : To start automatically this script use the command line                                  #
+#                update-rc.d serv_mail defaults                                                        #
+########################################################################################################
+
+USER="serv_mail";
+SERV_DIR="/home/$USER/service";
+SERV_ID="Serv_Mail";
+
+CURRENT_DIR=`pwd`;
+CURRENT_USER=`whoami`;
+
+case "$1" in
+#########################################################################################################
+    start)
+	if [ $CURRENT_USER == $USER ]
+	then
+		cd $SERV_DIR; ./bin/start-server.sh $SERV_ID > /dev/null;
+	else 
+		su $USER -c "cd $SERV_DIR; ./bin/start-server.sh $SERV_ID > /dev/null";
+	fi
+	;;
+#########################################################################################################
+    stop)
+	if [ $CURRENT_USER == $USER ]
+	then
+		cd $SERV_DIR; ./bin/stop-server.sh $SERV_ID > /dev/null
+	else
+		su $USER -c "cd $SERV_DIR; ./bin/stop-server.sh $SERV_ID > /dev/null";
+	fi
+	;;
+#########################################################################################################
+    pause)
+	if [ $CURRENT_USER == $USER ]
+	then
+		cd $SERV_DIR; ./bin/pause-server.sh $SERV_ID > /dev/null
+	else
+		su $USER -c "cd $SERV_DIR; ./bin/pause-server.sh $SERV_ID > /dev/null";
+	fi
+	;;
+#########################################################################################################
+    resume)
+	if [ $CURRENT_USER == $USER ]
+	then
+		cd $SERV_DIR; ./bin/restart-server.sh $SERV_ID > /dev/null
+	else
+		su $USER -c "cd $SERV_DIR; ./bin/restart-server.sh $SERV_ID > /dev/null";
+	fi
+	;;
+#########################################################################################################
+    status)
+	if [ $CURRENT_USER == $USER ]
+	then
+		cd $SERV_DIR; ./bin/server-status.sh $SERV_ID
+	else
+		su $USER -c "cd $SERV_DIR; ./bin/server-status.sh $SERV_ID";
+	fi
+	;;
+#########################################################################################################
+    *)
+        echo "Error : Unknown option"
+        echo "Syntax: $0 {start | stop | pause | resume | status}"
+        exit 1
+        ;;
+    esac
+
+#########################################################################################################
+cd $CURRENT_DIR;

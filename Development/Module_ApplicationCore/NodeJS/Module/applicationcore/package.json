@@ -1,0 +1,32 @@
+{
+	"name"              : "applicationcore",
+	"author"            : {
+		"name"	 : "Emmanuel ZIDEL-CAUFFET",
+		"pseudo" : "Zidmann",
+		"email"	 : "emmanuel.zidel@gmail.com"
+	},
+	"description"       : "Module which contains a module designed for developping web application which communicates with REST webservices based on 'WebServiceCore' module",
+	"version"           : "1.0.0",
+	"private"           : false,
+	"repository"	    : {
+		"type"	: "git",
+		"url"	: "https://bitbucket.org/zidmann/"
+	},
+	"main"              : "./index.js",
+	"license"           : "GNU v3",
+	"readmeFilename"    : "README.md",
+	"engines": {
+		"node": ">0.10.0"
+	},
+	"dependencies": {
+		"body-parser"     : "~1.13.2",
+		"connect-mongo"   : "~0.8.2",
+		"connect-timeout" : "~1.6.2",
+		"express"         : "~4.13.1",
+		"express-session" : "~1.11.3",
+		"helmet"          : "~0.15.0",
+		"jwt-simple"      : "~0.3.0",
+		"node.extend"     : "~1.1.5",
+		"password-hash"   : "~1.2.2"
+	}
+}

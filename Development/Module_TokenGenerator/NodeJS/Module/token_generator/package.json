@@ -1,0 +1,26 @@
+{
+	"name"              : "token_generator",
+	"author"            : {
+		"name"	 : "Emmanuel ZIDEL-CAUFFET",
+		"pseudo" : "Zidmann",
+		"email"	 : "emmanuel.zidel@gmail.com"
+	},
+	"description"       : "Tool designed to generate tokens for NodeJS services using WebServiceCore module",
+	"version"           : "1.0.0",
+	"private"           : false,
+	"repository"	    : {
+		"type"	: "git",
+		"url"	: "https://bitbucket.org/zidmann/"
+	},
+	"main"              : "./index.js",
+	"license"           : "GNU v3",
+	"readmeFilename"    : "README.md",
+	"engines": {
+		"node": ">0.10.0"
+	},
+	"dependencies": {
+		"jwt-simple"      : "~0.3.0",
+		"node.extend"     : "~1.1.5",
+		"password-hash"   : "~1.2.2"
+	}
+}

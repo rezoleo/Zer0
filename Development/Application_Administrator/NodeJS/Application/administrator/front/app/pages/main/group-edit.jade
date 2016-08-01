@@ -1,0 +1,23 @@
+include ../_formHelper
+include ../_menu-editHelper
+
+form(my-forms, name='form')
+  div(layout, ng-show='data._id')
+    h1(, flex) {{data.type}} - {{data.name}}
+    div.md-actions(layout='row', flex=10, layout-align='end center')
+      md-button.md-warn(ui-sref='groupView({_id: data._id})', ng-show='data._id')
+        +backButton()
+  div(layout, ng-hide='data._id')
+    h1(ng-hide='data._id', flex) Ajout d'un groupe
+    div.md-actions(layout='row', flex=10, layout-align='end center')
+      md-button.md-warn(ui-sref='group', ng-hide='data._id')
+        +backButton()
+
+  div(layout, layout-md='column')
+    +inputText('type',  'Type *')(required=true)
+    +inputText('name',  'Nom  *')(required=true)
+  div(layout, layout-md='column')
+    +inputText('description',  'Description')()
+  +inputEmail('mail', 'Email')()
+
++footBar('hasPermission({category : "GROUP", require : "WRITE"})')

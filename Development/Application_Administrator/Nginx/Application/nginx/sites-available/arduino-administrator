@@ -1,0 +1,31 @@
+server {
+        listen 9201;
+        server_name localhost;
+
+        ssl on;
+        ssl_certificate cert.pem;
+        ssl_certificate_key cert.key;
+
+        ssl_session_timeout 5m;
+
+        ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers "HIGH:!aNULL:!MD5 or HIGH:!aNULL:!MD5:!3DES";
+        ssl_prefer_server_ciphers on;
+
+        location /api/arduino/signal/ {
+                proxy_pass https://localhost/arduino/api/signal/;
+                include /etc/nginx/proxy_params;
+                expires 0;
+        }
+
+        location /api {
+                proxy_pass https://localhost:9101;
+                include /etc/nginx/proxy_params;
+        }
+
+        location / {
+                proxy_pass https://localhost:9101;
+                include /etc/nginx/proxy_params;
+        }
+}
+

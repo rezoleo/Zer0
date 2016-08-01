@@ -1,0 +1,54 @@
+include _formHelper
+
+mixin headBar(label, uisref, enabled)
+  div(layout='row')
+    div(flex, layout)
+      +inputText('search', label)(autocomplete='off', ng-keypress='checkEnter($event)')
+    div.md-actions(layout='row', flex='33', layout-align='end center')
+      md-button.md-primary(ng-click='export()', layout-align='center center')
+        md-icon file_download
+        div Exporter
+      md-button.md-primary(ng-click='data.page=data.page-1', layout-align='center center', ng-disabled='data.page == 0')
+        md-icon skip_previous
+        div Précédent
+      md-button.md-primary(ng-click='data.page=data.page+1', layout-align='center center', ng-disabled='filtered_length<(data.page+1)*24')
+        md-icon skip_next
+        div Suivant
+      md-button.md-primary(ui-sref='#{uisref}()', layout-align='center center', ng-disabled='!#{enabled}')
+        md-icon add
+        div Ajouter
+
+mixin headBarAuthentification(label, uisref, enabled)
+  div(layout='row')
+    div(flex, layout)
+      +inputText('search', label)(autocomplete='off', ng-keypress='checkEnter($event)')
+    div.md-actions(layout='row', flex='33', layout-align='end center')
+      md-button.md-primary(ng-click='data.page=data.page-1', layout-align='center center', ng-disabled='data.page == 0')
+        md-icon skip_previous
+        div Précédent
+      md-button.md-primary(ng-click='data.page=data.page+1', layout-align='center center', ng-disabled='filtered_length<(data.page+1)*24')
+        md-icon skip_next
+        div Suivant
+      md-button.md-primary(ui-sref='#{uisref}()', layout-align='center center', ng-disabled='!#{enabled}')
+        md-icon add
+        div Ajouter
+
+mixin headBarContributor(label)
+  div(layout='row')
+    div(flex, layout)
+      +inputText('search', label)(autocomplete='off', ng-keypress='checkEnter($event)')
+    div.md-actions(layout='row', flex='33', layout-align='end center')
+      md-button.md-primary(ng-click='export()', layout-align='center center')
+        md-icon file_download
+        div Exporter
+      md-button.md-primary(ng-click='data.page=data.page-1', layout-align='center center', ng-disabled='data.page == 0')
+        md-icon skip_previous
+        div Précédent
+      md-button.md-primary(ng-click='data.page=data.page+1', layout-align='center center', ng-disabled='filtered_length<(data.page+1)*24')
+        md-icon skip_next
+        div Suivant
+
+mixin loadSymbol()
+  div(ng-hide='list', layout, layout-align='center center', style='height:200px')
+    md-progress-circular(md-mode="indeterminate")
+

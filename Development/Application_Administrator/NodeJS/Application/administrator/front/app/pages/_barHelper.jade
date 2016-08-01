@@ -1,0 +1,6 @@
+mixin createMenuListItem(go, icon, title, enabled)
+  md-list-item(ng-click="$state.go('#{go}')", ng-disabled='!#{enabled}')
+    md-icon #{icon}
+    p #{title}
+  md-divider
+

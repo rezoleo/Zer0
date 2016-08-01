@@ -1,0 +1,10 @@
+Package: Tool-ArduinoForAdministrator
+Version: 1.0.0
+Section: base
+Priority: optional
+Architecture: all
+Depends: Application-Administrator, Tool-ArduinoListener
+Maintainer: Emmanuel ZIDEL-CAUFFET <emmanuel.zidel@gmail.com>
+Description: Tool designed to catch the uid of a card read by an Arduino ship and sent to the administrator application
+Homepage: 
+

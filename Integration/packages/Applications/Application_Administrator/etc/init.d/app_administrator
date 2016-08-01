@@ -1,0 +1,83 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          app_administrator
+# Required-Start:    $local_fs $remote_fs $network
+# Required-Stop:     $local_fs $remote_fs $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: start/stop app_administrator
+### END INIT INFO
+
+########################################################################################################
+# File      : /etc/init.d/app_administrator                                                            #
+# Author(s) : Zidmann (emmanuel.zidel@gmail.com)                                                       #
+# Function  : Script to start NodeJS server running administrator application                          #
+# Version   : 1.0.0                                                                                    #
+# Note      : To start automatically this script use the command line                                  #
+#                update-rc.d app_administrator defaults                                                #
+########################################################################################################
+
+USER="app_administrator";
+APP_DIR="/home/$USER/application";
+APP_ID="App_Administrator";
+
+CURRENT_DIR=`pwd`;
+CURRENT_USER=`whoami`;
+
+case "$1" in
+#########################################################################################################
+    start)
+	if [ $CURRENT_USER == $USER ]
+	then
+		cd $APP_DIR; ./bin/start-server.sh $APP_ID > /dev/null;
+	else 
+		su $USER -c "cd $APP_DIR; ./bin/start-server.sh $APP_ID > /dev/null";
+	fi
+	;;
+#########################################################################################################
+    stop)
+	if [ $CURRENT_USER == $USER ]
+	then
+		cd $APP_DIR; ./bin/stop-server.sh $APP_ID > /dev/null
+	else
+		su $USER -c "cd $APP_DIR; ./bin/stop-server.sh $APP_ID > /dev/null";
+	fi
+	;;
+#########################################################################################################
+    pause)
+	if [ $CURRENT_USER == $USER ]
+	then
+		cd $APP_DIR; ./bin/pause-server.sh $APP_ID > /dev/null
+	else
+		su $USER -c "cd $APP_DIR; ./bin/pause-server.sh $APP_ID > /dev/null";
+	fi
+	;;
+#########################################################################################################
+    resume)
+	if [ $CURRENT_USER == $USER ]
+	then
+		cd $APP_DIR; ./bin/restart-server.sh $APP_ID > /dev/null
+	else
+		su $USER -c "cd $APP_DIR; ./bin/restart-server.sh $APP_ID > /dev/null";
+	fi
+	;;
+#########################################################################################################
+    status)
+	if [ $CURRENT_USER == $USER ]
+	then
+		cd $APP_DIR; ./bin/server-status.sh $APP_ID
+	else
+		su $USER -c "cd $APP_DIR; ./bin/server-status.sh $APP_ID";
+	fi
+	;;
+#########################################################################################################
+    *)
+        echo "Error : Unknown option"
+        echo "Syntax: $0 {start | stop | pause | resume | status}"
+        exit 1
+        ;;
+    esac
+
+#########################################################################################################
+cd $CURRENT_DIR;

@@ -1,0 +1,14 @@
+include ../_menuHelper
+
++headBar('Recherche d\'une carte', 'cardNew', 'hasPermission({category : "CARD", require : "WRITE"})')
+
+md-list(ng-show='list').result-list
+  md-list-item.md-3-line(ng-repeat='item in filtered', ng-click="$state.go('cardView', {_id: item._id})")
+    img.md-avatar(src='{{getOptionIcon(options.card.status, item.status)}}')
+    div.md-list-item-text
+      h4 {{item.code}}
+      h4 {{item.owner}}
+      p {{item.status}}
+    div.md-actions.md-secondary-container()
+
++loadSymbol()

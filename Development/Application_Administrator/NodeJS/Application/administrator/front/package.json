@@ -1,0 +1,48 @@
+{
+	"name"		: "application_administrator_front",
+	"authors"	:[{"name"   : "Emmanuel ZIDEL-CAUFFET",
+			   "pseudo" : "Zidmann",
+			   "email"  : "emmanuel.zidel@gmail.com"},
+			  {"name"   : "Hugo LEHMANN",
+			   "pseudo" : "shogi31",
+			   "email"  : "shogi31@gmail.com" }],
+	"description"	: "Part of the Administrator application which generates the web pages for managing people, cards and passwords information",
+	"version"	: "1.0.0",
+	"private"	: false,
+	"repository"	    : {
+		"type"	: "git",
+		"url"	: "https://bitbucket.org/zidmann/"
+	},
+	"scripts"	: {
+		"install"	: "node_modules/.bin/bower i",
+		"start"		: "node_modules/.bin/brunch watch --server",
+		"test"		: "node_modules/.bin/karma start test/karma.conf.js"
+	},
+	"license"		: "GNU v3",
+	"readmeFilename"	: "README.md",
+	"dependencies": {
+		"brunch"			: "~1.7",
+		"bower"				: "~1.3",
+
+		"coffee-script-brunch"		: ">= 1.0 < 1.9",
+		"javascript-brunch"		: ">= 1.0 < 1.8",
+
+		"css-brunch"			: ">= 1.0 < 1.8",
+		"less-brunch"			: ">= 1.0 < 1.8",
+		"stylus-brunch"			: ">= 1.0 < 1.8",
+		"nib"				: "1.x",
+
+		"jade"				: "^1.5.0",
+		"jade-pages-brunch"		: "~1.7.4",
+		"jade-ngtemplates-brunch"	: "~1.7.6",
+
+		"auto-reload-brunch"		: ">= 1.0 < 1.8",
+
+		"ng-annotate-uglify-js-brunch"	: ">= 1.0 < 1.8",
+		"clean-css-brunch"		: ">= 1.0 < 1.8",
+
+		"karma"				: "~0.12.16",
+		"karma-coffee-preprocessor"	: "~0.2.1",
+		"karma-ng-scenario"		: "~0.1.0"
+	}
+}

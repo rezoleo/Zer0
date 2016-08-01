@@ -1,0 +1,84 @@
+#All the errors use in the NodeJS server for 404 code
+
+# Global errors
+- code: WSCORE.1.1.1
+  message: Api inexistante
+- code: WSCORE.2.1.1
+  message: Api inexistante
+
+# Token errors
+- code: WSCORE.3.1.1
+  message: Le jeton transmis est invalide ou absent
+- code: WSCORE.3.1.2
+  message: L'adresse IP du client n'est pas compatible avec ce jeton
+- code: WSCORE.3.1.3
+  message: Le nom de service source n'est pas compatible avec ce jeton
+- code: WSCORE.3.1.4
+  message: Le nom de service de destination n'est pas compatible avec ce jeton
+- code: WSCORE.3.1.5
+  message: La période d'utisation n'est pas exploitable avec ce jeton
+- code: WSCORE.3.1.6
+  message: Le jeton ne contient aucune règle d'accès
+- code: WSCORE.3.1.7
+  message: Le jeton n'est pas reconnu dans la base de données
+- code: WSCORE.3.1.8
+  message: Le jeton ne dispose pas des droits suffisants pour accéder à cet API
+- code: WSCORE.3.1.9
+  message: Erreur lors de la vérification des permissions
+- code: WSCORE.3.1.10
+  message: Erreur lors de l'exécution du contrôleur
+
+
+# API
+## GET authentification : 
+- code: AUTH.1.1.1
+  message: Le login de la personne n'a pas été précisé
+- code: AUTH.1.1.2
+  message: Aucun accès accessible avec ce login
+
+## POST authentification : 
+- code: AUTH.1.2.1
+  message: Le login de la personne n'a pas été précisé
+- code: AUTH.1.2.2
+  message: Le mail de la personne n'a pas été précisé
+- code: AUTH.1.2.3
+  message: Le mot de passe n'a pas été précisé
+- code: AUTH.1.2.4
+  message: Le statut n'a pas été précisé
+- code: AUTH.1.2.5
+  message: Impossible d'ajouter cet accès dans le système comme le login est déja utilisé par un autre accès
+- code: AUTH.1.2.6
+  message: Impossible d'ajouter cet accès dans le système comme le mail est déja utilisé par un autre accès
+- code: AUTH.1.2.7
+  message: Impossible d'ajouter l'accès dans le système
+- code: AUTH.1.3.1
+  message: Le login de la personne n'a pas été précisé
+- code: AUTH.1.3.2
+  message: Le mot de passe n'a pas été précisé
+- code: AUTH.1.3.3
+  message: Aucun accès accessible avec ces identifiants
+- code: AUTH.1.3.4
+  message: L'accès pour ce login a été désactivé
+
+## PUT authentification : 
+- code: AUTH.1.4.1
+  message: Le login de la personne n'a pas été précisé
+- code: AUTH.1.4.2
+  message: Le mail de la personne n'a pas été précisé
+- code: AUTH.1.4.3
+  message: Le mot de passe n'a pas été précisé
+- code: AUTH.1.4.4
+  message: Le statut n'a pas été précisé
+- code: AUTH.1.4.5
+  message: Aucun accès accessible avec ce login
+- code: AUTH.1.4.6
+  message: Impossible de mettre à jour cet accès comme le mail est déja utilisé par un autre accès
+- code: AUTH.1.4.7
+  message: Impossible de trouver l'accès après la mise à jour
+
+## DELETE authentification : 
+- code: AUTH.1.5.1
+  message: Le login de la personne est absent
+- code: AUTH.1.5.2
+  message: Aucun accès identifié avec ce login
+

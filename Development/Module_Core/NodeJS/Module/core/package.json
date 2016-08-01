@@ -1,0 +1,27 @@
+{
+	"name"              : "core",
+	"author"            : {
+		"name"	 : "Emmanuel ZIDEL-CAUFFET",
+		"pseudo" : "Zidmann",
+		"email"	 : "emmanuel.zidel@gmail.com"
+	},
+	"description"       : "Module which contains a module designed to be used in the modules entitled 'webservicecore' and 'applicationcore'",
+	"version"           : "1.0.0",
+	"private"           : false,
+	"repository"	    : {
+		"type"	: "git",
+		"url"	: "https://bitbucket.org/zidmann/"
+	},
+	"main"              : "./index.js",
+	"license"           : "GNU v3",
+	"readmeFilename"    : "README.md",
+	"engines": {
+		"node": ">0.10.0"
+	},
+	"dependencies": {
+		"fs"              : "~0.0.2",
+		"morgan"          : "~1.6.1",
+		"node.extend"     : "~1.1.5",
+		"util"            : "~0.10.3"
+	}
+}

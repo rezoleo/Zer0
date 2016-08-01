@@ -1,0 +1,47 @@
+#!/bin/bash
+
+LOG_DIR="/var/log/zero-project"
+LOG_FILE="$LOG_DIR/tool_arduinoforadministrator.log"
+mkdir -p "$LOG_DIR"
+
+echo "" >> "$LOG_FILE";
+echo "Package = Tool-ArduinoForAdministrator" >> "$LOG_FILE";
+echo "Time = $(date +%Y-%m-%dT%H:%M:%S%:z)" >> "$LOG_FILE";
+
+echo | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+echo "!!! STARTING PRE INSTALLATION STEP !!!" | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+
+# Definition of the constants
+HOME_DIR="/opt/arduino-listener";
+CERT_DIR="$HOME_DIR/certificates";
+
+TODAY=$(date +%Y%m%d)
+BACKUP_DIR="$HOME_DIR/backup/$TODAY"
+
+
+# Backup actions
+CHECK_SSL=`ls "$CERT_DIR" 2>/dev/null | wc -l`
+if [ $CHECK_SSL -ne 0 ]
+then
+	echo "[+] Certificate files detected ; a backup will be done" | tee -a "$LOG_FILE";
+	mkdir -p "$BACKUP_DIR" | tee -a "$LOG_FILE";
+	cp -rf "CERT_DIR" "$BACKUP_DIR/." | tee -a "$LOG_FILE";
+fi
+
+if [ -f $BACKUP_DIR ]
+then
+	echo "[+] Change the owner, the group and the permission of the backup directory" | tee -a "$LOG_FILE";
+	chown -R root:root "$BACKUP_DIR" | tee -a "$LOG_FILE";
+	chmod -R og-rwx "$BACKUP_DIR" | tee -a "$LOG_FILE";
+	setfacl -bR "$BACKUP_DIR" | tee -a "$LOG_FILE";
+fi
+
+echo "[+] End of pre installation step" | tee -a "$LOG_FILE";
+
+echo | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+echo "!!!   STARTING INSTALLATION STEP   !!!" | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+echo | tee -a "$LOG_FILE";

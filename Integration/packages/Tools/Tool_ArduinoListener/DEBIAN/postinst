@@ -1,0 +1,81 @@
+#!/bin/bash
+
+LOG_DIR="/var/log/zero-project"
+LOG_FILE="$LOG_DIR/tool_arduinolistener.log"
+mkdir -p "$LOG_DIR"
+
+echo "[+] End of installation step" | tee -a "$LOG_FILE";
+
+echo | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+echo "!!! STARTING POST INSTALLATION STEP !!!" | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+
+# Definition of the constants
+HOME_DIR="/opt/arduino-listener";
+CERT_DIR="$HOME_DIR/certificates";
+
+TODAY=$(date +%Y%m%d)
+BACKUP_DIR="$HOME_DIR/backup/$TODAY"
+
+# Generation of SSL certificates
+CHECK_SSL=`ls "$BACKUP_DIR/certificates" 2>/dev/null | wc -l`
+GENERATE_SSL=1
+if [ $CHECK_SSL -ne 0 ]
+then
+	RESTORE_SSL=42
+	while [[ "$RESTORE_SSL" != "" && "$RESTORE_SSL" != "Y" && "$RESTORE_SSL" != "y" && "$RESTORE_SSL" != "N" && "$RESTORE_SSL" != "n" ]]
+	do
+		echo "[?] A backup created today is detected for the certificates" | tee -a "$LOG_FILE";
+		echo "Do you want to restore them [Y/n] ?" | tee -a "$LOG_FILE";
+		read RESTORE_SSL
+	done
+
+	if [[ "$RESTORE_SSL" == "" || "$RESTORE_SSL" == "Y" || "$RESTORE_SSL" == "y" ]]
+	then
+		echo "[+] Restoring the certificate files" | tee -a "$LOG_FILE";
+		cp -rf "$BACKUP_DIR/certificates" "$HOME_DIR/." | tee -a "$LOG_FILE";
+		GENERATE_SSL=0
+	fi
+fi
+
+if [ $GENERATE_SSL -eq 1 ]
+then
+	echo "[+] Generation of SSL certificates" | tee -a "$LOG_FILE";
+
+	openssl genrsa -out "$CERT_DIR/server-key.pem" 1024
+	openssl req -new -key "$CERT_DIR/server-key.pem" -out "$CERT_DIR/server-csr.pem"
+	openssl x509 -req -in "$CERT_DIR/server-csr.pem" -signkey "$CERT_DIR/server-key.pem" -out "$CERT_DIR/server-cert.pem"
+fi
+
+# Directories and files receives the correct user and group
+echo "[+] Set on the files root as user and group properties" | tee -a "$LOG_FILE";
+chown root:root /etc/init.d/tool_arduinolistener | tee -a "$LOG_FILE";
+chown root:root $HOME_DIR/ -R | tee -a "$LOG_FILE";
+
+# Directories and files receives the correct permissions
+echo "[+] Set the file permissions" | tee -a "$LOG_FILE";
+chmod 540 /etc/init.d/tool_arduinolistener | tee -a "$LOG_FILE";
+chmod go-w $HOME_DIR/ -R | tee -a "$LOG_FILE";
+chmod go-rwx $CERT_DIR/ -R | tee -a "$LOG_FILE";
+chmod u+w $HOME_DIR/log/ -R | tee -a "$LOG_FILE";
+
+echo "[+] Remove all the ACLs of the user"
+setfacl -b  /etc/init.d/$USER | tee -a "$LOG_FILE";
+setfacl -b  /etc/$USER/ | tee -a "$LOG_FILE";
+setfacl -bR $HOME_DIR | tee -a "$LOG_FILE";
+
+# Make the plugin running automatically when the computer is started
+echo "[+] Autostart for the tool" | tee -a "$LOG_FILE";
+update-rc.d tool_arduinolistener defaults | tee -a "$LOG_FILE";
+
+# Starting the plugin
+echo "[+] Starting the service" | tee -a "$LOG_FILE";
+/etc/init.d/tool_arduinolistener start | tee -a "$LOG_FILE";
+
+# Reloading nginx server
+echo "[+] Reloading nginx server" | tee -a "$LOG_FILE";
+/etc/init.d/nginx reload | tee -a "$LOG_FILE";
+
+echo "[+] End of post installation step" | tee -a "$LOG_FILE";
+echo | tee -a "$LOG_FILE";

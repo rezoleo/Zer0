@@ -1,0 +1,12 @@
+db: Service_Contributor
+collections:
+- contributors:
+    description: Contributor information
+    properties:
+      	_id       	: ObjectID,
+	login     	: { type : String, required : true, trim : true, match : /^([a-z0-9-_]){1,8}$/, index: { unique: true, sparse: true } },
+	creator   	: { type : String, trim : true, match : /^([a-z0-9-_]){1,8}$/ },
+	created   	: { type : Date,   required: true },
+	creatorIP 	: { type : String, trim : true },
+	creatorService 	: { type : String, trim : true }
+

@@ -1,0 +1,10 @@
+db: 'defined in configuration file'
+collections:
+- tokens:
+    description: Tokens registered and authorized
+    properties:
+      	_id     : ObjectID,
+        source  : { type : String, required : true, trim : true, index: { unique: true, sparse: true } },
+	hash    : { type : String, required : true, trim : true, index: { unique: true, sparse: true } },
+        created : { type : Date,   required : true }
+

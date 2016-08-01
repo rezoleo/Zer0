@@ -1,0 +1,25 @@
+include _formHelper
+
+mixin headBar(title, uisref, attribute)
+  div(layout, ng-hide="data.#{attribute}")
+    h1(ng-hide="data.#{attribute}", flex) #{title}
+    div.md-actions(layout='row', flex=10, layout-align='end center')
+      md-button.md-warn(ui-sref='#{uisref}', ng-hide="data.#{attribute}")
+        md-icon arrow_back
+        div Retour
+
+mixin footBar(enabled)
+  div(layout='row', ng-show='data._id')
+    md-button.md-raised.md-primary(ng-click='submit(data)', ng-disabled='form.$invalid || !#{enabled}') Modifier
+    span(flex)
+    md-button.md-raised.md-warn(ng-click='delete($event, data)', ng-disabled='!#{enabled}') Suppr.
+  div(layout='row', ng-hide='data._id')
+    md-button.md-raised.md-primary(ng-click='submit(data)', ng-disabled='form.$invalid || !#{enabled}') Créer
+
+mixin footBarAuthentficateEdit(enabled)
+  div(layout='row', ng-show='data._id')
+    md-button.md-raised.md-primary(ng-click='submit(data)', ng-disabled='form.$invalid && !#{enabled}') Modifier
+    span(flex)
+    md-button.md-raised.md-warn(ng-click='delete($event, data)', ng-disabled='!#{enabled}') Suppr.
+  div(layout='row', ng-hide='data._id')
+    md-button.md-raised.md-primary(ng-click='submit(data)', ng-disabled='form.$invalid || !#{enabled}') Créer

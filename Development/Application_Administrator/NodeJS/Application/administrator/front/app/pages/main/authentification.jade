@@ -1,0 +1,13 @@
+include ../_menuHelper
+
++headBarAuthentification('Recherche d\'un authentifiant', 'authentificationNew', 'hasPermission({category : "AUTHENTIFICATION", require : "WRITE"})')
+
+md-list(ng-show='list').result-list
+  md-list-item.md-3-line(ng-repeat='item in filtered', ng-click="$state.go('authentificationView', {login: item.login})")
+    img.md-avatar(src='{{getOptionIcon(options.authentification.status, item.status)}}')
+    div.md-list-item-text
+      h4 {{item.login}}
+      p {{item.status}}
+    div.md-actions.md-secondary-container()
+
++loadSymbol()

@@ -1,0 +1,61 @@
+#All the roles used in the application
+
+## AUTHENTIFICATION
+- tag: AUTH_READ
+  usage: Enables to see all the login with a password (all AND one by one)
+
+- tag: AUTH_WRITE
+  usage: Enables to change the password of each login, to create new login/password or delete logins
+
+- tag: AUTH_ADMIN
+  inheritance: AUTH_WRITE
+  usage: Enables to add or remove the authentification roles (AUTH_WRITE, AUTH_ADMIN) for each user
+
+## CARD
+- tag: CARD_READ
+  usage: Enables to see all the cards (all AND one by one)
+
+- tag: CARD_WRITE
+  inheritance: CARD_READ
+  usage: Enables to change the settings of each card, to create new card or delete card
+
+- tag: CARD_ADMIN
+  inheritance: CARD_WRITE
+  usage: Enables to add or remove the card roles (CARD_READ, CARD_WRITE, CARD_ADMIN) for each user
+
+## CONTRIBUTOR
+- tag: CONTRIBUTOR_READ
+  usage: Enables to see all the contributors (all AND one by one)
+
+- tag: CONTRIBUTOR_WRITE
+  inheritance: CARD_READ
+  usage: Enables to change the settings of each contributor, to create new contributor or delete contributor
+
+- tag: CONTRIBUTOR_ADMIN
+  inheritance: CARD_WRITE
+  usage: Enables to add or remove the contributor roles (CONTRIBUTOR_READ, CONTRIBUTOR_WRITE, CONTRIBUTOR_ADMIN) for each user
+
+## GROUP
+- tag: GROUP_READ
+  usage: Enables to see all the groups (all AND one by one)
+
+- tag: GROUP_WRITE
+  inheritance: GROUP_READ
+  usage: Enables to change the settings of each group, to create new group or delete group
+
+- tag: GROUP_ADMIN
+  inheritance: GROUP_WRITE
+  usage: Enables to add or remove the group roles (GROUP_READ, GROUP_WRITE, GROUP_ADMIN) for each user
+
+## PEOPLE
+- tag: PEOPLE_READ
+  usage: Enables to see all the people (all AND one by one)
+
+- tag: PEOPLE_WRITE
+  inheritance: PEOPLE_READ
+  usage: Enables to change the settings of each person, to create new person or delete person
+
+- tag: PEOPLE_ADMIN
+  inheritance: PEOPLE_WRITE
+  usage: Enables to add or remove the people roles (PEOPLE_READ, PEOPLE_WRITE, PEOPLE_ADMIN) for each user
+

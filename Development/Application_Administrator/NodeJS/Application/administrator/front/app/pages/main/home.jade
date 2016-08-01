@@ -1,0 +1,100 @@
+div
+  md-content.md-padding
+    md-tabs(md-dynamic-height='', md-border-bottom='')
+      md-tab(label='Présentation')
+        md-content.md-padding
+          h1.md-display-2 Présentation Générale
+          p
+            | Bienvenue sur la console d'administration des informations du système Centrale-DataCore.
+          p
+            | Cette interface permet de consulter et de modifier les informations référencées relatives aux étudiants de l'Ecole Centrale de Lille.
+          p
+            | Les données sur les étudiants couvrent :
+            br
+            | - leurs identités (nom/prénom)
+            br
+            | - leurs données de connexion (login/authentifiants)
+            br
+            | - les informations pour les contacter (tel/mail)
+            br
+            | - leurs cartes étudiantes
+            br
+            | - leurs participations dans la vie associative (BDX, associations, ...)
+          p
+            | L'interface est construite de sorte à faciliter certaines recherches à l'aide de mécanisme d'auto-complétion.
+            br
+            | Il est également possible de connecter une carte Arduino sur un ordinateur et de récupérer dans cette console le numéro des cartes badgées dans le cadre de la recherche, de l'ajout d'une carte ou de la modification d'une carte existante.
+      md-tab(label='Historique')
+        md-content.md-padding
+          h1.md-display-2 Historique
+            h3 Version 1.0.0 - release du 23 juillet 2016
+            p
+              | Première version de la console d'administrative.
+              br
+            h3 TODO - Fonctionnalités restantes à rajouter :
+            p
+              | - La section 'Données Groupe' pour gérer les données sur les groupes (BDE, BDA, assoces, commissions, ...)
+              br
+              | - La section 'Historique des alertes' pour parcourir les alertes remontées par les webservices
+              br
+      md-tab(label='FAQ')
+        md-content.md-padding
+          h1.md-display-2 FAQ
+            h3 Quelques mots sur le fonctionnement global
+            p
+              | La console est un serveur NodeJS qui fait des requête HTTP sur des services (Service_Authentification, Service_Card, Service_Contributor, Service_Group, Service_People, Service_Picture).
+              br
+              | Ces services sont eux-mêmes des serveurs NodeJS; ils stockent sur des bases MongoDB les informations utilisées par l'ensemble des systèmes.
+              br
+              | L'architecture globale est de type REST avec des échanges de messages en JSON et s'inscrit dans les architectures orientées services (autrement appelées SOA).
+              br
+              | Les échanges sont cryptés par SSL en utilisant HTTPS permettant de même d'authentifier les multiples composants avec des certificats.
+              br
+            h3 Comment les cartes étudiantes peuvent-être lues par l'interface depuis une carte Arduino ?
+            p
+              | Pour pouvoir utiliser cette fonctionnalité, un plugin doit-être installé sur votre ordinateur et une adresse spéciale doit-être entrée dans le navigateur à la place de l'adresse normale de la page (cf documentation du plugin).
+              br
+              | La console fait alors des requêtes sur une adresse spécifique pour récupérer un fichier JSON contenant les informations sur le dernier signal envoyé par la carte Arduino.
+              br
+              | Ces requêtes sont redirigées à l'aide d'un reverse proxy Nginx vers une adresse en localhost; cette adresse est utilisée par un webservice qui scrute les messages envoyés par la carte.
+              br
+            h3 Pourquoi certains boutons sont désactivés ?
+            p
+              | Les boutons 'Ajouter' et 'Modifier' sont désactivés lorsque l'utilisateur n'a pas des droits en écriture pour la section où le bouton fait partie.
+              br
+              | Une section est désactivée dans la barre de menu verticale à gauche de l'écran si l'utilisateur n'a aucun droit pour cette section;
+              br
+              | pour que le bouton soit actif, il est nécessaire d'avoir au minimum des accès en lecture pour la section dont il donne accès.
+              br
+            h3 Pourquoi je ne vois pas le nom et prénom associé à un login dans la section 'Authentification' ou 'Carte' contrairement à un autre utilisateur ?
+            p
+              | Lorsqu'un utilisateur a les droits suffisants pour voir le contenu de la section 'Données Personnes', la console recherche automatiquement le nom et le prénom d'un login associé à une carte ou un authentifiant. Ces informations apparaissent lorsque l'utilisateur cherche à éditer une authentifiant ou un carte.
+              br
+              | Dans le cas contraire, la console ne peut pas accéder à ces informations et affiche seulement le login.
+              br
+            h3 Que signifie une erreur avec 'validation failed [0]' ?
+            p
+              | Cette erreur survient lors de la création d'un élément (authentifiant/carte/contributeur/groupe/personne); certains champs ont des contraintes pour que leurs contenus satisfassent une regex.
+              br
+            h3 Que signifie une erreur CERT_UNTRUSTED ?
+            p
+              | Cette erreur survient lorsque le serveur web NodeJS qui héberge la console refuse de se connecter à un des services qui stockent les informations.
+              br
+              | Ce problème survient si le certificat SSL d'un service ne correspond pas à celui attendu par la console, c'est-à-dire si le certificat public attendu n'est pas celui du webservice.
+              br
+            h3 Que signifie une erreur WSCORE.3.1.7 ?
+            p
+              | Cette erreur survient lorsque le serveur web NodeJS qui héberge la console n'a plus les droits pour intéragir avec un des services qui stockent les informations.
+              br
+              | Pour résoudre ce problème, il faut vérifier si l'un des jetons utilisés par la console pour se connecter à un des services n'a pas expiré ou a été retiré de la liste de jetons autorisés du service.
+              br
+            h3 Que signifie une erreur ECONNREFUSED ?
+            p
+              | Cette erreur survient lorsque le serveur web NodeJS qui héberge la console ne parvient plus à se connecter à un des services qui stockent les informations.
+              br
+              | Pour résoudre ce problème, il faut déterminer si un des services n'est pas inaccessible.
+              br
+              | Le service peut-être arrêté, planté ou alors son port inacessible suite à un changement au niveau de la configuration du réseau.
+            p
+              | Cette erreur peut également apparaître si le certificat d'un des webservices a expiré; dans ce cas il faut en recréer un autre et mettre à jour dans le serveur NodeJS de la console d'administration le certificat public attendu par la console d'administration.
+              br

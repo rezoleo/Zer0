@@ -1,0 +1,41 @@
+mixin tabSection(label, category, enabled)
+  md-tab(label='#{label}', ng-disabled='!#{enabled}')
+    div(ng-switch='#{enabled}')
+      div(ng-switch-when='true')
+
+        div(layout='row')
+          div(layout, layout-md='column')
+            md-autocomplete(placeholder='Login de l\'utilisateur', md-search-text='data.#{label}.login', md-selected-item='ctrl.selectedItem', md-items='item in querySearch(data.#{label}.login)', md-item-text='item.display', md-min-length='0', md-selected-item-change='selectedItemChange("#{label}", item)', md-search-text-change='searchTextChange("#{label}", data.#{label}.login)', required=true)
+              md-item-template
+                span(md-highlight-text='data.#{label}.login', md-highlight-flags='^i') {{item.display}}
+              md-not-found
+                | Aucun résultat pour "{{data.#{label}.login}}".
+          div(layout, layout-md='column')
+            md-button.md-primary(layout-align='center center', ng-disabled='!data.#{label}.login', ng-click='add("#{category}", data.#{label}.login)')
+              md-icon add
+              div Ajouter
+
+        md-list(ng-show='authorizations.#{category}').result-list-bis
+          md-divider
+          md-list-item(ng-repeat='authorization in authorizations.#{category}')
+            div(layout='row')
+              div(layout='column')
+                div(ng-switch='authorization.person!=null && authorization.person._id!=null')
+                  div(ng-switch-when='true')
+                    p {{authorization.login}}
+                    a(ui-sref='peopleView({_id: authorization.person._id})') {{'('+authorization.person.firstname+' '+authorization.person.lastname+')'}}
+                  div(ng-switch-default)
+                    p {{authorization.login}}
+                    p (?)
+
+              div.md-actions.md-secondary-container()
+                div(layout='column')
+                  div(layout='row')
+                    div(ng-repeat='item in items')
+                      md-checkbox(ng-checked='exists(item, authorization.roles)', ng-click='toggle($event, "#{category}", authorization.login, item, authorization.roles)')
+                        | {{ item.label }} 
+                    md-button.md-raised(ng-click='delete("#{category}", authorization.login)', type='button') Supprimer
+            md-divider
+      div(ng-switch-default)
+        h4 Vous n'avez pas les droits pour accéder à cette section
+

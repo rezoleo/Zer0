@@ -1,0 +1,28 @@
+include ../_menuHelper
+
+form(my-forms, name='form')
+  div(layout, ng-show='hasPermission({category : "CONTRIBUTOR", require : "WRITE"})')
+    div(layout, layout-md='column')
+      md-autocomplete(placeholder='Login d\'un cotisant', md-search-text='data.login', md-selected-item='ctrl.selectedItem', md-items='item in querySearch(data.login)', md-item-text='item.display', md-min-length='0', md-selected-item-change='selectedItemChange(item)', md-search-text-change='searchTextChange(data.login)', required=true)
+        md-item-template
+          span(md-highlight-text='data.login', md-highlight-flags='^i') {{item.display}}
+        md-not-found
+          | Aucun résultat pour "{{data.login}}".
+    div(layout, layout-md='column')
+      md-button.md-primary(layout-align='center center', ng-disabled='!data.login')
+        md-icon add
+        div Ajouter
+
++headBarContributor('Recherche d\'un cotisant')
+
++loadSymbol()
+
+md-list(ng-show='list').result-list
+  md-list-item.md-3-line(ng-repeat='item in filtered', ng-click="delete($event, item)")
+    div.md-list-item-text
+      h3 {{item.firstname}} {{item.lastname}}
+      h4 {{item.sex}} - {{item.login}}
+      p {{item.mail || '&nbsp;'}}
+    div.md-actions.md-secondary-container()
+
+

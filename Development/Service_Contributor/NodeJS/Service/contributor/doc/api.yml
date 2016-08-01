@@ -1,0 +1,64 @@
+#spec : 
+resourcePath: /api
+apis:
+- path: /api/contributor
+  description: Operations about contributor
+  operations:
+
+# GET /contributor
+  - httpMethod: GET
+    summary: Get information of all the contributors refered
+
+  - httpMethod: GET/:id
+    summary: Get information of one specifiq contributor refered by his/her id
+    parameters:
+    - name: id
+      datatype: string
+      required: true
+    errorResponses:
+    - code: 404
+      reason: CONTRIBUTOR.1.1.1 - L'identifiant ID du cotisant est absent
+    - code: 404
+      reason: CONTRIBUTOR.1.1.2 - Aucun cotisant identifiée avec cet identifiant
+
+  - httpMethod: GET/login/:login
+    summary: Get information of one specifiq contributor refered by his/her login
+    parameters:
+    - name: login
+      datatype: string
+      required: true
+    errorResponses:
+    - code: 404
+      reason: CONTRIBUTOR.1.2.1 - Le login du cotisant est absent
+    - code: 404
+      reason: CONTRIBUTOR.1.2.2 - Une erreur est survenue lors de la recherche du cotisant
+    - code: 404
+      reason: CONTRIBUTOR.1.2.3 - Aucun cotisant identifié avec ce login
+
+# POST /contributor
+  - httpMethod: POST
+    summary: Create a contributor in the system
+    parameters:
+    - name: login
+      datatype: string
+      required: true
+    - name: creator
+      datatype: string
+      required: false
+    errorResponses:
+    - code: 404
+      reason: CONTRIBUTOR.1.3.1 - Le login du cotisant n'a pas été précisé
+    - code: 404
+      reason: CONTRIBUTOR.1.3.2 - Impossible d'ajouter la cotisant dans le système comme le login est déja utilisé par un cotisant
+    - code: 404
+      reason: CONTRIBUTOR.1.3.3 - Impossible d'ajouter le cotisant dans le système
+
+# DEL /contributor/:id
+  - httpMethod: DEL
+    summary: remove a contributor
+    errorResponses:
+    - code: 404
+      reason: CONTRIBUTOR.1.4.1 - L'identifiant ID du cotisant est absent
+    - code: 404
+      reason: CONTRIBUTOR.1.4.2 - Aucun cotisant identifié avec cet identifiant
+

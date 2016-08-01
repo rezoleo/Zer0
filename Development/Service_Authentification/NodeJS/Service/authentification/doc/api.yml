@@ -1,0 +1,110 @@
+#spec : 
+resourcePath: /api
+apis:
+- path: /api/authentification
+  description: Operations about authentification operations
+  operations:
+
+# GET /authentification
+  - httpMethod: GET
+    summary: Get information of all the refered passwords
+  
+  - httpMethod: GET/:login
+    summary: GET an access
+    errorResponses:
+    - code: 404
+      reason: AUTH.1.1.1 - Le login de la personne n'a pas été précisé
+    - code: 404
+      reason: AUTH.1.1.2 - Aucun accès accessible avec ce login
+
+# POST /authentification
+  - httpMethod: POST
+    summary: Create an access
+    parameters:
+    - name: login
+      datatype: string
+      required: true
+    - name: mail
+      datatype: string
+      required: true
+    - name: password
+      datatype: string
+      required: true
+    - name: status
+      datatype: string
+      required: true
+    - name: creator
+      datatype: string
+      required: false
+    errorResponses:
+    - code: 404
+      reason: AUTH.1.2.1 - Le login de la personne n'a pas été précisé
+    - code: 404
+      reason: AUTH.1.2.2 - Le mail de la personne n'a pas été précisé
+    - code: 404
+      reason: AUTH.1.2.3 - Le mot de passe n'a pas été précisé
+    - code: 404
+      reason: AUTH.1.2.4 - Le status n'a pas été précisé
+    - code: 404
+      reason: AUTH.1.2.5 - Impossible d'ajouter cet accès dans le système comme le login est déja utilisé par un autre accès
+    - code: 404
+      reason: AUTH.1.2.6 - Impossible d'ajouter cet accès dans le système comme le mail est déja utilisé par un autre accès
+    - code: 404
+      reason: AUTH.1.2.7 - Impossible d'ajouter l'accès dans le système
+  - httpMethod: POST/:login
+    summary: Check an access AND test if password is correct
+    parameters:
+    - name: password
+      datatype: string
+      required: true
+    errorResponses:
+    - code: 404
+      reason: AUTH.1.3.1 - Le login de la personne n'a pas été précisé
+    - code: 404
+      reason: AUTH.1.3.2 - Le mot de passe n'a pas été précisé
+    - code: 404
+      reason: AUTH.1.3.3 - Aucun accès accessible avec ces identifiants
+    - code: 404
+      reason: AUTH.1.3.4 - L'accès pour ce login a été désactivé
+
+# PUT /authentification/:login
+  - httpMethod: PUT
+    summary: Update an access
+    parameters:
+    - name: mail
+      datatype: string
+      required: true
+    - name: password
+      datatype: string
+      required: true
+    - name: status
+      datatype: string
+      required: true
+    - name: updator
+      datatype: string
+      required: true
+    errorResponses:
+    - code: 404
+      reason: AUTH.1.4.1 - Le login de la personne n'a pas été précisé
+    - code: 404
+      reason: AUTH.1.4.2 - Le mail de la personne n'a pas été précisé
+    - code: 404
+      reason: AUTH.1.4.3 - Le mot de passe n'a pas été précisé
+    - code: 404
+      reason: AUTH.1.4.4 - Le status n'a pas été précisé
+    - code: 404 
+      reason: AUTH.1.4.5 - Aucun accès accessible avec ce login
+    - code: 404
+      reason: AUTH.1.4.6 - Impossible de mettre à jour cet accès comme le mail est déja utilisé par un autre accès
+    - code: 404
+      reason: AUTH.1.4.7 - Impossible de trouver l'accès après la mise à jour
+
+# DEL /authentification/:login
+  - httpMethod: DEL
+    summary: Remove an access
+    errorResponses:
+    - code: 404
+      reason: AUTH.1.5.1 - Le login de la personne est absent
+    - code: 404
+      reason: AUTH.1.5.2 - Aucun accès identifié avec ce login
+

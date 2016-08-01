@@ -1,0 +1,9 @@
+#!/bin/bash
+
+LOG_DIR="/var/log/zero-project"
+LOG_FILE="$LOG_DIR/tool_tokengenerator.log"
+mkdir -p "$LOG_DIR"
+
+echo "[+] End of installation step" | tee -a "$LOG_FILE";
+
+echo | tee -a "$LOG_FILE";

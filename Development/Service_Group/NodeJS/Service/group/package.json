@@ -1,0 +1,29 @@
+{
+	"name"              : "service_group",
+	"author"            : {
+		"name"	 : "Emmanuel ZIDEL-CAUFFET",
+		"pseudo" : "Zidmann",
+		"email"	 : "emmanuel.zidel@gmail.com"
+	},
+	"description"       : "Webservice designed to manage group information",
+	"version"           : "1.0.0",
+	"private"           : false,
+	"repository"	    : {
+		"type"	: "git",
+		"url"	: "https://bitbucket.org/zidmann/"
+	},
+	"main"              : "./server/index.js",
+	"scripts"           : {
+		"start" : "./bin/start-server.sh Serv_Group",
+		"stop"  : "./bin/stop-server.sh Serv_Group"
+	},
+	"license"           : "GNU v3",
+	"readmeFilename"    : "README.md",
+	"engines": {
+		"node": ">0.10.0"
+	},
+	"dependencies": {
+		"mongoose"        : "~4.3.4",
+		"underscore"      : "~1.8.3"
+	}
+}

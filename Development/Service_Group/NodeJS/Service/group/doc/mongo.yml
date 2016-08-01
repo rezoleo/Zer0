@@ -1,0 +1,26 @@
+db: Service_Group
+collections:
+- groupes:
+    description: Group information
+    properties:
+	_id	  	: ObjectID,
+	name     	: { type : String, required : true, trim : true, match : /^([a-z0-9-_]){1,8}$/, index: { unique: true, sparse: true } },
+	type    	: { type : String, required : true },
+	description  	: { type : String },
+	mail      	: { type : String, trim : true, match : /^[_a-zA-Z0-9+-]+[_.a-zA-Z0-9+-]*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-z]{2,4})$/, index: { unique: true, sparse: true } },
+	logo		: { type : String, trim : true, match : /^([a-zA-Z0-9-_])*\.(jpg|JPG|jpeg|JPEG|png|PNG)$/ },
+	picture		: { type : String, trim : true, match : /^([a-zA-Z0-9-_])*\.(jpg|JPG|jpeg|JPEG|png|PNG)$/ },
+	members		:[{ type : String, trim : true, match : /^([a-z0-9-_]){1,8}$/ }],
+	responsables	:[{	login		: { type : String, required : true, trim : true, match : /^([a-z0-9-_]){1,8}$/ },
+				responsability 	: { type : String, required : true, trim : true }	
+			  }],
+	creator   	: { type : String, trim : true, match : /^([a-z0-9-_]){1,8}$/ },
+	created   	: { type : Date,   required : true },
+	creatorIP 	: { type : String, trim : true },
+	creatorService	: { type : String, trim : true },
+	updator   	: { type : String, trim : true, match : /^([a-z0-9-_]){1,8}$/ },
+	updated   	: { type : Date },
+	updatorIP 	: { type : String, trim : true },
+	updatorService 	: { type : String, trim : true }
+
+

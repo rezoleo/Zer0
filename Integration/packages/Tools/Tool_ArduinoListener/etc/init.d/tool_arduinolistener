@@ -1,0 +1,71 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          tool_arduinolistener
+# Required-Start:    $local_fs $remote_fs $network
+# Required-Stop:     $local_fs $remote_fs $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: start/stop tool_arduinolistener
+### END INIT INFO
+
+########################################################################################################
+# File      : /etc/init.d/tool_arduinolistener                                                         #
+# Author(s) : Zidmann (emmanuel.zidel@gmail.com)                                                       #
+# Function  : Script to start Python plugin to read information coming from                            #
+#             an Arduino card with ArduinoCommunication code downloaded in the firmware                #
+# Version   : 1.0.0                                                                                    #
+# Note      : To start automatically this script use the command line                                  #
+#                update-rc.d tool_arduinolistener defaults                                             #
+########################################################################################################
+
+USER="root";
+TOOL_DIR="/opt/arduino-listener/";
+JSON_DIR=$TOOL_DIR/signal/
+
+CURRENT_DIR=`pwd`;
+CURRENT_USER=`whoami`;
+
+cd $TOOL_DIR;
+case "$1" in
+#########################################################################################################
+    start)
+	if [ $CURRENT_USER == $USER ]
+	then
+		$0 stop 2>/dev/null;
+		nohup ./arduino-listener.sh & > /dev/null 
+	else 
+		echo "Error : User must be root to start the arduino listener tool"
+	fi
+	;;
+#########################################################################################################
+    stop)
+	if [ $CURRENT_USER == $USER ]
+	then
+		killall arduino-listener.sh 2>/dev/null;
+		killall arduino-listener.py 2>/dev/null;
+		rm $JSON_DIR/*.json 2>/dev/null;
+	else
+		echo "Error : User must be root to stop the arduino listener tool"
+	fi
+	;;
+#########################################################################################################
+    restart)
+	if [ $CURRENT_USER == $USER ]
+	then
+		$0 stop;
+		$0 start;
+	else
+		echo "Error : User must be root to restart the arduino listener tool"
+	fi
+	;;
+#########################################################################################################
+    *)
+        echo "Error : Unknown option"
+        echo "Syntax: $0 {start | stop | restart}"
+        exit 1
+        ;;
+    esac
+
+#########################################################################################################
+cd $CURRENT_DIR;
