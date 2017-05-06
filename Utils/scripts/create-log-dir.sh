@@ -1,25 +1,29 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
 ########################################################################################################
 # File      : ./scripts/create-log-dir.sh                                                              #
-# Author(s) : Zidmann (emmanuel.zidel@gmail.com)                                                       #
+# Author(s) : Zidmann (emmanuel.zidel@gmail.com), Nymous                                               #
 # Function  : Script to create the log directory for each NodeJS server                                #
-# Version   : 1.0.0                                                                                    #
+# Version   : 1.1.0                                                                                    #
 ########################################################################################################
 
 
 SCRIPT_DIR=$(dirname "$0")
-source $SCRIPT_DIR"/sources/sources.sh"
-CURRENT_DIR=`pwd`
+# shellcheck source=sources/sources.sh
+source "$SCRIPT_DIR/sources/sources.sh"
+# shellcheck source=sources/logger.sh
+source "$SCRIPT_DIR/sources/logger.sh"
 
-
-echo "-------------------------------"
-for i in ${!dir_tab[@]};
+info "Creating logs directories"
+info "-------------------------------"
+for log_dir in "${dir_tab[@]}";
 do
-	cd $DEV_DIR
-	cd ${dir_tab[i]};
-	echo "Creation in the directory ${dir_tab[i]}"
-	mkdir -p log/
-	echo "-------------------------------"
-	cd $CURRENT_DIR
+  (
+    cd "$DEV_DIR/$log_dir" || exit
+    info "Creation in the directory $log_dir"
+    mkdir -p log/
+    info "-------------------------------"
+  )
 done
