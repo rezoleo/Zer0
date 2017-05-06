@@ -39,7 +39,7 @@ npm config set https-proxy http://<proxy_adress>:<proxy_port>
 Note : This script must be launched with root user.
 
 ```bash
-./Development/Utils/scripts/dependancy-installation.sh
+./Development/Utils/scripts/dependencies-installation.sh
 ```
 
 * Create a symbolic link to the project
