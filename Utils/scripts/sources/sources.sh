@@ -2,9 +2,9 @@
 
 ########################################################################################################
 # File      : ./scripts/sources/sources.sh                                                             #
-# Author(s) : Zidmann (emmanuel.zidel@gmail.com)                                                       #
+# Author(s) : Zidmann (emmanuel.zidel@gmail.com), Nymous                                               #
 # Function  : Script to define the NodeJS directories                                                  #
-# Version   : 1.0.0                                                                                    #
+# Version   : 1.1.0                                                                                    #
 ########################################################################################################
 
 
@@ -28,18 +28,6 @@ export dir_tab=(
 ########################################################################################################
 # Information about the different NodeJS modules
 ########################################################################################################
-
-## Name of the modules
-export dir_module_name=(
-  "applicationcore"
-  "authorization"
-  "cache"
-  "core"
-  "floodprotection"
-  "token_generator"
-  "toolbox"
-  "webservicecore"
-  )
 
 ## Path of the modules
 export dir_module_path=(
