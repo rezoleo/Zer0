@@ -9,5 +9,5 @@
 
 
 rm -rf _public
-node_modules/.bin/brunch build --production
+"$(npm bin)/brunch" build --production
 

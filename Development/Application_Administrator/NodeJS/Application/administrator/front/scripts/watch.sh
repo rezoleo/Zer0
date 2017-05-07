@@ -9,5 +9,5 @@
 
 
 rm -rf _public
-node_modules/.bin/brunch watch --server
+"$(npm bin)/brunch" watch --server
 
