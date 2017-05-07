@@ -1,32 +1,33 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
 ########################################################################################################
 # File      : ./scripts/create-front.sh                                                                #
-# Author(s) : Zidmann (emmanuel.zidel@gmail.com)                                                       #
+# Author(s) : Zidmann (emmanuel.zidel@gmail.com), Nymous                                               #
 # Function  : Script to compile the front pages in the different applications or services              #
-# Version   : 1.0.0                                                                                    #
+# Version   : 1.1.0                                                                                    #
 ########################################################################################################
 
 
 SCRIPT_DIR=$(dirname "$0")
-source $SCRIPT_DIR"/sources/sources.sh"
-CURRENT_DIR=`pwd`
+# shellcheck source=sources/sources.sh
+source "$SCRIPT_DIR/sources/sources.sh"
+# shellcheck source=sources/logger.sh
+source "$SCRIPT_DIR/sources/logger.sh"
 
-
-echo "-------------------------------"
-for i in ${!dir_tab[@]};
+info "Compiling front-end apps"
+info "-------------------------------"
+for service_path in "${dir_tab[@]}"
 do
-	cd $DEV_DIR
-	cd ${dir_tab[i]};
-	CHECK=`ls front/scripts/compile.sh 2>/dev/null | wc -l`
-	if [ $CHECK -ne 0 ]
-        then
-		echo "Creation in the directory ${dir_tab[i]}"
-		cd front/
-		./scripts/compile.sh
-		cd ../../
-		echo "-------------------------------"
-	fi;
-
-	cd $CURRENT_DIR
+  (
+    cd "$DEV_DIR/$service_path" || exit
+    if [[ -x front/scripts/compile.sh ]]
+    then
+      info "Creation in the directory $DEV_DIR/$service_path"
+      cd front/ || exit
+      ./scripts/compile.sh
+      info "-------------------------------"
+    fi
+  )
 done
