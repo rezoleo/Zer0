@@ -4,45 +4,33 @@
  * Function 	: This file defines the function which add a route in the REST webservice
  * Note		: mongoose   - refers to the mongoose module used to communicate with Mongo database
  *                collection - refers to the name of the collection used in MongoDB to store the token information
- * Version  	: 1.0.0
+ * Version  	: 1.1.0
  */
 
-var	flood     = require('floodprotection'),
-	isEmpty	  = require('toolbox')('ISEMPTY'),
+var	isEmpty	  = require('toolbox')('ISEMPTY'),
 	findError = require('../errors/referential.js');
 
 
 function dynamicExport(mongoose, collection){
-	var Token = require('../models/token.js')(mongoose, collection);
-	function addRouteFunc(app, conf, route){
+	var floodprotection = require('floodprotection')(mongoose),
+	    Token           = require('../models/token.js')(mongoose, collection);
+
+	var floodmanagement = require('core')('FLOOD_MANAGEMENT')(floodprotection);
+
+	function addRouteFunc(app, conf, route, flood_conf){
 		auxi=function auxi_function(req, res, next){
 			try{
 				var flag = false;
 
 				var trycatch_function = function(req, res, next){
 					try{
-						// Use the flood protection system
-						if(!isEmpty(route.flood)){
-							var hash = route.flood.hash(req);
-							route.flood.hash=hash;
-
-							flood.check(route.flood, conf.flood, function(err){
-								if(err){
-									return next(err);
-								}
-								else{
-									return route.ctrl(req, res, next);
-								}
-							});
-						}
-						else{
-							return route.ctrl(req, res, next);
-						}
+						return floodmanagement(req.connection.remoteAddress, route.path, flood_conf, next, function(){return route.ctrl(req, res, next);});
 					}
 					catch(err){
 						return next(findError("WSCORE.3.1.10", err.toString()));
 					}
 				}
+
 
 				if(!isEmpty(route.key)){
 					var token   = new Token(),
@@ -87,7 +75,7 @@ function dynamicExport(mongoose, collection){
 														return next(findError("WSCORE.3.1.7"));
 													}
 													req.query.token=token;
-									        		        return trycatch_function(req, res, next);
+									        		return trycatch_function(req, res, next);
 												});
 					}
 					else{

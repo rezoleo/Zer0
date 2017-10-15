@@ -3,7 +3,7 @@
  * Author(s)	: Zidmann
  * Function 	: This file enables to choose which functionality to use for 'WebServiceCore' or 'ApplicationCore' module.
  * Note		: str - refers to the chosen type of server
- * Version  	: 1.0.0
+ * Version  	: 1.1.0
  */
 
 var isEmpty = require('toolbox')('ISEMPTY');
@@ -20,8 +20,12 @@ function dynamicExport(str){
 			return require('./server/check.js');
 		case 'CONNECT_MONGOOSE':
 			return require('./server/connect_mongoose.js');
+		case 'FLOOD_MANAGEMENT':
+			return require('./server/flood_management.js');
 		case 'HEADER_HANDLER':
 			return require('./server/header_handler.js');
+		case 'HELMET_PROTECTION':
+			return require('./server/helmet_protection.js');
 		case 'HTTP_SERVER_BASICS':
 			return require('./server/http_server_basics.js');
 		case 'HTTPS_SERVER_BASICS':

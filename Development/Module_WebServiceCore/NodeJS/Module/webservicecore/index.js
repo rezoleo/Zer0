@@ -3,7 +3,7 @@
  * Author(s)	: Zidmann
  * Function 	: This file enables to choose which server to use for a webservice (HTTP or HTTPS)
  * Note		: str - refers to the chosen type of server
- * Version  	: 1.0.0
+ * Version  	: 1.1.0
  */
 
 var isEmpty 	    = require('toolbox')('ISEMPTY'),
@@ -23,5 +23,6 @@ function dynamicExport(str){
 	}
 	return require(default_require);
 }
+
 
 module.exports = dynamicExport;

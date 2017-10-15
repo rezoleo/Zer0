@@ -6,7 +6,7 @@
 		"email"	 : "emmanuel.zidel@gmail.com"
 	},
 	"description"       : "Module which contains a module designed for developping web application which communicates with REST webservices based on 'WebServiceCore' module",
-	"version"           : "1.0.0",
+	"version"           : "1.1.0",
 	"private"           : false,
 	"repository"	    : {
 		"type"	: "git",
@@ -19,14 +19,13 @@
 		"node": ">0.10.0"
 	},
 	"dependencies": {
-		"body-parser"     : "~1.13.2",
+		"body-parser"     : "~1.18.2",
 		"connect-mongo"   : "~0.8.2",
-		"connect-timeout" : "~1.6.2",
-		"express"         : "~4.13.1",
-		"express-session" : "~1.11.3",
-		"helmet"          : "~0.15.0",
-		"jwt-simple"      : "~0.3.0",
-		"node.extend"     : "~1.1.5",
+		"connect-timeout" : "~1.9.0",
+		"express"         : "~4.16.2",
+		"express-session" : "~1.15.6",
+		"jwt-simple"      : "~0.5.1",
+		"node.extend"     : "~2.0.0",
 		"password-hash"   : "~1.2.2"
 	}
 }
