@@ -12,6 +12,7 @@
 dir_tab=(
      "Application_Administrator/NodeJS/Application/administrator/"
      "Application_Checker/NodeJS/Application/checker/"
+     "Service_Alert/NodeJS/Service/alert/"
      "Service_Authentification/NodeJS/Service/authentification/"
      "Service_Card/NodeJS/Service/card/"
      "Service_Contributor/NodeJS/Service/contributor/"
@@ -57,6 +58,7 @@ dir_module_path=(
 
 ## Path of the services
 dir_service_path=(
+     "Service_Alert/NodeJS/Service/alert/"
      "Service_Authentification/NodeJS/Service/authentification/"
      "Service_Card/NodeJS/Service/card/"
      "Service_Contributor/NodeJS/Service/contributor/"

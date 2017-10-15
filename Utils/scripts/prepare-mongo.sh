@@ -19,6 +19,8 @@ mongo Application_Administrator app-administrator.js
 echo "-------------------------------"
 mongo Application_Checker       app-checker.js
 echo "-------------------------------"
+mongo Service_Alert             serv-alert.js
+echo "-------------------------------"
 mongo Service_Authentification  serv-authentification.js
 echo "-------------------------------"
 mongo Service_Card              serv-card.js
@@ -36,6 +38,8 @@ echo "-------------------------------"
 mongo Service_Provider          serv-provider.js
 echo "-------------------------------"
 mongo Service_Picture           serv-picture.js
+echo "-------------------------------"
+mongo Testing_Applicationcore   module-applicationcore.js
 echo "-------------------------------"
 mongo Testing_Webservicecore    module-webservicecore.js
 echo "-------------------------------"
