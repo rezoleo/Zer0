@@ -2,10 +2,11 @@
  * File 	: ./server/controllers/file.js
  * Author(s)	: Zidmann
  * Function 	: This file defines the controller used to manage files stored in the Picture service
- * Version  	: 1.0.0
+ * Version  	: 1.0.1
  */
 
 var	_            = require('underscore'),
+    	isArray	     = require('toolbox')('ISARRAY'),
     	isEmpty	     = require('toolbox')('ISEMPTY'),
 	session_info = require('toolbox')('SESSION_INFO'),
 	findError    = require('../errors/referential.js'),
