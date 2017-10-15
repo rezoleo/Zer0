@@ -1,9 +1,9 @@
 Package: Service-PasswordReset
-Version: 1.0.0
+Version: 1.0.1
 Section: base
 Priority: optional
 Architecture: all
-Depends: bash, openssl, mongodb, nano, nodejs, npm
+Depends: bash, openssl, mongodb, nano, nodejs, npm, Module-ProjectZer0
 Maintainer: Emmanuel ZIDEL-CAUFFET <emmanuel.zidel@gmail.com>
 Description: Webservice designed to regenerate passwords
 Homepage: 

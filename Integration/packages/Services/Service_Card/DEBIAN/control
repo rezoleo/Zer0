@@ -1,9 +1,9 @@
 Package: Service-Card
-Version: 1.0.0
+Version: 1.0.1
 Section: base
 Priority: optional
 Architecture: all
-Depends: bash, openssl, mongodb, nano, nodejs, npm
+Depends: bash, openssl, mongodb, nano, nodejs, npm, Module-ProjectZer0
 Maintainer: Emmanuel ZIDEL-CAUFFET <emmanuel.zidel@gmail.com>
 Description: Webservice designed to manage student cards
 Homepage: 
