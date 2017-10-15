@@ -7,7 +7,7 @@
 			   "pseudo" : "shogi31",
 			   "email"  : "shogi31@gmail.com" }],
 	"description"	: "Part of the Administrator application which generates the web pages for managing people, cards and passwords information",
-	"version"	: "1.0.0",
+	"version"	: "1.1.0",
 	"private"	: false,
 	"repository"	    : {
 		"type"	: "git",
@@ -21,27 +21,27 @@
 	"license"		: "GNU v3",
 	"readmeFilename"	: "README.md",
 	"dependencies": {
-		"brunch"			: "~1.7",
-		"bower"				: "~1.3",
+		"brunch"			: "~1.7.20",
+		"bower"				: "~1.3.12",
 
-		"coffee-script-brunch"		: ">= 1.0 < 1.9",
-		"javascript-brunch"		: ">= 1.0 < 1.8",
+		"coffee-script-brunch"		: "~1.8.3",
+		"javascript-brunch"		: "~1.7.1",
 
-		"css-brunch"			: ">= 1.0 < 1.8",
-		"less-brunch"			: ">= 1.0 < 1.8",
-		"stylus-brunch"			: ">= 1.0 < 1.8",
-		"nib"				: "1.x",
+		"css-brunch"			: "~1.7.0",
+		"less-brunch"			: "~1.7.2",
+		"stylus-brunch"			: "~1.7.0",
+		"nib"				: "~1.1.2",
 
-		"jade"				: "^1.5.0",
-		"jade-pages-brunch"		: "~1.7.4",
-		"jade-ngtemplates-brunch"	: "~1.7.6",
+		"jade"				: "~1.11.0",
+		"jade-pages-brunch"		: "~1.7.9",
+		"jade-ngtemplates-brunch"	: "~1.7.8",
 
-		"auto-reload-brunch"		: ">= 1.0 < 1.8",
+		"auto-reload-brunch"		: "~1.7.8",
 
-		"ng-annotate-uglify-js-brunch"	: ">= 1.0 < 1.8",
-		"clean-css-brunch"		: ">= 1.0 < 1.8",
+		"ng-annotate-uglify-js-brunch"	: "~1.7.4",
+		"clean-css-brunch"		: "~1.7.2",
 
-		"karma"				: "~0.12.16",
+		"karma"				: "~0.12.37",
 		"karma-coffee-preprocessor"	: "~0.2.1",
 		"karma-ng-scenario"		: "~0.1.0"
 	}
