@@ -2,7 +2,7 @@
  * File 	: ./server/errors/referential.js
  * Author(s)	: Zidmann
  * Function 	: This file defines the registered error of the NodeJS module for managing the webservice
- * Version  	: 1.0.0
+ * Version  	: 1.1.0
  */
 
 
@@ -59,6 +59,7 @@ errors.push({status : 404, code : 'ADMIN.E.6.1',  message : "Le connecteur vers 
 errors.push({status : 404, code : 'ADMIN.F.1.1',  message : "Le connecteur vers le service des images a généré une uri avec au moins un caractère interdit ou alors plus de un seul '/'", stack : null});
 errors.push({status : 404, code : 'ADMIN.F.2.1',  message : "Le connecteur vers le service des images a généré une uri avec au moins un caractère interdit", 							  stack : null});
 errors.push({status : 404, code : 'ADMIN.F.3.1',  message : "Le connecteur vers le service des images a généré une uri avec au moins un caractère interdit ou alors plus de un seul '/'", stack : null});
+errors.push({status : 404, code : 'ADMIN.G.1.1',  message : "Le connecteur vers le service des alertes a généré une uri avec au moins un caractère interdit", stack : null});
 
 
 module.exports = findError(errors);

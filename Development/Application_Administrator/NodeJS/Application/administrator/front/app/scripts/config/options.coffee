@@ -12,6 +12,13 @@ app.run ($rootScope)->
     icon
 
   $rootScope.options = {
+    alert:
+      level: [
+        {value: 'INFO',     label: 'Information'}
+        {value: 'WARNING',  label: 'Avertissement'}
+        {value: 'ERROR',    label: 'Erreur'}
+        {value: 'CRITICAL', label: 'Critique'}
+      ],
     authentification:
       status: [
         {value: 'ON',  label: 'Actif',       icon: '/images/auth-unlocked.png'}

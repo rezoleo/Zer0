@@ -29,6 +29,11 @@ apis:
 
 # DELETE /roles
 
+- path: /api/alert
+  description: Operations about alerts
+  operations:
+# GET /alert
+
 - path: /api/card
   description: Operations about user card
   operations:

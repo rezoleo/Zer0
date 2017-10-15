@@ -48,6 +48,23 @@ mixin headBarContributor(label)
         md-icon skip_next
         div Suivant
 
+mixin headBarAlert(label)
+  div(layout='row')
+    div(flex, layout)
+      +inputText('search', label)(autocomplete='off', ng-keypress='checkEnter($event)')
+    div.md-actions(layout='row', flex='33', layout-align='end center')
+      md-button.md-primary(ng-click='export()', layout-align='center center')
+        md-icon file_download
+        div Exporter
+      md-button.md-primary(ng-click='previous_month()', layout-align='center center', ng-disabled='')
+        md-icon skip_previous
+        div Mois Précédent
+        div {{ previous.year+'/'+previous.month }}
+      md-button.md-primary(ng-click='next_month()', layout-align='center center', ng-disabled='disabled_next')
+        md-icon skip_next
+        div Mois Suivant
+        div {{ next.year+'/'+next.month }}
+
 mixin loadSymbol()
   div(ng-hide='list', layout, layout-align='center center', style='height:200px')
     md-progress-circular(md-mode="indeterminate")

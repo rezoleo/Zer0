@@ -1,0 +1,51 @@
+#spec : 
+resourcePath: /api
+apis:
+- path: /api/alert
+  description: Operations about alerts
+  operations:
+
+# GET /alert
+  - httpMethod: GET
+    summary: Get information of all the alerts refered
+    parameters:
+    - name: minimumlevel
+      datatype: string
+      required: false
+    - name: month
+      datatype: string
+      required: false
+    errorResponses:
+    - code: 404
+      reason: ALERT.1.1.1 - Le niveau minimal ne correspond à aucun référencé
+
+  - httpMethod: GET/:id
+    summary: Get alert information of one specifiq alert refered by its id
+    parameters:
+    - name: id
+      datatype: string
+      required: true
+    errorResponses:
+    - code: 404
+      reason: ALERT.1.2.1 - L'identifiant ID de l'alerte est absent
+    - code: 404
+      reason: ALERT.1.2.2 - Aucune alerte identifiée avec cet identifiant
+
+# POST /alert
+  - httpMethod: POST
+    summary: Create an alert in the system
+    parameters:
+    - name: message
+      datatype: string
+      required: true
+    - name: level
+      datatype: string
+      required: true
+    errorResponses:
+    - code: 404
+      reason: ALERT.1.3.1 - Le message de l'alerte n'a pas été précisé
+    - code: 404
+      reason: ALERT.1.3.2 - Le niveau de l'alerte n'a pas été précisé
+    - code: 404
+      reason: ALERT.1.3.3 - Impossible d'ajouter l'alerte dans le système
+

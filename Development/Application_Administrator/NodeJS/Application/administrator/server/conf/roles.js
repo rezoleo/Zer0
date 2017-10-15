@@ -2,11 +2,12 @@
  * File 	: ./server/conf/roles.js
  * Author(s)	: Zidmann
  * Function 	: This file defines the list of all the roles in the application
- * Version  	: 1.0.0
+ * Version  	: 1.1.0
  */
 
 
 var listRoles = {
+	alert		 : ['ALERT_READ',	'ALERT_ADMIN'],
 	authentification : ['AUTH_READ',	'AUTH_WRITE',		'AUTH_ADMIN'],
 	card		 : ['CARD_READ',	'CARD_WRITE',		'CARD_ADMIN'],
 	contributor	 : ['CONTRIBUTOR_READ',	'CONTRIBUTOR_WRITE',	'CONTRIBUTOR_ADMIN'],

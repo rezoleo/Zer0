@@ -2,12 +2,13 @@
  * File 	: ./server/routes/routes.js
  * Author(s)	: Zidmann
  * Function 	: This file manages NodeJS server routes for administration application
- * Version  	: 1.0.0
+ * Version  	: 1.1.0
  */ 
 
 var	_    = require('underscore'),
 	cond = require('./category_condition.js'),
 	ctrl = _.extend({}, require('../controllers/login.js'),
+			    require('../controllers/alert.js'),
 			    require('../controllers/authentification.js'),
 			    require('../controllers/card.js'),
 			    require('../controllers/contributor.js'),
@@ -36,9 +37,14 @@ routes.push({method: 'DELETE', path: prefix_auth+'/:login', ctrl: ctrl.authentif
 
 //Routes to manage roles of user for specific categories (authentification/card/group/people)
 var prefix_roles=prefix+'/roles';
-routes.push({method: 'GET',    path: prefix_roles+'/:category',	       ctrl: ctrl.roles.getRoles,    isLogged : true, roles : ['AUTH_ADMIN', 'CARD_ADMIN', 'CONTRIBUTOR_ADMIN', 'GROUP_ADMIN', 'PEOPLE_ADMIN'], extended_restriction : cond });
-routes.push({method: 'POST',   path: prefix_roles+'/:category/:login', ctrl: ctrl.roles.updateRole,  isLogged : true, roles : ['AUTH_ADMIN', 'CARD_ADMIN', 'CONTRIBUTOR_ADMIN', 'GROUP_ADMIN', 'PEOPLE_ADMIN'], extended_restriction : cond });
-routes.push({method: 'DELETE', path: prefix_roles+'/:category/:login', ctrl: ctrl.roles.removeRoles, isLogged : true, roles : ['AUTH_ADMIN', 'CARD_ADMIN', 'CONTRIBUTOR_ADMIN', 'GROUP_ADMIN', 'PEOPLE_ADMIN'], extended_restriction : cond });
+routes.push({method: 'GET',    path: prefix_roles+'/:category',	       ctrl: ctrl.roles.getRoles,    isLogged : true, roles : ['ALERT_ADMIN', 'AUTH_ADMIN', 'CARD_ADMIN', 'CONTRIBUTOR_ADMIN', 'GROUP_ADMIN', 'PEOPLE_ADMIN'], extended_restriction : cond });
+routes.push({method: 'POST',   path: prefix_roles+'/:category/:login', ctrl: ctrl.roles.updateRole,  isLogged : true, roles : ['ALERT_ADMIN', 'AUTH_ADMIN', 'CARD_ADMIN', 'CONTRIBUTOR_ADMIN', 'GROUP_ADMIN', 'PEOPLE_ADMIN'], extended_restriction : cond });
+routes.push({method: 'DELETE', path: prefix_roles+'/:category/:login', ctrl: ctrl.roles.removeRoles, isLogged : true, roles : ['ALERT_ADMIN', 'AUTH_ADMIN', 'CARD_ADMIN', 'CONTRIBUTOR_ADMIN', 'GROUP_ADMIN', 'PEOPLE_ADMIN'], extended_restriction : cond });
+
+//Routes to manage alerts
+var prefix_alert=prefix+'/alert';
+routes.push({method: 'GET', path: prefix_alert+'/',    ctrl: ctrl.alert.get,    isLogged : true, roles : ['ALERT_READ', 'ALERT_ADMIN'] });
+routes.push({method: 'GET', path: prefix_alert+'/:id', ctrl: ctrl.alert.getOne, isLogged : true, roles : ['ALERT_READ', 'ALERT_ADMIN'] });
 
 //Routes to manage cards
 var prefix_card=prefix+'/card';

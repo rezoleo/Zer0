@@ -31,9 +31,9 @@ mixin tabSection(label, category, enabled)
               div.md-actions.md-secondary-container()
                 div(layout='column')
                   div(layout='row')
-                    div(ng-repeat='item in items')
-                      md-checkbox(ng-checked='exists(item, authorization.roles)', ng-click='toggle($event, "#{category}", authorization.login, item, authorization.roles)')
-                        | {{ item.label }} 
+                    div(ng-repeat='item in ("#{category}"=="alert" ? items_alert : items)')
+                      md-checkbox(ng-checked='exists("#{category}", item, authorization.roles)', ng-click='toggle($event, "#{category}", authorization.login, item, authorization.roles)')
+                        | {{ item.label }}
                     md-button.md-raised(ng-click='delete("#{category}", authorization.login)', type='button') Supprimer
             md-divider
       div(ng-switch-default)

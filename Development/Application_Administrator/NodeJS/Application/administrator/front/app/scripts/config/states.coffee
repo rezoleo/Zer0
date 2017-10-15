@@ -35,6 +35,8 @@ app.config ($stateProvider, $urlRouterProvider) ->
   addMain 'prehome', url: '/'
   addUserMain 'home'
 
+  addUserMain 'alert'
+
   addUserMain 'authorization'
 
   addUserMain 'authentification'

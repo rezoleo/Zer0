@@ -7,9 +7,8 @@ app.run ($rootScope) ->
     level = params.level
 
     prefixs = []
-    ## if category == 'ALERT' or category == '*'
-    ##  prefixs.push 'ALERT_'
-
+    if category == 'ALERT' or category == '*'
+      prefixs.push 'ALERT_'
     if category == 'AUTHENTIFICATION' or category == '*'
       prefixs.push 'AUTH_'
     if category == 'CARD' or category == '*'

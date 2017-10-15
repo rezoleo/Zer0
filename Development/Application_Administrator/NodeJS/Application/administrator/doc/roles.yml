@@ -1,5 +1,13 @@
 #All the roles used in the application
 
+## ALERT
+- tag: ALERT_READ
+  usage: Enables to see all the alerts (all AND one by one)
+
+- tag: ALERT_ADMIN
+  inheritance: ALERT_READ
+  usage: Enables to add or remove the alert roles (ALERT_READ, ALERT_ADMIN) for each user
+
 ## AUTHENTIFICATION
 - tag: AUTH_READ
   usage: Enables to see all the login with a password (all AND one by one)

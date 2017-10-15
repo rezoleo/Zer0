@@ -1,0 +1,12 @@
+db: Service_Alert
+collections:
+- alerts:
+    description: Alerts information
+    properties:
+      	_id       	: ObjectID,
+	message  	: { type : String, required : true },
+	level     	: { type : String, required : true, enum : ['INFO', 'WARNING', 'ERROR', 'CRITICAL'] },
+	created   	: { type : Date,   required: true },
+	creatorIP 	: { type : String, trim : true },
+	creatorService 	: { type : String, trim : true },
+

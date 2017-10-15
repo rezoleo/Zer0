@@ -148,3 +148,7 @@
   message: Le connecteur vers le service des images a généré une uri avec au moins un caractère interdit
 - code: ADMIN.F.1.1
   message: Le connecteur vers le service des images a généré une uri avec au moins un caractère interdit ou alors plus de un seul '/'
+
+## ALERT
+- code: ADMIN.G.1.1
+  message: Le connecteur vers le service des alertes a généré une uri avec au moins un caractère interdit

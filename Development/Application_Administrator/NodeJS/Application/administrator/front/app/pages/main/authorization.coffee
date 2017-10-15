@@ -33,7 +33,8 @@ app.controller 'MainAuthorizationCtrl', ($rootScope, $scope, $state, $mdDialog, 
     loadPeopleList()
 
 
-  category = [{label:'authentification', prefix:'AUTH'},
+  category = [{label:'alert',            prefix:'ALERT'},
+              {label:'authentification', prefix:'AUTH'},
               {label:'card',             prefix:'CARD'},
               {label:'contributor',      prefix:'CONTRIBUTOR'},
               {label:'group',            prefix:'GROUP'},
@@ -51,17 +52,23 @@ app.controller 'MainAuthorizationCtrl', ($rootScope, $scope, $state, $mdDialog, 
   $scope.items = [{label:'LECTURE',        suffix:'_READ'},
                   {label:'ECRITURE',       suffix:'_WRITE'},
                   {label:'ADMINISTRATION', suffix:'_ADMIN'}];
-  translateRoles = (roles)->
+  $scope.items_alert = [{label:'LECTURE',        suffix:'_READ'},
+                        {label:'ADMINISTRATION', suffix:'_ADMIN'}];
+  translateRoles = (category_label, roles)->
+    if category_label=="alert"
+      items=$scope.items_alert
+    else
+      items=$scope.items
     aux_roles = []
     if roles && roles.length>0
       i=0
       while i<roles.length
         j=0
-        while j<$scope.items.length
-          idx = aux_roles.indexOf($scope.items[j].label)
+        while j<items.length
+          idx = aux_roles.indexOf(items[j].label)
           if idx<=0
-            aux_roles.push $scope.items[j].label
-          if hasSuffix(roles[i], $scope.items[j].suffix)
+            aux_roles.push items[j].label
+          if hasSuffix(roles[i], items[j].suffix)
             break
           j++
         i++
@@ -82,7 +89,7 @@ app.controller 'MainAuthorizationCtrl', ($rootScope, $scope, $state, $mdDialog, 
       return +1
     return 0
 
-  auxiFunction = (pos, decrease)->
+  auxiFunction = (category_label, pos, decrease)->
     if pos<0
       return
     label=category[pos].label
@@ -92,7 +99,7 @@ app.controller 'MainAuthorizationCtrl', ($rootScope, $scope, $state, $mdDialog, 
       i=0
       while i<$scope.authorizations[label].length
         if $scope.authorizations[label][i].roles
-          $scope.authorizations[label][i].roles=translateRoles($scope.authorizations[label][i].roles)
+          $scope.authorizations[label][i].roles=translateRoles(category_label, $scope.authorizations[label][i].roles)
         else
           $scope.authorizations[label][i].roles=[]
         j=0
@@ -103,20 +110,20 @@ app.controller 'MainAuthorizationCtrl', ($rootScope, $scope, $state, $mdDialog, 
           j++
         i++
       if decrease
-        auxiFunction(pos-1, true)
+        auxiFunction(category_label, pos-1, true)
     .catch ({data})->
       if decrease
-        auxiFunction(pos-1, true)
+        auxiFunction(category_label, pos-1, true)
 
   $scope.update = (category_label)->
     if category_label
       i=0
       while i<category.length
         if category[i].label==category_label
-          auxiFunction(i, false)
+          auxiFunction(category_label, i, false)
         i++
     else
-      auxiFunction(category.length-1, true)
+      auxiFunction(category_label, category.length-1, true)
 
   $scope.querySearch = (txt)->
     filtered_auxi = $rootScope.filterList
@@ -144,6 +151,10 @@ app.controller 'MainAuthorizationCtrl', ($rootScope, $scope, $state, $mdDialog, 
 
 
   $scope.add = (category_label, login)->
+    if category_label=="alert"
+      items=$scope.items_alert
+    else
+      items=$scope.items
     i=0
     while i<category.length
       if category[i].label==category_label
@@ -155,8 +166,8 @@ app.controller 'MainAuthorizationCtrl', ($rootScope, $scope, $state, $mdDialog, 
             break
           j++
         if flag
-          Roles.post(category_label, login, category[i].prefix+$scope.items[0].suffix)
-          .then ({data})->          
+          Roles.post(category_label, login, category[i].prefix+items[0].suffix)
+          .then ({data})->
             $scope.update(category_label)
           .catch ({data})->
             $rootScope.toastError data
@@ -165,10 +176,14 @@ app.controller 'MainAuthorizationCtrl', ($rootScope, $scope, $state, $mdDialog, 
       i++
 
 
-  $scope.exists = (item, list) ->
+  $scope.exists = (category_label, item, list) ->
     list.indexOf(item.label) > -1
 
   $scope.toggle = (ev, category_label, login, item, list) ->
+    if category_label=="alert"
+      items=$scope.items_alert
+    else
+      items=$scope.items
     auxi_function = ->
       final_role=null
       i=0
@@ -176,11 +191,11 @@ app.controller 'MainAuthorizationCtrl', ($rootScope, $scope, $state, $mdDialog, 
         if category[i].label==category_label
           final_role=category[i].prefix+item.suffix
           j=0
-          while j<$scope.items.length
-            if $scope.items[j].label==item.label
+          while j<items.length
+            if items[j].label==item.label
               if j+1==list.length
                 if j>0
-                  final_role=category[i].prefix+$scope.items[j-1].suffix
+                  final_role=category[i].prefix+items[j-1].suffix
                 else if list.length!=0
                   final_role=null
                 break
@@ -189,7 +204,7 @@ app.controller 'MainAuthorizationCtrl', ($rootScope, $scope, $state, $mdDialog, 
         i++
       if final_role
         Roles.post(category_label, login, final_role)
-        .then ({data})->          
+        .then ({data})->
           $scope.update(category_label)
         .catch ({data})->
           $rootScope.toastError data
@@ -215,7 +230,7 @@ app.controller 'MainAuthorizationCtrl', ($rootScope, $scope, $state, $mdDialog, 
 
   $scope.delete = (category_label, login) ->
     Roles.delete(category_label, login)
-    .then ({data})->          
+    .then ({data})->
       $scope.update(category_label)
     .catch ({data})->
       $rootScope.toastError data

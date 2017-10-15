@@ -2,7 +2,7 @@
  * File 	: ./server/routes/category_condition.js
  * Author(s)	: Zidmann
  * Function 	: This file provides a function to control the access to role management
- * Version  	: 1.0.0
+ * Version  	: 1.1.0
  */
 
 
@@ -20,6 +20,9 @@ var conditionFunc = function(req){
 		    user_roles 	  = session_info.getRoles(req);
 
 		switch(req.params.category){
+			case 'alert':
+				expected_role = 'ALERT_ADMIN';
+				break;
 			case 'authentification':
 				expected_role = 'AUTH_ADMIN';
 				break;
