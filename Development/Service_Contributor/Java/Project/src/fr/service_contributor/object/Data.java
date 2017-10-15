@@ -22,7 +22,9 @@ import fr.webservicecore.object.APIObject;
 
 /* 
  * Class 	: Data
+ * Author(s): Zidmann
  * Function : This class describes a contributor 
+ * Version  : 1.0.0
  */
 public class Data implements APIObject
 {

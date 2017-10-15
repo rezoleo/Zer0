@@ -20,7 +20,9 @@ import com.google.gson.annotations.Since;
 
 /* 
  * Class 	: Group
+ * Author(s): Zidmann
  * Function : This class describes information of one responsible
+ * Version  : 1.0.0
  */
 public class Responsible implements Comparable<Responsible> 
 {

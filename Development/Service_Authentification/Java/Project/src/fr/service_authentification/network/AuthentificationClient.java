@@ -31,7 +31,9 @@ import fr.webservicecore.toolbox.CheckAttributes;
 
 /* 
  * Class 	: AuthentificationClient
+ * Author(s): Zidmann
  * Function : This class contains the WebService client to manage access in authorization service. 
+ * Version  : 1.0.0
  * Note		: This class uses directly HttpRequest class
  */
 public class AuthentificationClient extends WebServiceClient

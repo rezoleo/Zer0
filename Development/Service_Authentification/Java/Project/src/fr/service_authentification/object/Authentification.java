@@ -24,7 +24,9 @@ import fr.webservicecore.object.APIObject;
 
 /* 
  * Class 	: Authentification
+ * Author(s): Zidmann
  * Function : This class describes an access 
+ * Version  : 1.0.0
  */
 public class Authentification implements APIObject
 {

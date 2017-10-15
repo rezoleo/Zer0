@@ -22,7 +22,9 @@ import fr.webservicecore.object.APIObject;
 
 /* 
  * Class 	: Card
+ * Author(s): Zidmann
  * Function : This class describes a card 
+ * Version  : 1.0.0
  */
 public class Card implements APIObject
 {

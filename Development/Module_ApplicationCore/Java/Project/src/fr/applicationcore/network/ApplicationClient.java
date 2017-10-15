@@ -39,9 +39,9 @@ import fr.core.network.HttpCommunication;
 /* 
  * Class 	: ApplicationClient
  * Author(s): Zidmann
- * Function : This class contains the basis of ApplicationClient client to extract data from JSON file coming from a server 
+ * Function : This class contains the basis of ApplicationClient client to extract data from JSON file coming from a server
  * Version  : 1.0.0
- * Note		: This class uses directly HttpRequest class and must be extended to define a ApplicationClient client since it is an abstract class
+ * Note		: This class uses directly HttpRequest class and must be extended to define a ApplicationClient client since it is an abstract class 
  */
 public abstract class ApplicationClient
 {

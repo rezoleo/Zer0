@@ -22,7 +22,9 @@ import fr.webservicecore.object.APIObject;
 
 /* 
  * Class 	: PictureInformation
+ * Author(s): Zidmann
  * Function : This class describes information of one picture 
+ * Version  : 1.0.0
  */
 public class PictureInformation implements APIObject
 {

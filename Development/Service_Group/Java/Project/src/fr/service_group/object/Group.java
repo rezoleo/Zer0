@@ -26,7 +26,9 @@ import fr.webservicecore.object.APIObject;
 
 /* 
  * Class 	: Group
+ * Author(s): Zidmann
  * Function : This class describes information of one group
+ * Version  : 1.0.0
  */
 public class Group implements APIObject 
 {

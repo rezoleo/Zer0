@@ -33,7 +33,9 @@ import fr.webservicecore.object.APIObject;
 import fr.webservicecore.toolbox.CheckAttributes;
 
 /* Class 	: GroupClient
+ * Author(s): Zidmann
  * Function : This class contains the WebService Client to manage group in NodeJS server. 
+ * Version  : 1.0.0
  * Note		: This class uses directly HttpRequest class
  */
 public class GroupClient extends WebServiceClient
