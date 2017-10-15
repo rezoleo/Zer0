@@ -27,6 +27,7 @@ public class TestSuite_WebServiceCore extends TestSuite {
 	public static TestSuite suite() {
 		TestSuite suite = new TestSuite();
 		suite.addTestSuite(TestCase_ErrorMsg.class);
+		suite.addTestSuite(TestCase_FloodProtection.class);
 		suite.addTestSuite(TestCase_ObjectDB.class);
 		suite.addTestSuite(TestCase_ObjectDBToken.class);
 		suite.addTestSuite(TestCase_Toolbox.class);

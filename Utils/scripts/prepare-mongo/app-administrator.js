@@ -8,5 +8,8 @@
 
 // Define the authorizations
 db.authorizations.remove({});
-db.authorizations.insert({created : new Date(), creator : null, login : "user", roles : ["AUTH_ADMIN", "CARD_ADMIN", "CONTRIBUTOR_ADMIN", "GROUP_ADMIN", "PEOPLE_ADMIN"], updated : null, updator : null });
+db.authorizations.insert({created : new Date(), creator : null, login : "user", roles : ["ALERT_ADMIN", "AUTH_ADMIN", "CARD_ADMIN", "CONTRIBUTOR_ADMIN", "GROUP_ADMIN", "PEOPLE_ADMIN"], updated : null, updator : null });
+
+// Remove the traces used for flood protection
+db.floods.remove({});
 

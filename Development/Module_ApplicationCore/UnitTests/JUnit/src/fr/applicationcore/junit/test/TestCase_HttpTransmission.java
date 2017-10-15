@@ -28,7 +28,9 @@ import fr.applicationcore.junit.object.SubField;
 
 /* 
  * Class 	: TestCase_HttpTransmission
+ * Author(s): Zidmann
  * Function : This class contains JUnit tests to check if there was no regression in the communication between an application and a service. 
+ * Version  : 1.0.0
  * Note		: This Test Case supposes that you started the NodeJS server designed to test 'ApplicationCore' module. 
  * 			  and remove all ObjectDBs in the MongoDB database of the webservice called by the server
  */

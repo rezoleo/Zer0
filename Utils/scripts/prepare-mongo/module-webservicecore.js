@@ -14,3 +14,6 @@ db.objectdbstokens.remove({});
 db.tokens.remove({});
 db.tokens.insert({ source : "JunitTests",  hash : "sha512$5e92d6829e$5$e4fbbcd7080330f45cf779335b5e72677e9dfe858ecf8f026770badeecff90f6238d7e44f95c647bf6684593fc1897ef368de15be7f2a686b654165470956022", created : new Date() });
 
+// Remove the traces used for flood protection
+db.floods.remove({});
+

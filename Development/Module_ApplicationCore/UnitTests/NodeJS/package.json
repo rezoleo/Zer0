@@ -24,6 +24,7 @@
 	},
 	"dependencies": {
 		"fs"		  : "~0.0.2",
+		"mongodb"         : "~2.2.31",
 		"mongoose"        : "~4.0.2",
 		"node.extend"     : "~1.1.3",
 		"request"	  : "~2.55.0",

@@ -61,13 +61,13 @@ public class TestCase_ErrorMsg extends TestCase_Model
 		initSettings();
 
 		response=HttpCommunication.getInstance().sendGet(Common.URL);
-		assertEquals("Cannot GET /", response);
+		assertEquals("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Error</title></head><body><pre>Cannot GET /</pre></body></html>", response);
 
 		response=HttpCommunication.getInstance().sendGet(Common.URL+"/toto");
-		assertEquals("Cannot GET /toto", response);
+		assertEquals("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Error</title></head><body><pre>Cannot GET /toto</pre></body></html>", response);
 
 		response=HttpCommunication.getInstance().sendGet(Common.URL+"/toto/");
-		assertEquals("Cannot GET /toto/", response);
+		assertEquals("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Error</title></head><body><pre>Cannot GET /toto/</pre></body></html>", response);
 	}
 	@Test
 	public void testErrorInvalidToken() throws Exception{

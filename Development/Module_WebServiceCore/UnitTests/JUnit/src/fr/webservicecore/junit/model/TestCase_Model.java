@@ -15,6 +15,7 @@ package fr.webservicecore.junit.model;
  */
 
 
+import fr.core.network.HttpCommunication;
 import fr.webservicecore.Common;
 import fr.webservicecore.error.Error;
 import fr.webservicecore.junit.network.ObjectDBClient;
@@ -52,5 +53,8 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Mo
 		ws_client.setURL(Common.URL);
 		ws_client.setProxyParameters(Common.ProxyAdress, Common.ProxyPort);
 		ws_client.setKeystoreParameters(keyStorePath, keyStorePassword);
+
+		//Reset the traces used for flood protection
+		HttpCommunication.getInstance().sendGet(Common.URL+"/api/floodtest/reset");
 	}
 }

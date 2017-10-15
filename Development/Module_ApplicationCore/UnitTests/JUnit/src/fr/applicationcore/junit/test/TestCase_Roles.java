@@ -26,7 +26,9 @@ import fr.applicationcore.object.APIException;
 
 /* 
  * Class 	: TestCase_Roles
- * Function : This class contains JUnit tests to check if the role management works 
+ * Author(s): Zidmann
+ * Function : This class contains JUnit tests to check if the role management works  
+ * Version  : 1.0.0
  */
 public class TestCase_Roles extends TestCase_Model
 {

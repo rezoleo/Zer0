@@ -22,7 +22,9 @@ import fr.webservicecore.junit.token.TokenReferential;
 
 /* 
  * Class 	: TestCase_ObjectDBToken
+ * Author(s): Zidmann
  * Function : This class contains the webService client JUnit tests to check if there was no regression in ObjectDB referential server. 
+ * Version  : 1.0.0
  * Note		: This Test Case supposes that you started the NodeJS server designed to test 'WS_ObjectDBClient' class 
  * 			  and remove all ObjectDBs in the MongoDB database next insert the hash key in the mongoDB database
  */

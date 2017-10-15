@@ -27,6 +27,7 @@ public class TestSuite_ApplicationCore extends TestSuite {
 	public static TestSuite suite() {
 		TestSuite suite = new TestSuite();
 		suite.addTestSuite(TestCase_ErrorMsg.class);
+		suite.addTestSuite(TestCase_FloodProtection.class);
 		suite.addTestSuite(TestCase_Gate.class);
 		suite.addTestSuite(TestCase_HttpTransmission.class);
 		suite.addTestSuite(TestCase_Login.class);

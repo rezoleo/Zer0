@@ -9,3 +9,6 @@
 // Remove the links
 db.links.remove({});
 
+// Remove the traces used for flood protection
+db.floods.remove({});
+

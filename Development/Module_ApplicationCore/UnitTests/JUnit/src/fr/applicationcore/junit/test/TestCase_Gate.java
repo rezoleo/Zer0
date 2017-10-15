@@ -24,7 +24,9 @@ import fr.applicationcore.object.APIException;
 
 /* 
  * Class 	: TestCase_Gate
+ * Author(s): Zidmann
  * Function : This class contains JUnit tests to check if the gate management works 
+ * Version  : 1.0.0
  */
 public class TestCase_Gate extends TestCase_Model
 {

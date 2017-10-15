@@ -26,7 +26,9 @@ import fr.webservicecore.junit.object.SubField;
 
 /* 
  * Class 	: TestCase_ObjectDB
+ * Author(s): Zidmann
  * Function : This class contains the webService client JUnit tests to check if there was no regression in ObjectDB referential server. 
+ * Version  : 1.0.0 
  * Note		: This Test Case supposes that you started the NodeJS server designed to test 'WS_ObjectDBClient' class 
  * 			  and remove all ObjectDBs in the MongoDB database 
  */

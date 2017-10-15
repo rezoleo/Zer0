@@ -22,6 +22,7 @@ import fr.applicationcore.junit.network.RolesClient;
 import fr.applicationcore.Common;
 import fr.applicationcore.error.Error;
 import fr.applicationcore.object.ErrorMessage;
+import fr.core.network.HttpCommunication;
 
 /* 
  * Class 	: TestCase_Model
@@ -68,5 +69,8 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_Application_M
 		role_client.setURL(Common.URL);
 		role_client.setProxyParameters(Common.ProxyAdress, Common.ProxyPort);
 		role_client.setKeystoreParameters(keyStorePath, keyStorePassword);		
+
+		//Reset the traces used for flood protection
+		HttpCommunication.getInstance().sendGet(Common.URL+"/api/floodtest/reset");
 	}
 }
