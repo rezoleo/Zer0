@@ -1,0 +1,20 @@
+include ../_menuHelper
+
++headBarAlert('Mots-clés de recherche')
+
+div
+  md-content.md-padding
+
+div(layout='row')
+  div(ng-repeat='item in items')
+    md-checkbox(ng-checked='isChecked(item)', ng-click='toggle(item)')
+      | {{ item.label }}
+
+md-list().result-list-bis
+  table
+    tr(ng-repeat='item in filtered', bgcolor="{{whichColor(item.level)}}")
+      td {{ item.created }}
+      td {{ whichLabel(item.level) }}
+      td {{ item.creatorService }}
+      td {{ item.message }}
+
