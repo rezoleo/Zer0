@@ -15,10 +15,10 @@ CONF_FILE=$TRC_DIR/"configured.$(date '+%Y%m%d_%H%M%S').csv"
 USED_FILE=$TRC_DIR/"used.$(date '+%Y%m%d_%H%M%S').csv"
 TMP_FILE="/tmp/centrale.datacore.$$"
 
-echo "Creation du répertoire des traces"
+echo "Creation du répertoire des traces ($TRC_DIR)"
 mkdir -p "$TRC_DIR"
 
-echo "Creation du fichier temporaire"
+echo "Creation du fichier temporaire ($TMP_FILE)"
 echo "" > "$TMP_FILE"
 chmod a+x "$TMP_FILE"
 
@@ -34,9 +34,14 @@ find /opt/centrale-datacore/ -name "bower.json"   2>/dev/null | xargs grep "\"~"
 
 echo "Extraction des version dans les modules npm"
 cat "$CONF_FILE" | grep "^NPM"   | awk -F';' '{print "ls "$2}' | sed "s/package.json/node_modules\/*\/package.json/g" | sort -u >  "$TMP_FILE"
-"$TMP_FILE" | xargs grep "\"version\"" | sed "s/\"//g" | sed "s/,//g" | sed "s/:/;/g" | awk '{print "NPM;"$1""$3}'              >> "$USED_FILE"
+"$TMP_FILE" 2>/dev/null | xargs grep "\"version\"" | sed "s/\"//g" | sed "s/,//g" | sed "s/:/;/g" | awk '{print "NPM;"$1""$3}'              >> "$USED_FILE"
 
 echo "Extraction des version dans les modules bower"
 cat "$CONF_FILE" | grep "^BOWER"   | awk -F';' '{print "ls "$2}' | sed "s/bower.json/bower_components\/*\/bower.json/g" | sort -u >  "$TMP_FILE"
-"$TMP_FILE" | xargs grep "\"version\"" | sed "s/\"//g" | sed "s/,//g" | sed "s/:/;/g" | awk '{print "BOWER;"$1""$3}'              >> "$USED_FILE"
+"$TMP_FILE" 2>/dev/null | xargs grep "\"version\"" | sed "s/\"//g" | sed "s/,//g" | sed "s/:/;/g" | awk '{print "BOWER;"$1""$3}'              >> "$USED_FILE"
 
+echo ""
+echo "Résultats extraction dans les fichiers :"
+echo "$CONF_FILE"
+echo "$USED_FILE"
+echo ""

@@ -142,6 +142,11 @@ Note : This script must be launched with root user.
 ./Development/Utils/scripts/purge-modules.sh
 ```
 
+* To extract the versions configured for npm and bower modules, to get the version currently used
+```bash
+./Development/Utils/scripts/get-version-infos.sh
+```
+
 ## Components
 
 Each application relies on several services and modules.
