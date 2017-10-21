@@ -89,3 +89,4 @@ dir_front_path=(
 PROJECT_DIR="/opt/centrale-datacore"
 DEV_DIR="$PROJECT_DIR/Development/"
 INT_DIR="$PROJECT_DIR/Integration/"
+TRC_DIR="$PROJECT_DIR/Trace/"
