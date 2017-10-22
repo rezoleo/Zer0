@@ -147,6 +147,11 @@ Note : This script must be launched with root user.
 ./Development/Utils/scripts/get-version-infos.sh
 ```
 
+* To check if all the dependancies are installed and enabled
+```bash
+./Development/Utils/scripts/check-dependancies.sh
+```
+
 ## Components
 
 Each application relies on several services and modules.
