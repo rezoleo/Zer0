@@ -9,7 +9,7 @@ var isEmpty = require('toolbox')('ISEMPTY'),
     util    = require('util');
 
 
-function errorHandlerFunc(req, res, err, options, next){
+function errorHandlerFunc(req, res, err, options){
 	var error = (err instanceof Error) ? err : new Error(err);
 
 	error.message = (!isEmpty(error.message)) ? error.message.toString()  : null;
@@ -19,14 +19,19 @@ function errorHandlerFunc(req, res, err, options, next){
 
 	res.statusCode = error.status;
 
-	res.json({
-		application : options.name,
-		version     : options.version,
-		code        : error.code,
-		message     : error.message,
-		stack       : error.stack,
-		status      : error.status
-	});
+	var msg = { application : options.name,
+		    version     : options.version,
+		    code        : error.code,
+		    message     : error.message,
+		    stack       : error.stack,
+		    status      : error.status };
+
+	if(!isEmpty(options.interceptors)
+	 &&!isEmpty(options.interceptors.error)){
+		options.interceptors.error(msg);
+	}
+
+	res.json(msg);
 }
 
 

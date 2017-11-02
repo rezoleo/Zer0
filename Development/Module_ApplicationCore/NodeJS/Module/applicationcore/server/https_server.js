@@ -15,12 +15,14 @@ var	error_handler = require('core')('APPLICATION_ERROR_HANDLER'),
 
 function dynamicExport(mongoose){
 
-	//Definition of the server and the configuration
-	var conf   = null;
+	//Definition of the configuration and the interceptors
+	var conf         = null;
+	var interceptors = null;
 
 	//Setup function
-	function setupFunc(conf_param, routes){
+	function setupFunc(conf_param, routes, interceptors_param){
 		conf=conf_param;
+		interceptors=interceptors_param;
 
 		// define et return the HTTP server
 		return common.setup(conf, mongoose, routes, "HTTPS");
@@ -35,7 +37,7 @@ function dynamicExport(mongoose){
 
 		// error handler
 		app.use(function(err, req, res, next){
-			error_handler(req, res, err, { name : conf.application.name, version : conf.application.version}, next);
+			error_handler(req, res, err, { name : conf.application.name, version : conf.application.version, interceptors : interceptors});
 		});
 
 		https_server.start(app, { host : conf.http.host, port : conf.http.port, key_path : conf.ssl.key, cert_path : conf.ssl.cert}, callback);
