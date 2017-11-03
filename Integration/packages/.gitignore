@@ -1,0 +1,8 @@
+All/DEB/*deb
+Applications/*.deb
+Applications/*/home/
+Modules/*.deb
+Modules/*/usr/
+Services/*.deb
+Services/*/home/
+Tools/*deb
