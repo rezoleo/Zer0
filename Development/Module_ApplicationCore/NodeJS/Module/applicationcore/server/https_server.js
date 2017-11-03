@@ -3,7 +3,7 @@
  * Author(s)	: Zidmann
  * Function 	: This file defines the main functions of the NodeJS module for managing the web application with secure connection
  * Note		: mongoose - refers to the mongoose module used to communicate with Mongo database
- * Version  	: 1.1.0
+ * Version  	: 1.2.0
  */
 
 var	error_handler = require('core')('APPLICATION_ERROR_HANDLER'),

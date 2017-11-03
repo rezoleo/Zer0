@@ -2,7 +2,7 @@
  * File 	: ./server/application_error_handler.js
  * Author(s)	: Zidmann
  * Function 	: This file defines the function to handle error message for an application
- * Version  	: 1.0.0
+ * Version  	: 1.1.0
  */
 
 var isEmpty = require('toolbox')('ISEMPTY'),

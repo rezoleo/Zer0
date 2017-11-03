@@ -2,7 +2,7 @@
  * File 	: ./server/conf/distant.js
  * Author(s)	: Zidmann
  * Function 	: This file defines the distant paths to call the different webservices
- * Version  	: 1.0.0
+ * Version  	: 1.1.0
  */
 
 var security_alert ={ ca   : 'certificates/distant/server-cert-alert.pem',

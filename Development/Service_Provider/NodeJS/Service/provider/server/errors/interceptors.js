@@ -2,7 +2,7 @@
  * File 	: ./server/errors/interceptors.js
  * Author(s)	: Zidmann
  * Function 	: This file defines the interceptors to trigger some events according the error message
- * Version  	: 1.0.1
+ * Version  	: 1.0.0
  */
 
 var	isEmpty   = require('toolbox')('ISEMPTY'),
