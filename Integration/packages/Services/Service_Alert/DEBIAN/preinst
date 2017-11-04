@@ -1,0 +1,98 @@
+#!/bin/bash
+
+LOG_DIR="/var/log/zero-project"
+LOG_FILE="$LOG_DIR/serv_alert.log"
+mkdir -p "$LOG_DIR"
+
+echo "" >> "$LOG_FILE";
+echo "Package = Service-Alert" >> "$LOG_FILE";
+echo "Time = $(date +%Y-%m-%dT%H:%M:%S%:z)" >> "$LOG_FILE";
+
+echo | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+echo "!!! STARTING PRE INSTALLATION STEP !!!" | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+
+# Definition of the constants
+USER="serv_alert";
+GROUP="services";
+HOME_DIR="/home/$USER";
+
+TODAY=$(date +%Y%m%d)
+BACKUP_DIR="$HOME_DIR/backup/$TODAY"
+
+# Check if the group is defined
+rslt=`cat /etc/group | awk -F ':' '$1=="services" {print $0}' | wc -l`
+
+case "$rslt" in
+    0)
+	echo "[+] Add $GROUP group" | tee -a "$LOG_FILE";
+	groupadd $GROUP | tee -a "$LOG_FILE";
+	;;
+    1)
+	echo "[+] The $GROUP group is already ready" | tee -a "$LOG_FILE";
+	;;
+    *)	
+	;;
+    esac
+
+# Check if the user is defined
+rslt=`cat /etc/passwd | awk -F ':' '$1=="serv_alert" {print $0}' | wc -l`
+case "$rslt" in
+    0)
+	echo "[+] Add $USER user" | tee -a "$LOG_FILE";
+	useradd -g $GROUP -m -d $HOME_DIR -s /bin/bash $USER | tee -a "$LOG_FILE";
+	;;
+    1)
+	echo "[+] The $USER user is already ready" | tee -a "$LOG_FILE";
+	;;
+    *)	
+	;;
+    esac
+
+# Set to the user a umask
+su -c 'umask 077' -l $USER
+
+# Stop the service if it is already installed and launched
+if [ -f /etc/init.d/$USER ]
+then
+	status=`/etc/init.d/$USER 2>/dev/null | grep stopped | wc -l`
+	if [ $status -eq 0 ]
+	then
+		echo "[+] Stop $USER service" | tee -a "$LOG_FILE";
+		/etc/init.d/$USER stop | tee -a "$LOG_FILE";
+	fi
+fi
+
+# Backup actions
+CHECK_SSL=`ls "$HOME_DIR/service/certificates" 2>/dev/null | wc -l`
+if [ $CHECK_SSL -ne 0 ]
+then
+	echo "[+] Certificate files detected ; a backup will be done" | tee -a "$LOG_FILE";
+	mkdir -p "$BACKUP_DIR" | tee -a "$LOG_FILE";
+	cp -rf "$HOME_DIR/service/certificates" "$BACKUP_DIR/." | tee -a "$LOG_FILE";
+fi
+
+CHECK_CONF=`ls "$HOME_DIR/service/server/conf" 2>/dev/null | wc -l`
+if [ $CHECK_CONF -ne 0 ]
+then
+	echo "[+] Configuration files detected ; a backup will be done" | tee -a "$LOG_FILE";
+	mkdir -p "$BACKUP_DIR" | tee -a "$LOG_FILE";
+	cp -rf "$HOME_DIR/service/server/conf" "$BACKUP_DIR/." | tee -a "$LOG_FILE";
+fi
+
+if [ -f $BACKUP_DIR ]
+then
+	echo "[+] Change the owner, the group and the permission of the backup directory" | tee -a "$LOG_FILE";
+	chown -R $USER:$GROUP "$BACKUP_DIR" | tee -a "$LOG_FILE";
+	chmod -R og-rwx "$BACKUP_DIR" | tee -a "$LOG_FILE";
+	setfacl -bR "$BACKUP_DIR" | tee -a "$LOG_FILE";
+fi
+
+echo "[+] End of pre installation step" | tee -a "$LOG_FILE";
+
+echo | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+echo "!!!   STARTING INSTALLATION STEP   !!!" | tee -a "$LOG_FILE";
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" | tee -a "$LOG_FILE";
+echo | tee -a "$LOG_FILE";
