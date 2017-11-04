@@ -11,7 +11,7 @@ var	_    = require('underscore'),
 var prefix = '/api/alert';
 var routes = [];
 routes.push({method: 'GET',  path: prefix+'/',    ctrl: ctrl.alert.get,    key: 'GET' });
-routes.push({method: 'GET',  path: prefix+'/:id', ctrl: ctrl.alert.getOne, key: 'GETOne' });
+routes.push({method: 'GET',  path: prefix+'/:id', ctrl: ctrl.alert.getOne, key: 'GETid' });
 routes.push({method: 'POST', path: prefix+'/',    ctrl: ctrl.alert.post,   key: 'POST' });
 
 

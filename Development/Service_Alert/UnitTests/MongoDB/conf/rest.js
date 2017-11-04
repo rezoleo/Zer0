@@ -1,0 +1,1 @@
+../../../NodeJS/Service/alert/server/conf/rest.js

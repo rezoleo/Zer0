@@ -5,17 +5,17 @@
  * Version  	: 1.0.0
  */
 
-var	isEmpty	    = require('toolbox')('ISEMPTY'),
-	mongoose    = require('mongoose'),
-	schema      = mongoose.Schema;
+var	isEmpty	 = require('toolbox')('ISEMPTY'),
+	mongoose = require('mongoose'),
+	schema   = mongoose.Schema;
 
 //Schema definition
 var alertSchema = new schema({
-		message   : { type : String, required : true },
-		level     : { type : String, required : true, enum : ['INFO', 'WARNING', 'ERROR', 'CRITICAL'] },
-		created   	: { type : Date,   required: true },
-		creatorIP 	: { type : String, trim : true },
-		creatorService 	: { type : String, trim : true },
+		message : { type : String, required : true },
+		level   : { type : String, required : true, enum : ['INFO', 'WARNING', 'ERROR', 'CRITICAL'] },
+		created        : { type : Date,   required: true },
+		creatorIP      : { type : String, trim : true },
+		creatorService : { type : String, trim : true },
 		});
 
 //Model definition

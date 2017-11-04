@@ -26,6 +26,7 @@ import junit.framework.TestSuite;
 public class TestSuite_ServiceProvider extends TestSuite {
 	public static TestSuite suite() {
 		TestSuite suite = new TestSuite();
+		suite.addTestSuite(TestCase_Alert.class);
 		suite.addTestSuite(TestCase_Authentification.class);
 		suite.addTestSuite(TestCase_Authentification_NoSecretPublication.class);
 		suite.addTestSuite(TestCase_Authentification_RejectForbiddenLetter.class);

@@ -32,7 +32,7 @@
 # API
 ## GET alert : 
 - code: ALERT.1.1.1
-  message: Le niveau minimal ne correspond à aucun référencé
+  message: Le niveau d'alerte ne correspond à aucun référencé
 
 ## GET alert : 
 - code: ALERT.1.2.1

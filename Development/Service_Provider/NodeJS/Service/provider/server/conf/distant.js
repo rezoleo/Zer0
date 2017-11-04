@@ -30,7 +30,7 @@ security_picture =  { ca   : 'certificates/distant/server-cert-picture.pem',
 module.exports = {
 	alert            : { uri      : 'https://localhost:8122/api/alert',
 			     security : security_alert,
-			     token    : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzb3VyY2VfaXAiOiIxMjcuMC4wLjEiLCJzb3VyY2Vfc2VydmljZSI6Ikp1bml0VGVzdHMiLCJkZXN0X3NlcnZpY2UiOiJTZXJ2aWNlX0FsZXJ0IiwiZW5kX2RhdGUiOiIyMDE3LTExLTIzVDIxOjMxOjEwLjI2OFoiLCJhY2Nlc3MiOlsiR0VUIiwiR0VUT25lIiwiUE9TVCJdLCJleHRyYSI6bnVsbH0.p12rFsIGB1v_OpyjT1Ud38C7NjWhoq-z25YgemRPeec' },
+			     token    : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzb3VyY2VfaXAiOiIxMjcuMC4wLjEiLCJzb3VyY2Vfc2VydmljZSI6Ikp1bml0VGVzdHMiLCJkZXN0X3NlcnZpY2UiOiJTZXJ2aWNlX0FsZXJ0IiwiZW5kX2RhdGUiOiIyMDE4LTExLTA0VDE2OjAzOjM4LjYzOFoiLCJhY2Nlc3MiOlsiR0VUIiwiR0VUaWQiLCJQT1NUIl0sImV4dHJhIjpudWxsfQ.RIsjb7UtdmqhJzdFYIpEyQghA2-mWEXQ0yXMEf16Vmg' },
 	authentification : { uri      : 'https://localhost:8111/api/authentification',
 			     salt     : 'ssd~jsd16fèzejzojié"çè)"èefgsfgo&jp^51fgsg3sqgrh"f',
 			     security : security_auth,

@@ -16,5 +16,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Service_Card_JUnit"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Service_Group_JUnit"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Service_Contributor_JUnit"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Service_Alert_JUnit"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

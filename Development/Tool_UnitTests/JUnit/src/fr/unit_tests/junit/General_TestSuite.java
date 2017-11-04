@@ -30,7 +30,8 @@ public class General_TestSuite extends TestCase{
 		TestSuite testSuite = new TestSuite();
 		testSuite.addTest(fr.applicationcore.junit.test.TestSuite_ApplicationCore.suite());
 		testSuite.addTest(fr.webservicecore.junit.test.TestSuite_WebServiceCore.suite());
-	    testSuite.addTest(fr.service_authentification.junit.test.TestSuite_ServiceAuthentification.suite());
+		testSuite.addTest(fr.service_alert.junit.test.TestSuite_ServiceAlert.suite());
+		testSuite.addTest(fr.service_authentification.junit.test.TestSuite_ServiceAuthentification.suite());
 		testSuite.addTest(fr.service_card.junit.test.TestSuite_ServiceCard.suite());
 		testSuite.addTest(fr.service_contributor.junit.test.TestSuite_ServiceContributor.suite());
 		testSuite.addTest(fr.service_group.junit.test.TestSuite_ServiceGroup.suite());

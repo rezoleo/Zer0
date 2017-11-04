@@ -17,6 +17,8 @@ package fr.service_provider.junit.model;
 
 import java.util.Vector;
 
+import fr.service_alert.network.AlertClient;
+import fr.service_alert.object.Alert;
 import fr.service_authentification.network.AuthentificationClient;
 import fr.service_authentification.tool.Hash;
 import fr.service_card.Common;
@@ -45,6 +47,7 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Mo
 { 
 	protected static String URL   		 = "https://localhost:8301";
 
+	protected AlertClient 				ws_client_alert		  = new AlertClient();
 	protected AuthentificationClient 	ws_client_auth	 	  = new AuthentificationClient();
 	protected CardClient 				ws_client_card		  = new CardClient();
 	protected ContributorClient 		ws_client_contributor = new ContributorClient();
@@ -84,6 +87,11 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Mo
 	//Function to prepare the environment before a test
 	@SuppressWarnings("static-access")
 	protected void initSettings() throws Exception{
+		ws_client_alert.setToken(token_list.getToken("token_alert"));
+		ws_client_alert.setURL(fr.service_alert.Common.URL);
+		ws_client_alert.setProxyParameters(fr.service_alert.Common.ProxyAdress, fr.service_alert.Common.ProxyPort);
+		ws_client_alert.setKeystoreParameters(keyStorePath, keyStorePassword);
+
 		ws_client_auth.setToken(token_list.getToken("token_authentification"));
 		ws_client_auth.setURL(fr.service_authentification.Common.URL);
 		ws_client_auth.setProxyParameters(fr.service_authentification.Common.ProxyAdress, fr.service_authentification.Common.ProxyPort);
@@ -144,6 +152,7 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Mo
 		ws_client_picture_proxy.setProxyParameters(Common.ProxyAdress, Common.ProxyPort);
 		ws_client_picture_proxy.setKeystoreParameters(keyStorePath, keyStorePassword);
 
+		new fr.service_alert.error.ErrorReferential();
 		new fr.service_authentification.error.ErrorReferential();
 		new fr.service_card.error.ErrorReferential();
 		new fr.service_contributor.error.ErrorReferential();
@@ -166,6 +175,16 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Mo
 		ErrorReferential.addError("PROVIDER.E.3.1", "Le connecteur vers le service des personnes a généré une uri avec au moins un caractère interdit");
 		ErrorReferential.addError("PROVIDER.F.1.1", "Le connecteur vers le service des images a généré une uri avec au moins un caractère interdit");
 		ErrorReferential.addError("PROVIDER.F.2.1", "Le connecteur vers le service des images a généré une uri avec au moins un caractère interdit");
+	}
+
+	//Function to get the list of alert and count them
+	protected int countAlertQuantity() throws APIException{
+		Vector<Alert> alertList=ws_client_alert.getAllAlert(null);
+		return alertList.size();
+	}
+	protected void checkAlertQuantity(int number) throws APIException{
+		Vector<Alert> alertList=ws_client_alert.getAllAlert(null);
+		assertEquals(number, alertList.size());
 	}
 
 	//Function to get the list of card and count them

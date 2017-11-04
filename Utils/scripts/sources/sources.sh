@@ -87,6 +87,7 @@ dir_front_path=(
 ########################################################################################################
 ## Project source directory paths
 PROJECT_DIR="/opt/centrale-datacore"
+DOC_DIR="$PROJECT_DIR/Documentation/"
 DEV_DIR="$PROJECT_DIR/Development/"
 INT_DIR="$PROJECT_DIR/Integration/"
 TRC_DIR="$PROJECT_DIR/Trace/"
