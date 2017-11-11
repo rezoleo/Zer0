@@ -1,4 +1,5 @@
 All/DEB/*deb
+All/JAR/*jar
 Applications/*.deb
 Applications/*/home/
 Modules/*.deb
