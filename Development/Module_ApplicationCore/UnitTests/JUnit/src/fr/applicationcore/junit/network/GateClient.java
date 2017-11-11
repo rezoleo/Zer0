@@ -1,7 +1,7 @@
 package fr.applicationcore.junit.network;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -18,15 +18,16 @@ package fr.applicationcore.junit.network;
 import fr.applicationcore.junit.object.Gate;
 import fr.applicationcore.network.HttpMethod;
 import fr.applicationcore.network.ApplicationClient;
-import fr.applicationcore.object.APIException;
+import fr.applicationcore.error.APIException;
 
-/* 
- * Class 	: GateClient
- * Author(s): Zidmann
- * Function : This class contains an example of application client to test NodeJS module named 'ApplicationCore'
- * Version  : 1.0.0
- * Note		: This class uses directly HttpRequest class by its extension of the ApplicationClient class
- *		  	  The protected functions are used as auxiliary functions to be reused by an extension of it
+/**
+ * Example of application client to test NodeJS module named 'ApplicationCore'
+ * <p>
+ * This class uses directly HttpRequest class by its extension of the ApplicationClient class
+ * The protected functions are used as auxiliary functions to be reused by an extension of it
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class GateClient extends ApplicationClient
 {
@@ -38,7 +39,7 @@ public class GateClient extends ApplicationClient
     // Type        : function
     // Description : Check the gate used by user
     public Gate checkGate() throws APIException{
-		String http_address=URL+"/api/gate";
+		String http_address=this.getURL()+"/api/gate";
 		return checkGateAuxi(http_address);
     }
     protected Gate checkGateAuxi(String http_address) throws APIException{
@@ -55,7 +56,7 @@ public class GateClient extends ApplicationClient
     // Type        : function
     // Description : Get a gate for the user
     public Gate getGate() throws APIException{
-		String http_address=URL+"/api/gate";
+		String http_address=this.getURL()+"/api/gate";
 		return getGateAuxi(http_address);
     }
     protected Gate getGateAuxi(String http_address) throws APIException{
@@ -72,7 +73,7 @@ public class GateClient extends ApplicationClient
     // Type        : function
     // Description : Remove the gate used by user
     public Gate eraseGate() throws APIException{
-		String http_address=URL+"/api/gate";
+		String http_address=this.getURL()+"/api/gate";
 		return eraseGateAuxi(http_address);
     }
     protected Gate eraseGateAuxi(String http_address) throws APIException{

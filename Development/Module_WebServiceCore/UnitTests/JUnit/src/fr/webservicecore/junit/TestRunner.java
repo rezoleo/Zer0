@@ -1,7 +1,7 @@
 package fr.webservicecore.junit;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -21,11 +21,10 @@ import org.junit.runner.Result;
 
 import fr.webservicecore.junit.test.TestSuite_WebServiceCore;
 
-/* 
- * Class 	: TestRunner
- * Author(s): Zidmann
- * Function : This class is used to start JUnit tests through a main function
- * Version  : 1.0.0
+/**
+ * Launcher used to start JUnit tests
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestRunner {
 	public static void main(String[] args) {

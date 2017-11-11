@@ -1,7 +1,7 @@
 package fr.webservicecore.junit.token;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -15,12 +15,13 @@ package fr.webservicecore.junit.token;
  */
 
 
-/* 
- * Class 	: TokenReferential
- * Author(s): Zidmann
- * Function : This class contains all the tokens used to test the 'WebServiceCore' NodeJS module 
- * Version  : 1.0.0
- * Note		: The key used for these tokens is : "d2s42dggjfqlry6Jfs9shrgrxjthty"
+/**
+ * List of all the tokens used to test the 'WebServiceCore' NodeJS module
+ * <p>
+ * The key used for these tokens is : "d2s42dggjfqlry6Jfs9shrgrxjthty"
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TokenReferential{
 	public TokenReferential(){

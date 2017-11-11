@@ -1,7 +1,7 @@
 package fr.applicationcore.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -23,14 +23,13 @@ import com.google.gson.GsonBuilder;
 import fr.applicationcore.Common;
 import fr.applicationcore.error.ErrorReferential;
 import fr.applicationcore.junit.model.TestCase_Model;
-import fr.applicationcore.object.ErrorMessage;
+import fr.applicationcore.error.ErrorMessage;
 import fr.core.network.HttpCommunication;
 
-/* 
- * Class 	: TestCase_ErrorMsg
- * Author(s): Zidmann
- * Function : This class contains the application client JUnit tests to check some error message in a NodeJS server using the 'ApplicationCore' module 
- * Version  : 1.0.0 
+/**
+ * This class contains the application client JUnit tests to check some error message in a NodeJS server using the 'ApplicationCore' module
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_ErrorMsg extends TestCase_Model
 {

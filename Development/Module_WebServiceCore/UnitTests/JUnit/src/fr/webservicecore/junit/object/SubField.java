@@ -1,7 +1,7 @@
 package fr.webservicecore.junit.object;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -18,11 +18,10 @@ package fr.webservicecore.junit.object;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.Since;
 
-/* 
- * Class 	: SubField
- * Author(s): Zidmann
- * Function : This class describes the 'field7' of an ObjectDB
- * Version  : 1.0.0
+/**
+ * Description of the 'field7' of an ObjectDB
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class SubField {
 	@Expose

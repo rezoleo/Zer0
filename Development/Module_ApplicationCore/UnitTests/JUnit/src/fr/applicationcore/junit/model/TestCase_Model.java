@@ -1,7 +1,7 @@
 package fr.applicationcore.junit.model;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -15,20 +15,20 @@ package fr.applicationcore.junit.model;
  */
 
 
+import fr.applicationcore.Common;
+import fr.applicationcore.error.Error;
+import fr.applicationcore.error.ErrorMessage;
 import fr.applicationcore.junit.network.GateClient;
 import fr.applicationcore.junit.network.LoginClient;
 import fr.applicationcore.junit.network.ObjectDBClient;
 import fr.applicationcore.junit.network.RolesClient;
-import fr.applicationcore.Common;
-import fr.applicationcore.error.Error;
-import fr.applicationcore.object.ErrorMessage;
 import fr.core.network.HttpCommunication;
 
 /* 
- * Class 	: TestCase_Model
- * Author(s): Zidmann
- * Function : This class defines the super class used by the different JUnit test cases 
- * Version  : 1.0.0 
+/**
+ * Super class which will be extended by the different JUnit test cases
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Model extends fr.junittemplate.test.TestCase_Application_Model
 { 
@@ -43,7 +43,9 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_Application_M
 	protected String keyStorePath  	  = "/opt/centrale-datacore/Development/Module_ApplicationCore/UnitTests/NodeJS/certificates/keystore.jks";
 	protected String keyStorePassword = "password";
 
-	//Function to check if the error message has the expected properties
+	/**
+	 * Check if the error message has the expected properties
+	 */
 	protected void checkBasicMessage(Error err, ErrorMessage msg){
 		msg.setStatus(404);
 		super.checkMessage(null, null, err, msg);
@@ -52,7 +54,10 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_Application_M
 		super.checkMessage(application, version, err, msg);
 	}
 
-	//Function to prepare the environment before a test
+	/**
+	 * Prepare the environment before a test
+	 * @throws Exception Exception returned by the system
+	 */
 	protected void initSettings() throws Exception{
 		ws_objectdb_client.setURL(Common.URL);
 		ws_objectdb_client.setProxyParameters(Common.ProxyAdress, Common.ProxyPort);

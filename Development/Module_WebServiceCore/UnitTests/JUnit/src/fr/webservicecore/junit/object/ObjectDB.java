@@ -1,7 +1,7 @@
 package fr.webservicecore.junit.object;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -21,11 +21,10 @@ import java.util.Date;
 
 import fr.webservicecore.object.APIObject;
 
-/* 
- * Class 	: ObjectDB
- * Author(s): Zidmann
- * Function : This class describes an objectDB element
- * Version  : 1.0.0
+/**
+ * Description of a basic object for tests
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class ObjectDB implements APIObject
 {

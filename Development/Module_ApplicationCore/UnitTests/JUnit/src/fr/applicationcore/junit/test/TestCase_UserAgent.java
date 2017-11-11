@@ -1,7 +1,7 @@
 package fr.applicationcore.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -21,11 +21,10 @@ import fr.core.network.HttpCommunication;
 import fr.applicationcore.Common;
 import fr.applicationcore.junit.model.TestCase_Model;
 
-/* 
- * Class 	: TestCase_UserAgent
- * Author(s): Zidmann
- * Function : This class contains the webService client JUnit tests to check if the user agent can be defined by the JAR 
- * Version  : 1.0.0 
+/**
+ * This class contains the webService client JUnit tests to check if the user agent can be defined by the JAR
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_UserAgent extends TestCase_Model
 {

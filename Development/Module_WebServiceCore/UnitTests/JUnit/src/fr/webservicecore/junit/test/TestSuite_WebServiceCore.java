@@ -1,7 +1,7 @@
 package fr.webservicecore.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -17,11 +17,10 @@ package fr.webservicecore.junit.test;
 
 import junit.framework.TestSuite;
 
-/* 
- * Class 	: TestSuite_WebServiceCore
- * Author(s): Zidmann
- * Function : This class is used to define the JUnit test cases for testing NodeJS framework named 'WebServiceCore'
- * Version  : 1.0.0
+/**
+ * This class is used to define the JUnit test cases for testing NodeJS framework named 'WebServiceCore'
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestSuite_WebServiceCore extends TestSuite {
 	public static TestSuite suite() {

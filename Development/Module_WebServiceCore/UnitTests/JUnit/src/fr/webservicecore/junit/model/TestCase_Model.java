@@ -1,7 +1,7 @@
 package fr.webservicecore.junit.model;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -18,15 +18,14 @@ package fr.webservicecore.junit.model;
 import fr.core.network.HttpCommunication;
 import fr.webservicecore.Common;
 import fr.webservicecore.error.Error;
+import fr.webservicecore.error.ErrorMessage;
 import fr.webservicecore.junit.network.ObjectDBClient;
 import fr.webservicecore.junit.token.TokenReferential;
-import fr.webservicecore.object.ErrorMessage;
 
-/* 
- * Class 	: TestCase_Model
- * Author(s): Zidmann
- * Function : This class defines the super class used by the different JUnit test cases 
- * Version  : 1.0.0 
+/**
+ * Super class which will be extended by the different JUnit test cases
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Model
 { 
@@ -39,7 +38,9 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Mo
 	protected String keyStorePath  	  = "/opt/centrale-datacore/Development/Module_WebServiceCore/UnitTests/NodeJS/certificates/keystore.jks";
 	protected String keyStorePassword = "password";
 
-	//Function to check if the error message has the expected properties
+	/**
+	 * Check if the error message has the expected properties
+	 */
 	protected void checkBasicMessage(Error err, ErrorMessage msg){
 		msg.setStatus(404);
 		super.checkMessage(null, null, err, msg);
@@ -48,7 +49,10 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Mo
 		super.checkMessage(service, version, err, msg);
 	}
 
-	//Function to prepare the environment before a test
+	/**
+	 * Prepare the environment before a test
+	 * @throws Exception Exception returned by the system
+	 */
 	protected void initSettings() throws Exception{
 		ws_client.setURL(Common.URL);
 		ws_client.setProxyParameters(Common.ProxyAdress, Common.ProxyPort);

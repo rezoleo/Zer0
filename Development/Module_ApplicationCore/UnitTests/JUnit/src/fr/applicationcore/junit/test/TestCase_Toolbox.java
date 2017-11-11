@@ -1,7 +1,7 @@
 package fr.applicationcore.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -19,36 +19,34 @@ import org.junit.Test;
 
 import fr.applicationcore.error.ErrorReferential;
 import fr.applicationcore.junit.model.TestCase_Model;
-import fr.applicationcore.object.APIException;
-import fr.applicationcore.toolbox.CheckAttributes;
+import fr.applicationcore.error.APIException;
+import fr.applicationcore.toolbox.AttributesTool;;
 
-/* 
- * Class 	: TestCase_Toolbox
- * Author(s): Zidmann
- * Function : This class contains the test to check the functions of the ApplicationCore JAR toolbox 
- * Version  : 1.0.0 
+/**
+ * This class contains the test to check the functions of the ApplicationCore JAR toolbox
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
-
 public class TestCase_Toolbox extends TestCase_Model
 {
 	@Test
 	public void testIsEmpty() throws Exception{
-		assertEquals(true,  CheckAttributes.isEmpty(null));
-		assertEquals(true,  CheckAttributes.isEmpty(""));
-		assertEquals(false, CheckAttributes.isEmpty("a"));
-		assertEquals(false, CheckAttributes.isEmpty("A"));
+		assertEquals(true,  AttributesTool.isEmpty(null));
+		assertEquals(true,  AttributesTool.isEmpty(""));
+		assertEquals(false, AttributesTool.isEmpty("a"));
+		assertEquals(false, AttributesTool.isEmpty("A"));
 	}
 
 	@Test
 	public void testIsEmptyThrowsError() throws Exception{
 		auxiIsEmpty(null);
 		auxiIsEmpty("");
-		CheckAttributes.isEmptyThrowsError("a");
-		CheckAttributes.isEmptyThrowsError("A");
+		AttributesTool.isEmptyThrowsError("a");
+		AttributesTool.isEmptyThrowsError("A");
 	}
 	protected void auxiIsEmpty(String str) throws Exception{
 		try{
-			CheckAttributes.isEmptyThrowsError(str);
+			AttributesTool.isEmptyThrowsError(str);
 		}
 		catch(APIException e){
 			checkBasicMessage(ErrorReferential.getErrorByCode("APPCORE-JAR-1"), e.getMsg());
@@ -59,33 +57,33 @@ public class TestCase_Toolbox extends TestCase_Model
 
 	@Test
 	public void testCheckRegex() throws Exception{
-		assertEquals(false, CheckAttributes.checkRegex(null));
-		assertEquals(false, CheckAttributes.checkRegex(""));
-		assertEquals(true,  CheckAttributes.checkRegex("a"));
-		assertEquals(false, CheckAttributes.checkRegex("&"));
-		assertEquals(true,  CheckAttributes.checkRegex("att"));
-		assertEquals(false, CheckAttributes.checkRegex("&tt"));
-		assertEquals(true,  CheckAttributes.checkRegex("batt"));
-		assertEquals(false, CheckAttributes.checkRegex("b&tt"));
-		assertEquals(true,  CheckAttributes.checkRegex("test"));
-		assertEquals(false, CheckAttributes.checkRegex("test&"));
+		assertEquals(false, AttributesTool.checkRegex(null));
+		assertEquals(false, AttributesTool.checkRegex(""));
+		assertEquals(true,  AttributesTool.checkRegex("a"));
+		assertEquals(false, AttributesTool.checkRegex("&"));
+		assertEquals(true,  AttributesTool.checkRegex("att"));
+		assertEquals(false, AttributesTool.checkRegex("&tt"));
+		assertEquals(true,  AttributesTool.checkRegex("batt"));
+		assertEquals(false, AttributesTool.checkRegex("b&tt"));
+		assertEquals(true,  AttributesTool.checkRegex("test"));
+		assertEquals(false, AttributesTool.checkRegex("test&"));
 	}
 	@Test
 	public void testCheckRegexThrowsError() throws Exception{
 		auxiCheckRegex(null);
 		auxiCheckRegex("");
-		CheckAttributes.checkRegexThrowsError("a");
+		AttributesTool.checkRegexThrowsError("a");
 		auxiCheckRegex("&");
-		CheckAttributes.checkRegexThrowsError("att");
+		AttributesTool.checkRegexThrowsError("att");
 		auxiCheckRegex("&tt");
-		CheckAttributes.checkRegexThrowsError("batt");
+		AttributesTool.checkRegexThrowsError("batt");
 		auxiCheckRegex("b&tt");
-		CheckAttributes.checkRegexThrowsError("test");
+		AttributesTool.checkRegexThrowsError("test");
 		auxiCheckRegex("test&");
 	}
 	protected void auxiCheckRegex(String str) throws Exception{
 		try{
-			CheckAttributes.checkRegexThrowsError(str);
+			AttributesTool.checkRegexThrowsError(str);
 		}
 		catch(APIException e){
 			checkBasicMessage(ErrorReferential.getErrorByCode("APPCORE-JAR-2"), e.getMsg());

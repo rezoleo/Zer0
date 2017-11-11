@@ -1,7 +1,7 @@
 package fr.applicationcore.junit.object;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -20,11 +20,10 @@ import com.google.gson.annotations.Since;
 
 import fr.applicationcore.object.APIObject;
 
-/* 
- * Class 	: Gate
- * Author(s): Zidmann
- * Function : This class describes the response to know which login the client uses
- * Version  : 1.0.0
+/**
+ * Description of a basic object which represents the gate information on the server
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class Gate implements APIObject
 {

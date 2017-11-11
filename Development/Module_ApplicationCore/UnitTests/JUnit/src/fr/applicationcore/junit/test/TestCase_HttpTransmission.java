@@ -1,7 +1,7 @@
 package fr.applicationcore.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -26,13 +26,13 @@ import fr.applicationcore.junit.network.ObjectDBTokenClient;
 import fr.applicationcore.junit.object.ObjectDB;
 import fr.applicationcore.junit.object.SubField;
 
-/* 
- * Class 	: TestCase_HttpTransmission
- * Author(s): Zidmann
- * Function : This class contains JUnit tests to check if there was no regression in the communication between an application and a service. 
- * Version  : 1.0.0
- * Note		: This Test Case supposes that you started the NodeJS server designed to test 'ApplicationCore' module. 
- * 			  and remove all ObjectDBs in the MongoDB database of the webservice called by the server
+/**
+ * This class contains JUnit tests to check if there was no regression in the communication between an application and a service.
+ * <p>
+ * This Test Case supposes that you started the NodeJS server designed to test 'ApplicationCore' class and remove all ObjectDBs in the MongoDB database of the application called by the server
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_HttpTransmission extends TestCase_Model
 {

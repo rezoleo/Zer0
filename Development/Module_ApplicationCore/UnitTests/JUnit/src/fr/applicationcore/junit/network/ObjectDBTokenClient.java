@@ -1,7 +1,7 @@
 package fr.applicationcore.junit.network;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -18,14 +18,16 @@ package fr.applicationcore.junit.network;
 import java.util.Vector;
 
 import fr.applicationcore.junit.object.ObjectDB;
-import fr.applicationcore.object.APIException;
+import fr.applicationcore.error.APIException;
 
-/* 
- * Class 	: ObjectDBTokenClient
- * Author(s): Zidmann
- * Function : This class contains an example of application client to test NodeJS module named 'ApplicationCore' using the token transmission
- * Version  : 1.0.0
- * Note		: This class extends the ObjectDBClient to adapt the HTTP address reached by the client
+/**
+ * Example of application client to test NodeJS module named 'ApplicationCore'
+ * <p>
+ * This class uses directly HttpRequest class by its extension of the ApplicationClient class
+ * The protected functions are used as auxiliary functions to be reused by an extension of it
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class ObjectDBTokenClient extends ObjectDBClient
 {
@@ -37,7 +39,7 @@ public class ObjectDBTokenClient extends ObjectDBClient
     // Type        : function
     // Description : Get the list of all the objectDB elements
     public Vector<ObjectDB> getAllObjectDB() throws APIException{
-    	String http_address=URL+"/api/objectToken";
+    	String http_address=this.getURL()+"/api/objectToken";
 		return getAllObjectDBAuxi(http_address);
     }
 
@@ -48,7 +50,7 @@ public class ObjectDBTokenClient extends ObjectDBClient
 		if(id==null || id.equals("")){
 			return null;
 		}
-		String http_address=URL+"/api/objectToken/"+id;
+		String http_address=this.getURL()+"/api/objectToken/"+id;
 		return getOneObjectDBAuxi(http_address);
     }
 
@@ -59,7 +61,7 @@ public class ObjectDBTokenClient extends ObjectDBClient
     // Type        : function
     // Description : Create an objectDB element on the Node JS server
 	public ObjectDB createObjectDB() throws APIException{
-		String http_address=URL+"/api/objectToken";
+		String http_address=this.getURL()+"/api/objectToken";
 		return this.createObjectDBAuxi(http_address);
 	}
 
@@ -67,7 +69,7 @@ public class ObjectDBTokenClient extends ObjectDBClient
     // Type        : function
     // Description : Update all the objectDB elements on the Node JS server
 	public void updateObjectDB() throws APIException{
-		String http_address=URL+"/api/objectToken";
+		String http_address=this.getURL()+"/api/objectToken";
 		this.updateObjectDBAuxi(http_address);
 	}
 
@@ -78,7 +80,7 @@ public class ObjectDBTokenClient extends ObjectDBClient
 	// Type        : function
 	// Description : Delete all objectDB elements
 	public void deleteObjectDB() throws APIException{
-		String http_address=URL+"/api/objectToken";
+		String http_address=this.getURL()+"/api/objectToken";
 		this.deleteObjectDBAuxi(http_address);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////

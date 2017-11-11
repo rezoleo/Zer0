@@ -1,7 +1,7 @@
 package fr.applicationcore.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -22,13 +22,12 @@ import org.junit.Test;
 import fr.applicationcore.error.ErrorReferential;
 import fr.applicationcore.junit.model.TestCase_Model;
 import fr.applicationcore.junit.object.Roles;
-import fr.applicationcore.object.APIException;
+import fr.applicationcore.error.APIException;
 
-/* 
- * Class 	: TestCase_Roles
- * Author(s): Zidmann
- * Function : This class contains JUnit tests to check if the role management works  
- * Version  : 1.0.0
+/**
+ * This class contains JUnit tests to check if the role management works
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Roles extends TestCase_Model
 {

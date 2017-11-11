@@ -1,7 +1,7 @@
 package fr.webservicecore.junit.network;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -20,16 +20,17 @@ import java.util.Vector;
 import fr.webservicecore.junit.object.ObjectDB;
 import fr.webservicecore.network.HttpMethod;
 import fr.webservicecore.network.WebServiceClient;
-import fr.webservicecore.object.APIException;
+import fr.webservicecore.error.APIException;
 import fr.webservicecore.object.APIObject;
 
-/* 
- * Class 	: ObjectDBClient
- * Author(s): Zidmann
- * Function : This class contains an example of WebService client to test NodeJS module named 'WebServiceCore'
- * Version  : 1.0.0
- * Note		: This class uses directly HttpRequest class by its extension of the WebService class
- *		  	  The protected functions are used as auxiliary functions to be reused by an extension of it
+/**
+ * Example of WebService client to test NodeJS module named 'WebServiceCore'
+ * <p>
+ * This class uses directly HttpRequest class by its extension of the WebService class
+ * The protected functions are used as auxiliary functions to be reused by an extension of it
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class ObjectDBClient extends WebServiceClient
 { 	
@@ -41,9 +42,9 @@ public class ObjectDBClient extends WebServiceClient
     // Type        : function
     // Description : Get the list of all the objectDB elements
     public Vector<ObjectDB> getAllObjectDB() throws APIException{
-		String http_address=URL+"/api/object";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/object";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 		return getAllObjectDBAuxi(http_address);
     }
@@ -70,9 +71,9 @@ public class ObjectDBClient extends WebServiceClient
 		if(id==null || id.equals("")){
 			return null;
 		}
-		String http_address=URL+"/api/object/"+id;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/object/"+id;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 		return getOneObjectDBAuxi(http_address);
 	}
@@ -92,9 +93,9 @@ public class ObjectDBClient extends WebServiceClient
     // Type        : function
     // Description : Create an objectDB element on the Node JS server
 	public ObjectDB createObjectDB() throws APIException{
-		String http_address=URL+"/api/object";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/object";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 		return this.createObjectDBAuxi(http_address);
 	}
@@ -114,9 +115,9 @@ public class ObjectDBClient extends WebServiceClient
     // Type        : function
     // Description : Update all the objectDB elements on the Node JS server
 	public void updateObjectDB() throws APIException{
-		String http_address=URL+"/api/object";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/object";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 		this.updateObjectDBAuxi(http_address);
 	}
@@ -136,9 +137,9 @@ public class ObjectDBClient extends WebServiceClient
 	// Type        : function
 	// Description : Delete all objectDB elements
 	public void deleteObjectDB() throws APIException{
-		String http_address=URL+"/api/object";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/object";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 		this.deleteObjectDBAuxi(http_address);
 	}
