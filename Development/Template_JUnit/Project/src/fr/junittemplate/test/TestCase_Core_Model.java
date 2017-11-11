@@ -1,7 +1,7 @@
 package fr.junittemplate.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -19,30 +19,40 @@ import java.util.Date;
 import junit.framework.TestCase;
 
 import fr.core.error.Error;
-import fr.core.object.ErrorMessage;
+import fr.core.error.ErrorMessage;
 
-/* 
- * Class 	: TestCase_Core_Model
- * Author(s): Zidmann
- * Function : This class contains the super class used by the different JUnit test cases 
- * Version  : 1.0.0 
+/**
+ * This class contains the super class used by the different JUnit test cases
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Core_Model extends TestCase
 {	
+	/**
+	 * Constructor TestCase_Core_Model
+	 */
 	protected TestCase_Core_Model(){
 		
 	}
 
-	//Function to check if the error message has the expected properties
+	/**
+	 * Check if the error message has the expected properties
+	 * @param version Version expected from the server
+	 * @param err Information about code, message, stack and status
+	 * @param msg Error message to check
+	 */
 	protected void checkMessage(String version, Error err, ErrorMessage msg){
-		assertEquals(version,		msg.getVersion());
-		assertEquals(err.code,		msg.getCode());
-		assertEquals(err.message,	msg.getMessage());
-		assertEquals(null,			msg.getStack());
-		assertEquals(404,			msg.getStatus());
+		assertEquals(version,			msg.getVersion());
+		assertEquals(err.getCode(),		msg.getCode());
+		assertEquals(err.getMessage(),	msg.getMessage());
+		assertEquals(null,				msg.getStack());
+		assertEquals(404,				msg.getStatus());
 	}
 
-	//Functions to compare two dates
+	/**
+	 * Functions to compare two dates
+	 * @return 'true' if 'a' is inferior to 'b' or false if not
+	 */
 	protected boolean inferiorDate(Date a, Date b){
 		if(a==null){
 			return true;
@@ -53,6 +63,10 @@ public class TestCase_Core_Model extends TestCase
 		return a.before(b);
 	}
 
+	/**
+	 * Functions to compare two dates
+	 * @return 'true' if 'a' is equal to 'b' or false if not
+	 */
 	protected boolean equalsDate(Date a, Date b){
 		if(a==null && b==null){
 			return true;

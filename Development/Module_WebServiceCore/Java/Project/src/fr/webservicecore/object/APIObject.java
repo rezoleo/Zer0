@@ -1,7 +1,7 @@
 package fr.webservicecore.object;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -15,12 +15,10 @@ package fr.webservicecore.object;
  */
 
 
-/*
- * Interface : APIObject
- * Author(s) : Zidmann
- * Function  : This interface is used to process an element returned by a NodeJS server using the module entitled 'WebServiceCore'
- * Version   : 1.0.0
- * Note      : The function 'isEmpty' is used by the 'WebServiceClient' class to know if the element returned by the client is a message that the server returned or an APIObject instance.
+/**
+ * This interface is used to process an element returned by a NodeJS server using the module entitled 'WebServiceCore'
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public interface APIObject extends fr.core.object.APIObject
 {

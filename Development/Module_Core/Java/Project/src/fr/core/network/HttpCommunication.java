@@ -1,7 +1,7 @@
 package fr.core.network;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -40,26 +40,49 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 
-/* 
- * Class 	: HttpCommunication
- * Author(s): Zidmann
- * Function : This class contains basic functions to communicate with HTTP protocol to a server
- * Version  : 1.0.0
- * Note     : This class implements a singleton pattern
+/**
+ * Basic functions to communicate with HTTP protocol to a server
+ * <p>
+ * This class implements a singleton pattern
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class HttpCommunication 
 {
+	/**
+	 * Unique instance since HttpCommunication class uses singleton pattern
+	 */
 	private static volatile HttpCommunication instance 	= null;
 
-	protected String 	 defaultUserAgent = "JavaApplication/1.0.0";
-	protected String 	 userAgent 		  = null;	 
+	/**
+	 * Constant to define default User-Agent used to interact with NodeJS server
+	 */
+	private final String	defaultUserAgent = "JavaApplication/1.0.0";
 
-	protected HttpClient client = null;
+	/**
+	 * User-Agent used to interact with NodeJS server
+	 */
+	private String			userAgent 		 = null;	 
 
-	// Attributes for using HTTPS with SSL
-	protected String keyStorePath  	  = null;
-	protected String keyStorePassword = null;
+	/**
+	 * Client which interacts with the server
+	 */
+	private HttpClient client = null;
 
+	/**
+	 * Path to the keystore to interact with NodeJS server using HTTPS with SSL 
+	 */
+	private String keyStorePath  	= null;
+
+	/**
+	 * Password to read the keystore 
+	 */
+	private String keyStorePassword = null;
+
+	/**
+	 * Constructor HttpCommunication, protected since HttpCommunication class uses singleton pattern
+	 */
 	protected HttpCommunication(){
 		this.userAgent = this.defaultUserAgent;
 
@@ -71,6 +94,10 @@ public class HttpCommunication
 		}
 	}
 
+	/**
+	 * Get the unique instance since HttpCommunication class uses singleton pattern
+	 * @return HttpCommunication instance
+	 */
 	public static HttpCommunication getInstance(){
 		if(HttpCommunication.instance == null){
 			synchronized(HttpCommunication.class){
@@ -83,7 +110,6 @@ public class HttpCommunication
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//Functions for user agent settings
 	public String getUserAgent(){
 		return this.userAgent;
 	}
@@ -98,7 +124,6 @@ public class HttpCommunication
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//Functions for SSL settings
 	public String getKeystorePath(){
 		return this.keyStorePath;
 	}
@@ -120,7 +145,10 @@ public class HttpCommunication
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//Functions for proxy parameters
+	/**
+	 * Get the proxy address used by the system
+	 * @return Host address defined in the proxy settings 
+	 */
 	public String getProxyAddress(){
 		Properties systemProperties = System.getProperties();
 		if(systemProperties!=null){
@@ -128,6 +156,11 @@ public class HttpCommunication
 		}
 		return null;
 	}
+
+	/**
+	 * Get the proxy port used by the system
+	 * @return Port defined in the proxy settings 
+	 */
 	public String getProxyPort(){
 		Properties systemProperties = System.getProperties();
 		if(systemProperties!=null){
@@ -135,7 +168,22 @@ public class HttpCommunication
 		}
 		return null;
 	}
-	public void setProxyAddress(String ProxyAddress){
+
+	/**
+	 * Set the new host address in the proxy settings of the system
+	 * @param ProxyAddress The new host address to set
+	 * @throws Exception Exception returned by the system
+	 */
+	public void setProxyAddress(String ProxyAddress) throws Exception{
+		this.setProxyAddressAuxi(ProxyAddress);
+		this.regenerateClient();
+	}
+	/**
+	 * Auxilary function for 'setProxyAddress' and 'setProxyParameters' functions
+	 * @param ProxyAddress The new host address to set
+	 * @throws Exception Exception returned by the system
+	 */
+	private void setProxyAddressAuxi(String ProxyAddress) throws Exception{
 		Properties systemProperties = System.getProperties();
 		if(systemProperties==null){
 			return;
@@ -145,9 +193,25 @@ public class HttpCommunication
 			systemProperties.remove("http.proxyHost");
 			return;
 		}
-		systemProperties.setProperty("http.proxyHost", ProxyAddress);		
+		systemProperties.setProperty("http.proxyHost", ProxyAddress);
+		this.regenerateClient();
+	} 
+
+	/**
+	 * Set the new port in the proxy settings of the system
+	 * @param ProxyPort The new port to set
+	 * @throws Exception Exception returned by the system
+	 */
+	public void setProxyPort(int ProxyPort) throws Exception{
+		this.setProxyPortAuxi(ProxyPort);
+		this.regenerateClient();
 	}
-	public void setProxyPort(int ProxyPort){
+	/**
+	 * Auxilary function for 'setProxyPort' and 'setProxyParameters' functions
+	 * @param ProxyPort The new port to set
+	 * @throws Exception Exception returned by the system
+	 */
+	private void setProxyPortAuxi(int ProxyPort) throws Exception{
 		Properties systemProperties = System.getProperties();
 		if(systemProperties==null){
 			return;
@@ -158,15 +222,27 @@ public class HttpCommunication
 			return;
 		}
 		systemProperties.setProperty("http.proxyPort", Integer.toString(ProxyPort));
+		this.regenerateClient();
 	}
-	public void setProxyParameters(String ProxyAddress, int ProxyPort){
-		this.setProxyAddress(ProxyAddress);
-		this.setProxyPort(ProxyPort);
+
+	/**
+	 * Set the new host address and port in the proxy settings of the system
+	 * @param ProxyAddress The new host address to set
+	 * @param ProxyPort The new port to set
+	 * @throws Exception Exception returned by the system
+	 */
+	public void setProxyParameters(String ProxyAddress, int ProxyPort) throws Exception{
+		this.setProxyAddressAuxi(ProxyAddress);
+		this.setProxyPortAuxi(ProxyPort);
+		this.regenerateClient();
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//Function to renew the HTTP client; it removes all the information of previous connections
-	public void regenerateClient() throws Exception{
+	/**
+	 * Renew the HTTP client; it removes all the information of previous connections
+	 * @throws Exception Exception returned by the system
+	 */
+	public synchronized void regenerateClient() throws Exception{
 		this.client = null;
 		if(this.keyStorePath!=null && 
 	       this.keyStorePassword!=null){
@@ -201,33 +277,69 @@ public class HttpCommunication
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//Functions to send request (GET, POST, PUT, DELETE) to server
-	// HTTP GET request
+	/**
+	 * Send a GET HTTP request to the server
+	 * @param url The URL address of the server
+	 * @return The string returned by the server
+	 * @throws Exception Exception returned by the system
+	 */
 	public String sendGet(String url) throws Exception{
 		return this.sendRequest(HttpMethod.GET, url, null, null);
  	}
-	// HTTP POST request
-	//Note : To add parameters, we use add(new BasicNameValuePair(<Key>, <Value>));
+
+	/**
+	 * Send a POST HTTP request to the server
+	 * @param url The URL address of the server
+	 * @param urlParameters The list of parameters to send
+	 * @return The string returned by the server
+	 * @throws Exception Exception returned by the system
+	 */
 	public String sendPost(String url, List<NameValuePair> urlParameters) throws Exception{
 		return this.sendRequest(HttpMethod.POST, url, urlParameters, null);	
 	}
-	// HTTP POST request
-	//Note : This version is used to send a file to the server through a POST HTTP request
+
+	/**
+	 * Send a file through a POST HTTP request to the server
+	 * @param url The URL address of the server
+	 * @param file The pointer which defines the file to send
+	 * @return The string returned by the server
+	 * @throws Exception Exception returned by the system
+	 */
 	public String sendPost(String url, File file) throws Exception{
 		return this.sendRequest(HttpMethod.POSTfile, url, null, file);
 	}
-	// HTTP PUT request
+	
+	/**
+	 * Send a PUT HTTP request to the server
+	 * @param url The URL address of the server
+	 * @param urlParameters The list of parameters to send
+	 * @return The string returned by the server
+	 * @throws Exception Exception returned by the system
+	 */
 	public String sendPut(String url, List<NameValuePair> urlParameters) throws Exception{
 		return this.sendRequest(HttpMethod.PUT, url, urlParameters, null);	
 	}
-	// HTTP DELETE request
+
+	/**
+	 * Send a DELETE HTTP request to the server
+	 * @param url The URL address of the server
+	 * @return The string returned by the server
+	 * @throws Exception Exception returned by the system
+	 */
 	public String sendDelete(String url) throws Exception{	
 		return this.sendRequest(HttpMethod.DELETE, url, null, null);
 	}
-
-	// Auxiliary function to define an HTTP request
-	protected synchronized String sendRequest(HttpMethod method,
-											  String url, List<NameValuePair> urlParameters, File file) throws Exception{
+	/**
+	 * Auxiliary function to define an HTTP request
+	 * @param method The HTTP method chosen to interact with server
+	 * @param url The URL address of the server (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @param file The pointer which defines the file to send (used for POSTfile HTTP method)
+	 * @return The string returned by the server
+	 * @throws Exception Exception returned by the system
+	 */
+	private synchronized String sendRequest(HttpMethod method,
+											String url, List<NameValuePair> urlParameters, File file) throws Exception{
 		try{
 			StringBuffer result 	= new StringBuffer();
 			HttpUriRequest request 	= null;

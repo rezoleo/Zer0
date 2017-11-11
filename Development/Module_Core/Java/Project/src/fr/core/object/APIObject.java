@@ -1,7 +1,7 @@
 package fr.core.object;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -15,14 +15,16 @@ package fr.core.object;
  */
 
 
-/*
- * Interface : APIObject
- * Author(s) : Zidmann
- * Function  : This interface is used to process an element returned by a NodeJS server using the Core module for a service or an application
- * Version   : 1.0.0
- * Note      : The function 'isEmpty' is used by the 'WebService' class to know if the element returned by the client is a message that the server returned or an APIObject instance.
+/**
+ * This interface is used to process an element returned by a NodeJS server using the Core module for an application or a service
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public interface APIObject
 {
+	/**
+	 * Check if the element returned by the client is a message to translate it in an APIObject or an error which must be thrown with an APIException. 
+	 * @return 'true' if APIObject is empty or 'false' if not
+	 */
 	public boolean isEmpty();
 }

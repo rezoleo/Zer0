@@ -6,7 +6,7 @@ By [Zidmann](mailto:emmanuel.zidel@gmail.com) :bow:
 
 **Module - Core - JAR Development** contains a Java project to develop a JAR archive which contains all the useful functions, data and classes to interact with a NodeJS server using Core module
 
-Version : 1.0.0
+Version : 1.1.0
 
 ## Files
 

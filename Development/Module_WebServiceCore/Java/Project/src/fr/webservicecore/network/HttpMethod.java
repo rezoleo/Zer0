@@ -1,7 +1,7 @@
 package fr.webservicecore.network;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -15,17 +15,35 @@ package fr.webservicecore.network;
  */
 
 
-/* 
- * Enumeration 	: HttpMethod
- * Author(s)	: Zidmann
- * Function 	: This enumeration represents the different types of HTTP request (GET, POST, PUT, DELETE)
- * Version  	: 1.0.0
+/**
+ * The different methods of HTTP request (GET, POST, PUT, DELETE)
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public enum HttpMethod
 {
+	/**
+	 * The GET method requests a representation of the specified resource
+	 */
 	GET,
+
+	/**
+	 * The POST method requests that the server accept the entity enclosed in the request as a new subordinate of the web resource identified by the URI
+	 */
 	POST,
-	POSTfile,	//Specific to post a file
+
+	/**
+	 * This POST method is used to send a file
+	 */
+	POSTfile,
+
+	/**
+	 * The PUT method requests that the enclosed entity be stored under the supplied URI
+	 */
 	PUT,
+
+	/**
+	 * The DELETE method deletes the specified resource
+	 */
 	DELETE
 }

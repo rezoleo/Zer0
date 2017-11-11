@@ -1,7 +1,7 @@
 package fr.webservicecore.network;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -29,45 +29,73 @@ import java.util.Vector;
 import org.apache.http.NameValuePair;
 
 import fr.core.network.HttpCommunication;
-
+import fr.webservicecore.error.APIException;
+import fr.webservicecore.error.ErrorMessage;
 import fr.webservicecore.network.HttpMethod;
 import fr.webservicecore.object.APIObject;
 import fr.webservicecore.Common;
-import fr.webservicecore.object.APIException;
-import fr.webservicecore.object.ErrorMessage;
 
-/* 
- * Class 	: WebServiceClient
- * Author(s): Zidmann
- * Function : This class contains the basis of WebServiceClient client to extract data from JSON file coming from a server 
- * Version  : 1.0.0
- * Note		: This class uses directly HttpRequest class and must be extended to define a webservice client client since it is an abstract class
+/**
+ * Client to extract data from a JSON file coming from a server running with WebserviceCore module
+ * <p>
+ * This class uses directly HttpRequest class and must be extended to define a webservice client client since it is an abstract class
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public abstract class WebServiceClient
 {
-	protected HttpCommunication communication 	 = HttpCommunication.getInstance();
-	protected String 			URL   		  	 = Common.URL;
-	protected String 			token  		  	 = Common.token;
-	protected Gson 	 			gson  		  	 = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
+	/**
+	 * Uniqu instance of HttpCommunication to send HTTP requests to the server
+	 */
+	private HttpCommunication	communication = HttpCommunication.getInstance();
 
+	/**
+	 * URL of a webservice to connect
+	 */
+	private String 				URL   		  = Common.URL;
+
+	/**
+	 * Token to use in HTTP requests with the webservice
+	 */
+	private String 				token  		  = Common.token;
+
+	/**
+	 * Gson instance to convert the server responses from JSON format to object 
+	 */
+	private Gson 	 			gson  		  = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
+
+	/**
+	 * Constructor WebServiceClient
+	 */
 	public WebServiceClient(){
 		
 	}
+
+	/**
+	 * Constructor WebServiceClient
+	 * @param URL URL of a webservice to connect
+	 * @param token Token to use in HTTP requests with the webservice
+	 */
 	public WebServiceClient(String URL, String token){
 		this.URL 	= URL;
 		this.token 	= token;
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//Functions to interact with HTTP request with NodeJS server and extract information 
-	//Note : apiClass must implements APIObject
-
-	//Function to get no element in JSON file (excepted a eror message)
-	protected void requestZero(HttpMethod method, Class<?> apiClass,
-							   String http_address, List<NameValuePair> urlParameters, File file) throws APIException{
+	/**
+	 * Get nothing from the server JSON response (excepted an error message)
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param apiClass The class definition of APIObject that are wanted. It must implements APIObject
+	 * @param url The URL address of the server (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @param file The pointer which defines the file to send (used for POSTfile HTTP method)
+	 * @throws APIException Exception containing the error message coming from a NodeJS server or from one client function or the system
+	 */
+	protected void requestZero(HttpMethod method, Class<?> apiClass, String url, List<NameValuePair> urlParameters, File file) throws APIException{
 		String response = null;
     	try{
-    		response=this.request(method, http_address, urlParameters, file);
+    		response=this.request(method, url, urlParameters, file);
     		if(response==null || !response.equals("")){
     			throw (new Exception());
     		}
@@ -86,12 +114,20 @@ public abstract class WebServiceClient
         }
 	}
 
-	//Function to get one single element in JSON file
-	protected APIObject requestOne(HttpMethod method, Class<?> apiClass,
-								   String http_address, List<NameValuePair> urlParameters, File file) throws APIException{
+	/**
+	 * Get one single element from the server JSON response
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param apiClass The class definition of APIObject that are wanted. It must implements APIObject
+	 * @param url The URL address of the server (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @param file The pointer which defines the file to send (used for POSTfile HTTP method)
+	 * @return An APIObject object
+	 * @throws APIException Exception containing the error message coming from a NodeJS server or from one client function or the system
+	 */
+	protected APIObject requestOne(HttpMethod method, Class<?> apiClass, String url, List<NameValuePair> urlParameters, File file) throws APIException{
 		String response = null;
     	try{
-    		response=this.request(method, http_address, urlParameters, file);
+    		response=this.request(method, url, urlParameters, file);
     		APIObject apiObject = (APIObject)gson.fromJson(response, apiClass);
     		if(apiObject.isEmpty()){
     			throw (new Exception());
@@ -110,13 +146,22 @@ public abstract class WebServiceClient
             throw objectDBExpct;
         }
 	}
-	//Function to get several elements in JSON file with an array
-	protected Vector<APIObject> requestSeveral(HttpMethod method, Class<?> apiClass,
-											   String http_address, List<NameValuePair> urlParameters, File file) throws APIException{
+
+	/**
+	 * Get several elements from the server JSON response
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param apiClass The class definition of APIObject that are wanted. It must implements APIObject
+	 * @param url The URL address of the server (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @param file The pointer which defines the file to send (used for POSTfile HTTP method)
+	 * @return An array of APIObject
+	 * @throws APIException Exception containing the error message coming from a NodeJS server or from one client function or the system
+	 */
+	protected Vector<APIObject> requestSeveral(HttpMethod method, Class<?> apiClass, String url, List<NameValuePair> urlParameters, File file) throws APIException{
 		String response = null;
     	try{
     		Vector<APIObject> apiObjectList = new Vector<APIObject>();
-    		response=this.request(method, http_address, urlParameters, file);        	
+    		response=this.request(method, url, urlParameters, file);        	
     		InputStream is 		= new ByteArrayInputStream(response.getBytes());
     		JsonReader  reader 	= new JsonReader(new InputStreamReader(is, "UTF-8"));
             
@@ -141,19 +186,28 @@ public abstract class WebServiceClient
             throw objectDBExpct;
         }
 	}
-	protected String request(HttpMethod method,
-						  	 String http_address, List<NameValuePair> urlParameters, File file) throws Exception{
+
+	/**
+	 * Auxiliary function to make an HTTP request
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param url The URL address of the server (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @param file The pointer which defines the file to send (used for POSTfile HTTP method)
+	 * @return The string returned by the server
+	 * @throws Exception Exception returned by the system
+	 */
+	private String request(HttpMethod method, String url, List<NameValuePair> urlParameters, File file) throws Exception{
 		switch(method){
 			case GET:
-				return HttpCommunication.getInstance().sendGet(http_address);
+				return HttpCommunication.getInstance().sendGet(url);
 			case POST:
-				return HttpCommunication.getInstance().sendPost(http_address, urlParameters);
+				return HttpCommunication.getInstance().sendPost(url, urlParameters);
 			case POSTfile:
-				return HttpCommunication.getInstance().sendPost(http_address, file);
+				return HttpCommunication.getInstance().sendPost(url, file);
 			case PUT:
-				return HttpCommunication.getInstance().sendPut(http_address, urlParameters);
+				return HttpCommunication.getInstance().sendPut(url, urlParameters);
 			case DELETE:
-				return HttpCommunication.getInstance().sendDelete(http_address);
+				return HttpCommunication.getInstance().sendDelete(url);
 			default :
 				break;
 		}
@@ -161,7 +215,6 @@ public abstract class WebServiceClient
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//Functions for user agent settings
 	public String getUserAgent(){
 		return this.communication.getUserAgent();
 	}
@@ -171,25 +224,51 @@ public abstract class WebServiceClient
 	}
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//Functions for proxy settings
+	/**
+	 * Get the proxy address used by the system
+	 * @return Host address defined in the proxy settings 
+	 */
 	public String getProxyAddress(){
 		return this.communication.getProxyAddress();
 	}
+
+	/**
+	 * Get the proxy port used by the system
+	 * @return Port defined in the proxy settings 
+	 */
 	public String getProxyPort(){
 		return this.communication.getProxyPort();
 	}
-	public void setProxyAddress(String ProxyAddress){
+
+	/**
+	 * Set the new host address in the proxy settings of the system
+	 * @param ProxyAddress The new host address to set
+	 * @throws Exception Exception returned by the system
+	 */
+	public void setProxyAddress(String ProxyAddress) throws Exception{
 		this.communication.setProxyAddress(ProxyAddress);
 	}
-	public void setProxyPort(int ProxyPort){
+
+	/**
+	 * Set the new port in the proxy settings of the system
+	 * @param ProxyPort The new port to set
+	 * @throws Exception Exception returned by the system
+	 */
+	public void setProxyPort(int ProxyPort) throws Exception{
 		this.communication.setProxyPort(ProxyPort);
 	}
-	public void setProxyParameters(String ProxyAddress, int ProxyPort){
+
+	/**
+	 * Set the new host address and port in the proxy settings of the system
+	 * @param ProxyAddress The new host address to set
+	 * @param ProxyPort The new port to set
+	 * @throws Exception Exception returned by the system
+	 */
+	public void setProxyParameters(String ProxyAddress, int ProxyPort) throws Exception{
 		this.communication.setProxyParameters(ProxyAddress, ProxyPort);
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//Functions for URL and token settings	
 	public String getURL(){
 		return this.URL;
 	}
@@ -204,7 +283,6 @@ public abstract class WebServiceClient
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//Functions for SSL settings
 	public String getKeystorePath(){
 		return this.communication.getKeystorePath();
 	}

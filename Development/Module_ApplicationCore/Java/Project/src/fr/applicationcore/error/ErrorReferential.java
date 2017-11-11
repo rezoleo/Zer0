@@ -1,7 +1,7 @@
 package fr.applicationcore.error;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -17,17 +17,29 @@ package fr.applicationcore.error;
 
 import fr.applicationcore.error.Error;
 
-/* 
- * Class 	: ErrorReferential
- * Author(s): Zidmann
- * Function : This class describes all the errors returned by a server using the ApplicationCore module
- * Version  : 1.0.0
+/**
+ * List of referenced errors that a server using the ApplicationCore module for an application can return
+ * <p>
+ * This class implements a singleton pattern
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class ErrorReferential extends fr.core.error.ErrorReferential
 {
-	private 	static volatile ErrorReferential instance = null;
-	protected	static boolean				 	 flag	  = false;
+	/**
+	 * Unique instance since ErrorReferential class uses singleton pattern
+	 */
+	private	static volatile ErrorReferential instance = null;
 
+	/**
+	 * Flag to indicate if 'putErrors' function has already been called
+	 */
+	private	static boolean				 	 flag	  = false;
+
+	/**
+	 * Constructor ErrorReferential, protected since ErrorReferential class uses singleton pattern
+	 */
 	protected ErrorReferential(){
 		super();
 		if(!flag){
@@ -35,6 +47,10 @@ public class ErrorReferential extends fr.core.error.ErrorReferential
 		}
 	}
 
+	/**
+	 * Get the unique instance since ErrorReferential class uses singleton pattern
+	 * @return ErrorReferential instance
+	 */
 	public static ErrorReferential getInstance(){
 		if (ErrorReferential.instance == null){
 			synchronized(ErrorReferential.class){
@@ -46,9 +62,10 @@ public class ErrorReferential extends fr.core.error.ErrorReferential
 		return ErrorReferential.instance;
 	}
 
-	//Definition of all the errors for the ApplicationCore module
-	protected static void putErrors(){
-		fr.core.error.ErrorReferential.putErrors();
+	/**
+	 * Define all the errors for the ApplicationCore module
+	 */
+	private synchronized static void putErrors(){
 		if(!flag){
 			flag = true;
 
@@ -66,21 +83,24 @@ public class ErrorReferential extends fr.core.error.ErrorReferential
 		}
 	}
 
-	//Functions to add an error in the list
+	/**
+	 * Add an error in the list
+	 * @param code The code of the error to add
+	 * @param msg The message of the error to add 
+	 */
 	public static void addError(String code, String msg){
 		addError(new Error(code, msg));
 	}
 
-	//Functions to find an error with its reference
+	/**
+	 * Find an error with its code
+	 * @param code The code of the error looked for
+	 * @return The Error instance with a code equals of the one given in parameter 
+	 */
 	public static Error getErrorByCode(String code){
 		if(!flag){
 			putErrors();
 		}
-		if(code!=null && errorListRef.containsKey(code)){
-			if(errorListRef.get(code) instanceof Error){
-				return (Error) errorListRef.get(code);
-			}
-		}
-		return null;
+		return (Error)fr.core.error.ErrorReferential.getErrorByCode(code);
 	}
 }

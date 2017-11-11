@@ -1,7 +1,7 @@
 package fr.junittemplate.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -16,17 +16,22 @@ package fr.junittemplate.test;
 
 
 import fr.webservicecore.error.Error;
-import fr.webservicecore.object.ErrorMessage;
+import fr.webservicecore.error.ErrorMessage;
 
-/* 
- * Class 	: TestCase_WebService_Model
- * Author(s): Zidmann
- * Function : This class contains the super class used by the different JUnit test cases 
- * Version  : 1.0.0 
+/**
+ * This class contains the super class used by the different JUnit test cases with services
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_WebService_Model extends TestCase_Core_Model
 {
-	//Function to check if the error message has the expected properties
+	/**
+	 * Check if the error message has the expected properties
+	 * @param service Service name expected from the server
+	 * @param version Version expected from the server
+	 * @param err Information about code, message, stack and status
+	 * @param msg Error message to check
+	 */
 	protected void checkMessage(String service, String version, Error err, ErrorMessage msg){
 		assertEquals(service, msg.getService());
 		super.checkMessage(version, err, msg);

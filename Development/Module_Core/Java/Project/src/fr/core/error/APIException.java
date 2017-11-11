@@ -1,7 +1,7 @@
-package fr.core.object;
+package fr.core.error;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -15,17 +15,20 @@ package fr.core.object;
  */
 
 
-/*
- * Class 	: APIException
- * Author(s): Zidmann
- * Function : This class describes an error message coming from a NodeJS server using the Core module for a service or an application
- * Version  : 1.0.0
+/**
+ * Description of an error message coming from a NodeJS server using the Core module for an application or a service
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class APIException extends Exception
 {
 	private static final long serialVersionUID = 1L;
-	protected ErrorMessage msg = null;
-		
+
+	/**
+	 * Details of the error returned by NodeJS server
+	 */
+	private ErrorMessage msg = null;
+
 	public APIException(){
 		super();
 	}

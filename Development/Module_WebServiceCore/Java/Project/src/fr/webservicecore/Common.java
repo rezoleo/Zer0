@@ -1,7 +1,7 @@
 package fr.webservicecore;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -15,20 +15,32 @@ package fr.webservicecore;
  */
 
 
-/* 
- * Class 	: Common
- * Author(s): Zidmann
- * Function : This class contains all the default settings for running a Java client which connects itself to a webservice
- * Version  : 1.0.0
+/**
+ * Default settings for running a Java client which connects itself to a webservice
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class Common 
 {
+	/**
+	 * Default URL of a webservice
+	 */
 	public static String URL   			  = "https://localhost:8000";
+
+	/**
+	 * By default interacting with a webservice doesn't use a JWT token
+	 */
 	public static String token      	  = "";
 
 	public static String ProxyAdress	  = null;
 	public static int    ProxyPort		  = -1;
 
+	/**
+	 * By default interacting with a webservice is not secure and doesn't require a keystore
+	 */
 	public static String keyStorePath	  = null;
+	/**
+	 * By default interacting with a webservice is not secure and doesn't require a keystore
+	 */
 	public static String keyStorePassword = null;
 }

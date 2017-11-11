@@ -1,7 +1,7 @@
-package fr.applicationcore.object;
+package fr.applicationcore.error;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -15,19 +15,18 @@ package fr.applicationcore.object;
  */
 
 
-/*
- * Class 	: APIException
- * Author(s): Zidmann
- * Function : This class describes an error message coming from a NodeJS server using the module entitled 'ApplicationCore'
- * Version  : 1.0.0
+/**
+ * Description of an error message coming from a NodeJS server using the ApplicationCore module for an application
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 @SuppressWarnings("serial")
-public class APIException extends fr.core.object.APIException
+public class APIException extends fr.core.error.APIException
 {
 	public ErrorMessage getMsg(){
-		return (ErrorMessage)this.msg;
+		return (ErrorMessage)super.getErrorMsg();
 	}
 	public void setMsg(ErrorMessage msg){
-		this.msg = msg;
+		super.setErrorMsg(msg);
 	}
 }

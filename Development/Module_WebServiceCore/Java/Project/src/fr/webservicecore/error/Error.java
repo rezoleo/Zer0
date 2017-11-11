@@ -1,7 +1,7 @@
 package fr.webservicecore.error;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -15,19 +15,30 @@ package fr.webservicecore.error;
  */
 
 
-/* 
- * Class 	: Error
- * Author(s): Zidmann
- * Function : This class describes an error returned by a NodeJS server using the WebServiceCore module
- * Version  : 1.0.0
+/** 
+ * Description of an error returned by a NodeJS server using the WebserviceCore module for a service
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version  1.1.0
  */
 public class Error extends fr.core.error.Error
 {
+	/**
+	 * Constructor Error
+	 * @param code HTTP code returned by the error
+	 * @param message Text message of the error
+	 */
 	public Error(String code, String message){
 		super(code, message);
 	}
 
-	public Error(String code, String message, String errors, int status){
-		super(code, message, errors, status);
+	/**
+	 * Constructor Error
+	 * @param code HTTP code returned by the error
+	 * @param message Text message of the error
+	 * @param stack Details of the error
+	 * @param status Status of the error
+	 */
+	public Error(String code, String message, String stack, int status){
+		super(code, message, stack, status);
 	}
 }

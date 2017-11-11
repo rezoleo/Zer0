@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Module_ApplicationCore/Java/JAR/applicationcore-1.0.0.jar"/>
-	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Module_Core/Java/JAR/core-1.0.0.jar"/>
-	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Module_WebServiceCore/Java/JAR/webservicecore-1.0.0.jar"/>
 	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Utils/lib/junit-4.12-beta-1.jar"/>
+	<classpathentry kind="lib" path="/home/zidmann/Bureau/Projets_Informatique/RezoLution/Zer0/Development/Module_ApplicationCore/Java/JAR/applicationcore-1.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/zidmann/Bureau/Projets_Informatique/RezoLution/Zer0/Development/Module_WebServiceCore/Java/JAR/webservicecore-1.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/zidmann/Bureau/Projets_Informatique/RezoLution/Zer0/Development/Module_Core/Java/JAR/core-1.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
