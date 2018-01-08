@@ -15,13 +15,15 @@ package fr.service_alert;
  */
 
 
-/* 
- * Class 	: Common
- * Author(s): Zidmann
- * Function : This class contains all the default settings for running a Java client which connects itself to the alert service
- * Version  : 1.0.0
+/**
+ * Default settings for running a Java client which connects itself to the Alert service
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.0.0
  */
 public class Common extends fr.webservicecore.Common
 {
+	/**
+	 * Default URL of a webservice
+	 */
 	public static String URL   		 = "https://localhost:8122";
 }

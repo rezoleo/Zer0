@@ -20,7 +20,6 @@ package fr.webservicecore.error;
  * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
  * @version 1.1.0
  */
-
 public interface ErrorInterface extends fr.core.error.ErrorInterface
 {
 

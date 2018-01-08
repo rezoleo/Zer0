@@ -24,18 +24,16 @@ import org.apache.http.message.BasicNameValuePair;
 
 import fr.cache.object.Cache;
 import fr.service_alert.object.Alert;
+import fr.webservicecore.error.APIException;
 import fr.webservicecore.network.HttpMethod;
 import fr.webservicecore.network.WebServiceClient;
-import fr.webservicecore.object.APIException;
 import fr.webservicecore.object.APIObject;
 import fr.webservicecore.toolbox.CheckAttributes;
 
-/* 
- * Class 	: AlertClient
- * Author(s): Zidmann
- * Function : This class contains the WebService client to manage alerts in NodeJS server. 
- * Version  : 1.0.0
- * Note		: This class uses directly HttpRequest class
+/** 
+ * Client to manage alerts in the Alert service
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.0.0
  */
 public class AlertClient extends WebServiceClient
 { 	
@@ -43,10 +41,12 @@ public class AlertClient extends WebServiceClient
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Alert FUNCTIONS
     // HTTP GET requests
-
-	// Name        : getAllAlert
-    // Type        : function
-    // Description : Get the list of all the alerts
+	/**
+	 * Get the list of all the alerts
+	 * @param minimumlevel Level from which the alerts are returned
+	 * @return An array of Alert objects
+	 * @throws APIException Exception containing the error message coming from the Alert service
+	 */
     public Vector<Alert> getAllAlert(String minimumlevel) throws APIException{
     	String http_address=URL+"/api/alert";
 
@@ -70,9 +70,12 @@ public class AlertClient extends WebServiceClient
 		return this.accessAuxiSeveral(HttpMethod.GET, http_address, urlParameters);
     }
 
-	// Name        : getOneAlertById
-    // Type        : function
-    // Description : Get information of one specific alert by id of the alert id
+	/**
+	 * Get information of one specific alert by id of the alert id
+	 * @param id Identification number of the alert
+	 * @return An Alert object with the id
+	 * @throws APIException Exception containing the error message coming from the Alert service
+	 */
 	public Alert getOneAlertById(String id) throws APIException{
 		CheckAttributes.isEmptyThrowsError(id);
 
@@ -86,9 +89,10 @@ public class AlertClient extends WebServiceClient
 		return this.accessAuxiOne(HttpMethod.GET, http_address, null);
 	}
 
-	// Name        : getCacheInformation
-    // Type        : function
-    // Description : Get information about the last updates of the card list
+	/**
+	 * Get information about the last updates of the alert list
+	 * @throws APIException Exception containing the error message coming from the Alert service
+	 */
 	public Cache getCacheInformation() throws APIException{
 		String http_address=URL+"/api/card?action=get-cache-infos";
 		if(this.token!=null && !this.token.equals("")){
@@ -99,10 +103,12 @@ public class AlertClient extends WebServiceClient
     }
 
 	// HTTP POST request
-
-	// Name        : createAlert
-    // Type        : function
-    // Description : Create an alert on the Node JS server
+	/**
+	 * Create an alert on the Node JS server
+	 * @param message Message of the alert
+	 * @param level Level of the alert
+	 * @throws APIException Exception containing the error message coming from the Alert service
+	 */
 	public Alert createAlert(String message, String level) throws APIException{
 		CheckAttributes.isEmptyThrowsError(message);
 		CheckAttributes.isEmptyThrowsError(level);
@@ -120,8 +126,14 @@ public class AlertClient extends WebServiceClient
 	}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	// Auxilary function for webservice clients
-	protected Alert accessAuxiOne(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
+	/**
+	 * Auxilary function for webservice clients
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param http_address The URL address of the Alert service (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @throws APIException Exception containing the error message coming from the Alert service
+	 */
+	private Alert accessAuxiOne(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
 		try{
 			Alert alert = (Alert)this.requestOne(method, Alert.class, http_address, urlParameters, null);
 			if(alert==null || alert.isEmpty()){
@@ -134,7 +146,7 @@ public class AlertClient extends WebServiceClient
         }
 	}
 
-	protected Cache accessAuxiCache(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
+	private Cache accessAuxiCache(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
 		try{
 			Cache cache = (Cache)this.requestOne(method, Cache.class, http_address, urlParameters, null);
 			if(cache==null){
@@ -147,7 +159,7 @@ public class AlertClient extends WebServiceClient
 		}
 	}
 
-	protected Vector<Alert> accessAuxiSeveral(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
+	private Vector<Alert> accessAuxiSeveral(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
 		try{
     		Vector<APIObject>	vector_auxi 	= this.requestSeveral(method, Alert.class, http_address, urlParameters, null);
     		Vector<Alert>		vector_return	= new Vector<Alert>();

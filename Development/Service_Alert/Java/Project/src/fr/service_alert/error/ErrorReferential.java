@@ -15,16 +15,17 @@ package fr.service_alert.error;
  */
 
 
-/* 
- * Class 	: ErrorReferential
- * Author(s): Zidmann
- * Function : This class describes all the errors returned by the alert service
- * Version  : 1.0.0
+/**
+ * List of all the errors returned by the Alert service
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.0.0
  */
 public class ErrorReferential{
 	protected static fr.webservicecore.error.ErrorReferential instance = fr.webservicecore.error.ErrorReferential.getInstance();
 	
-	//Definition of all the referenced errors	
+	/**
+	 * Constructor ErrorReferential to define of all the referenced errors
+	 */
 	@SuppressWarnings("static-access")
 	public ErrorReferential(){
 		instance.addError("ALERT.1.1.1", "Le niveau d'alerte ne correspond à aucun référencé");

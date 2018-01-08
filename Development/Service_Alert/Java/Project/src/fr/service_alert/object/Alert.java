@@ -22,29 +22,28 @@ import java.util.Date;
 
 import fr.webservicecore.object.APIObject;
 
-/* 
- * Class 	: Alert
- * Author(s): Zidmann
- * Function : This class describes an alert 
- * Version  : 1.0.0
+/**
+ * Description of an alert
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.0.0
  */
 public class Alert implements APIObject
 {
 	@Expose
 	@Since(1.0)
-	protected String 	_id			= null;
+	private String 	_id			= null;
 	@Expose
 	@Since(1.0)
-	protected String 	message		= null;
+	private String 	message		= null;
 	@Expose
 	@Since(1.0)
-	protected String 	level		= null;
+	private String 	level		= null;
 	@Expose
 	@Since(1.0)
-	protected Date 		created		= null;
+	private Date 	created		= null;
 	@Expose
 	@Since(1.0)
-	protected String 	creatorService = null;
+	private String 	creatorService = null;
 
 	public Alert(){
 		

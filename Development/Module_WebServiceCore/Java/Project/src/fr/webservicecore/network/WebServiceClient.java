@@ -46,7 +46,7 @@ import fr.webservicecore.Common;
 public abstract class WebServiceClient
 {
 	/**
-	 * Uniqu instance of HttpCommunication to send HTTP requests to the server
+	 * Unique instance of HttpCommunication to send HTTP requests to the server
 	 */
 	private HttpCommunication	communication = HttpCommunication.getInstance();
 
