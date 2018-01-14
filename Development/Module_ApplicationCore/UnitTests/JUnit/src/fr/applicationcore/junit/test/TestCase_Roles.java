@@ -33,7 +33,10 @@ public class TestCase_Roles extends TestCase_Model
 {
 	Vector<String> roles = new Vector<String>();
 
-	//Testing the role management in a server using ApplicationCore module
+	/**
+	 * Testing the role management in a server using ApplicationCore module
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testRoleManagement() throws Exception{
 		initSettings();

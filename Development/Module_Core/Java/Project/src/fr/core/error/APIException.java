@@ -29,6 +29,9 @@ public class APIException extends Exception
 	 */
 	private ErrorMessage msg = null;
 
+	/**
+	 * Constructor APIException
+	 */
 	public APIException(){
 		super();
 	}

@@ -27,7 +27,13 @@ public class Common
 	 */
 	public static String URL   			  = "https://localhost:9000";
 
+	/**
+	 * Adress of the proxy, undefined by default
+	 */
 	public static String ProxyAdress	  = null;
+	/**
+	 * Port of the proxy, undefined by default
+	 */
 	public static int    ProxyPort		  = -1;
 
 	/**

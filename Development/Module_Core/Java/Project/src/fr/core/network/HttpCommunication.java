@@ -179,7 +179,7 @@ public class HttpCommunication
 		this.regenerateClient();
 	}
 	/**
-	 * Auxilary function for 'setProxyAddress' and 'setProxyParameters' functions
+	 * Auxiliary function for 'setProxyAddress' and 'setProxyParameters' functions
 	 * @param ProxyAddress The new host address to set
 	 * @throws Exception Exception returned by the system
 	 */
@@ -207,7 +207,7 @@ public class HttpCommunication
 		this.regenerateClient();
 	}
 	/**
-	 * Auxilary function for 'setProxyPort' and 'setProxyParameters' functions
+	 * Auxiliary function for 'setProxyPort' and 'setProxyParameters' functions
 	 * @param ProxyPort The new port to set
 	 * @throws Exception Exception returned by the system
 	 */

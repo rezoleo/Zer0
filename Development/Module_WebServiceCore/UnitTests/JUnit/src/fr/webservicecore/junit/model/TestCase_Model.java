@@ -40,11 +40,18 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Mo
 
 	/**
 	 * Check if the error message has the expected properties
+	 * @param err Error object
+	 * @param msg Message expected in the error object
 	 */
 	protected void checkBasicMessage(Error err, ErrorMessage msg){
 		msg.setStatus(404);
 		super.checkMessage(null, null, err, msg);
 	}
+	/**
+	 * Check if the error message has the expected properties
+	 * @param err Error object
+	 * @param msg Message expected in the error object
+	 */
 	protected void checkMessage(Error err, ErrorMessage msg){
 		super.checkMessage(service, version, err, msg);
 	}

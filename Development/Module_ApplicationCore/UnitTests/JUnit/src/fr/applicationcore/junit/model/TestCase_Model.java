@@ -24,7 +24,6 @@ import fr.applicationcore.junit.network.ObjectDBClient;
 import fr.applicationcore.junit.network.RolesClient;
 import fr.core.network.HttpCommunication;
 
-/* 
 /**
  * Super class which will be extended by the different JUnit test cases
  * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
@@ -45,11 +44,18 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_Application_M
 
 	/**
 	 * Check if the error message has the expected properties
+	 * @param err Error object
+	 * @param msg Message expected in the error object
 	 */
 	protected void checkBasicMessage(Error err, ErrorMessage msg){
 		msg.setStatus(404);
 		super.checkMessage(null, null, err, msg);
 	}
+	/**
+	 * Check if the error message has the expected properties
+	 * @param err Error object
+	 * @param msg Message expected in the error object
+	 */
 	protected void checkMessage(Error err, ErrorMessage msg){
 		super.checkMessage(application, version, err, msg);
 	}

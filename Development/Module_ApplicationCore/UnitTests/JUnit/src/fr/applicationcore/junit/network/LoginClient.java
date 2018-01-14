@@ -35,9 +35,11 @@ public class LoginClient extends ApplicationClient
 	//Login FUNCTIONS
     // HTTP GET requests
 
-	// Name        : checkLogin
-    // Type        : function
-    // Description : Check the login used by user
+	/**
+     * Check the login used by user
+     * @return The login found
+	 * @throws APIException Exception returned by the application
+     */
     public Login checkLogin() throws APIException{
 		String http_address=this.getURL()+"/api/login";
 		return checkLoginAuxi(http_address);
@@ -52,9 +54,11 @@ public class LoginClient extends ApplicationClient
         }
     }
 
-    // Name        : getLogin
-    // Type        : function
-    // Description : Get a login for the user
+	/**
+     * Get a login for the user
+     * @return The login found
+	 * @throws APIException Exception returned by the application
+     */
     public Login getLogin() throws APIException{
 		String http_address=this.getURL()+"/api/login";
 		return getLoginAuxi(http_address);
@@ -69,9 +73,11 @@ public class LoginClient extends ApplicationClient
         }
     }
 
-    // Name        : eraseLogin
-    // Type        : function
-    // Description : Remove the login used by user
+    /**
+     * Remove the login used by user
+     * @return The login deleted
+	 * @throws APIException Exception returned by the application
+     */
     public Login eraseLogin() throws APIException{
 		String http_address=this.getURL()+"/api/login";
 		return eraseLoginAuxi(http_address);

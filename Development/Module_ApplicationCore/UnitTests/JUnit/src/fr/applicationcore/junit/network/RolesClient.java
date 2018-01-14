@@ -35,9 +35,11 @@ public class RolesClient extends ApplicationClient
 	//Roles FUNCTIONS
     // HTTP GET requests
 
-	// Name        : checkRoles
-    // Type        : function
-    // Description : Check the roles used by user
+	/**
+     * Check the roles used by user
+     * @return The roles found
+	 * @throws APIException Exception returned by the application
+     */
     public Roles checkRoles() throws APIException{
 		String http_address=this.getURL()+"/api/roles";
 		return checkRolesAuxi(http_address);
@@ -52,9 +54,11 @@ public class RolesClient extends ApplicationClient
         }
     }
 
-    // Name        : getRoles
-    // Type        : function
-    // Description : Get the list of roles for the user
+    /**
+     * Get the list of roles for the user
+     * @return The roles found
+	 * @throws APIException Exception returned by the application
+     */
     public Roles getRoles() throws APIException{
 		String http_address=this.getURL()+"/api/roles";
 		return getRolesAuxi(http_address);
@@ -69,9 +73,11 @@ public class RolesClient extends ApplicationClient
         }
     }
 
-    // Name        : eraseRoles
-    // Type        : function
-    // Description : Remove the roles used by user
+    /**
+     * Remove the roles used by user
+     * @return The role deleted
+	 * @throws APIException Exception returned by the application
+     */
     public Roles eraseRoles() throws APIException{
 		String http_address=this.getURL()+"/api/roles";
 		return eraseRolesAuxi(http_address);

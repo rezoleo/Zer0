@@ -30,6 +30,10 @@ public class TestCase_UserAgent extends TestCase_Model
 {
 	protected String 				response  	  = null;
 
+	/**
+	 * Testing the default user agent of the client
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testDefaultUserAgent() throws Exception{
 		initSettings();
@@ -43,6 +47,10 @@ public class TestCase_UserAgent extends TestCase_Model
 		assertEquals("{\"user_agent\":\"JavaApplication/1.0.0\"}", response);
 	}
 
+	/**
+	 * Testing if user agent of the client can be changed
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testUserAgent() throws Exception{
 		initSettings();

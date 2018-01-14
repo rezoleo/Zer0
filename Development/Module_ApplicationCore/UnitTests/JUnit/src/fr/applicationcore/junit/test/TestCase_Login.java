@@ -29,7 +29,10 @@ import fr.applicationcore.error.APIException;
  */
 public class TestCase_Login extends TestCase_Model
 {
-	//Testing the login management in a server using ApplicationCore module
+	/**
+	 * Testing the login management in a server using ApplicationCore module
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testLoginManagement() throws Exception{
 		initSettings();

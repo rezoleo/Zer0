@@ -22,7 +22,7 @@ import java.util.Date;
 import fr.webservicecore.object.APIObject;
 
 /**
- * Description of a basic object for tests
+ * Description of a basic object which represents an object on the server
  * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
  * @version 1.1.0
  */

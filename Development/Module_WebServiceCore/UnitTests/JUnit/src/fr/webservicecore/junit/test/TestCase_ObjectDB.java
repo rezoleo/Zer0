@@ -34,7 +34,10 @@ import fr.webservicecore.junit.object.SubField;
  */
 public class TestCase_ObjectDB extends TestCase_Model
 {
-	//Testing all the student ObjectDBs APIs for usual actions
+	/**
+	 * Testing all the student ObjectDBs APIs for usual actions
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testObjectDBClientAPI() throws Exception
 	{

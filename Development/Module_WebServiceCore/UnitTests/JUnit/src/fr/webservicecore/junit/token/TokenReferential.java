@@ -38,11 +38,20 @@ public class TokenReferential{
 		putToken("token_objDB", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzb3VyY2VfaXAiOiIxMjcuMC4wLjEiLCJzb3VyY2Vfc2VydmljZSI6Ikp1bml0VGVzdHMiLCJkZXN0X3NlcnZpY2UiOiJXZWJzZXJ2aWNlY29yZV9UZXN0aW5nIiwiZW5kX2RhdGUiOiIyMDE0LTExLTA3VDE5OjMzOjMwLjYzOFoiLCJyYW5kb20iOjAuMTc1ODAxMjcyMDM4MzcwMzcsImFjY2VzcyI6WyJHRVQiLCJHRVRpZCIsIlBPU1QiLCJQVVQiLCJERUxFVEUiXX0.H4a21rl9gTx7PlcfOVYYKxsd2ewfc1IPr3HldAq4xew");
 	}
 
+	/**
+	 * Insert into the list of token one token
+	 * @param key The key to refer to the token
+	 * @param value The token
+	 */
 	public static void putToken(String key, String value){
 		fr.junittemplate.token.TokenReferential.putToken(key, value);
 	}
 
-	//Function to extract a specific token in all the list
+	/**
+	 * Extract a specific token in all the list
+	 * @param key The key to refer to the token
+	 * @return The expected token
+	 */
 	public static String getToken(String key){
 		return fr.junittemplate.token.TokenReferential.getToken(key);
 	}

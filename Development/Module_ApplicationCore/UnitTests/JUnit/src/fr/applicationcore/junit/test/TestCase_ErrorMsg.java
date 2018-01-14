@@ -36,6 +36,10 @@ public class TestCase_ErrorMsg extends TestCase_Model
 	protected Gson 				gson  	  = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 	protected String 			response  = null;
 
+	/** 
+	 * Testing the connection to an unknown HTTP address using the API prefix
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testErrorUnknownAPI() throws Exception{
 		initSettings();
@@ -49,6 +53,11 @@ public class TestCase_ErrorMsg extends TestCase_Model
 		msg = gson.fromJson(response, ErrorMessage.class);
 		checkMessage(ErrorReferential.getErrorByCode("APPCORE.2.1.1"), msg);
 	}
+
+	/** 
+	 * Testing the connection to an unknown HTTP address not using the API prefix
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testUnknownPage() throws Exception{
 		initSettings();

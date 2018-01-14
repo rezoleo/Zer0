@@ -29,6 +29,10 @@ import fr.applicationcore.toolbox.AttributesTool;;
  */
 public class TestCase_Toolbox extends TestCase_Model
 {
+	/**
+	 * Testing of the function isEmpty is correct
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testIsEmpty() throws Exception{
 		assertEquals(true,  AttributesTool.isEmpty(null));
@@ -37,6 +41,10 @@ public class TestCase_Toolbox extends TestCase_Model
 		assertEquals(false, AttributesTool.isEmpty("A"));
 	}
 
+	/**
+	 * Testing of the function isEmptyThrowsError is correct
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testIsEmptyThrowsError() throws Exception{
 		auxiIsEmpty(null);
@@ -55,6 +63,10 @@ public class TestCase_Toolbox extends TestCase_Model
 		assertNotNull(null);
 	}
 
+	/**
+	 * Testing of the function checkRegex is correct
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testCheckRegex() throws Exception{
 		assertEquals(false, AttributesTool.checkRegex(null));
@@ -68,6 +80,11 @@ public class TestCase_Toolbox extends TestCase_Model
 		assertEquals(true,  AttributesTool.checkRegex("test"));
 		assertEquals(false, AttributesTool.checkRegex("test&"));
 	}
+
+	/**
+	 * Testing of the function checkRegexThrowsError is correct
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testCheckRegexThrowsError() throws Exception{
 		auxiCheckRegex(null);

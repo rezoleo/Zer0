@@ -33,7 +33,10 @@ import fr.applicationcore.junit.model.TestCase_Model;
  */
 public class TestCase_FloodProtection extends TestCase_Model
 {
-	//Testing the flood protection
+	/** 
+	 * Testing the flood protection
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testGlobalSlowdowning() throws Exception{
 		// Global floodprotection configuration
@@ -46,6 +49,10 @@ public class TestCase_FloodProtection extends TestCase_Model
 		auxiAnalysisFunction(routeid, min_wait, max_wait, free_retries, burst_retries);
 	}
 
+	/** 
+	 * Testing the flood protection
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testLocalSlowdowning() throws Exception{
 		// Local floodprotection configuration
@@ -58,6 +65,10 @@ public class TestCase_FloodProtection extends TestCase_Model
 		auxiAnalysisFunction(routeid, min_wait, max_wait, free_retries, burst_retries);
 	}
 
+	/** 
+	 * Testing the flood protection when it is disabled
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testDisabledSlowdowning() throws Exception{
 		int min_wait = 500;
@@ -111,7 +122,15 @@ public class TestCase_FloodProtection extends TestCase_Model
 		return HttpCommunication.getInstance().sendGet(Common.URL+"/api/floodtest/increment_route"+routeid);
 	}
 
-	// Function to calculate how much time the server will last
+	/**
+	 * Function to calculate how much time the server will last
+	 * @param iteration The quantity of requests which have been done since the beginning
+	 * @param min_wait Setting on the server side to define when the restriction is triggered how much time the client must wait at least
+	 * @param max_wait Setting on the server side to define when the restriction is triggered how much time the client must wait at the maximum
+	 * @param free_retries Setting on the server side to define the number of request necessary to trigger the wait period
+	 * @param burst_retries Setting on the server side to define the number of request necessary to trigger the lock on the server side
+	 * @return the delay in millisecond
+	 */
 	protected long waitFunction(int iteration, int min_wait, int max_wait, int free_retries, int burst_retries){
 		return (((max_wait-min_wait)/(burst_retries-free_retries)*(iteration-free_retries))+min_wait)*4;
 	}

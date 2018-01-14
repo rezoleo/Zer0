@@ -36,14 +36,20 @@ import fr.applicationcore.junit.object.SubField;
  */
 public class TestCase_HttpTransmission extends TestCase_Model
 {
-	//Testing all the communication between an application and a webservice
+	/**
+	 * Testing all the communication between an application and a webservice
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testObjectDBClientAPI() throws Exception{
 		ws_objectdb_client = new ObjectDBClient();
 		auxi_function();
 	}
 
-	//Testing all the communication between an application and a webservice with a token
+	/**
+	 * Testing all the communication between an application and a webservice with a token
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testObjectDBTokenClientAPI() throws Exception{
 		ws_objectdb_client = new ObjectDBTokenClient();

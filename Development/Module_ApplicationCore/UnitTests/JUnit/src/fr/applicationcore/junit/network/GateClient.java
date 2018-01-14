@@ -35,9 +35,11 @@ public class GateClient extends ApplicationClient
 	//Gate FUNCTIONS
     // HTTP GET requests
 
-	// Name        : checkGate
-    // Type        : function
-    // Description : Check the gate used by user
+	/**
+     * Check the gate used by user
+     * @return The gate found
+	 * @throws APIException Exception returned by the application
+     */
     public Gate checkGate() throws APIException{
 		String http_address=this.getURL()+"/api/gate";
 		return checkGateAuxi(http_address);
@@ -52,9 +54,11 @@ public class GateClient extends ApplicationClient
         }
     }
     
-    // Name        : getGate
-    // Type        : function
-    // Description : Get a gate for the user
+    /**
+     * Get a gate for the user
+     * @return The gate found
+	 * @throws APIException Exception returned by the application
+     */
     public Gate getGate() throws APIException{
 		String http_address=this.getURL()+"/api/gate";
 		return getGateAuxi(http_address);
@@ -69,9 +73,11 @@ public class GateClient extends ApplicationClient
         }
     }
 
-    // Name        : eraseGate
-    // Type        : function
-    // Description : Remove the gate used by user
+    /**
+     * Remove the gate used by user
+     * @return The gate deleted
+	 * @throws APIException Exception returned by the application
+     */
     public Gate eraseGate() throws APIException{
 		String http_address=this.getURL()+"/api/gate";
 		return eraseGateAuxi(http_address);

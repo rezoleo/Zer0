@@ -38,9 +38,11 @@ public class ObjectDBClient extends WebServiceClient
 	//ObjectDB FUNCTIONS
     // HTTP GET requests
 
-	// Name        : getAllObjectDB
-    // Type        : function
-    // Description : Get the list of all the objectDB elements
+	/**
+     * Get the list of all the objectDB elements
+     * @return The objects found
+	 * @throws APIException Exception returned by the application
+     */
     public Vector<ObjectDB> getAllObjectDB() throws APIException{
 		String http_address=this.getURL()+"/api/object";
 		if(this.getToken()!=null && !this.getToken().equals("")){
@@ -64,9 +66,12 @@ public class ObjectDBClient extends WebServiceClient
         }
     }
 
-    // Name        : getOneObjectDB
-    // Type        : function
-    // Description : Get information of one specific objectDB element
+    /**
+     * Get information of one specific objectDB element
+     * @param id The id of the expected object
+     * @return The object found
+	 * @throws APIException Exception returned by the application
+     */
 	public ObjectDB getOneObjectDB(String id) throws APIException{
 		if(id==null || id.equals("")){
 			return null;
@@ -88,10 +93,12 @@ public class ObjectDBClient extends WebServiceClient
     }
 	
 	// HTTP POST request
-	
-	// Name        : createObjectDB
-    // Type        : function
-    // Description : Create an objectDB element on the Node JS server
+
+	/**
+     * Create an objectDB element on the Node JS server
+     * @return The object created
+	 * @throws APIException Exception returned by the application
+     */
 	public ObjectDB createObjectDB() throws APIException{
 		String http_address=this.getURL()+"/api/object";
 		if(this.getToken()!=null && !this.getToken().equals("")){
@@ -110,10 +117,11 @@ public class ObjectDBClient extends WebServiceClient
 	}
 
 	// HTTP PUT request
-	
-	// Name        : updateObjectDB
-    // Type        : function
-    // Description : Update all the objectDB elements on the Node JS server
+
+	/**
+     * Update all the objectDB elements on the Node JS server
+	 * @throws APIException Exception returned by the application
+     */
 	public void updateObjectDB() throws APIException{
 		String http_address=this.getURL()+"/api/object";
 		if(this.getToken()!=null && !this.getToken().equals("")){
@@ -132,10 +140,11 @@ public class ObjectDBClient extends WebServiceClient
 	}	
 
 	// HTTP DELETE request
-	
-	// Name        : deleteObjectDB
-	// Type        : function
-	// Description : Delete all objectDB elements
+
+	/**
+     * Delete all objectDB elements
+	 * @throws APIException Exception returned by the application
+     */
 	public void deleteObjectDB() throws APIException{
 		String http_address=this.getURL()+"/api/object";
 		if(this.getToken()!=null && !this.getToken().equals("")){

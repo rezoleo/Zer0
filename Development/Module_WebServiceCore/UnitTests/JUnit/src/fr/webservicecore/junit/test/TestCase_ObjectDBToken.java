@@ -30,7 +30,10 @@ import fr.webservicecore.junit.token.TokenReferential;
  */
 public class TestCase_ObjectDBToken extends TestCase_ObjectDB
 { 
-	//Testing the ObjectDB with a token
+	/**
+	 * Testing the ObjectDB with a token
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testObjectDBClientAPI() throws Exception
 	{
