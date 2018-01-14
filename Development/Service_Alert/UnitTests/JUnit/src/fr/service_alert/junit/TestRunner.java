@@ -21,11 +21,10 @@ import org.junit.runner.Result;
 
 import fr.service_alert.junit.test.TestSuite_ServiceAlert;
 
-/* 
- * Class 	: TestRunner
- * Author(s): Zidmann
- * Function : This class is used to start JUnit tests through a main function
- * Version  : 1.0.0
+/**
+ * Launcher used to start JUnit tests
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestRunner {
 	public static void main(String[] args) {

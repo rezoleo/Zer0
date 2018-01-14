@@ -17,11 +17,10 @@ package fr.service_alert.junit.test;
 
 import junit.framework.TestSuite;
 
-/* 
- * Class 	: TestSuite_ServiceAlert
- * Author(s): Zidmann
- * Function : This class is used to define the JUnit test cases for testing Alert service
- * Version  : 1.0.0
+/**
+ * This class is used to define the JUnit test cases for testing Alert service
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestSuite_ServiceAlert extends TestSuite {
 	public static TestSuite suite() {

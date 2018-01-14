@@ -21,7 +21,10 @@ package fr.service_alert.error;
  * @version 1.0.0
  */
 public class ErrorReferential{
-	protected static fr.webservicecore.error.ErrorReferential instance = fr.webservicecore.error.ErrorReferential.getInstance();
+	/**
+	 * Unique instance since ErrorReferential class uses singleton pattern
+	 */
+	private static fr.webservicecore.error.ErrorReferential instance = fr.webservicecore.error.ErrorReferential.getInstance();
 	
 	/**
 	 * Constructor ErrorReferential to define of all the referenced errors

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"fr.service_alert.object","l":"Alert"},{"p":"fr.service_alert.network","l":"AlertClient"},{"p":"fr.service_alert","l":"Common"},{"p":"fr.service_alert.error","l":"ErrorReferential"}]

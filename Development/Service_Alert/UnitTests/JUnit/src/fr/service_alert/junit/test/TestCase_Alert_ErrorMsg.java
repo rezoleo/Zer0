@@ -21,15 +21,16 @@ import com.google.gson.GsonBuilder;
 import org.junit.Test;
 
 import fr.service_alert.junit.model.TestCase_Model;
+import fr.webservicecore.error.APIException;
 import fr.webservicecore.error.ErrorReferential;
-import fr.webservicecore.object.APIException;
 
-/* 
- * Class 	: TestCase_Alert_ErrorMsg
- * Author(s): Zidmann
- * Function : This class contains the webService client JUnit tests to check if there was no regression in Alert service 
- * Version  : 1.0.0 
- * Note		: This Test Case supposes that you started the NodeJS server
+/**
+ * This class contains the webService client JUnit tests to check if there was no regression in Alert service
+ * <p>
+ * This Test Case supposes that you started the NodeJS server
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Alert_ErrorMsg extends TestCase_Model
 { 

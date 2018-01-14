@@ -15,12 +15,13 @@ package fr.service_alert.junit.token;
  */
 
 
-/* 
- * Class 	: TokenReferential
- * Author(s): Zidmann
- * Function : This class contains all the tokens used to test the alert service
- * Version  : 1.0.0
- * Note		: The key used for these tokens is : "d2s42dggjfqlry6Jfs9shrgrxjthty"
+/**
+ * List of all the tokens used to test the Alert service
+ * <p>
+ * The key used for these tokens is : "d2s42dggjfqlry6Jfs9shrgrxjthty"
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TokenReferential{
 	public TokenReferential(){
@@ -28,11 +29,20 @@ public class TokenReferential{
 		putToken("token_alert",	"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzb3VyY2VfaXAiOiIxMjcuMC4wLjEiLCJzb3VyY2Vfc2VydmljZSI6Ikp1bml0VGVzdHMiLCJkZXN0X3NlcnZpY2UiOiJTZXJ2aWNlX0FsZXJ0IiwiZW5kX2RhdGUiOiIyMDE4LTExLTA0VDE2OjAzOjM4LjYzOFoiLCJhY2Nlc3MiOlsiR0VUIiwiR0VUaWQiLCJQT1NUIl0sImV4dHJhIjpudWxsfQ.RIsjb7UtdmqhJzdFYIpEyQghA2-mWEXQ0yXMEf16Vmg");		
 	}
 
+	/**
+	 * Insert into the list of token one token
+	 * @param key The key to refer to the token
+	 * @param value The token
+	 */
 	public static void putToken(String key, String value){
 		fr.junittemplate.token.TokenReferential.putToken(key, value);
 	}
 
-	//Function to extract a specific token in all the list
+	/**
+	 * Extract a specific token in all the list
+	 * @param key The key to refer to the token
+	 * @return The expected token
+	 */
 	public static String getToken(String key){
 		return fr.junittemplate.token.TokenReferential.getToken(key);
 	}

@@ -29,25 +29,55 @@ import fr.webservicecore.object.APIObject;
  */
 public class Alert implements APIObject
 {
+	/**
+	 * Id of the alert
+	 */
 	@Expose
 	@Since(1.0)
 	private String 	_id			= null;
+
+	/**
+	 * Message of the alert
+	 */
 	@Expose
 	@Since(1.0)
 	private String 	message		= null;
+
+	/**
+	 * Level of the alert
+	 */
 	@Expose
 	@Since(1.0)
 	private String 	level		= null;
+
+	/**
+	 * Creation date of the alert
+	 */
 	@Expose
 	@Since(1.0)
 	private Date 	created		= null;
+
+	/**
+	 * Service which created the alert
+	 */
 	@Expose
 	@Since(1.0)
 	private String 	creatorService = null;
 
+	/**
+	 * Constructor Alert
+	 */
 	public Alert(){
 		
 	}
+	/**
+	 * Constructor Alert
+	 * @param _id Id of the alert
+	 * @param message Message of the alert
+	 * @param level Level of the alert
+	 * @param created Creation date of the alert
+	 * @param creatorService Service which created the alert
+	 */
 	public Alert(String _id, String message, String level,
 			     Date created, String creatorService){
 		this._id 		    = _id;

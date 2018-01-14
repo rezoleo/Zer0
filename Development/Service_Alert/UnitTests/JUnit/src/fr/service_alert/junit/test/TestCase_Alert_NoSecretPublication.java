@@ -30,12 +30,13 @@ import fr.service_alert.junit.model.TestCase_Model;
 import fr.service_alert.object.Alert;
 import fr.core.network.HttpCommunication;
 
-/* 
- * Class 	: TestCase_Alert_NoSecretPublication
- * Author(s): Zidmann
- * Function : This class contains the webService client JUnit tests to check if the IP (creatorIP, updatorIP) are not shown when data are extracted from Alert service 
- * Version  : 1.0.0 
- * Note		: This Test Case supposes that you started the NodeJS server
+/**
+ * This class contains the webService client JUnit tests to check if the IP (creatorIP, updatorIP) are not shown when data are extracted from Alert service
+ * <p>
+ * This Test Case supposes that you started the NodeJS server
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Alert_NoSecretPublication extends TestCase_Model
 {

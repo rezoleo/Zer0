@@ -21,15 +21,14 @@ import fr.service_alert.Common;
 import fr.service_alert.network.AlertClient;
 import fr.service_alert.object.Alert;
 import fr.service_alert.junit.token.TokenReferential;
-import fr.webservicecore.object.APIException;
-import fr.webservicecore.object.ErrorMessage;
 import fr.webservicecore.error.Error;
+import fr.webservicecore.error.APIException;
+import fr.webservicecore.error.ErrorMessage;
 
-/* 
- * Class 	: TestCase_Model
- * Author(s): Zidmann
- * Function : This class contains the super class used by the different JUnit test cases 
- * Version  : 1.0.0 
+/**
+ * Super class which will be extended by the different JUnit test cases
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Model
 { 
@@ -42,12 +41,19 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Mo
 	protected String keyStorePath  	  = "/opt/centrale-datacore/Development/Service_Alert/NodeJS/Service/alert/certificates/keystore.jks";
 	protected String keyStorePassword = "password";
 
-	//Function to check if the error message has the expected properties
+	/**
+	 * Check if the error message has the expected properties
+	 * @param err Error object
+	 * @param msg Message expected in the error object
+	 */
 	protected void checkMessage(Error err, ErrorMessage msg){
 		super.checkMessage(service, version, err, msg);
 	}
 
-	//Function to prepare the environment before a test
+	/**
+	 * Prepare the environment before a test
+	 * @throws Exception Exception returned by the system
+	 */
 	@SuppressWarnings("static-access")
 	protected void initSettings() throws Exception{
 		ws_client.setToken(token_list.getToken("token_alert"));
@@ -57,7 +63,12 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Mo
 		new fr.service_alert.error.ErrorReferential();
 	}
 
-	//Function to get the list of alerts and count them
+	/**
+	 * Get the list of alerts and count them
+	 * @param minimumlevel The level of the alerts extracted are equal or higher than the minimumlevel
+	 * @return The count of the alerts returned
+	 * @throws APIException Exception returned by the service
+	 */
 	protected int countAlertQuantity(String minimumlevel) throws APIException{
 		Vector<Alert> alertList=ws_client.getAllAlert(minimumlevel);
 		return alertList.size();
@@ -81,8 +92,12 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Mo
 	protected void checkAlertQuantityAuxi(String minimumlevel, int number) throws APIException{
 		assertEquals(number, this.countAlertQuantity(minimumlevel));
 	}
-	
-	//Auxilary function
+
+	/**
+	 * Decrement an integer and keeps the value positive
+	 * @param i The integer value to decrease
+	 * @return The value decreased
+	 */
 	int decrement(int i){
 		if(i<=0){
 			return 0;

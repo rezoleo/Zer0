@@ -23,7 +23,7 @@ package fr.service_alert;
 public class Common extends fr.webservicecore.Common
 {
 	/**
-	 * Default URL of a webservice
+	 * Default URL of an Alert service
 	 */
 	public static String URL   		 = "https://localhost:8122";
 }
