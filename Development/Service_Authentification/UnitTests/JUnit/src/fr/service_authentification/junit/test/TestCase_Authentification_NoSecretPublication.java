@@ -1,7 +1,7 @@
 package fr.service_authentification.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -30,13 +30,13 @@ import fr.service_authentification.junit.model.TestCase_Model;
 import fr.service_authentification.object.Authentification;
 import fr.core.network.HttpCommunication;
 
-/* 
- * Class 	: TestCase_Authentification_NoSecretPublication
- * Author(s): Zidmann
- * Function : This class contains the webService client JUnit tests to check if the IP (creatorIP, updatorIP) and the password are not shown when data are extracted from Authentification service 
- * Version  : 1.0.0 
- * Note		: This Test Case supposes that you started the NodeJS server
- * 			  and removed all the Authentification elements in the MongoDB database
+/**
+ * This class contains the webService client JUnit tests to check if the IP (creatorIP, updatorIP) and the password are not shown when data are extracted from Authentification service
+ * <p>
+ * This Test Case supposes that you started the NodeJS server and removed all the Authentification elements in the MongoDB database
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Authentification_NoSecretPublication extends TestCase_Model
 { 

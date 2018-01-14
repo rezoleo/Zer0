@@ -1,7 +1,7 @@
 package fr.service_authentification.network;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -23,69 +23,77 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import fr.service_authentification.object.Authentification;
+import fr.webservicecore.error.APIException;
 import fr.webservicecore.network.HttpMethod;
 import fr.webservicecore.network.WebServiceClient;
-import fr.webservicecore.object.APIException;
 import fr.webservicecore.object.APIObject;
-import fr.webservicecore.toolbox.CheckAttributes;
+import fr.webservicecore.toolbox.AttributesTool;
 
-/* 
- * Class 	: AuthentificationClient
- * Author(s): Zidmann
- * Function : This class contains the WebService client to manage access in authorization service. 
- * Version  : 1.0.0
- * Note		: This class uses directly HttpRequest class
+/** 
+ * Client to manage accesses in the Authentification service
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class AuthentificationClient extends WebServiceClient
-{ 	
-
+{
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Authentification FUNCTIONS
-
-	// Name        : getAllAccess
-    // Type        : function
-    // Description : Get the list of all the accesses
+    // HTTP GET requests
+	/**
+	 * Get the list of the accesses
+	 * @return An array of all Authentification objects
+	 * @throws APIException Exception containing the error message coming from the Authentification service
+	 */
     public Vector<Authentification> getAllAccess() throws APIException{
-    	String http_address=URL+"/api/authentification";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+    	String http_address=this.getURL()+"/api/authentification";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiSeveral(HttpMethod.GET, http_address, null);
     }
 
-	// Name        : checkAccess
-	// Type        : function
-	// Description : Check if a specific access exists
+    /**
+     * Check if a specific access exists
+     * @param login The login of the Authentification object expected
+     * @return The Authentification object expected
+     * @throws APIException Exception containing the error message coming from the Authentification service
+     */
 	public Authentification checkAccess(String login) throws APIException{
-		CheckAttributes.isEmptyThrowsError(login);
+		AttributesTool.isEmptyThrowsError(login);
 
-		CheckAttributes.checkRegexThrowsError(login);
+		AttributesTool.checkRegexThrowsError(login);
 
-		String http_address=URL+"/api/authentification/"+login;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/authentification/"+login;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxi(HttpMethod.GET, http_address, null);
 	}
-	
-	// HTTP POST request
 
-	// Name        : createAccess
-    // Type        : function
-    // Description : Create an access on the Node JS server
+	// HTTP POST request
+	/**
+	 * Create an access on the Node JS server
+	 * @param login Login of the access
+	 * @param password Password of the access
+	 * @param mail Mail of the access
+	 * @param status Status of the access
+	 * @param creator Creator user which created the access
+	 * @return The Authentification object created
+	 * @throws APIException Exception containing the error message coming from the Authentification service
+	 */
 	public Authentification createAccess(String login, String password, String mail, 	
 										 String status,
 										 String creator) throws APIException{
-		CheckAttributes.isEmptyThrowsError(login);
-		CheckAttributes.isEmptyThrowsError(password);
-		CheckAttributes.isEmptyThrowsError(mail);
-		CheckAttributes.isEmptyThrowsError(status);
+		AttributesTool.isEmptyThrowsError(login);
+		AttributesTool.isEmptyThrowsError(password);
+		AttributesTool.isEmptyThrowsError(mail);
+		AttributesTool.isEmptyThrowsError(status);
 
-    	String http_address=URL+"/api/authentification";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+    	String http_address=this.getURL()+"/api/authentification";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
@@ -98,18 +106,22 @@ public class AuthentificationClient extends WebServiceClient
 		return this.accessAuxi(HttpMethod.POST, http_address, urlParameters);
 	}
 
-	// Name        : checkPassword
-	// Type        : function
-	// Description : Check if the connecting information are correct
+	/**
+	 * Check if the connecting information are correct
+	 * @param login Login of the access
+	 * @param password Password of the access
+	 * @return The Authentification object with the expected login
+	 * @throws APIException Exception containing the error message coming from the Authentification service
+	 */
 	public Authentification checkPassword(String login, String password) throws APIException{
-		CheckAttributes.isEmptyThrowsError(login);
-		CheckAttributes.isEmptyThrowsError(password);
+		AttributesTool.isEmptyThrowsError(login);
+		AttributesTool.isEmptyThrowsError(password);
 
-		CheckAttributes.checkRegexThrowsError(login);
+		AttributesTool.checkRegexThrowsError(login);
 
-    	String http_address=URL+"/api/authentification/"+login;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+    	String http_address=this.getURL()+"/api/authentification/"+login;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
@@ -120,38 +132,45 @@ public class AuthentificationClient extends WebServiceClient
 
 
 	// HTTP PUT request
-
-	// Name        : updatePassword
-    // Type        : function
-    // Description : Update a password in the Node JS server
+	/**
+	 * Update an access in the Node JS server
+	 * @param login Login of the access which must be updated
+	 * @param password New password of the access
+	 * @param mail New mail of the access
+	 * @param status New status of the access
+	 * @param keepOldPassword Flag to indicate if the previous password must be kept 
+	 * @param updator Updator user which updates the access
+	 * @return The Authentification object after the update
+	 * @throws APIException Exception containing the error message coming from the Authentification service
+	 */
 	public Authentification updatePassword(String login, String password, String mail, 
 										   String status, 
 										   boolean keepOldPassword,
 										   String updator) throws APIException{
-		CheckAttributes.isEmptyThrowsError(login);
+		AttributesTool.isEmptyThrowsError(login);
 		if(!keepOldPassword){
-			CheckAttributes.isEmptyThrowsError(password);
+			AttributesTool.isEmptyThrowsError(password);
 		}
-		CheckAttributes.isEmptyThrowsError(mail);
-		CheckAttributes.isEmptyThrowsError(status);
+		AttributesTool.isEmptyThrowsError(mail);
+		AttributesTool.isEmptyThrowsError(status);
 
-		CheckAttributes.checkRegexThrowsError(login);
+		AttributesTool.checkRegexThrowsError(login);
 
-    	String http_address=URL+"/api/authentification/"+login;
+    	String http_address=this.getURL()+"/api/authentification/"+login;
     	boolean flag = true;
 
     	if(keepOldPassword==true){
     		http_address+="?action=keep-old-password";
     		flag = false;
 		}
-		if(this.token!=null && !this.token.equals("")){
+		if(this.getToken()!=null && !this.getToken().equals("")){
 			if(flag){
 				http_address+="?";
 			}
 			else{
 				http_address+="&";
 			}
-			http_address+="token="+this.token;
+			http_address+="token="+this.getToken();
 			flag = false;
 		}
 
@@ -169,17 +188,20 @@ public class AuthentificationClient extends WebServiceClient
 
 	// HTTP DELETE request
 
-	// Name        : deleteAccess
-	// Type        : function
-	// Description : Delete one specific access
+	/**
+	 * Delete one specific access
+	 * @param login Login of the access which must be removed
+	 * @return The Authentification object removed
+	 * @throws APIException Exception containing the error message coming from the Authentification service
+	 */
 	public Authentification deleteAccess(String login) throws APIException{
-		CheckAttributes.isEmptyThrowsError(login);
+		AttributesTool.isEmptyThrowsError(login);
 
-		CheckAttributes.checkRegexThrowsError(login);
+		AttributesTool.checkRegexThrowsError(login);
 
-		String http_address=URL+"/api/authentification/"+login;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/authentification/"+login;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxi(HttpMethod.DELETE, http_address, null);
@@ -189,6 +211,14 @@ public class AuthentificationClient extends WebServiceClient
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Auxilary function for webservice clients
+	/**
+	 * Get one access
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param http_address The URL address of the Authentification service (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @return One Authentification object
+	 * @throws APIException Exception containing the error message coming from the Authentification service
+	 */
 	protected Authentification accessAuxi(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
 		try{
 			Authentification authentification = (Authentification)this.requestOne(method, Authentification.class, http_address, urlParameters, null);
@@ -202,6 +232,14 @@ public class AuthentificationClient extends WebServiceClient
         }
 	}
 
+	/**
+	 * Get several accesses
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param http_address The URL address of the Authentification service (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @return Several Authentification objects
+	 * @throws APIException Exception containing the error message coming from the Authentification service
+	 */
 	protected Vector<Authentification> accessAuxiSeveral(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
 		try{
     		Vector<APIObject>	vector_auxi 	= this.requestSeveral(method, Authentification.class, http_address, urlParameters, null);

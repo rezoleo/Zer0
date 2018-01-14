@@ -1,7 +1,7 @@
 package fr.service_authentification.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -20,17 +20,20 @@ import org.junit.Test;
 import fr.service_authentification.junit.model.TestCase_Model;
 import fr.service_authentification.object.Authentification;
 
-/* 
- * Class 	: TestCase_Authentification
- * Author(s): Zidmann
- * Function : This class contains the webService client JUnit tests to check if there was no regression in Authentification service 
- * Version  : 1.0.0 
- * Note		: This Test Case supposes that you started the NodeJS server
- * 			  and removed all the Authentification elements in the MongoDB database
+/**
+ * This class contains the webService client JUnit tests to check if there was no regression in Authentification service
+ * <p>
+ * This Test Case supposes that you started the NodeJS server and removed all the Authentification elements in the MongoDB database
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Authentification extends TestCase_Model
 {
-	//Testing all the student cards APIs for usual actions
+	/**
+	 * Testing all the student cards APIs for usual actions 
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testCardClientAPI() throws Exception
 	{	

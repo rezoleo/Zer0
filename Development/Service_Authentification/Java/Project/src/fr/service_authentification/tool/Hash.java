@@ -1,7 +1,7 @@
 package fr.service_authentification.tool;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -17,13 +17,18 @@ package fr.service_authentification.tool;
 
 import java.security.MessageDigest;
 
-/* 
- * Class 	: Hash
- * Author(s): Zidmann
- * Function : This class contains some functions to hash a password 
- * Version  : 1.0.0 
+/**
+ * Functions to hash and hide passwords
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class Hash {
+	/**
+	 * Hash a string with the SHA-512 algorithm
+	 * @param str The string to hash
+	 * @return The string hashed
+	 * @throws Exception Exception returned by the system
+	 */
 	public static String sha512(String str) throws Exception{
 		if(str==null){
 			return null;
@@ -35,6 +40,13 @@ public class Hash {
 		return convertByteToHex(sha512.digest());	
 	}
 
+	/**
+	 * Hash a string with the SHA-512 algorithm using a salt
+	 * @param str The string to hash
+	 * @param salt The salt to add at the beginning of the string
+	 * @return The string hashed
+	 * @throws Exception Exception returned by the system
+	 */
 	public static String sha512(String str, String salt) throws Exception{
 		if(salt==null || str==null){
 			return sha512(str);
@@ -42,6 +54,11 @@ public class Hash {
 		return sha512(str+salt);
 	}
 
+	/**
+	 * Convert a byte chain in an hexadecimal string
+	 * @param data The byte chain to convert
+	 * @return The string
+	 */
 	protected static String convertByteToHex(byte data[]){
         StringBuffer hexData = new StringBuffer();
         for (int byteIndex = 0; byteIndex < data.length; byteIndex++){

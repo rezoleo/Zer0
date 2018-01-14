@@ -1,7 +1,7 @@
 package fr.service_authentification.object;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -22,52 +22,106 @@ import java.util.Date;
 
 import fr.webservicecore.object.APIObject;
 
-/* 
- * Class 	: Authentification
- * Author(s): Zidmann
- * Function : This class describes an access 
- * Version  : 1.0.0
+/**
+ * Description of an access
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class Authentification implements APIObject
 {
+	/**
+	 * Id of the access
+	 */
 	@Expose
 	@Since(1.0)
 	protected String 	_id			= null;
+
+	/**
+	 * Login of the access
+	 */
 	@Expose
 	@Since(1.0)
 	protected String 	login		= null;
+
+	/**
+	 * Mail of the access
+	 */	
 	@Expose
 	@Since(1.0)
 	protected String 	mail		= null;
+
+	/**
+	 * Status of the access
+	 */	
 	@Expose
 	@Since(1.0)
 	protected String 	status		= null;
+
+	/**
+	 * Creator user which created the access
+	 */	
 	@Expose
 	@Since(1.0)
 	protected String 	creator		= null;
+
+	/**
+	 * Creation date of the access
+	 */
 	@Expose
 	@Since(1.0)
 	protected Date 		created		= null;
+
+	/**
+	 * Service which created the access
+	 */
 	@Expose
 	@Since(1.0)
 	protected String 	creatorService = null;
+
+	/**
+	 * Updator user which updated the access
+	 */	
 	@Expose
 	@Since(1.0)
 	protected String 	updator		= null;
+
+	/**
+	 * Update date of the access
+	 */
 	@Expose
 	@Since(1.0)
 	protected Date 		updated		= null;
+
+	/**
+	 * Service which updated the access
+	 */
 	@Expose
 	@Since(1.0)
 	protected String 	updatorService = null;
 
+	/**
+	 * Constructor Authentification
+	 */
 	public Authentification(){
 		
 	}
+	/**
+	 * Constructor Authentification
+	 * @param _id Id of the access
+	 * @param login Login of the access
+	 * @param mail Mail of the access
+	 * @param status Status of the access
+	 * @param creator Creator user which created the access
+	 * @param created Creation date of the access
+	 * @param creatorService Service which created the access
+	 * @param updator Updator user which updated the access
+	 * @param updated Update date of the access
+	 * @param updatorService Service which updated the access
+	 */
 	public Authentification(String _id, String login, String mail,
-		          String status,
-			      String creator, Date created, String creatorService, 
-			      String updator, Date updated, String updatorService){
+				            String status,
+					        String creator, Date created, String creatorService, 
+					        String updator, Date updated, String updatorService){
 		this._id 		    = _id;
 		this.login 		    = login;
 		this.mail 		    = mail;

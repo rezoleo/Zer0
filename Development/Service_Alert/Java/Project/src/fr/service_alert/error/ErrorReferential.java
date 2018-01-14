@@ -18,7 +18,7 @@ package fr.service_alert.error;
 /**
  * List of all the errors returned by the Alert service
  * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class ErrorReferential{
 	/**

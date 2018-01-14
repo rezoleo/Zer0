@@ -33,7 +33,7 @@ import fr.webservicecore.toolbox.AttributesTool;
 /** 
  * Client to manage alerts in the Alert service
  * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class AlertClient extends WebServiceClient
 { 	

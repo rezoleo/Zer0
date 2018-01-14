@@ -25,7 +25,7 @@ import fr.webservicecore.object.APIObject;
 /**
  * Description of an alert
  * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class Alert implements APIObject
 {

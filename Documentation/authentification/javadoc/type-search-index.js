@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"fr.service_authentification.object","l":"Authentification"},{"p":"fr.service_authentification.network","l":"AuthentificationClient"},{"p":"fr.service_authentification","l":"Common"},{"p":"fr.service_authentification.error","l":"ErrorReferential"},{"p":"fr.service_authentification.tool","l":"Hash"}]
