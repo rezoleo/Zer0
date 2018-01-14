@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"fr.applicationcore.junit"},{"l":"fr.applicationcore.junit.model"},{"l":"fr.applicationcore.junit.network"},{"l":"fr.applicationcore.junit.object"},{"l":"fr.applicationcore.junit.test"}]

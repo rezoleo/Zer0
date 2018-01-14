@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"fr.cache"},{"l":"fr.cache.object"}]
