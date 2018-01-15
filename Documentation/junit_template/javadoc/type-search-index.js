@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"fr.junittemplate.test","l":"TestCase_Core_Model"}]

@@ -51,6 +51,8 @@ public class TestCase_Core_Model extends TestCase
 
 	/**
 	 * Functions to compare two dates
+	 * @param a First date to compare
+	 * @param b Second date to compare
 	 * @return 'true' if 'a' is inferior to 'b' or false if not
 	 */
 	protected boolean inferiorDate(Date a, Date b){
@@ -65,6 +67,8 @@ public class TestCase_Core_Model extends TestCase
 
 	/**
 	 * Functions to compare two dates
+	 * @param a First date to compare
+	 * @param b Second date to compare
 	 * @return 'true' if 'a' is equal to 'b' or false if not
 	 */
 	protected boolean equalsDate(Date a, Date b){
