@@ -1,7 +1,7 @@
 package fr.service_group;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -15,13 +15,15 @@ package fr.service_group;
  */
 
 
-/* 
- * Class 	: Common
- * Author(s): Zidmann
- * Function : This class contains all the default settings for running a Java client which connects itself to the group service
- * Version  : 1.0.0
+/**
+ * Default settings for running a Java client which connects itself to the Group service
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class Common extends fr.webservicecore.Common
 {
+	/**
+	 * Default URL of an Group service
+	 */
 	public static String URL   		 = "https://localhost:8113";
 }

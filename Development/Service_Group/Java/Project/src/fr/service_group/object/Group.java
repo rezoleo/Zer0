@@ -1,7 +1,7 @@
 package fr.service_group.object;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -24,63 +24,142 @@ import com.google.gson.annotations.Since;
 
 import fr.webservicecore.object.APIObject;
 
-/* 
- * Class 	: Group
- * Author(s): Zidmann
- * Function : This class describes information of one group
- * Version  : 1.0.0
+/**
+ * Description of a group
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class Group implements APIObject 
 {
+	/**
+	 * Id of the group
+	 */
 	@Expose
 	@Since(1.0)
 	protected String 					_id				= null;
+
+	/**
+	 * Name of the group
+	 */
 	@Expose
 	@Since(1.0)
 	protected String 					name			= null;
+
+	/**
+	 * Type of the group
+	 */
 	@Expose
 	@Since(1.0)
 	protected String 					type			= null;	
+
+	/**
+	 * Description of the group
+	 */
 	@Expose
 	@Since(1.0)
 	protected String 					description		= null;
+
+	/**
+	 * Mail of the group
+	 */
 	@Expose
 	@Since(1.0)
-	protected String 					mail			= null;	
+	protected String 					mail			= null;
+
+	/**
+	 * Logo path of the group
+	 */
 	@Expose
 	@Since(1.0)
-	protected String 					logo			= null;	
+	protected String 					logo			= null;
+
+	/**
+	 * Picture path of the group
+	 */
 	@Expose
 	@Since(1.0)
 	protected String 					picture			= null;
+
+	/**
+	 * List of the login of the members of the group 
+	 */
 	@Expose
 	@Since(1.0)
 	protected SortedSet<String>			members			= new TreeSet<String>();
+
+	/**
+	 * List of the login of the responsibles of the group 
+	 */
 	@Expose
 	@Since(1.0)
 	protected SortedSet<Responsible>	responsibles	= new TreeSet<Responsible>();
+
+	/**
+	 * Creator user which created the group
+	 */	
 	@Expose
 	@Since(1.0)
 	protected String 					creator			= null;
+
+	/**
+	 * Creation date of the group
+	 */
 	@Expose
 	@Since(1.0)
 	protected Date 						created			= null;
+
+	/**
+	 * Service which created the group
+	 */
 	@Expose
 	@Since(1.0)
 	protected String 					creatorService 	= null;
+
+	/**
+	 * Updator user which updated the group
+	 */
 	@Expose
 	@Since(1.0)
 	protected String 					updator			= null;
+
+	/**
+	 * Update date of the group
+	 */
 	@Expose
 	@Since(1.0)
 	protected Date 						updated			= null;
+
+	/**
+	 * Service which updated the group
+	 */
 	@Expose
 	@Since(1.0)
 	protected String 					updatorService 	= null;
 
+	/**
+	 * Constructor Group
+	 */
 	public Group(){
 		
 	}
+	/**
+	 * Constructor Group
+	 * @param _id Id of the group
+	 * @param name Name of the group
+	 * @param type Type of the group
+	 * @param description Description of the group
+	 * @param mail Mail of the group
+	 * @param logo Logo path of the group
+	 * @param picture Picture path of the group
+	 * @param members List of the login of the members of the group
+	 * @param responsibles List of the login of the responsibles of the group
+	 * @param creator Creator user which created the group
+	 * @param created Creation date of the group
+	 * @param creatorService Service which created the group
+	 * @param updator Updator user which updated the group
+	 * @param updated Update date of the group
+	 * @param updatorService Service which updated the group
+	 */
 	public Group(String _id, String name, String type, String description, String mail, String logo, String picture,
 				 SortedSet<String> members, SortedSet<Responsible> responsibles,
 				 String creator, Date created, String creatorService, 

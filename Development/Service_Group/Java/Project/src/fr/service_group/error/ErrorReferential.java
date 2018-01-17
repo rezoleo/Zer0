@@ -1,7 +1,7 @@
 package fr.service_group.error;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -15,16 +15,20 @@ package fr.service_group.error;
  */
 
 
-/* 
- * Class 	: ErrorReferential
- * Author(s): Zidmann
- * Function : This class describes all the errors returned by the group service
- * Version  : 1.0.0
+/**
+ * List of all the errors returned by the Group service
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class ErrorReferential{
+	/**
+	 * Unique instance since ErrorReferential class uses singleton pattern
+	 */
 	protected static fr.webservicecore.error.ErrorReferential instance = fr.webservicecore.error.ErrorReferential.getInstance();
 
-	//Definition of all the referenced errors	
+	/**
+	 * Constructor ErrorReferential to define of all the referenced errors
+	 */
 	@SuppressWarnings("static-access")
 	public ErrorReferential() {
 		instance.addError("GROUP.1.1.1",  "L'identifiant ID du groupe est absent");

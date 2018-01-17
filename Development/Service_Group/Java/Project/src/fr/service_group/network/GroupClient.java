@@ -1,7 +1,7 @@
 package fr.service_group.network;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -26,17 +26,16 @@ import org.apache.http.message.BasicNameValuePair;
 
 import fr.cache.object.Cache;
 import fr.service_group.object.Group;
+import fr.webservicecore.error.APIException;
 import fr.webservicecore.network.HttpMethod;
 import fr.webservicecore.network.WebServiceClient;
-import fr.webservicecore.object.APIException;
 import fr.webservicecore.object.APIObject;
 import fr.webservicecore.toolbox.CheckAttributes;
 
-/* Class 	: GroupClient
- * Author(s): Zidmann
- * Function : This class contains the WebService Client to manage group in NodeJS server. 
- * Version  : 1.0.0
- * Note		: This class uses directly HttpRequest class
+/** 
+ * Client to manage groups in the Group service
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class GroupClient extends WebServiceClient
 { 	
@@ -45,10 +44,11 @@ public class GroupClient extends WebServiceClient
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Group FUNCTIONS
     // HTTP GET requests
-
-	// Name        : getAllGroup
-    // Type        : function
-    // Description : Get the list of all the group
+	/**
+	 * Get the list of the groups
+	 * @return An array of all Group objects
+	 * @throws APIException Exception containing the error message coming from the Group service
+	 */
     public Vector<Group> getAllGroup() throws APIException{
     	String http_address=URL+"/api/group";
 		if(this.token!=null && !this.token.equals("")){
@@ -58,9 +58,12 @@ public class GroupClient extends WebServiceClient
 		return this.accessAuxiSeveral(HttpMethod.GET, http_address, null);
     }
 
-    // Name        : getOneGroupById
-    // Type        : function
-    // Description : Get information of one specific group by its id
+    /**
+	 * Get information of one specific group by its id
+	 * @param id Identification number of the card
+	 * @return The Group object whose its id is the one requested
+	 * @throws APIException Exception containing the error message coming from the Group service
+	 */
 	public Group getOneGroupById(String id) throws APIException{
 		CheckAttributes.isEmptyThrowsError(id);
 
@@ -74,9 +77,12 @@ public class GroupClient extends WebServiceClient
 		return this.accessAuxiOne(HttpMethod.GET, http_address, null);
     }
 
-    // Name        : getOneGroupByName
-    // Type        : function
-    // Description : Get information of one specific group by its name
+    /**
+	 * Get information of one specific group by its name
+	 * @param name Name of the group
+	 * @return The Group object whose its id is the one requested
+	 * @throws APIException Exception containing the error message coming from the Group service
+	 */
 	public Group getOneGroupByName(String name) throws APIException{
 		CheckAttributes.isEmptyThrowsError(name);
 
@@ -90,9 +96,12 @@ public class GroupClient extends WebServiceClient
 		return this.accessAuxiOne(HttpMethod.GET, http_address, null);
     }
 
-    // Name        : searchByLogin
-    // Type        : function
-    // Description : Get information of all the groups which are belonged by a specific login
+    /**
+	 * Get information of all the groups where a specific login belongs
+	 * @param login Login of a member
+	 * @return The list of Group objects whose the login belongs
+	 * @throws APIException Exception containing the error message coming from the Group service
+	 */
 	public Vector<Group> searchByLogin(String login) throws APIException{
 		CheckAttributes.isEmptyThrowsError(login);
 
@@ -106,9 +115,11 @@ public class GroupClient extends WebServiceClient
 		return this.accessAuxiSeveral(HttpMethod.GET, http_address, null);
     }
 
-	// Name        : getCacheInformation
-    // Type        : function
-    // Description : Get information about the last updates of the group list
+	/**
+	 * Get information about the last updates of the group list
+	 * @return The Cache object which describes the information about the last updates
+	 * @throws APIException Exception containing the error message coming from the Group service
+	 */
 	public Cache getCacheInformation() throws APIException{
 		String http_address=URL+"/api/group?action=get-cache-infos";
 		if(this.token!=null && !this.token.equals("")){
@@ -119,10 +130,18 @@ public class GroupClient extends WebServiceClient
     }
 
 	// HTTP POST request
-
-	// Name        : createGroup
-    // Type        : function
-    // Description : Create one group on the Node JS server
+	/**
+	 * Create one group on the Node JS server
+	 * @param name Name of the group
+	 * @param type Type of the group
+	 * @param description Description of the group
+	 * @param mail Mail of the group
+	 * @param logo Logo path of the group
+	 * @param picture Picture path of the group
+	 * @param creator Creator user which created the group
+	 * @return The Contributor object created
+	 * @throws APIException Exception containing the error message coming from the Group service
+	 */
 	public Group createGroup(	String name, String type, String description, String mail,
 								String logo, String picture, 	 
 								String creator) throws APIException{
@@ -147,10 +166,19 @@ public class GroupClient extends WebServiceClient
 	}
 
 	// HTTP PUT request	
-
-	// Name        : updateGroup
-    // Type        : function
-    // Description : Update one group on the Node JS server
+	/**
+	 * Update a card in the Node JS server
+	 * @param id Identification number of the group
+	 * @param name Name of the group
+	 * @param type Type of the group
+	 * @param description Description of the group
+	 * @param mail Mail of the group
+	 * @param logo Logo path of the group
+	 * @param picture Picture path of the group
+	 * @param updator Updator user which updated the group
+	 * @return The Group object after the update
+	 * @throws APIException Exception containing the error message coming from the Group service
+	 */
 	public Group updateGroup(	String id,
 								String name, String type, String description, String mail,
 								String logo, String picture,
@@ -178,9 +206,14 @@ public class GroupClient extends WebServiceClient
 		return this.accessAuxiOne(HttpMethod.PUT, http_address, urlParameters);
 	}
 	
-	// Name        : addMemberToGroup
-    // Type        : function
-    // Description : Add a member inside one group
+	/**
+	 * Add a member inside one group
+	 * @param id Identification number of the group
+	 * @param login Login of a member to add in the group
+	 * @param updator Updator user which updated the group
+	 * @return The Group object after the update
+	 * @throws APIException Exception containing the error message coming from the Group service
+	 */
 	public Group addMemberToGroup(String id, String login, String updator) throws APIException{
 		CheckAttributes.isEmptyThrowsError(id);
 		CheckAttributes.isEmptyThrowsError(login);
@@ -198,9 +231,14 @@ public class GroupClient extends WebServiceClient
 		return this.accessAuxiOne(HttpMethod.POST, http_address, urlParameters);
 	}
 
-	// Name        : removeMemberToGroup
-    // Type        : function
-    // Description : Remove a member inside one group
+	/**
+	 * Remove a member inside one group
+	 * @param id Identification number of the group
+	 * @param login Login of a member to remove in the group
+	 * @param updator Updator user which updated the group
+	 * @return The Group object after the update
+	 * @throws APIException Exception containing the error message coming from the Group service
+	 */
 	public Group removeMemberToGroup(String id, String login, String updator) throws APIException{
 		CheckAttributes.isEmptyThrowsError(id);
 		CheckAttributes.isEmptyThrowsError(login);
@@ -218,9 +256,15 @@ public class GroupClient extends WebServiceClient
 		return this.accessAuxiOne(HttpMethod.PUT, http_address, urlParameters);
 	}
 
-	// Name        : addResponsibleToGroup
-    // Type        : function
-    // Description : Add a responsible inside one group
+	/**
+	 * Add a responsible inside one group
+	 * @param id Identification number of the group
+	 * @param login Login of a responsible to add in the group
+	 * @param responsability Responsability of the person
+	 * @param updator Updator user which updated the group
+	 * @return The Group object after the update
+	 * @throws APIException Exception containing the error message coming from the Group service
+	 */
 	public Group addResponsibleToGroup(String id, String login, String responsability, String updator) throws APIException{
 		CheckAttributes.isEmptyThrowsError(id);
 		CheckAttributes.isEmptyThrowsError(login);
@@ -240,10 +284,15 @@ public class GroupClient extends WebServiceClient
 		return this.accessAuxiOne(HttpMethod.POST, http_address, urlParameters);
 	}
 
-	// Name        : removeResponsibleToGroup
-    // Type        : function
-    // Description : Remove a responsible inside one group
-	public Group removeResponsibleToGroup(String id, String login, String responsability, String updator) throws APIException{
+	/**
+	 * Remove a member inside one group
+	 * @param id Id of the group
+	 * @param login Login of a responsible to remove in the group
+	 * @param responsability Responsability of the person
+	 * @param updator Updator user which updated the group
+	 * @return The Group object after the update
+	 * @throws APIException Exception containing the error message coming from the Group service
+	 */	public Group removeResponsibleToGroup(String id, String login, String responsability, String updator) throws APIException{
 		CheckAttributes.isEmptyThrowsError(id);
 		CheckAttributes.isEmptyThrowsError(login);
 		CheckAttributes.isEmptyThrowsError(responsability);
@@ -263,10 +312,12 @@ public class GroupClient extends WebServiceClient
 	}
 
 	// HTTP DELETE request
-
-	// Name        : deleteOneGroup
-	// Type        : function
-	// Description : Delete one specific group
+	/**
+	 * Delete one specific group
+	 * @param id Identification number of the group
+	 * @return The Group object removed
+	 * @throws APIException Exception containing the error message coming from the Group service
+	 */
 	public Group deleteOneGroup(String id) throws APIException{
 		CheckAttributes.isEmptyThrowsError(id);
 
@@ -281,8 +332,15 @@ public class GroupClient extends WebServiceClient
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	// Auxilary functions for webservice clients
+	/**
+	 * Get one group
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param http_address The URL address of the Group service (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @return One Group object
+	 * @throws APIException Exception containing the error message coming from the Group service
+	 */
 	protected Group accessAuxiOne(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
 		try{
 			Group Group = (Group)this.requestOne(method, Group.class, http_address, urlParameters, null);
@@ -296,6 +354,14 @@ public class GroupClient extends WebServiceClient
 		}
 	}
 
+	/**
+	 * Get cache information
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param http_address The URL address of the Group service (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @return The Cache object which describes the information about the last updates
+	 * @throws APIException Exception containing the error message coming from the Group service
+	 */
 	protected Cache accessAuxiCache(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
 		try{
 			Cache cache = (Cache)this.requestOne(method, Cache.class, http_address, urlParameters, null);
@@ -309,6 +375,14 @@ public class GroupClient extends WebServiceClient
 		}
 	}
 
+	/**
+	 * Get several groups
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param http_address The URL address of the Group service (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @return Several group objects
+	 * @throws APIException Exception containing the error message coming from the Group service
+	 */
 	protected Vector<Group> accessAuxiSeveral(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
 		try{
     		Vector<APIObject>	vector_auxi 	= this.requestSeveral(method, Group.class, http_address, urlParameters, null);
