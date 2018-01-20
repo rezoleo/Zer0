@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"fr.service_people","l":"Common"},{"p":"fr.service_people.error","l":"ErrorReferential"},{"p":"fr.service_people.network","l":"PeopleClient"},{"p":"fr.service_people.object","l":"Person"}]

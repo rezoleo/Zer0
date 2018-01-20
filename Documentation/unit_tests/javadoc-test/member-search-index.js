@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"fr.unit_tests.junit","c":"General_TestSuite","l":"General_TestSuite()"},{"p":"fr.unit_tests","c":"TestRunner","l":"main(String[])","url":"main-java.lang.String:A-"},{"p":"fr.unit_tests.junit","c":"General_TestSuite","l":"suite()"},{"p":"fr.unit_tests","c":"TestRunner","l":"TestRunner()"}]

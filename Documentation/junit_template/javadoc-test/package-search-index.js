@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"fr.junittemplate.test"},{"l":"fr.junittemplate.token"}]

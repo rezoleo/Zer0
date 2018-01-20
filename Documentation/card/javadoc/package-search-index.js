@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"fr.service_card"},{"l":"fr.service_card.error"},{"l":"fr.service_card.network"},{"l":"fr.service_card.object"}]

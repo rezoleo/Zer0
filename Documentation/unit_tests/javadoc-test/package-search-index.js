@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"fr.unit_tests"},{"l":"fr.unit_tests.junit"}]

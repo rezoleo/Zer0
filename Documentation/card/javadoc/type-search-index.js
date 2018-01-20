@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"fr.service_card.object","l":"Card"},{"p":"fr.service_card.network","l":"CardClient"},{"p":"fr.service_card","l":"Common"},{"p":"fr.service_card.error","l":"ErrorReferential"}]
