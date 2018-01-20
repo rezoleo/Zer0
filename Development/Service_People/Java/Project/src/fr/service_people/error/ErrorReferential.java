@@ -1,7 +1,7 @@
 package fr.service_people.error;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -15,14 +15,13 @@ package fr.service_people.error;
  */
 
 
-/* 
- * Class 	: ErrorReferential
- * Author(s): Zidmann
- * Function : This class describes all the errors returned by the people service
- * Version  : 1.0.0
+/**
+ * List of all the errors returned by the People service
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class ErrorReferential{
-	protected static fr.webservicecore.error.ErrorReferential instance = fr.webservicecore.error.ErrorReferential.getInstance();
+	private static fr.webservicecore.error.ErrorReferential instance = fr.webservicecore.error.ErrorReferential.getInstance();
 
 	//Definition of all the referenced errors	
 	@SuppressWarnings("static-access")

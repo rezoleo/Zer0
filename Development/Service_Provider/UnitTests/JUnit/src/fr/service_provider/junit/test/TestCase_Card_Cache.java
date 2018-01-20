@@ -1,7 +1,7 @@
 package fr.service_provider.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -46,7 +46,7 @@ public class TestCase_Card_Cache extends TestCase_Model
 		//## Te	st Cache after a POST card request:
 		Card card = null;
 		try{
-			card =ws_client_card.createCard("owner", "cdeabcde", "ON", "creator");
+			card =ws_client_card.createCard("owner", "cdeabcdecdeabc", "ON", "creator");
 			cache1=ws_client_card_proxy.getCacheInformation();
 		}
 		catch(Exception e)		{	assertNotNull(null);	}
@@ -63,7 +63,7 @@ public class TestCase_Card_Cache extends TestCase_Model
 
 		//## Test Cache after a PUT card request:
 		try{
-			ws_client_card.updateCard(card.get_id(), "ownerone", "cde3cccc", "ON", "updator");
+			ws_client_card.updateCard(card.get_id(), "ownerone", "cde3cccccccccc", "ON", "updator");
 			cache4=ws_client_card_proxy.getCacheInformation();
 		}
 		catch(Exception e)		{	assertNotNull(null);	}

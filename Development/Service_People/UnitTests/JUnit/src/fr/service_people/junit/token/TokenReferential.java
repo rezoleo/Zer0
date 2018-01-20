@@ -1,7 +1,7 @@
 package fr.service_people.junit.token;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -15,12 +15,13 @@ package fr.service_people.junit.token;
  */
 
 
-/* 
- * Class 	: TokenReferential
- * Author(s): Zidmann
- * Function : This class contains all the tokens used to test the people service
- * Version  : 1.0.0
- * Note		: The key used for these tokens is : "d2s42dggjfqlry6Jfs9shrgrxjthty"
+/**
+ * List of all the tokens used to test the People service
+ * <p>
+ * The key used for these tokens is : "d2s42dggjfqlry6Jfs9shrgrxjthty"
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TokenReferential{
 	public TokenReferential(){
@@ -28,11 +29,20 @@ public class TokenReferential{
 		putToken("token_people",	"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzb3VyY2VfaXAiOiIxMjcuMC4wLjEiLCJzb3VyY2Vfc2VydmljZSI6Ikp1bml0VGVzdHMiLCJkZXN0X3NlcnZpY2UiOiJTZXJ2aWNlX1Blb3BsZSIsImVuZF9kYXRlIjoiMjAxNC0xMS0xOVQwMTozMTo0My45NzdaIiwicmFuZG9tIjowLjQxMzgyODU5NDE0NDQzMzc0LCJhY2Nlc3MiOlsiR0VUIiwiR0VUaWQiLCJHRVRsb2dpbiIsIkdFVG1haWwiLCJQT1NUIiwiUE9TVHRhZyIsIlBVVCIsIkRFTEVURSIsIkRFTEVURXRhZyJdfQ.T05Hxx4EPyifKg_yIKtkcU1VP5OsEZ8cg4Thv_Gq3qk");		
 	}
 	
+	/**
+	 * Insert into the list of token one token
+	 * @param key The key to refer to the token
+	 * @param value The token
+	 */
 	public static void putToken(String key, String value){
 		fr.junittemplate.token.TokenReferential.putToken(key, value);
 	}
 
-	//Function to extract a specific token in all the list
+	/**
+	 * Extract a specific token in all the list
+	 * @param key The key to refer to the token
+	 * @return The expected token
+	 */
 	public static String getToken(String key){
 		return fr.junittemplate.token.TokenReferential.getToken(key);
 	}

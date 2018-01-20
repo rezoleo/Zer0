@@ -94,7 +94,7 @@ public class AlertClient extends WebServiceClient
 	 * @throws APIException Exception containing the error message coming from the Alert service
 	 */
 	public Cache getCacheInformation() throws APIException{
-		String http_address=this.getURL()+"/api/card?action=get-cache-infos";
+		String http_address=this.getURL()+"/api/alert?action=get-cache-infos";
 		if(this.getToken()!=null && !this.getToken().equals("")){
 			http_address+="&token="+this.getToken();
 		}

@@ -1,7 +1,7 @@
 package fr.service_provider.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -18,8 +18,8 @@ package fr.service_provider.junit.test;
 import org.junit.Test;
 
 import fr.service_provider.junit.model.TestCase_Model;
+import fr.webservicecore.error.APIException;
 import fr.webservicecore.error.ErrorReferential;
-import fr.webservicecore.object.APIException;
 
 /* 
  * Class 	: TestCase_Authentification_RejectForbiddenLetter

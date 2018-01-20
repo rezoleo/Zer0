@@ -1,7 +1,7 @@
 package fr.service_provider.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -44,7 +44,7 @@ public class TestCase_Card_NoSecretPublication extends TestCase_Model
 		initSettings();
 
 		//Creation of one card
-		card = ws_client_card.createCard("owner", "aaaaaaaa", "ON", "creator");
+		card = ws_client_card.createCard("owner", "aaaaaaaaaaaaaa", "ON", "creator");
 
     	String http_address = TestCase_Model.URL+"/api/card";
 		@SuppressWarnings("static-access")
@@ -68,7 +68,7 @@ public class TestCase_Card_NoSecretPublication extends TestCase_Model
 		initSettings();
 
 		//Creation of one card
-		card = ws_client_card.createCard("owner", "aaaaaaaa", "ON", "creator");
+		card = ws_client_card.createCard("owner", "aaaaaaaaaaaaaa", "ON", "creator");
 
     	String http_address = TestCase_Model.URL+"/api/card/"+card.get_id();
 		@SuppressWarnings("static-access")
@@ -92,9 +92,9 @@ public class TestCase_Card_NoSecretPublication extends TestCase_Model
 		initSettings();
 
 		//Creation of one card
-		card = ws_client_card.createCard("owner", "aaaaaaaa", "ON", "creator");
+		card = ws_client_card.createCard("owner", "aaaaaaaaaaaaaa", "ON", "creator");
 
-    	String http_address = TestCase_Model.URL+"/api/card/code/aaaaaaaa";
+    	String http_address = TestCase_Model.URL+"/api/card/code/aaaaaaaaaaaaaa";
 		@SuppressWarnings("static-access")
 		String token 	   = token_list.getToken("token_provider");
 		if(token!=null && !token.equals("")){

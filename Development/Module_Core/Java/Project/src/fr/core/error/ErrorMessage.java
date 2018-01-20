@@ -67,6 +67,9 @@ public class ErrorMessage extends Error implements ErrorInterface
 	public String getVersion(){
 		return this.version;
 	}
+	public void setVersion(String version){
+		this.version = version;
+	}
 
 	@Override
 	public int hashCode() {

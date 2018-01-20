@@ -1,7 +1,7 @@
 package fr.service_picture.junit.token;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -15,12 +15,13 @@ package fr.service_picture.junit.token;
  */
 
 
-/* 
- * Class 	: TokenReferential
- * Author(s): Zidmann
- * Function : This class contains all the tokens used to test the picture service
- * Version  : 1.0.0
- * Note		: The key used for these tokens is : "d2s42dggjfqlry6Jfs9shrgrxjthty"
+/**
+ * List of all the tokens used to test the Picture service
+ * <p>
+ * The key used for these tokens is : "d2s42dggjfqlry6Jfs9shrgrxjthty"
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TokenReferential{
 	public TokenReferential(){
@@ -31,11 +32,20 @@ public class TokenReferential{
 		putToken("token_picture_no_delete", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzb3VyY2VfaXAiOiIxMjcuMC4wLjEiLCJzb3VyY2Vfc2VydmljZSI6Ikp1bml0VGVzdHNfMyIsImRlc3Rfc2VydmljZSI6IlNlcnZpY2VfUGljdHVyZSIsImVuZF9kYXRlIjoiMjAxNi0xMi0wOVQyMzowNjo0OS4zMTlaIiwiYWNjZXNzIjpbIkdFVCIsIlBPU1QiLCJERUxFVEUiXSwiZXh0cmEiOnsicmVhZCI6WyJKdW5pdFRlc3RzIl0sImFkZCI6WyJKdW5pdFRlc3RzIl0sImRlbGV0ZSI6WyJYWFgiXX19.tZN9I2YGZoRbPj1A6f5C6qFX7AX3zoO8EYUs9LtSP-c");
 	}
 
+	/**
+	 * Insert into the list of token one token
+	 * @param key The key to refer to the token
+	 * @param value The token
+	 */
 	public static void putToken(String key, String value){
 		fr.junittemplate.token.TokenReferential.putToken(key, value);
 	}
 
-	//Function to extract a specific token in all the list
+	/**
+	 * Extract a specific token in all the list
+	 * @param key The key to refer to the token
+	 * @return The expected token
+	 */
 	public static String getToken(String key){
 		return fr.junittemplate.token.TokenReferential.getToken(key);
 	}

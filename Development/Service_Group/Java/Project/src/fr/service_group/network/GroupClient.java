@@ -15,8 +15,6 @@ package fr.service_group.network;
  */
 
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -30,7 +28,7 @@ import fr.webservicecore.error.APIException;
 import fr.webservicecore.network.HttpMethod;
 import fr.webservicecore.network.WebServiceClient;
 import fr.webservicecore.object.APIObject;
-import fr.webservicecore.toolbox.CheckAttributes;
+import fr.webservicecore.toolbox.AttributesTool;
 
 /** 
  * Client to manage groups in the Group service
@@ -39,8 +37,6 @@ import fr.webservicecore.toolbox.CheckAttributes;
  */
 public class GroupClient extends WebServiceClient
 { 	
-	protected DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Group FUNCTIONS
     // HTTP GET requests
@@ -50,9 +46,9 @@ public class GroupClient extends WebServiceClient
 	 * @throws APIException Exception containing the error message coming from the Group service
 	 */
     public Vector<Group> getAllGroup() throws APIException{
-    	String http_address=URL+"/api/group";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+    	String http_address=this.getURL()+"/api/group";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiSeveral(HttpMethod.GET, http_address, null);
@@ -65,13 +61,13 @@ public class GroupClient extends WebServiceClient
 	 * @throws APIException Exception containing the error message coming from the Group service
 	 */
 	public Group getOneGroupById(String id) throws APIException{
-		CheckAttributes.isEmptyThrowsError(id);
+		AttributesTool.isEmptyThrowsError(id);
 
-		CheckAttributes.checkRegexThrowsError(id);
+		AttributesTool.checkRegexThrowsError(id);
 
-		String http_address=URL+"/api/group/"+id;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/group/"+id;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiOne(HttpMethod.GET, http_address, null);
@@ -84,13 +80,13 @@ public class GroupClient extends WebServiceClient
 	 * @throws APIException Exception containing the error message coming from the Group service
 	 */
 	public Group getOneGroupByName(String name) throws APIException{
-		CheckAttributes.isEmptyThrowsError(name);
+		AttributesTool.isEmptyThrowsError(name);
 
-		CheckAttributes.checkRegexThrowsError(name);
+		AttributesTool.checkRegexThrowsError(name);
 
-		String http_address=URL+"/api/group/name/"+name;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/group/name/"+name;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiOne(HttpMethod.GET, http_address, null);
@@ -103,13 +99,13 @@ public class GroupClient extends WebServiceClient
 	 * @throws APIException Exception containing the error message coming from the Group service
 	 */
 	public Vector<Group> searchByLogin(String login) throws APIException{
-		CheckAttributes.isEmptyThrowsError(login);
+		AttributesTool.isEmptyThrowsError(login);
 
-		CheckAttributes.checkRegexThrowsError(login);
+		AttributesTool.checkRegexThrowsError(login);
 
-		String http_address=URL+"/api/group/search/"+login;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/group/search/"+login;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiSeveral(HttpMethod.GET, http_address, null);
@@ -121,9 +117,9 @@ public class GroupClient extends WebServiceClient
 	 * @throws APIException Exception containing the error message coming from the Group service
 	 */
 	public Cache getCacheInformation() throws APIException{
-		String http_address=URL+"/api/group?action=get-cache-infos";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="&token="+this.token;
+		String http_address=this.getURL()+"/api/group?action=get-cache-infos";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="&token="+this.getToken();
 		}
 
 		return this.accessAuxiCache(HttpMethod.GET, http_address, null);
@@ -139,14 +135,14 @@ public class GroupClient extends WebServiceClient
 	 * @param logo Logo path of the group
 	 * @param picture Picture path of the group
 	 * @param creator Creator user which created the group
-	 * @return The Contributor object created
+	 * @return The Group object created
 	 * @throws APIException Exception containing the error message coming from the Group service
 	 */
 	public Group createGroup(	String name, String type, String description, String mail,
 								String logo, String picture, 	 
 								String creator) throws APIException{
-		CheckAttributes.isEmptyThrowsError(name);
-		CheckAttributes.isEmptyThrowsError(type);
+		AttributesTool.isEmptyThrowsError(name);
+		AttributesTool.isEmptyThrowsError(type);
 
 		List<NameValuePair> urlParameters=new ArrayList<NameValuePair>();
 		urlParameters.add(new BasicNameValuePair("name",		name));
@@ -157,9 +153,9 @@ public class GroupClient extends WebServiceClient
 		urlParameters.add(new BasicNameValuePair("picture",		picture));
 		urlParameters.add(new BasicNameValuePair("creator",		creator));
 
-		String http_address=URL+"/api/group/";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/group/";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiOne(HttpMethod.POST, http_address, urlParameters);
@@ -183,15 +179,15 @@ public class GroupClient extends WebServiceClient
 								String name, String type, String description, String mail,
 								String logo, String picture,
 								String updator) throws APIException{
-		CheckAttributes.isEmptyThrowsError(id);
-		CheckAttributes.isEmptyThrowsError(name);
-		CheckAttributes.isEmptyThrowsError(type);
+		AttributesTool.isEmptyThrowsError(id);
+		AttributesTool.isEmptyThrowsError(name);
+		AttributesTool.isEmptyThrowsError(type);
 
-		CheckAttributes.checkRegexThrowsError(id);
+		AttributesTool.checkRegexThrowsError(id);
 
-		String http_address=URL+"/api/group/"+id;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/group/"+id;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		List<NameValuePair> urlParameters=new ArrayList<NameValuePair>();
@@ -215,14 +211,14 @@ public class GroupClient extends WebServiceClient
 	 * @throws APIException Exception containing the error message coming from the Group service
 	 */
 	public Group addMemberToGroup(String id, String login, String updator) throws APIException{
-		CheckAttributes.isEmptyThrowsError(id);
-		CheckAttributes.isEmptyThrowsError(login);
+		AttributesTool.isEmptyThrowsError(id);
+		AttributesTool.isEmptyThrowsError(login);
 
-		CheckAttributes.checkRegexThrowsError(id);
+		AttributesTool.checkRegexThrowsError(id);
 
-		String http_address=URL+"/api/group/"+id+"/member";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/group/"+id+"/member";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		List<NameValuePair> urlParameters=new ArrayList<NameValuePair>();
@@ -240,14 +236,14 @@ public class GroupClient extends WebServiceClient
 	 * @throws APIException Exception containing the error message coming from the Group service
 	 */
 	public Group removeMemberToGroup(String id, String login, String updator) throws APIException{
-		CheckAttributes.isEmptyThrowsError(id);
-		CheckAttributes.isEmptyThrowsError(login);
+		AttributesTool.isEmptyThrowsError(id);
+		AttributesTool.isEmptyThrowsError(login);
 
-		CheckAttributes.checkRegexThrowsError(id);
+		AttributesTool.checkRegexThrowsError(id);
 
-		String http_address=URL+"/api/group/"+id+"/member";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/group/"+id+"/member";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		List<NameValuePair> urlParameters=new ArrayList<NameValuePair>();
@@ -266,15 +262,15 @@ public class GroupClient extends WebServiceClient
 	 * @throws APIException Exception containing the error message coming from the Group service
 	 */
 	public Group addResponsibleToGroup(String id, String login, String responsability, String updator) throws APIException{
-		CheckAttributes.isEmptyThrowsError(id);
-		CheckAttributes.isEmptyThrowsError(login);
-		CheckAttributes.isEmptyThrowsError(responsability);
+		AttributesTool.isEmptyThrowsError(id);
+		AttributesTool.isEmptyThrowsError(login);
+		AttributesTool.isEmptyThrowsError(responsability);
 
-		CheckAttributes.checkRegexThrowsError(id);
+		AttributesTool.checkRegexThrowsError(id);
 
-		String http_address=URL+"/api/group/"+id+"/responsible";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/group/"+id+"/responsible";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		List<NameValuePair> urlParameters=new ArrayList<NameValuePair>();
@@ -293,15 +289,15 @@ public class GroupClient extends WebServiceClient
 	 * @return The Group object after the update
 	 * @throws APIException Exception containing the error message coming from the Group service
 	 */	public Group removeResponsibleToGroup(String id, String login, String responsability, String updator) throws APIException{
-		CheckAttributes.isEmptyThrowsError(id);
-		CheckAttributes.isEmptyThrowsError(login);
-		CheckAttributes.isEmptyThrowsError(responsability);
+		AttributesTool.isEmptyThrowsError(id);
+		AttributesTool.isEmptyThrowsError(login);
+		AttributesTool.isEmptyThrowsError(responsability);
 
-		CheckAttributes.checkRegexThrowsError(id);
+		AttributesTool.checkRegexThrowsError(id);
 
-		String http_address=URL+"/api/group/"+id+"/responsible";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/group/"+id+"/responsible";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		List<NameValuePair> urlParameters=new ArrayList<NameValuePair>();
@@ -319,13 +315,13 @@ public class GroupClient extends WebServiceClient
 	 * @throws APIException Exception containing the error message coming from the Group service
 	 */
 	public Group deleteOneGroup(String id) throws APIException{
-		CheckAttributes.isEmptyThrowsError(id);
+		AttributesTool.isEmptyThrowsError(id);
 
-		CheckAttributes.checkRegexThrowsError(id);
+		AttributesTool.checkRegexThrowsError(id);
 
-		String http_address=URL+"/api/group/"+id;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/group/"+id;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiOne(HttpMethod.DELETE, http_address, null);

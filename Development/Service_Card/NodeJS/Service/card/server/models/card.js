@@ -2,7 +2,7 @@
  * File 	: ./server/models/card.js
  * Author(s)	: Zidmann
  * Function 	: This file defines the model of card stored in the Mongoose database
- * Version  	: 1.0.0
+ * Version  	: 1.1.0
  */
 
 var	mongoose = require('mongoose'),
@@ -11,7 +11,7 @@ var	mongoose = require('mongoose'),
 //Schema definition
 var cardSchema = new schema({
 		owner     	: { type : String, required : true, trim : true, match : /^([a-z0-9-_]){1,8}$/ },
-		code      	: { type : String, required : true, trim : true, match : /^([a-f0-9]){8}$/, index : { unique: true, sparse: true } },
+		code      	: { type : String, required : true, trim : true, match : /^([a-f0-9]){14}$/, index : { unique: true, sparse: true } },
 		status    	: { type : String, required : true, enum : ['ON', 'OFF'] },
 		creator   	: { type : String, trim : true, match : /^([a-z0-9-_]){1,8}$/ },
 		created   	: { type : Date,   required: true },

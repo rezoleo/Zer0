@@ -1,7 +1,7 @@
 package fr.service_people.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -23,11 +23,13 @@ import fr.cache.object.Cache;
 import fr.service_people.junit.model.TestCase_Model;
 import fr.service_people.object.Person;
 
-/* 
- * Class 	: TestCase_People_Cache
- * Author(s): Zidmann
- * Function : This class contains the webService client JUnit tests to check if there was no regression in People service 
- * Version  : 1.0.0 
+/**
+ * This class contains the webService client JUnit tests to check if there was no regression in People service
+ * <p>
+ * This Test Case supposes that you started the NodeJS server and removed all the People elements in the MongoDB database
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_People_Cache extends TestCase_Model
 {

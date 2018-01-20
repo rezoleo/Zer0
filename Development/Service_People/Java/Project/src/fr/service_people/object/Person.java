@@ -1,7 +1,7 @@
 package fr.service_people.object;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -24,69 +24,158 @@ import com.google.gson.annotations.Since;
 
 import fr.webservicecore.object.APIObject;
 
-/* 
- * Class 	: Person
- * Author(s): Zidmann
- * Function : This class describes information of one person 
- * Version  : 1.0.0
+/**
+ * Description of one person
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class Person implements APIObject 
 {
+	/**
+	 * Id of the person
+	 */
 	@Expose
 	@Since(1.0)
-	protected String 			_id			= null;
-	@Expose
-	@Since(1.0)
-	protected String 			login		= null;
-	@Expose
-	@Since(1.0)
-	protected String 			lastname	= null;
-	@Expose
-	@Since(1.0)
-	protected String 			firstname	= null;
-	@Expose
-	@Since(1.0)
-	protected String 			sex			= null;
-	@Expose
-	@Since(1.0)
-	protected Date 				birthdate	= null;
-	@Expose
-	@Since(1.0)
-	protected boolean 			major;
-	@Expose
-	@Since(1.0)
-	protected String 			mail		= null;
-	@Expose
-	@Since(1.0)
-	protected String 			tel			= null;
-	@Expose
-	@Since(1.0)
-	protected String 			picture		= null;
-	@Expose
-	@Since(1.0)
-	protected SortedSet<String>	tags		= new TreeSet<String>();
-	@Expose
-	@Since(1.0)
-	protected String 			creator		= null;
-	@Expose
-	@Since(1.0)
-	protected Date 				created		= null;
-	@Expose
-	@Since(1.0)
-	protected String 			creatorService = null;
-	@Expose
-	@Since(1.0)
-	protected String 			updator		= null;
-	@Expose
-	@Since(1.0)
-	protected Date 				updated		= null;
-	@Expose
-	@Since(1.0)
-	protected String 			updatorService = null;
+	private String 			_id			= null;
 
+	/**
+	 * Login of the person
+	 */
+	@Expose
+	@Since(1.0)
+	private String 			login		= null;
+
+	/**
+	 * Lastname of the person
+	 */
+	@Expose
+	@Since(1.0)
+	private String 			lastname	= null;
+
+	/**
+	 * Firstname of the person
+	 */
+	@Expose
+	@Since(1.0)
+	private String 			firstname	= null;
+
+	/**
+	 * Sex of the person
+	 */
+	@Expose
+	@Since(1.0)
+	private String 			sex			= null;
+
+	/**
+	 * Birthdate of the person
+	 */
+	@Expose
+	@Since(1.0)
+	private Date 				birthdate	= null;
+
+	/**
+	 * Flag to define if the person is aged 18 or more
+	 */
+	@Expose
+	@Since(1.0)
+	private boolean 			major;
+
+	/**
+	 * Mail of the person
+	 */
+	@Expose
+	@Since(1.0)
+	private String 			mail		= null;
+
+	/**
+	 * Phone number of the person
+	 */	@Expose
+	@Since(1.0)
+	private String 			tel			= null;
+
+	/**
+	 * Picture path of the person
+	 */
+	@Expose
+	@Since(1.0)
+	private String 			picture		= null;
+
+	/**
+	 * List of the tags of the person 
+	 */
+	@Expose
+	@Since(1.0)
+	private SortedSet<String>	tags		= new TreeSet<String>();
+
+	/**
+	 * Creator user which created the person
+	 */	
+	@Expose
+	@Since(1.0)
+	private String 			creator		= null;
+
+	/**
+	 * Creation date of the person
+	 */
+	@Expose
+	@Since(1.0)
+	private Date 				created		= null;
+
+	/**
+	 * Service which created the person
+	 */
+	@Expose
+	@Since(1.0)
+	private String 			creatorService = null;
+
+	/**
+	 * Updator user which updated the person
+	 */
+	@Expose
+	@Since(1.0)
+	private String 			updator		= null;
+
+	/**
+	 * Update date of the person
+	 */
+	@Expose
+	@Since(1.0)
+	private Date 				updated		= null;
+
+	/**
+	 * Service which updated the person
+	 */
+	@Expose
+	@Since(1.0)
+	private String 			updatorService = null;
+
+	/**
+	 * Constructor Person
+	 */
 	public Person(){
 		
 	}
+
+	/**
+	 * Constructor Person
+	 * @param _id Id of the person
+	 * @param login Login of the person
+	 * @param lastname Lastname of the person
+	 * @param firstname Firstname of the person
+	 * @param sex Sex of the person
+	 * @param birthdate Birthdate of the person
+	 * @param major Flag to define if the person is aged 18 or more
+	 * @param mail Mail of the person
+	 * @param tel Phone number of the person
+	 * @param picture Picture path of the person
+	 * @param tags List of the tags of the person
+	 * @param creator Creator user which created the person
+	 * @param created Creation date of the person
+	 * @param creatorService Service which created the person
+	 * @param updator Updator user which updated the person
+	 * @param updated Update date of the person
+	 * @param updatorService Service which updated the person
+	 */
 	public Person(String _id, String login, String lastname, String firstname,
 				  String sex, Date birthdate, boolean major, String mail, String tel,
 				  String picture, SortedSet<String> tags, String creator, Date created,

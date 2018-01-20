@@ -1,7 +1,7 @@
 package fr.service_picture.network;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -20,79 +20,89 @@ import java.io.File;
 import fr.service_picture.object.PictureInformation;
 import fr.webservicecore.network.HttpMethod;
 import fr.webservicecore.network.WebServiceClient;
-import fr.webservicecore.object.APIException;
-import fr.webservicecore.toolbox.CheckAttributes;
+import fr.webservicecore.error.APIException;
+import fr.webservicecore.toolbox.AttributesTool;
+import fr.webservicecore.toolbox.StringTool;;
 
-/* 
- * Class 	: PictureClient
- * Author(s): Zidmann
- * Function : This class contains the WebService Client to manage pictures in NodeJS server. 
- * Version  : 1.0.0
- * Note		: This class uses directly HttpRequest class
- * NoteBis  : To store the pictures of a service, be sure that you created the directory in the storage whose name is the service name
+/** 
+ * Client to manage picture in the Picture service
+ * <p>
+ * To store the pictures of a service, be sure that you created the directory in the storage whose name is the service name
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class PictureClient extends WebServiceClient
 { 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Picture FUNCTIONS
     // HTTP GET requests
-
-    // Name        : getPictureInformation
-    // Type        : function
-    // Description : Get information of one specific Picture by it filename and the directory where it is contained
+    /**
+	 * Get information of one specific Picture by it filename and the directory where it is contained
+	 * @param directory Directory where the picture is stored
+	 * @param filename Filename of the picture
+	 * @return The PictureInformation object whose its id is the one requested
+	 * @throws APIException Exception containing the error message coming from the Picture service
+	 */
 	public PictureInformation getPictureInformation(String directory, String filename) throws APIException{
-		CheckAttributes.isEmptyThrowsError(directory);
-		CheckAttributes.isEmptyThrowsError(filename);
+		AttributesTool.isEmptyThrowsError(directory);
+		AttributesTool.isEmptyThrowsError(filename);
 
-		CheckAttributes.checkRegexThrowsError(directory);
-		CheckAttributes.checkRegexThrowsError(filename);
+		AttributesTool.checkRegexThrowsError(directory);
+		AttributesTool.checkRegexThrowsError(filename);
 
 		return getPictureInformation(directory+"/"+filename);
     }
 
-	// Name        : getPictureInformation
-    // Type        : function
-    // Description : Get information of one specific Picture by it filepath
+	/**
+	 * Get information of one specific Picture by it filepath
+	 * @param filepath Path to the picture 
+	 * @return The PictureInformation object whose its id is the one requested
+	 * @throws APIException Exception containing the error message coming from the Picture service
+	 */
 	public PictureInformation getPictureInformation(String filepath) throws APIException{
-		CheckAttributes.isEmptyThrowsError(CheckAttributes.deleteFirstBackslash(filepath));
+		AttributesTool.isEmptyThrowsError(StringTool.deleteFirstBackslash(filepath));
 
-		CheckAttributes.checkRegexThrowsError(CheckAttributes.deleteFirstBackslash(filepath));
+		AttributesTool.checkRegexThrowsError(StringTool.deleteFirstBackslash(filepath));
 
 		if(filepath==null || filepath.equals("")){
 			return null;
 		}
 
-		String http_address=URL+"/api/file/"+filepath+"?action=get-cache-infos";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="&token="+this.token;
+		String http_address=this.getURL()+"/api/file/"+filepath+"?action=get-cache-infos";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="&token="+this.getToken();
 		}
 		return this.accessAuxiOne(HttpMethod.GET, http_address, null);
     }
 
 
 	// HTTP POST request
-
-	// Name        : sendPicture
-    // Type        : function
-    // Description : Create one Picture on the Node JS server in a specific directory
+	/**
+	 * Create one Picture on the Node JS server in a specific directory
+	 * @param directory Directory where the picture is stored
+	 * @param file File to create 
+	 * @return The PictureInformation object created
+	 * @throws APIException Exception containing the error message coming from the Picture service
+	 */
 	public PictureInformation sendPicture(String directory, File file) throws APIException{
 		return this.sendPicture(directory, file, null);
 	}
 	public PictureInformation sendPicture(String directory, File file, String extension) throws APIException{
-		CheckAttributes.isEmptyThrowsError(directory);
+		AttributesTool.isEmptyThrowsError(directory);
 
-		CheckAttributes.checkRegexThrowsError(directory);
+		AttributesTool.checkRegexThrowsError(directory);
 
 		if(file==null){
 			return null;
 		}
 
-		String http_address=URL+"/api/file/"+directory;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/file/"+directory;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 		if(extension!=null && !extension.equals("")){
-			if(this.token!=null && !this.token.equals("")){
+			if(this.getToken()!=null && !this.getToken().equals("")){
 				http_address+="&";
 			}
 			else{
@@ -105,38 +115,51 @@ public class PictureClient extends WebServiceClient
 
 
 	// HTTP DELETE request
-
-	// Name        : deleteOnePicture
-	// Type        : function
-	// Description : Delete one specific Picture by it filename and the directory where it is contained
+	/**
+	 * Delete one specific Picture by it filename and the directory where it is contained
+	 * @param directory Directory where the picture is stored
+	 * @param filename Filename of the picture to remove
+	 * @return The PictureInformation object removed
+	 * @throws APIException Exception containing the error message coming from the Picture service
+	 */
 	public PictureInformation deleteOnePicture(String directory, String filename) throws APIException{
-		CheckAttributes.isEmptyThrowsError(directory);
-		CheckAttributes.isEmptyThrowsError(filename);
+		AttributesTool.isEmptyThrowsError(directory);
+		AttributesTool.isEmptyThrowsError(filename);
 
-		CheckAttributes.checkRegexThrowsError(directory);
-		CheckAttributes.checkRegexThrowsError(filename);
+		AttributesTool.checkRegexThrowsError(directory);
+		AttributesTool.checkRegexThrowsError(filename);
 
 		return deleteOnePicture(directory+"/"+filename);
 	}
 
-	// Name        : deleteOnePicture
-	// Type        : function
-	// Description : Delete of one specific Picture by it filepath
+	/**
+	 * Delete one specific picture
+	 * @param filepath Path to the picture to remove
+	 * @return The PictureInformation object removed
+	 * @throws APIException Exception containing the error message coming from the Picture service
+	 */
 	public PictureInformation deleteOnePicture(String filepath) throws APIException{
-		CheckAttributes.isEmptyThrowsError(CheckAttributes.deleteFirstBackslash(filepath));
+		AttributesTool.isEmptyThrowsError(StringTool.deleteFirstBackslash(filepath));
 
-		CheckAttributes.checkRegexThrowsError(CheckAttributes.deleteFirstBackslash(filepath));
+		AttributesTool.checkRegexThrowsError(StringTool.deleteFirstBackslash(filepath));
 
-		String http_address=URL+"/api/file/"+filepath;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/file/"+filepath;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 		return this.accessAuxiOne(HttpMethod.DELETE, http_address, null);
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	// Auxilary function for webservice clients
+	/**
+	 * Get one picture
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param http_address The URL address of the Picture service (used for all HTTP method)
+	 * @param file File object to send (used for POST)
+	 * @return One Picture object
+	 * @throws APIException Exception containing the error message coming from the Picture service
+	 */
 	protected PictureInformation accessAuxiOne(HttpMethod method, String http_address, File file) throws APIException{
 		try{
 			PictureInformation pictureInfo = (PictureInformation)this.requestOne(method, PictureInformation.class, http_address, null, file);

@@ -1,7 +1,7 @@
 package fr.service_card.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -17,11 +17,13 @@ package fr.service_card.junit.test;
 
 import junit.framework.TestSuite;
 
-/* 
- * Class 	: TestSuite_ServiceCard
- * Author(s): Zidmann
- * Function : This class is used to define the JUnit test cases for testing Card service
- * Version  : 1.0.0
+/**
+ * This class contains the webService client JUnit tests to check if there was no regression in Card service
+ * <p>
+ * This Test Case supposes that you started the NodeJS server and removed all the Card elements in the MongoDB database
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestSuite_ServiceCard extends TestSuite {
 	public static TestSuite suite() {

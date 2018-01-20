@@ -30,14 +30,14 @@ public class Responsible implements Comparable<Responsible>
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 			login			= null;
+	private String 			login			= null;
 
 	/**
 	 * Responsability of the person 
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 			responsability	= null;
+	private String 			responsability	= null;
 
 	/**
 	 * Constructor Responsible

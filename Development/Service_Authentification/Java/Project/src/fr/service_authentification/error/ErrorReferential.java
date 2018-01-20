@@ -24,7 +24,7 @@ public class ErrorReferential{
 	/**
 	 * Unique instance since ErrorReferential class uses singleton pattern
 	 */
-	protected static fr.webservicecore.error.ErrorReferential instance = fr.webservicecore.error.ErrorReferential.getInstance();
+	private static fr.webservicecore.error.ErrorReferential instance = fr.webservicecore.error.ErrorReferential.getInstance();
 
 	/**
 	 * Constructor ErrorReferential to define of all the referenced errors

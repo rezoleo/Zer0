@@ -88,7 +88,7 @@ public class TestCase_Alert_NoSecretPublication extends TestCase_Model
 	public void testSecretPostOneAlertRequest() throws Exception{
 		initSettings();
 
-		//Creation of one card
+		//Creation of one alert
     	String http_address = Common.URL+"/api/alert";
 		@SuppressWarnings("static-access")
 		String token 	   = token_list.getToken("token_alert");

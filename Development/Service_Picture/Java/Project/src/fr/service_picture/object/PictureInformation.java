@@ -1,7 +1,7 @@
 package fr.service_picture.object;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -20,24 +20,39 @@ import com.google.gson.annotations.Since;
 
 import fr.webservicecore.object.APIObject;
 
-/* 
- * Class 	: PictureInformation
- * Author(s): Zidmann
- * Function : This class describes information of one picture 
- * Version  : 1.0.0
+/**
+ * Description of one picture
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class PictureInformation implements APIObject
 {
+	/**
+	 * File path of the picture
+	 */
 	@Expose
 	@Since(1.0)
-	protected String 	file_path	= null;
-	@Expose
-	@Since(1.0)
-	protected String 	checksum	= null;
+	private String 	file_path	= null;
 
+	/**
+	 * Checksum of the picture
+	 */
+	@Expose
+	@Since(1.0)
+	private String 	checksum	= null;
+
+	/**
+	 * Constructor PictureInformation
+	 */
 	public PictureInformation() {
 
 	}
+
+	/**
+	 * Constructor PictureInformation
+	 * @param file_path File path of the picture
+	 * @param checksum Checksum of the picture
+	 */
 	public PictureInformation(String file_path, String checksum) {
 		this.file_path = file_path;
 		this.checksum  = checksum;

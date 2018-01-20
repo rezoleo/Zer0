@@ -1,7 +1,7 @@
 package fr.service_contributor.network;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -25,18 +25,16 @@ import org.apache.http.NameValuePair;
 import fr.cache.object.Cache;
 import fr.service_contributor.object.Contributor;
 import fr.service_contributor.object.Data;
+import fr.webservicecore.error.APIException;
 import fr.webservicecore.network.HttpMethod;
 import fr.webservicecore.network.WebServiceClient;
-import fr.webservicecore.object.APIException;
 import fr.webservicecore.object.APIObject;
-import fr.webservicecore.toolbox.CheckAttributes;
+import fr.webservicecore.toolbox.AttributesTool;;
 
-/* 
- * Class 	: ContributorClient
- * Author(s): Zidmann
- * Function : This class contains the WebService Client to manage contributors in NodeJS server. 
- * Version  : 1.0.0
- * Note		: This class uses directly HttpRequest class
+/** 
+ * Client to manage contributors in the Contributor service
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class ContributorClient extends WebServiceClient
 { 	
@@ -44,62 +42,72 @@ public class ContributorClient extends WebServiceClient
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Contributor FUNCTIONS
     // HTTP GET requests
-
-	// Name        : getAllContributor
-    // Type        : function
-    // Description : Get the list of all the contributors
+	/**
+	 * Get the list of the contributors
+	 * @return An array of all Contributor objects
+	 * @throws APIException Exception containing the error message coming from the Contributor service
+	 */
     public Vector<Contributor> getAllContributor() throws APIException{
-    	String http_address=URL+"/api/contributor";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+    	String http_address=this.getURL()+"/api/contributor";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiSeveral(HttpMethod.GET, http_address, null);
     }
 
-    // Name        : getOneContributorById
-    // Type        : function
-    // Description : Get information of one specific contributor by the contribution id
+    /**
+	 * Get information of one specific contributor identified by its id
+	 * @param id Identification number of the contributor
+	 * @return The Contributor object whose its id is the one requested
+	 * @throws APIException Exception containing the error message coming from the Contributor service
+	 */
 	public Contributor getOneContributorById(String id) throws APIException{
-		CheckAttributes.isEmptyThrowsError(id);
+		AttributesTool.isEmptyThrowsError(id);
 
-		CheckAttributes.checkRegexThrowsError(id);
+		AttributesTool.checkRegexThrowsError(id);
 
-		String http_address=URL+"/api/contributor/"+id;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/contributor/"+id;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiOne(HttpMethod.GET, http_address, null);
     }
 
-    // Name        : getOneContributorByLogin
-    // Type        : function
-    // Description : Get information of one specific contributor by his/her login
+/**
+	 * Get information of one specific contributor by his/her login
+	 * @param login Login of the contributor
+	 * @return The Contributor object whose its code is the one requested
+	 * @throws APIException Exception containing the error message coming from the Contributor service
+	 */
 	public Contributor getOneContributorByLogin(String login) throws APIException{
-		CheckAttributes.isEmptyThrowsError(login);
+		AttributesTool.isEmptyThrowsError(login);
 
-		CheckAttributes.checkRegexThrowsError(login);
+		AttributesTool.checkRegexThrowsError(login);
 
-		String http_address=URL+"/api/contributor/login/"+login;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/contributor/login/"+login;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiOne(HttpMethod.GET, http_address, null);
     }
 
-    // Name        : checkOneContributorByLogin
-    // Type        : function
-    // Description : Check if one login is in the contributor list
+    /**
+	 * Check if one login is in the contributor list
+	 * @param login Login of the contributor
+	 * @return The Contributor object whose its code is the one requested
+	 * @throws APIException Exception containing the error message coming from the Contributor service
+	 */
 	public boolean checkOneContributorByLogin(String login) throws APIException{
-		CheckAttributes.isEmptyThrowsError(login);
+		AttributesTool.isEmptyThrowsError(login);
 
-		CheckAttributes.checkRegexThrowsError(login);
+		AttributesTool.checkRegexThrowsError(login);
 
-		String http_address=URL+"/api/contributor/login/"+login+"?action=check";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="&token="+this.token;
+		String http_address=this.getURL()+"/api/contributor/login/"+login+"?action=check";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="&token="+this.getToken();
 		}
 
 		Data data = this.accessAuxiOneData(HttpMethod.GET, http_address, null);
@@ -109,13 +117,15 @@ public class ContributorClient extends WebServiceClient
 		return false;
     }
 
-	// Name        : getCacheInformation
-    // Type        : function
-    // Description : Get information about the last updates of the contributor list
+	/**
+	 * Get information about the last updates of the contributor list
+	 * @return The Cache object which describes the information about the last updates
+	 * @throws APIException Exception containing the error message coming from the Contributor service
+	 */
 	public Cache getCacheInformation() throws APIException{
-		String http_address=URL+"/api/contributor?action=get-cache-infos";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="&token="+this.token;
+		String http_address=this.getURL()+"/api/contributor?action=get-cache-infos";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="&token="+this.getToken();
 		}
 
 		return this.accessAuxiCache(HttpMethod.GET, http_address, null);
@@ -123,17 +133,20 @@ public class ContributorClient extends WebServiceClient
 
 
 	// HTTP POST request
-
-	// Name        : createContributor
-    // Type        : function
-    // Description : Create a contributor on the Node JS server
+	/**
+	 * Create a contributor on the Node JS server
+	 * @param login Login of the contributor
+	 * @param creator Creator user which created the contributor
+	 * @return The Contributor object created
+	 * @throws APIException Exception containing the error message coming from the Contributor service
+	 */
 	public Contributor createContributor(String login,
 										 String creator) throws APIException{
-		CheckAttributes.isEmptyThrowsError(login);
+		AttributesTool.isEmptyThrowsError(login);
 
-		String http_address=URL+"/api/contributor";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/contributor";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		List<NameValuePair> urlParameters=new ArrayList<NameValuePair>();
@@ -144,25 +157,34 @@ public class ContributorClient extends WebServiceClient
 	}
 
 	// HTTP DELETE request
-
-	// Name        : deleteOneContributor
-	// Type        : function
-	// Description : Delete one specific contributor
+	/**
+	 * Delete one specific contributor
+	 * @param id Identification number of the contributor
+	 * @return The Contributor object removed
+	 * @throws APIException Exception containing the error message coming from the Contributor service
+	 */
 	public Contributor deleteOneContributor(String id) throws APIException{
-		CheckAttributes.isEmptyThrowsError(id);
+		AttributesTool.isEmptyThrowsError(id);
 
-		CheckAttributes.checkRegexThrowsError(id);
+		AttributesTool.checkRegexThrowsError(id);
 
-		String http_address=URL+"/api/contributor/"+id;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/contributor/"+id;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiOne(HttpMethod.DELETE, http_address, null);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	// Auxilary functions for webservice clients
+	/**
+	 * Get one contributor
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param http_address The URL address of the Contributor service (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @return One contributor object
+	 * @throws APIException Exception containing the error message coming from the Contributor service
+	 */
 	protected Contributor accessAuxiOne(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
 		try{
 			Contributor contributor = (Contributor)this.requestOne(method, Contributor.class, http_address, urlParameters, null);
@@ -188,6 +210,14 @@ public class ContributorClient extends WebServiceClient
 		}
 	}
 
+	/**
+	 * Get cache information
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param http_address The URL address of the Contributor service (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @return The Cache object which describes the information about the last updates
+	 * @throws APIException Exception containing the error message coming from the Contributor service
+	 */
 	protected Cache accessAuxiCache(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
 		try{
 			Cache cache = (Cache)this.requestOne(method, Cache.class, http_address, urlParameters, null);
@@ -201,6 +231,14 @@ public class ContributorClient extends WebServiceClient
 		}
 	}
 
+	/**
+	 * Get several contributors
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param http_address The URL address of the Contributor service (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @return Several contributor objects
+	 * @throws APIException Exception containing the error message coming from the Contributor service
+	 */
 	protected Vector<Contributor> accessAuxiSeveral(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
 		try{
     		Vector<APIObject>	vector_auxi 	= this.requestSeveral(method, Contributor.class, http_address, urlParameters, null);

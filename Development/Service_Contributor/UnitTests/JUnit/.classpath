@@ -2,15 +2,15 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Module_WebServiceCore/Java/JAR/webservicecore-1.0.0.jar"/>
 	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Service_Contributor/UnitTests/Utils/gson-2.2.4.jar"/>
 	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Service_Contributor/UnitTests/Utils/hamcrest-all-1.3.jar"/>
 	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Service_Contributor/UnitTests/Utils/junit-4.12-beta-1.jar"/>
 	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Service_Contributor/UnitTests/Utils/org.apache.httpcomponents.httpclient_4.3.3.jar"/>
-	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Module_Core/Java/JAR/core-1.0.0.jar"/>
-	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Module_Cache/Java/JAR/cache-1.0.0.jar"/>
-	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Template_JUnit/JAR/junittemplate-1.0.0.jar"/>
-	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Service_Contributor/Java/JAR/service_contributor-1.0.0.jar"/>
 	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Service_Contributor/UnitTests/Utils/commons-logging-1.1.3.jar"/>
+	<classpathentry kind="lib" path="/home/zidmann/Bureau/Projets_Informatique/RezoLution/Zer0/Development/Module_Cache/Java/JAR/cache-1.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/zidmann/Bureau/Projets_Informatique/RezoLution/Zer0/Development/Module_Core/Java/JAR/core-1.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/zidmann/Bureau/Projets_Informatique/RezoLution/Zer0/Development/Template_JUnit/JAR/junittemplate-1.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/zidmann/Bureau/Projets_Informatique/RezoLution/Zer0/Development/Module_WebServiceCore/Java/JAR/webservicecore-1.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/zidmann/Bureau/Projets_Informatique/RezoLution/Zer0/Development/Service_Contributor/Java/JAR/service_contributor-1.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

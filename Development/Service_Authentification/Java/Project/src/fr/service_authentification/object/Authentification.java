@@ -34,70 +34,70 @@ public class Authentification implements APIObject
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 	_id			= null;
+	private String 	_id			= null;
 
 	/**
 	 * Login of the access
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 	login		= null;
+	private String 	login		= null;
 
 	/**
 	 * Mail of the access
 	 */	
 	@Expose
 	@Since(1.0)
-	protected String 	mail		= null;
+	private String 	mail		= null;
 
 	/**
 	 * Status of the access
 	 */	
 	@Expose
 	@Since(1.0)
-	protected String 	status		= null;
+	private String 	status		= null;
 
 	/**
 	 * Creator user which created the access
 	 */	
 	@Expose
 	@Since(1.0)
-	protected String 	creator		= null;
+	private String 	creator		= null;
 
 	/**
 	 * Creation date of the access
 	 */
 	@Expose
 	@Since(1.0)
-	protected Date 		created		= null;
+	private Date 		created		= null;
 
 	/**
 	 * Service which created the access
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 	creatorService = null;
+	private String 	creatorService = null;
 
 	/**
 	 * Updator user which updated the access
 	 */	
 	@Expose
 	@Since(1.0)
-	protected String 	updator		= null;
+	private String 	updator		= null;
 
 	/**
 	 * Update date of the access
 	 */
 	@Expose
 	@Since(1.0)
-	protected Date 		updated		= null;
+	private Date 		updated		= null;
 
 	/**
 	 * Service which updated the access
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 	updatorService = null;
+	private String 	updatorService = null;
 
 	/**
 	 * Constructor Authentification

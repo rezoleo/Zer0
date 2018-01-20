@@ -1,7 +1,7 @@
 package fr.service_card.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -20,17 +20,20 @@ import org.junit.Test;
 import fr.service_card.junit.model.TestCase_Model;
 import fr.service_card.object.Card;
 
-/* 
- * Class 	: TestCase_Card
- * Author(s): Zidmann
- * Function : This class contains the webService client JUnit tests to check if there was no regression in Card service 
- * Version  : 1.0.0 
- * Note		: This Test Case supposes that you started the NodeJS server
- * 			  and removed all the cards in the MongoDB database
+/**
+ * This class contains the webService client JUnit tests to check if there was no regression in Card service
+ * <p>
+ * This Test Case supposes that you started the NodeJS server and removed all the Card elements in the MongoDB database
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Card extends TestCase_Model
 {
-	//Testing all the student cards APIs for usual actions 
+	/**
+	 * Testing all the student cards APIs for usual actions 
+	 * @throws Exception Exception returned by the system
+	 */ 
 	@Test
 	public void testCardClientAPI() throws Exception{	
 		initSettings();
@@ -38,35 +41,35 @@ public class TestCase_Card extends TestCase_Model
 		//Creation of two cards - Test POST function
 		//Get all the cards - Test GET function
 		checkCardQuantity(0);
-		Card card1=ws_client.createCard("ownerone", "cde1ffff", "ON", "creatoro");
+		Card card1=ws_client.createCard("ownerone", "cde1ffffffffff", "ON", "creatoro");
 		assertNotNull(card1);
 		assertNotNull(card1.get_id());
 		assertNotNull(card1.getCreated());
-		Card cardRef = new Card(card1.get_id(), "ownerone", "cde1ffff", "ON", "creatoro",
+		Card cardRef = new Card(card1.get_id(), "ownerone", "cde1ffffffffff", "ON", "creatoro",
 								card1.getCreated(), "JunitTests", 
 								null, null, null);
 		assertEquals(cardRef, card1);
 
 		checkCardQuantity(1);
-		Card card2=ws_client.createCard("ownertwo",  "cde2bbbb", "OFF", "creatort");
+		Card card2=ws_client.createCard("ownertwo",  "cde2bbbbbbbbbb", "OFF", "creatort");
 		assertNotNull(card2);
 		assertNotNull(card2.get_id());
 		assertNotNull(card2.getCreated());
-		Card cardRef2 = new Card(card2.get_id(), "ownertwo", "cde2bbbb", "OFF", "creatort",
+		Card cardRef2 = new Card(card2.get_id(), "ownertwo", "cde2bbbbbbbbbb", "OFF", "creatort",
 								 card2.getCreated(), "JunitTests", 
 								 null, null, null);
 		assertEquals(cardRef2, card2);
 
 		checkCardQuantity(2);
-		Card card3=ws_client.getOneCardByCode("cde2bbbb");
+		Card card3=ws_client.getOneCardByCode("cde2bbbbbbbbbb");
 		assertEquals(cardRef2, card3);
 
 		//Update one card1
 		checkCardQuantity(2);
-		Card card4=ws_client.updateCard(card2.get_id(), "ownersix", "cde3cccc", "ON", "updator");
+		Card card4=ws_client.updateCard(card2.get_id(), "ownersix", "cde3cccccccccc", "ON", "updator");
 		assertNotNull(card4.getUpdated());
 		cardRef2.setOwner("ownersix");
-		cardRef2.setCode("cde3cccc");
+		cardRef2.setCode("cde3cccccccccc");
 		cardRef2.setStatus("ON");
 		cardRef2.setUpdated(card4.getUpdated());
 		cardRef2.setUpdator("updator");

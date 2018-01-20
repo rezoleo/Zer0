@@ -59,7 +59,7 @@ public class Hash {
 	 * @param data The byte chain to convert
 	 * @return The string
 	 */
-	protected static String convertByteToHex(byte data[]){
+	private static String convertByteToHex(byte data[]){
         StringBuffer hexData = new StringBuffer();
         for (int byteIndex = 0; byteIndex < data.length; byteIndex++){
             hexData.append(Integer.toString((data[byteIndex] & 0xff) + 0x100, 16).substring(1));
@@ -67,7 +67,7 @@ public class Hash {
         return hexData.toString();
     }
 
-	protected static MessageDigest getMessageDigest(String str) throws Exception{
+	private static MessageDigest getMessageDigest(String str) throws Exception{
 		return MessageDigest.getInstance(str);
 	}
 }

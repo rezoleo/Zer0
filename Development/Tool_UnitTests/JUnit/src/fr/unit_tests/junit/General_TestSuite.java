@@ -1,7 +1,7 @@
 package fr.unit_tests.junit;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -18,13 +18,11 @@ package fr.unit_tests.junit;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-/* 
- * Class 	: General_TestSuite
- * Author(s): Zidmann
- * Function : This class is used to call all the JUnit tests
- * Version  : 1.0.0
+/**
+ * This class is used to call all the JUnit tests
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
-
 public class General_TestSuite extends TestCase{
 	public static TestSuite suite() {
 		TestSuite testSuite = new TestSuite();

@@ -31,16 +31,16 @@ import fr.service_authentification.object.Authentification;
 public class TestCase_Authentification extends TestCase_Model
 {
 	/**
-	 * Testing all the student cards APIs for usual actions 
+	 * Testing all the access APIs for usual actions 
 	 * @throws Exception Exception returned by the system
 	 */
 	@Test
-	public void testCardClientAPI() throws Exception
+	public void testAuthentificationClientAPI() throws Exception
 	{	
 		initSettings();
 
-		//Creation of two access - Test POST function
-		//Get all the cards - Test GET function
+		//Creation of two accesses - Test POST function
+		//Get all the accesses - Test GET function
 		Authentification access1=ws_client.createAccess("loginone", "passwordOne", "mailone@mail.com", "ON", "creator");
 		assertNotNull(access1);
 		assertNotNull(access1.get_id());

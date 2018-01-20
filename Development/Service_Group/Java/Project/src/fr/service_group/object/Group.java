@@ -36,105 +36,105 @@ public class Group implements APIObject
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 					_id				= null;
+	private String 					_id				= null;
 
 	/**
 	 * Name of the group
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 					name			= null;
+	private String 					name			= null;
 
 	/**
 	 * Type of the group
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 					type			= null;	
+	private String 					type			= null;	
 
 	/**
 	 * Description of the group
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 					description		= null;
+	private String 					description		= null;
 
 	/**
 	 * Mail of the group
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 					mail			= null;
+	private String 					mail			= null;
 
 	/**
 	 * Logo path of the group
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 					logo			= null;
+	private String 					logo			= null;
 
 	/**
 	 * Picture path of the group
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 					picture			= null;
+	private String 					picture			= null;
 
 	/**
 	 * List of the login of the members of the group 
 	 */
 	@Expose
 	@Since(1.0)
-	protected SortedSet<String>			members			= new TreeSet<String>();
+	private SortedSet<String>			members			= new TreeSet<String>();
 
 	/**
 	 * List of the login of the responsibles of the group 
 	 */
 	@Expose
 	@Since(1.0)
-	protected SortedSet<Responsible>	responsibles	= new TreeSet<Responsible>();
+	private SortedSet<Responsible>	responsibles	= new TreeSet<Responsible>();
 
 	/**
 	 * Creator user which created the group
 	 */	
 	@Expose
 	@Since(1.0)
-	protected String 					creator			= null;
+	private String 					creator			= null;
 
 	/**
 	 * Creation date of the group
 	 */
 	@Expose
 	@Since(1.0)
-	protected Date 						created			= null;
+	private Date 						created			= null;
 
 	/**
 	 * Service which created the group
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 					creatorService 	= null;
+	private String 					creatorService 	= null;
 
 	/**
 	 * Updator user which updated the group
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 					updator			= null;
+	private String 					updator			= null;
 
 	/**
 	 * Update date of the group
 	 */
 	@Expose
 	@Since(1.0)
-	protected Date 						updated			= null;
+	private Date 						updated			= null;
 
 	/**
 	 * Service which updated the group
 	 */
 	@Expose
 	@Since(1.0)
-	protected String 					updatorService 	= null;
+	private String 					updatorService 	= null;
 
 	/**
 	 * Constructor Group

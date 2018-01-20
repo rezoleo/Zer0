@@ -1,7 +1,7 @@
 package fr.service_provider.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -39,38 +39,38 @@ public class TestCase_Card_OfflineRestriction extends TestCase_Model
 		//Creation of two cards - Test POST function
 		//Get all the cards - Test GET function
 		checkCardQuantity(0);
-		Card card1=ws_client_card.createCard("ownerone", "cde1ffff", "OFF", "creatoro");
+		Card card1=ws_client_card.createCard("ownerone", "cde1ffffffffff", "OFF", "creatoro");
 		assertNotNull(card1);
 		assertNotNull(card1.get_id());
 		assertNotNull(card1.getCreated());
-		Card cardRef = new Card(card1.get_id(), "ownerone", "cde1ffff", "OFF", "creatoro",
+		Card cardRef = new Card(card1.get_id(), "ownerone", "cde1ffffffffff", "OFF", "creatoro",
 								card1.getCreated(), "JunitTests", 
 								null, null, null);
 		assertEquals(cardRef, card1);
 
 		checkCardQuantity(1);
-		Card card2=ws_client_card.createCard("ownertwo",  "cde2bbbb", "OFF", "creatort");
+		Card card2=ws_client_card.createCard("ownertwo",  "cde2bbbbbbbbbb", "OFF", "creatort");
 		assertNotNull(card2);
 		assertNotNull(card2.get_id());
 		assertNotNull(card2.getCreated());
-		Card cardRef2 = new Card(card2.get_id(), "ownertwo", "cde2bbbb", "OFF", "creatort",
+		Card cardRef2 = new Card(card2.get_id(), "ownertwo", "cde2bbbbbbbbbb", "OFF", "creatort",
 								 card2.getCreated(), "JunitTests", 
 								 null, null, null);
 		assertEquals(cardRef2, card2);
 
 		checkCardQuantity(2);
-		Card card3=ws_client_card_proxy.getOneCardByCode("cde2bbbb");
-		Card cardRef3 = new Card(card3.get_id(), null, "cde2bbbb", "OFF",
+		Card card3=ws_client_card_proxy.getOneCardByCode("cde2bbbbbbbbbb");
+		Card cardRef3 = new Card(card3.get_id(), null, "cde2bbbbbbbbbb", "OFF",
 								 null, card3.getCreated(), null, 
 								 null, null, null);
 		assertEquals(cardRef3, card3);
 
 		//Update one card1
 		checkCardQuantity(2);
-		Card card4=ws_client_card.updateCard(card2.get_id(), "ownersix", "cde3cccc", "OFF", "updator");
+		Card card4=ws_client_card.updateCard(card2.get_id(), "ownersix", "cde3cccccccccc", "OFF", "updator");
 		assertNotNull(card4.getUpdated());
 		cardRef2.setOwner("ownersix");
-		cardRef2.setCode("cde3cccc");
+		cardRef2.setCode("cde3cccccccccc");
 		cardRef2.setUpdated(card4.getUpdated());
 		cardRef2.setUpdator("updator");
 		cardRef2.setUpdatorService("JunitTests");
@@ -79,7 +79,7 @@ public class TestCase_Card_OfflineRestriction extends TestCase_Model
 		//Get one single card1
 		checkCardQuantity(2);
 		Card card5=ws_client_card_proxy.getOneCardById(card2.get_id());
-		cardRef3.setCode("cde3cccc");
+		cardRef3.setCode("cde3cccccccccc");
 		cardRef3.setCreated(card5.getCreated());
 		cardRef3.setUpdated(card5.getUpdated());
 		assertEquals(cardRef3, card5);

@@ -65,7 +65,7 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Mo
 
 	/**
 	 * Get the list of groups and count them to check if the quantity is the one expected
-	 * @param number The quantity of cards expected
+	 * @param number The quantity of groups expected
 	 * @throws APIException Exception returned by the service
 	 */
 	protected void checkGroupQuantity(int number) throws APIException{

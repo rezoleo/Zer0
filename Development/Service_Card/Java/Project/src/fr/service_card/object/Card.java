@@ -1,7 +1,7 @@
 package fr.service_card.object;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -20,48 +20,102 @@ import java.util.Date;
 
 import fr.webservicecore.object.APIObject;
 
-/* 
- * Class 	: Card
- * Author(s): Zidmann
- * Function : This class describes a card 
- * Version  : 1.0.0
+/**
+ * Description of a card
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class Card implements APIObject
 {
+	/**
+	 * Id of the card
+	 */
 	@Expose
 	@Since(1.0)
-	protected String 	_id				= null;
+	private String 	_id				= null;
+
+	/**
+	 * Login of the owner of the card
+	 */
 	@Expose
 	@Since(1.0)
-	protected String 	owner			= null;
+	private String 	owner			= null;
+
+	/**
+	 * Code of the card
+	 */
 	@Expose
 	@Since(1.0)
-	protected String 	code			= null;
+	private String 	code			= null;
+
+	/**
+	 * Status of the card
+	 */
 	@Expose
 	@Since(1.0)
-	protected String 	status			= null;
+	private String 	status			= null;
+
+	/**
+	 * Creator user which created the access
+	 */	
 	@Expose
 	@Since(1.0)
-	protected String 	creator			= null;
+	private String 	creator			= null;
+
+	/**
+	 * Creation date of the access
+	 */
 	@Expose
 	@Since(1.0)
-	protected Date 		created			= null;
+	private Date 		created			= null;
+
+	/**
+	 * Service which created the access
+	 */
 	@Expose
 	@Since(1.0)
-	protected String 	creatorService 	= null;
+	private String 	creatorService 	= null;
+
+	/**
+	 * Updator user which updated the access
+	 */
 	@Expose
 	@Since(1.0)
-	protected String 	updator			= null;
+	private String 	updator			= null;
+
+	/**
+	 * Update date of the access
+	 */
 	@Expose
 	@Since(1.0)
-	protected Date 		updated			= null;
+	private Date 		updated			= null;
+
+	/**
+	 * Service which updated the access
+	 */
 	@Expose
 	@Since(1.0)
-	protected String 	updatorService	= null;
-		
+	private String 	updatorService	= null;
+
+	/**
+	 * Constructor Card
+	 */
 	public Card(){
 		
 	}
+	/**
+	 * Constructor Card
+	 * @param _id Id of the card
+	 * @param owner Login of the owner of the card
+	 * @param code Code of the card
+	 * @param status Status of the card
+	 * @param creator Creator user which created the access
+	 * @param created Creation date of the access
+	 * @param creatorService Service which created the access
+	 * @param updator Updator user which updated the access
+	 * @param updated Update date of the access
+	 * @param updatorService Service which updated the access
+	 */
 	public Card(String _id,     String owner, String code,    String status,
 				String creator, Date created, String creatorService, 
 				String updator, Date updated, String updatorService){

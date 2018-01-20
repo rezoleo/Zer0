@@ -1,7 +1,7 @@
 package fr.service_card.network;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -24,76 +24,83 @@ import org.apache.http.NameValuePair;
 
 import fr.cache.object.Cache;
 import fr.service_card.object.Card;
+import fr.webservicecore.error.APIException;
 import fr.webservicecore.network.HttpMethod;
 import fr.webservicecore.network.WebServiceClient;
-import fr.webservicecore.object.APIException;
 import fr.webservicecore.object.APIObject;
-import fr.webservicecore.toolbox.CheckAttributes;
+import fr.webservicecore.toolbox.AttributesTool;
 
-/* Class 	: CardClient
- * Author(s): Zidmann
- * Function : This class contains the WebService Client to manage cards in NodeJS server. 
- * Version  : 1.0.0
- * Note		: This class uses directly HttpRequest class
+/** 
+ * Client to manage accesses in the Card service
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class CardClient extends WebServiceClient
-{ 	
-
+{
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Card FUNCTIONS
     // HTTP GET requests
-
-	// Name        : getAllCards
-    // Type        : function
-    // Description : Get the list of all the cards
+	/**
+	 * Get the list of the cards
+	 * @return An array of all Card objects
+	 * @throws APIException Exception containing the error message coming from the Card service
+	 */
     public Vector<Card> getAllCard() throws APIException{
-    	String http_address=URL+"/api/card";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+    	String http_address=this.getURL()+"/api/card";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiSeveral(HttpMethod.GET, http_address, null);
     }
 
-    // Name        : getOneCardById
-    // Type        : function
-    // Description : Get information of one specific card by id of the card id
+    /**
+	 * Get information of one specific card identified by its id
+	 * @param id Identification number of the card
+	 * @return The Card object whose its id is the one requested
+	 * @throws APIException Exception containing the error message coming from the Card service
+	 */
 	public Card getOneCardById(String id) throws APIException{
-		CheckAttributes.isEmptyThrowsError(id);
+		AttributesTool.isEmptyThrowsError(id);
 
-		CheckAttributes.checkRegexThrowsError(id);
+		AttributesTool.checkRegexThrowsError(id);
 
-		String http_address=URL+"/api/card/"+id;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/card/"+id;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiOne(HttpMethod.GET, http_address, null);
     }
 
-    // Name        : getOneCardByCode
-    // Type        : function
-    // Description : Get information of one specific card by id of the card code
+    /**
+	 * Get information of one specific card identified by its code
+	 * @param code Code of the card
+	 * @return The Card object whose its code is the one requested
+	 * @throws APIException Exception containing the error message coming from the Card service
+	 */
 	public Card getOneCardByCode(String code) throws APIException{
-		CheckAttributes.isEmptyThrowsError(code);
+		AttributesTool.isEmptyThrowsError(code);
 
-		CheckAttributes.checkRegexThrowsError(code);
+		AttributesTool.checkRegexThrowsError(code);
 
-		String http_address=URL+"/api/card/code/"+code;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/card/code/"+code;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiOne(HttpMethod.GET, http_address, null);
     }
 
-    // Name        : getCacheInformation
-    // Type        : function
-    // Description : Get information about the last updates of the card list
+	/**
+	 * Get information about the last updates done in the Card service
+	 * @return The Cache object which describes the information about the last updates
+	 * @throws APIException Exception containing the error message coming from the Card service
+	 */
 	public Cache getCacheInformation() throws APIException{
-		String http_address=URL+"/api/card?action=get-cache-infos";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="&token="+this.token;
+		String http_address=this.getURL()+"/api/card?action=get-cache-infos";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="&token="+this.getToken();
 		}
 
 		return this.accessAuxiCache(HttpMethod.GET, http_address, null);
@@ -101,20 +108,25 @@ public class CardClient extends WebServiceClient
 
 
 	// HTTP POST request
-
-	// Name        : createCard
-    // Type        : function
-    // Description : Create a card on the Node JS server
+	/**
+	 * Create a card on the Card service
+	 * @param owner Login of the owner of the card
+	 * @param code Code of the card
+	 * @param status Status of the card
+	 * @param creator Creator user which created the access
+	 * @return The Card object created
+	 * @throws APIException Exception containing the error message coming from the Card service
+	 */
 	public Card createCard(	String owner, 
 							String code,    String status,
 							String creator) throws APIException{
-		CheckAttributes.isEmptyThrowsError(owner);
-		CheckAttributes.isEmptyThrowsError(code);
-		CheckAttributes.isEmptyThrowsError(status);
+		AttributesTool.isEmptyThrowsError(owner);
+		AttributesTool.isEmptyThrowsError(code);
+		AttributesTool.isEmptyThrowsError(status);
 
-		String http_address=URL+"/api/card";
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/card";
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		List<NameValuePair> urlParameters=new ArrayList<NameValuePair>();
@@ -128,19 +140,25 @@ public class CardClient extends WebServiceClient
 
 
 	// HTTP PUT request
-
-	// Name        : updateCard
-    // Type        : function
-    // Description : Update a card on the Node JS server
+	/**
+	 * Update a card in the Node JS server
+	 * @param id Identification number of the card
+	 * @param owner Login of the owner of the card
+	 * @param code Code of the card
+	 * @param status Status of the card
+	 * @param updator Updator user which updated the access
+	 * @return The Card object after the update
+	 * @throws APIException Exception containing the error message coming from the Card service
+	 */
 	public Card updateCard(	String id, 		String owner, 
 							String code,    String status,
 							String updator) throws APIException{
-		CheckAttributes.isEmptyThrowsError(id);
-		CheckAttributes.isEmptyThrowsError(owner);
-		CheckAttributes.isEmptyThrowsError(code);
-		CheckAttributes.isEmptyThrowsError(status);
+		AttributesTool.isEmptyThrowsError(id);
+		AttributesTool.isEmptyThrowsError(owner);
+		AttributesTool.isEmptyThrowsError(code);
+		AttributesTool.isEmptyThrowsError(status);
 
-		CheckAttributes.checkRegexThrowsError(id);
+		AttributesTool.checkRegexThrowsError(id);
 
 		List<NameValuePair> urlParameters=new ArrayList<NameValuePair>();
 		urlParameters.add(new BasicNameValuePair("owner",    owner));
@@ -148,9 +166,9 @@ public class CardClient extends WebServiceClient
 		urlParameters.add(new BasicNameValuePair("status",   status));
 		urlParameters.add(new BasicNameValuePair("updator",  updator));
 
-		String http_address=URL+"/api/card/"+id;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/card/"+id;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiOne(HttpMethod.PUT, http_address, urlParameters);
@@ -158,25 +176,34 @@ public class CardClient extends WebServiceClient
 
 
 	// HTTP DELETE request
-
-	// Name        : deleteOneCard
-	// Type        : function
-	// Description : Delete one specific card
+	/**
+	 * Delete one specific card
+	 * @param id Identification number of the card
+	 * @return The Card object removed
+	 * @throws APIException Exception containing the error message coming from the Card service
+	 */
 	public Card deleteOneCard(String id) throws APIException{
-		CheckAttributes.isEmptyThrowsError(id);
+		AttributesTool.isEmptyThrowsError(id);
 
-		CheckAttributes.checkRegexThrowsError(id);
+		AttributesTool.checkRegexThrowsError(id);
 
-		String http_address=URL+"/api/card/"+id;
-		if(this.token!=null && !this.token.equals("")){
-			http_address+="?token="+this.token;
+		String http_address=this.getURL()+"/api/card/"+id;
+		if(this.getToken()!=null && !this.getToken().equals("")){
+			http_address+="?token="+this.getToken();
 		}
 
 		return this.accessAuxiOne(HttpMethod.DELETE, http_address, null);
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	// Auxilary functions for webservice clients
+	/**
+	 * Get one card
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param http_address The URL address of the Card service (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @return One card object
+	 * @throws APIException Exception containing the error message coming from the Card service
+	 */
 	protected Card accessAuxiOne(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
 		try{
 			Card card = (Card)this.requestOne(method, Card.class, http_address, urlParameters, null);
@@ -190,6 +217,14 @@ public class CardClient extends WebServiceClient
 		}
 	}
 
+	/**
+	 * Get cache information
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param http_address The URL address of the Card service (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @return The Cache object which describes the information about the last updates
+	 * @throws APIException Exception containing the error message coming from the Card service
+	 */
 	protected Cache accessAuxiCache(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
 		try{
 			Cache cache = (Cache)this.requestOne(method, Cache.class, http_address, urlParameters, null);
@@ -203,6 +238,14 @@ public class CardClient extends WebServiceClient
 		}
 	}
 
+	/**
+	 * Get several cards
+	 * @param method The HTTP method chosen to interact with the server
+	 * @param http_address The URL address of the Card service (used for all HTTP method)
+	 * @param urlParameters The list of parameters to send (used for POST and PUT HTTP methods)
+	 * @return Several card objects
+	 * @throws APIException Exception containing the error message coming from the Card service
+	 */
 	protected Vector<Card> accessAuxiSeveral(HttpMethod method, String http_address, List<NameValuePair> urlParameters) throws APIException{
 		try{
     		Vector<APIObject>	vector_auxi 	= this.requestSeveral(method, Card.class, http_address, urlParameters, null);

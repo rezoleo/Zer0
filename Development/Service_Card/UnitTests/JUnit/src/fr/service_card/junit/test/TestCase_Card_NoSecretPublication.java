@@ -1,7 +1,7 @@
 package fr.service_card.junit.test;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -30,13 +30,13 @@ import fr.service_card.junit.model.TestCase_Model;
 import fr.service_card.object.Card;
 import fr.core.network.HttpCommunication;
 
-/* 
- * Class 	: TestCase_Card_NoSecretPublication
- * Author(s): Zidmann
- * Function : This class contains the webService client JUnit tests to check if the IP (creatorIP, updatorIP) are not shown when data are extracted from Card service 
- * Version  : 1.0.0 
- * Note		: This Test Case supposes that you started the NodeJS server
- * 			  and removed all the Card elements in the MongoDB database
+/**
+ * This class contains the webService client JUnit tests to check if the IP (creatorIP, updatorIP) are not shown when data are extracted from Card service
+ * <p>
+ * This Test Case supposes that you started the NodeJS server and removed all the Card elements in the MongoDB database
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Card_NoSecretPublication extends TestCase_Model
 {
@@ -50,7 +50,7 @@ public class TestCase_Card_NoSecretPublication extends TestCase_Model
 		initSettings();
 
 		//Creation of one card
-		card = ws_client.createCard("owner", "aaaaaaaa", "ON", "creator");
+		card = ws_client.createCard("owner", "aaaaaaaaaaaaaa", "ON", "creator");
 
     	String http_address = Common.URL+"/api/card";
 		@SuppressWarnings("static-access")
@@ -73,7 +73,7 @@ public class TestCase_Card_NoSecretPublication extends TestCase_Model
 		initSettings();
 
 		//Creation of one card
-		card = ws_client.createCard("owner", "aaaaaaaa", "ON", "creator");
+		card = ws_client.createCard("owner", "aaaaaaaaaaaaaa", "ON", "creator");
 
     	String http_address = Common.URL+"/api/card/"+card.get_id();
 		@SuppressWarnings("static-access")
@@ -96,9 +96,9 @@ public class TestCase_Card_NoSecretPublication extends TestCase_Model
 		initSettings();
 
 		//Creation of one card
-		card = ws_client.createCard("owner", "aaaaaaaa", "ON", "creator");
+		card = ws_client.createCard("owner", "aaaaaaaaaaaaaa", "ON", "creator");
 
-    	String http_address = Common.URL+"/api/card/code/aaaaaaaa";
+    	String http_address = Common.URL+"/api/card/code/aaaaaaaaaaaaaa";
 		@SuppressWarnings("static-access")
 		String token 	   = token_list.getToken("token_card");
 		if(token!=null && !token.equals("")){
@@ -127,7 +127,7 @@ public class TestCase_Card_NoSecretPublication extends TestCase_Model
 		}
 		List<NameValuePair> urlParameters=new ArrayList<NameValuePair>();
 		urlParameters.add(new BasicNameValuePair("owner",    "owner"));
-		urlParameters.add(new BasicNameValuePair("code",     "aaaaaaaa"));
+		urlParameters.add(new BasicNameValuePair("code",     "aaaaaaaaaaaaaa"));
 		urlParameters.add(new BasicNameValuePair("status",   "ON"));
 		urlParameters.add(new BasicNameValuePair("creator",  "creator"));
 		String response = HttpCommunication.getInstance().sendPost(http_address, urlParameters);
@@ -147,7 +147,7 @@ public class TestCase_Card_NoSecretPublication extends TestCase_Model
 		initSettings();
 
 		//Creation of one card
-		card=ws_client.createCard("owner", "aaaaaaaa", "ON", "creator");
+		card=ws_client.createCard("owner", "aaaaaaaaaaaaaa", "ON", "creator");
 
 		//Update of one card
 		String http_address = Common.URL+"/api/card/"+card.get_id();
@@ -158,7 +158,7 @@ public class TestCase_Card_NoSecretPublication extends TestCase_Model
 		}
 		List<NameValuePair> urlParameters=new ArrayList<NameValuePair>();
 		urlParameters.add(new BasicNameValuePair("owner",    "owner"));
-		urlParameters.add(new BasicNameValuePair("code",     "aaaaaaaa"));
+		urlParameters.add(new BasicNameValuePair("code",     "aaaaaaaaaaaaaa"));
 		urlParameters.add(new BasicNameValuePair("status",   "ON"));
 		urlParameters.add(new BasicNameValuePair("updator",  "updator"));
 		String response = HttpCommunication.getInstance().sendPut(http_address, urlParameters);
@@ -176,7 +176,7 @@ public class TestCase_Card_NoSecretPublication extends TestCase_Model
 		initSettings();
 
 		//Creation of one card
-		card = ws_client.createCard("owner", "aaaaaaaa", "ON", "creator");
+		card = ws_client.createCard("owner", "aaaaaaaaaaaaaa", "ON", "creator");
 
 		//Deletion of the card
     	String http_address = Common.URL+"/api/card/"+card.get_id();

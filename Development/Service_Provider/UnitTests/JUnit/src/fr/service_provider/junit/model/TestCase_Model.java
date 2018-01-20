@@ -1,7 +1,7 @@
 package fr.service_provider.junit.model;
 
 /*
- * Copyright 2015-2016 Emmanuel ZIDEL-CAUFFET
+ * Copyright 2015-2017 Emmanuel ZIDEL-CAUFFET
  *
  * This class is used in a project designed by some Ecole Centrale de Lille students.
  * This program is distributed in the hope that it will be useful.
@@ -32,9 +32,9 @@ import fr.service_people.network.PeopleClient;
 import fr.service_people.object.Person;
 import fr.service_picture.network.PictureClient;
 import fr.service_provider.junit.token.TokenReferential;
-import fr.webservicecore.object.APIException;
-import fr.webservicecore.object.ErrorMessage;
+import fr.webservicecore.error.APIException;
 import fr.webservicecore.error.Error;
+import fr.webservicecore.error.ErrorMessage;
 import fr.webservicecore.error.ErrorReferential;
 
 /* 
