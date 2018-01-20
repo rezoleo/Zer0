@@ -14,13 +14,13 @@ package fr.service_provider.junit.token;
  *
  */
 
-
-/* 
- * Class 	: TokenReferential
- * Author(s): Zidmann
- * Function : This class contains all the tokens used to test the password reset service
- * Version  : 1.0.0
- * Note		: The key used for these tokens is : "d2s42dggjfqlry6Jfs9shrgrxjthty"
+/**
+ * List of all the tokens used to test the Alert, Authentification, Card, Contributor, Group, People, Picture and Provider services
+ * <p>
+ * The key used for these tokens is : "d2s42dggjfqlry6Jfs9shrgrxjthty"
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TokenReferential{
 	public TokenReferential(){
@@ -36,11 +36,20 @@ public class TokenReferential{
 		putToken("token_provider",		 	"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzb3VyY2VfaXAiOiIxMjcuMC4wLjEiLCJzb3VyY2Vfc2VydmljZSI6Ikp1bml0VGVzdHMiLCJkZXN0X3NlcnZpY2UiOiJTZXJ2aWNlX1Byb3ZpZGVyIiwiZW5kX2RhdGUiOiIyMDE3LTAxLTE1VDIzOjEwOjM4LjQxOFoiLCJhY2Nlc3MiOlsiR0VUQXV0aCIsIlBPU1RBdXRoTG9naW4iLCJHRVRDYXJkIiwiR0VUQ2FyZElkIiwiR0VUQ2FyZENvZGUiLCJHRVRDb250cmlidXRvciIsIkdFVENvbnRyaWJ1dG9ySWQiLCJHRVRDb250cmlidXRvckxvZ2luIiwiR0VUUGVvcGxlIiwiR0VUUGVvcGxlSWQiLCJHRVRQZW9wbGVMb2dpbiIsIkdFVFBlb3BsZU1haWwiLCJHRVRQaWN0dXJlIiwiR0VUR3JvdXAiLCJHRVRHcm91cElkIiwiR0VUR3JvdXBOYW1lIiwiR0VUR3JvdXBTZWFyY2giXSwiZXh0cmEiOnsicmVhZCI6WyJKdW5pdFRlc3RzIiwiZGlyZWN0b3J5IiwiZGlyZWN0b3J5w6kiLCJkaXJlY3RvcnnDoCIsImRpcmVjdG9yeSYiLCJkaXJlY3RvcnkrIiwiZGlyZWN0b3J5PSIsImRpcmVjdG9yeToiLCJkaXJlY3RvcnkoIiwiZGlyZWN0b3J5JTIwIl19fQ.e2uZvzqcR866iX7FZik1th4z_MfzdNTg78riXhBo7UA");
 	}
 
+	/**
+	 * Insert into the list of token one token
+	 * @param key The key to refer to the token
+	 * @param value The token
+	 */
 	public static void putToken(String key, String value){
 		fr.junittemplate.token.TokenReferential.putToken(key, value);
 	}
 
-	//Function to extract a specific token in all the list
+	/**
+	 * Extract a specific token in all the list
+	 * @param key The key to refer to the token
+	 * @return The expected token
+	 */
 	public static String getToken(String key){
 		return fr.junittemplate.token.TokenReferential.getToken(key);
 	}

@@ -58,7 +58,7 @@ public class HttpCommunication
 	/**
 	 * Constant to define default User-Agent used to interact with NodeJS server
 	 */
-	private final String	defaultUserAgent = "JavaApplication/1.0.0";
+	private final String	defaultUserAgent = "JavaApplication/1.1.0";
 
 	/**
 	 * User-Agent used to interact with NodeJS server

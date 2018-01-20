@@ -44,7 +44,7 @@ public class TestCase_UserAgent extends TestCase_Model
     	HttpCommunication.getInstance().setUserAgent(null);
 		String response = HttpCommunication.getInstance().sendGet(http_address);
 
-		assertEquals("{\"user_agent\":\"JavaApplication/1.0.0\"}", response);
+		assertEquals("{\"user_agent\":\"JavaApplication/1.1.0\"}", response);
 	}
 
 	/**

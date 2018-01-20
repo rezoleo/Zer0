@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"fr.service_provider.junit"},{"l":"fr.service_provider.junit.model"},{"l":"fr.service_provider.junit.test"},{"l":"fr.service_provider.junit.token"}]

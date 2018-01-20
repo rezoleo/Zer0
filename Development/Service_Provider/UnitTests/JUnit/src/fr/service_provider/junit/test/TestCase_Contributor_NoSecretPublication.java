@@ -24,13 +24,13 @@ import fr.service_contributor.object.Contributor;
 import fr.service_provider.junit.model.TestCase_Model;
 import fr.core.network.HttpCommunication;
 
-/* 
- * Class 	: TestCase_Contributor_NoSecretPublication
- * Author(s): Zidmann
- * Function : This class contains the webService client JUnit tests to check if the version (__v), the IP (creatorIP, updatorIP) are not shown when data are extracted from Provider service through Contributor service 
- * Version  : 1.0.0 
- * Note		: This Test Case supposes that you started the NodeJS server
- * 			  and removed all the Contributor elements in the MongoDB database
+/**
+ * This class contains the webService client JUnit tests to check if the version (__v), IP (creatorIP, updatorIP) and the password are not shown when data are extracted from Provider service through Contributor service
+ * <p>
+ * This Test Case supposes that you started the NodeJS server and removed all the Contributor elements in the MongoDB database
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Contributor_NoSecretPublication extends TestCase_Model
 {

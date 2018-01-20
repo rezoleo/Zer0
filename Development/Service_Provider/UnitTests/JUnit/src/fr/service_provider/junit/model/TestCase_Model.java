@@ -37,11 +37,10 @@ import fr.webservicecore.error.Error;
 import fr.webservicecore.error.ErrorMessage;
 import fr.webservicecore.error.ErrorReferential;
 
-/* 
- * Class 	: TestCase_Model
- * Author(s): Zidmann
- * Function : This class contains the super class used by the different JUnit test cases 
- * Version  : 1.0.0 
+/**
+ * Super class which will be extended by the different JUnit test cases
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Model
 { 
@@ -75,16 +74,19 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Mo
 	protected String keyStorePath  	  = "/opt/centrale-datacore/Development/Service_Provider/NodeJS/Service/provider/certificates/keystore.jks";
 	protected String keyStorePassword = "password";
 
-	//Function to check if the error message has the expected properties
-	protected void checkBasicMessage(Error err, ErrorMessage msg){
-		msg.setStatus(404);
-		super.checkMessage(null, null, err, msg);
-	}
+	/**
+	 * Check if the error message has the expected properties
+	 * @param err Error object
+	 * @param msg Message expected in the error object
+	 */
 	protected void checkMessage(Error err, ErrorMessage msg){
 		super.checkMessage(service, version, err, msg);
 	}
 
-	//Function to prepare the environment before a test
+	/**
+	 * Prepare the environment before a test
+	 * @throws Exception Exception returned by the system
+	 */
 	@SuppressWarnings("static-access")
 	protected void initSettings() throws Exception{
 		ws_client_alert.setToken(token_list.getToken("token_alert"));
@@ -177,7 +179,11 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Mo
 		ErrorReferential.addError("PROVIDER.F.2.1", "Le connecteur vers le service des images a généré une uri avec au moins un caractère interdit");
 	}
 
-	//Function to get the list of alert and count them
+	/**
+	 * Get the list of alerts and count them
+	 * @return The count of the alerts returned
+	 * @throws APIException Exception returned by the service
+	 */
 	protected int countAlertQuantity() throws APIException{
 		Vector<Alert> alertList=ws_client_alert.getAllAlert(null);
 		return alertList.size();
@@ -187,30 +193,53 @@ public class TestCase_Model extends fr.junittemplate.test.TestCase_WebService_Mo
 		assertEquals(number, alertList.size());
 	}
 
-	//Function to get the list of card and count them
+	/**
+	 * Get the list of cards and count them to check if the quantity is the one expected
+	 * @param number The quantity of cards expected
+	 * @throws APIException Exception returned by the service
+	 */
 	protected void checkCardQuantity(int number) throws APIException{
 		Vector<Card> cardList=ws_client_card.getAllCard();
 		assertEquals(number, cardList.size());
 	}
 
-	//Function to get the list of contributor and count them
+	/**
+	 * Get the list of cards and count them to check if the quantity is the one expected
+	 * @param number The quantity of cards expected
+	 * @throws APIException Exception returned by the service
+	 */
 	protected void checkContributorQuantity(int number) throws APIException{
 		Vector<Contributor> contributorList=ws_client_contributor.getAllContributor();
 		assertEquals(number, contributorList.size());
 	}
 
-	//Function to get the list of group and count them
+	/**
+	 * Get the list of groups and count them to check if the quantity is the one expected
+	 * @param number The quantity of groups expected
+	 * @throws APIException Exception returned by the service
+	 */
 	protected void checkGroupQuantity(int number) throws APIException{
 		Vector<Group> groupList=ws_client_group.getAllGroup();
 		assertEquals(number, groupList.size());
 	}
 
-	//Function to get the list of person and count them
+	/**
+	 * Get the list of groups and count them to check if the quantity is the one expected
+	 * @param number The quantity of people expected
+	 * @throws APIException Exception returned by the service
+	 */
 	protected void checkPeopleQuantity(int number) throws APIException{
 		Vector<Person> peopleList=ws_client_people.getAllPeople();
 		assertEquals(number, peopleList.size());
 	}
 
+	/**
+	 * Hash a string with the SHA-512 algorithm using a salt (hash is applied two times)
+	 * @param str The string to hash
+	 * @param salt The salt to add at the beginning of the string
+	 * @return The string hashed
+	 * @throws Exception Exception returned by the system
+	 */
 	public static String hashPassword(String str, String salt) throws Exception{
 		return Hash.sha512(Hash.sha512("passwordOne", salt), "");
 	}

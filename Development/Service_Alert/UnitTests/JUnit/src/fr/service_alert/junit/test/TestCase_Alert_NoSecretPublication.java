@@ -33,7 +33,7 @@ import fr.core.network.HttpCommunication;
 /**
  * This class contains the webService client JUnit tests to check if the IP (creatorIP, updatorIP) are not shown when data are extracted from Alert service
  * <p>
- * This Test Case supposes that you started the NodeJS server
+ * This Test Case supposes that you started the NodeJS server and removed all the Alert elements in the MongoDB database
  * </p>
  * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
  * @version 1.1.0

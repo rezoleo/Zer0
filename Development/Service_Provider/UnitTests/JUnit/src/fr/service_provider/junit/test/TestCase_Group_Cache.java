@@ -21,11 +21,13 @@ import fr.cache.object.Cache;
 import fr.service_group.object.Group;
 import fr.service_provider.junit.model.TestCase_Model;
 
-/* 
- * Class 	: TestCase_group_Cache
- * Author(s): Zidmann
- * Function : This class contains the webService client JUnit tests to check if there was no regression in Provider service for Group service 
- * Version  : 1.0.0 
+/**
+ * This class contains the webService client JUnit tests to check if there was no regression in Provider service for Group service
+ * <p>
+ * This Test Case supposes that you started the NodeJS server and removed all the Group elements in the MongoDB database
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Group_Cache extends TestCase_Model
 {

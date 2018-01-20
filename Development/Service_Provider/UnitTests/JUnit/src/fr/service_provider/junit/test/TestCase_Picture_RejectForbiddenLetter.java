@@ -19,14 +19,16 @@ import org.junit.Test;
 
 import fr.service_provider.junit.model.TestCase_Model;
 import fr.webservicecore.error.APIException;
+import fr.webservicecore.error.ErrorMessage;
 import fr.webservicecore.error.ErrorReferential;
 
-/* 
- * Class 	: TestCase_Picture_RejectForbiddenLetter
- * Author(s): Zidmann
- * Function : This class contains the webService client JUnit tests to check if the service do not accept forbidden letters 
- * Version  : 1.0.0 
- * Note		: This Test Case supposes that you started the NodeJS server
+/**
+ * This class contains the webService client JUnit tests to check if the service does not accept forbidden letters
+ * <p>
+ * This Test Case supposes that you started the NodeJS server and removed all the Picture elements in the MongoDB database
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Picture_RejectForbiddenLetter extends TestCase_Model
 { 
@@ -46,7 +48,10 @@ public class TestCase_Picture_RejectForbiddenLetter extends TestCase_Model
 			assertNotNull(null);
 		}
 		catch(APIException e){
-			checkBasicMessage(ErrorReferential.getErrorByCode("WSCORE-JAR-2"), e.getMsg());
+			ErrorMessage msg=e.getMsg();
+			msg.setService(service);
+			msg.setVersion(version);
+			checkMessage(ErrorReferential.getErrorByCode("WSCORE-JAR-2"), msg);
 		}
 		catch(Exception e) {	assertNotNull(null);	}
 	}
@@ -65,7 +70,10 @@ public class TestCase_Picture_RejectForbiddenLetter extends TestCase_Model
 			assertNotNull(null);
 		}
 		catch(APIException e){
-			checkBasicMessage(ErrorReferential.getErrorByCode("WSCORE-JAR-2"), e.getMsg());
+			ErrorMessage msg=e.getMsg();
+			msg.setService(service);
+			msg.setVersion(version);
+			checkMessage(ErrorReferential.getErrorByCode("WSCORE-JAR-2"), msg);
 		}
 		catch(Exception e) {	assertNotNull(null);	}
 	}
@@ -84,7 +92,10 @@ public class TestCase_Picture_RejectForbiddenLetter extends TestCase_Model
 			assertNotNull(null);
 		}
 		catch(APIException e){
-			checkBasicMessage(ErrorReferential.getErrorByCode("WSCORE-JAR-2"), e.getMsg());
+			ErrorMessage msg=e.getMsg();
+			msg.setService(service);
+			msg.setVersion(version);
+			checkMessage(ErrorReferential.getErrorByCode("WSCORE-JAR-2"), msg);
 		}
 		catch(Exception e) {	assertNotNull(null);	}
 	}

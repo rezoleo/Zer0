@@ -23,15 +23,20 @@ import fr.core.network.HttpCommunication;
 import fr.service_alert.object.Alert;
 import fr.service_provider.junit.model.TestCase_Model;
 
-/* 
- * Class 	: TestCase_Alert
- * Author(s): Zidmann
- * Function : This class contains the webService client JUnit tests to check if there was no regression in Provider service for Alert service 
- * Version  : 1.0.0 
- * Note		: This Test Case supposes that you started the NodeJS server
+/**
+ * This class contains the webService client JUnit tests to check if there was no regression in Provider service for Alert service
+ * <p>
+ * This Test Case supposes that you started the NodeJS server and removed all the Alert elements in the MongoDB database
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Alert extends TestCase_Model
 {
+	/**
+	 * Testing all the alerts APIs for usual actions 
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testAlertBroadcast() throws Exception{
 		initSettings();

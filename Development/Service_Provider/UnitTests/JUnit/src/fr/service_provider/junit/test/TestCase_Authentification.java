@@ -20,27 +20,29 @@ import org.junit.Test;
 import fr.service_provider.junit.model.TestCase_Model;
 import fr.service_authentification.object.Authentification;
 
-/* 
- * Class 	: TestCase_Authentification
- * Author(s): Zidmann
- * Function : This class contains the webService client JUnit tests to check if there was no regression in Provider service for Authentification service 
- * Version  : 1.0.0 
- * Note		: This Test Case supposes that you started the NodeJS server,
- * 			  removed all the Authentification elements in the MongoDB database
- * 			  and use the correct salt
+/**
+ * This class contains the webService client JUnit tests to check if there was no regression in Provider service for Authentification service
+ * <p>
+ * This Test Case supposes that you started the NodeJS server, removed all the Authentification elements in the MongoDB database and use the correct salt
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Authentification extends TestCase_Model
 {	
 	String salt = "ssd~jsd16fèzejzojié\"çè)\"èefgsfgo&jp^51fgsg3sqgrh\"f";
-	
-	//Testing all the student cards APIs for usual actions
+
+	/**
+	 * Testing all the access APIs for usual actions 
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
-	public void testCardClientAPI() throws Exception
-	{
+	public void testAuthentificationClientAPI() throws Exception
+	{	
 		initSettings();
 
-		//Creation of two access - Test POST function
-		//Get all the cards - Test GET function
+		//Creation of two accesses - Test POST function
+		//Get all the accesses - Test GET function
 		Authentification access1=ws_client_auth.createAccess("loginone", hashPassword("passwordOne", salt), "mailone@mail.com", "ON", "creator");
 		assertNotNull(access1);
 		assertNotNull(access1.get_id());

@@ -23,17 +23,20 @@ import fr.service_provider.junit.model.TestCase_Model;
 import fr.service_group.object.Group;
 import fr.service_group.object.Responsible;
 
-/* 
- * Class 	: TestCase_Group
- * Author(s): Zidmann
- * Function : This class contains the webService client JUnit tests to check if there was no regression in Provider service for Group service 
- * Version  : 1.0.0 
- * Note		: This Test Case supposes that you started the NodeJS server
- * 			  and removed all the group in the MongoDB database
+/**
+ * This class contains the webService client JUnit tests to check if there was no regression in Provider service for Group service
+ * <p>
+ * This Test Case supposes that you started the NodeJS server and removed all the Group elements in the MongoDB database
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_Group extends TestCase_Model
 {
-	//Testing all the group APIs for usual actions
+	/**
+	 * Testing all the student contributors APIs for usual actions 
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testgroupClientAPI() throws Exception{	
 		initSettings();

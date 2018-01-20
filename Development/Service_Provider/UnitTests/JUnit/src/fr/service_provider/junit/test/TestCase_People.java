@@ -22,17 +22,20 @@ import org.junit.Test;
 import fr.service_provider.junit.model.TestCase_Model;
 import fr.service_people.object.Person;
 
-/* 
- * Class 	: TestCase_People
- * Author(s): Zidmann
- * Function : This class contains the webService client JUnit tests to check if there was no regression in Provider service for People service 
- * Version  : 1.0.0 
- * Note		: This Test Case supposes that you started the NodeJS server
- * 			  and removed all the people in the MongoDB database
+/**
+ * This class contains the webService client JUnit tests to check if there was no regression in Provider service for People service
+ * <p>
+ * This Test Case supposes that you started the NodeJS server and removed all the People elements in the MongoDB database
+ * </p>
+ * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
+ * @version 1.1.0
  */
 public class TestCase_People extends TestCase_Model
 {
-	//Testing all the people APIs for usual actions
+	/**
+	 * Testing all the student contributors APIs for usual actions 
+	 * @throws Exception Exception returned by the system
+	 */
 	@Test
 	public void testPersonClientAPI() throws Exception{	
 		initSettings();
