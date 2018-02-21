@@ -54,6 +54,7 @@ Some error messages can appear during the execution of install-modules.sh
 Moreover, sometimes the install-module freezes with a **'root' user, then do not use it**.
 
 ```bash
+/opt/centrale-datacore/Development/Utils/scripts/create-jar-dir.sh
 /opt/centrale-datacore/Development/Utils/scripts/create-log-dir.sh
 /opt/centrale-datacore/Development/Utils/scripts/create-module-links.sh
 /opt/centrale-datacore/Development/Utils/scripts/install-modules.sh
@@ -91,6 +92,38 @@ Moreover, during the module installation choose :
 ```bash
 /opt/centrale-datacore/Development/Utils/scripts/stop-servers.sh
 ```
+
+### To work on the Java sources and the JUnit test cases
+Java project directories to import in your IDE tool :
+/opt/centrale-datacore/Development/Module_ApplicationCore/Java/Project
+/opt/centrale-datacore/Development/Module_Cache/Java/Project
+/opt/centrale-datacore/Development/Module_Core/Java/Project
+/opt/centrale-datacore/Development/Module_WebServiceCore/Java/Project
+/opt/centrale-datacore/Development/Service_Alert/Java/Project
+/opt/centrale-datacore/Development/Service_Authentification/Java/Project
+/opt/centrale-datacore/Development/Service_Card/Java/Project
+/opt/centrale-datacore/Development/Service_Contributor/Java/Project
+/opt/centrale-datacore/Development/Service_Group/Java/Project
+/opt/centrale-datacore/Development/Service_People/Java/Project
+/opt/centrale-datacore/Development/Service_Picture/Java/Project
+/opt/centrale-datacore/Development/Template_JUnit/Project/
+
+JUnit test case directories to import in your IDE tool :
+/opt/centrale-datacore/Development/Module_ApplicationCore/UnitTests/JUnit/
+/opt/centrale-datacore/Development/Module_WebServiceCore/UnitTests/JUnit/
+/opt/centrale-datacore/Development/Service_Alert/UnitTests/JUnit/
+/opt/centrale-datacore/Development/Service_Authentification/UnitTests/JUnit/
+/opt/centrale-datacore/Development/Service_Card/UnitTests/JUnit/
+/opt/centrale-datacore/Development/Service_Contributor/UnitTests/JUnit/
+/opt/centrale-datacore/Development/Service_Group/UnitTests/JUnit/
+/opt/centrale-datacore/Development/Service_People/UnitTests/JUnit/
+/opt/centrale-datacore/Development/Service_Picture/UnitTests/JUnit/
+/opt/centrale-datacore/Development/Service_Provider/UnitTests/JUnit/
+/opt/centrale-datacore/Development/Tool_UnitTests/JUnit/
+
+Note : GSON library doesn't work on JRE version higher than 1.5.
+Then use 1.5 JRE version.
+
 
 ### To generate the final files (JAR and DEB packages)
 
