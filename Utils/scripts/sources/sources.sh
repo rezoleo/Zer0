@@ -4,7 +4,7 @@
 # File      : ./scripts/sources/sources.sh                                                             #
 # Author(s) : Zidmann (emmanuel.zidel@gmail.com)                                                       #
 # Function  : Script to define the NodeJS directories                                                  #
-# Version   : 1.0.0                                                                                    #
+# Version   : 1.1.0                                                                                    #
 ########################################################################################################
 
 
@@ -52,6 +52,26 @@ dir_module_path=(
      "Module_TokenGenerator/NodeJS/Module/token_generator/"
      "Module_ToolBox/NodeJS/Module/toolbox/"
      "Module_WebServiceCore/NodeJS/Module/webservicecore/"
+)
+
+########################################################################################################
+# Information about the different Java projects
+########################################################################################################
+## Path of the modules
+dir_jar_path=(
+     "Module_ApplicationCore/Java/"
+     "Module_Cache/Java/"
+     "Module_Core/Java/"
+     "Module_WebServiceCore/Java/"
+     "Service_Alert/Java/"
+     "Service_Authentification/Java/"
+     "Service_Card/Java/"
+     "Service_Contributor/Java/"
+     "Service_Group/Java/"
+     "Service_People/Java/"
+     "Service_Picture/Java/"
+     "Template_JUnit/"
+
 )
 
 ########################################################################################################
