@@ -15,9 +15,9 @@ Project Zer0 is the touchstone of the projects belonged to RezoLution : they rel
 
 ### Cloning the project
 
-When you clone the project, use a user different from 'root'.
+When you clone the project, **use a user different from 'root'**.
 
-The NodeJS servers are restricted and can't run in root user.
+The NodeJS servers are restricted and **can't run in 'root'** user.
 
 ### After cloning the project
 
@@ -36,10 +36,10 @@ npm config set https-proxy http://<proxy_adress>:<proxy_port>
 
 * Update your Linux version and install the different program necessary.
 
-Note : This script must be launched with root user.
+Note : This script **must be launched with 'root'** user.
 
 ```bash
-./Development/Utils/scripts/dependancy-installation.sh
+/opt/centrale-datacore/Development/Utils/scripts/dependancy-installation.sh
 ```
 
 * Create a symbolic link to the project
@@ -51,13 +51,13 @@ ln -s <path_of_the_git_project> /opt/centrale-datacore;
 
 Note :
 Some error messages can appear during the execution of install-modules.sh
-Moreover, sometimes the install-module freezes with a root user, then do not use it.
+Moreover, sometimes the install-module freezes with a **'root' user, then do not use it**.
 
 ```bash
-./Development/Utils/scripts/create-log-dir.sh
-./Development/Utils/scripts/create-module-links.sh
-./Development/Utils/scripts/install-modules.sh
-./Development/Utils/scripts/create-front.sh
+/opt/centrale-datacore/Development/Utils/scripts/create-log-dir.sh
+/opt/centrale-datacore/Development/Utils/scripts/create-module-links.sh
+/opt/centrale-datacore/Development/Utils/scripts/install-modules.sh
+/opt/centrale-datacore/Development/Utils/scripts/create-front.sh
 ```
 
 Moreover, during the module installation choose :
@@ -72,24 +72,24 @@ Moreover, during the module installation choose :
 * Prepare the data in Mongo databases for unit test suites
 ! WARNING ! The bases used by the services and the applications are cleared by this script
 ```bash
-./Development/Utils/scripts/prepare-mongo.sh
+/opt/centrale-datacore/Development/Utils/scripts/prepare-mongo.sh
 ```
 
 ### To manage the NodeJS servers
 
 * Start all the NodeJS servers
 ```bash
-./Development/Utils/scripts/start-servers.sh
+/opt/centrale-datacore/Development/Utils/scripts/start-servers.sh
 ```
 
 * Restart all the NodeJS servers
 ```bash
-./Development/Utils/scripts/restart-servers.sh
+/opt/centrale-datacore/Development/Utils/scripts/restart-servers.sh
 ```
 
 * Stop all the NodeJS servers
 ```bash
-./Development/Utils/scripts/stop-servers.sh
+/opt/centrale-datacore/Development/Utils/scripts/stop-servers.sh
 ```
 
 ### To generate the final files (JAR and DEB packages)
@@ -103,20 +103,20 @@ The final JAR librairies will be in the directory Integration/packages/All/JAR.
 Note : This script doesn't copy the tools yet.
 
 ```bash
-./Integration/packages/copy-nodejs.sh
+/opt/centrale-datacore/Integration/packages/copy-nodejs.sh
 ```
 
 * Compile the DEB packages (after copying the NodeJS codes to Integration branch)
 
-Note : This script must be launched with root user.
+Note : This script **must be launched with root** user.
 
 ```bash
-./Integration/packages/compile-deb.sh
+/opt/centrale-datacore/Integration/packages/compile-deb.sh
 ```
 
 * Copy the JAR packages from the Development branch to Integration branch
 ```bash
-./Integration/packages/copy-jar.sh
+/opt/centrale-datacore/Integration/packages/copy-jar.sh
 ```
 
 
@@ -124,32 +124,32 @@ Note : This script must be launched with root user.
 
 * To create new (self-signed) SSL certificate
 ```bash
-./Development/Utils/scripts/generate-ssl.sh
+/opt/centrale-datacore/Development/Utils/scripts/generate-ssl.sh
 ```
 
 * To purge log directories
 ```bash
-./Development/Utils/scripts/purge-log.sh
+/opt/centrale-datacore/Development/Utils/scripts/purge-log.sh
 ```
 
 * To purge the database
 ```bash
-./Development/Utils/scripts/prepare-mongo.sh
+/opt/centrale-datacore/Development/Utils/scripts/prepare-mongo.sh
 ```
 
 * To remove the dependancies in node_modules/ and bower_components/
 ```bash
-./Development/Utils/scripts/purge-modules.sh
+/opt/centrale-datacore/Development/Utils/scripts/purge-modules.sh
 ```
 
 * To extract the versions configured for npm and bower modules, to get the version currently used
 ```bash
-./Development/Utils/scripts/get-version-infos.sh
+/opt/centrale-datacore/Development/Utils/scripts/get-version-infos.sh
 ```
 
 * To check if all the dependancies are installed and enabled
 ```bash
-./Development/Utils/scripts/check-dependancies.sh
+/opt/centrale-datacore/Development/Utils/scripts/check-dependancies.sh
 ```
 
 ## Components
