@@ -7,6 +7,6 @@
 	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Utils/lib/hamcrest-all-1.3.jar"/>
 	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Utils/lib/junit-4.12-beta-1.jar"/>
 	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Utils/lib/org.apache.httpcomponents.httpclient_4.3.3.jar"/>
-	<classpathentry kind="lib" path="/home/zidmann/Bureau/Projets_Informatique/RezoLution/Zer0/Development/Module_Core/Java/JAR/core-1.1.0.jar"/>
+	<classpathentry kind="lib" path="/opt/centrale-datacore/Development/Module_Core/Java/JAR/core-1.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
