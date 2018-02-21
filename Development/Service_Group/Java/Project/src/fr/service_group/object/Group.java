@@ -27,7 +27,7 @@ import fr.webservicecore.object.APIObject;
 /**
  * Description of a group
  * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
- * @version 1.1.0
+ * @version 1.1.1
  */
 public class Group implements APIObject 
 {
@@ -384,7 +384,6 @@ public class Group implements APIObject
 		return true;
 	}
 
-	@Override
 	public boolean isEmpty(){
 		return (this._id==null);
 	}

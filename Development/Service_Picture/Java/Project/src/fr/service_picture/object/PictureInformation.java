@@ -23,7 +23,7 @@ import fr.webservicecore.object.APIObject;
 /**
  * Description of one picture
  * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
- * @version 1.1.0
+ * @version 1.1.1
  */
 public class PictureInformation implements APIObject
 {
@@ -103,7 +103,6 @@ public class PictureInformation implements APIObject
 		return true;
 	}
 
-	@Override
 	public boolean isEmpty() {
 		return this.equals(new PictureInformation());
 	}
