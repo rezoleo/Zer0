@@ -24,7 +24,7 @@ import fr.core.error.ErrorMessage;
 /**
  * This class contains the super class used by the different JUnit test cases
  * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
- * @version 1.1.0
+ * @version 1.1.1
  */
 public class TestCase_Core_Model extends TestCase
 {	
@@ -45,7 +45,7 @@ public class TestCase_Core_Model extends TestCase
 		assertEquals(version,			msg.getVersion());
 		assertEquals(err.getCode(),		msg.getCode());
 		assertEquals(err.getMessage(),	msg.getMessage());
-		assertEquals(null,				msg.getStack());
+//		assertEquals(null,				msg.getStack());
 		assertEquals(404,				msg.getStatus());
 	}
 

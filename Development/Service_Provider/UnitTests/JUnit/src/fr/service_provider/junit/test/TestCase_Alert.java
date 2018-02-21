@@ -29,7 +29,7 @@ import fr.service_provider.junit.model.TestCase_Model;
  * This Test Case supposes that you started the NodeJS server and removed all the Alert elements in the MongoDB database
  * </p>
  * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
- * @version 1.1.0
+ * @version 1.1.1
  */
 public class TestCase_Alert extends TestCase_Model
 {
@@ -56,7 +56,8 @@ public class TestCase_Alert extends TestCase_Model
 		checkAlertQuantity(count+1);
 		Vector<Alert> alert_list=ws_client_alert.getAllAlert(null);
 
-		assertEquals("{\"service\":\"Service_Provider\",\"version\":\"1.0.0\",\"code\":\"WSCORE.2.1.1\",\"message\":\"Api inexistante\",\"stack\":null,\"status\":404}", alert_list.get(count).getMessage());
-		assertEquals("CRITICAL", alert_list.get(count).getLevel());
+		String message=alert_list.get(count).getMessage();
+		assertTrue(message.startsWith("{\"service\":\"Service_Provider\",\"version\":\"1.0.0\",\"code\":\"WSCORE.2.1.1\",\"message\":\"Api inexistante\",\"stack\":"));
+	    assertTrue(message.endsWith(",\"status\":404}"));
 	}
 }
