@@ -121,10 +121,6 @@ JUnit test case directories to import in your IDE tool :
 * /opt/centrale-datacore/Development/Service_Provider/UnitTests/JUnit/
 * /opt/centrale-datacore/Development/Tool_UnitTests/JUnit/
 
-Note : GSON library doesn't work on JRE version higher than 1.5.
-
-Then use 1.5 JRE version.
-
 
 ### To generate the final files (JAR and DEB packages)
 
