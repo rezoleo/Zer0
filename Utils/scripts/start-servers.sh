@@ -4,7 +4,7 @@
 # File      : ./scripts/start-servers.sh                                                               #
 # Author(s) : Zidmann (emmanuel.zidel@gmail.com)                                                       #
 # Function  : Script to start all NodeJS servers                                                       #
-# Version   : 1.1.0                                                                                    #
+# Version   : 1.2.0                                                                                    #
 ########################################################################################################
 
 
@@ -29,7 +29,7 @@ do
 	cd $DEV_DIR
 	cd ${dir_tab[i]};
 	npm start & > /dev/null
-	sleep 0.8s
+	sleep 1.0s
 	echo "-------------------------------"
 	cd $CURRENT_DIR
 done
