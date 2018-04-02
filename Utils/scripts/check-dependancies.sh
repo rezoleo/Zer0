@@ -5,9 +5,18 @@
 # Author(s) : Zidmann (emmanuel.zidel@gmail.com)                                                       #
 # Function  : Script to check if the different ressources (NODEJS/MONGODB/NPM/BOWER) necessary         #
 #             for the project are available (installed and enabled)                                    #
-# Version   : 1.0.0                                                                                    #
+# Version   : 1.1.0                                                                                    #
 ########################################################################################################
 
+
+# Root Id
+ROOT_UID=0
+
+#Check if user is not root
+if [ $UID == $ROOT_UID ]; then
+	echo -e "[-]Error : User must NOT be root to check dependancies."
+	exit 0
+fi
 
 # déclaration dune fonction
 checkFunction() 

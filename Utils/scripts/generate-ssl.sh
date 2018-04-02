@@ -4,9 +4,18 @@
 # File      : ./scripts/generate-ssl.sh                                                                #
 # Author(s) : Zidmann (emmanuel.zidel@gmail.com)                                                       #
 # Function  : Script to generate SSL certificate and keystore in Development/Utils/ssl/ directory      #
-# Version   : 1.0.0                                                                                    #
+# Version   : 1.1.0                                                                                    #
 ########################################################################################################
 
+
+# Root Id
+ROOT_UID=0
+
+#Check if user is not root
+if [ $UID == $ROOT_UID ]; then
+	echo -e "[-]Error : User must NOT be root to generate SSL certificates."
+	exit 0
+fi
 
 CURRENT_DIR=`pwd`
 SSL_DIR=$(dirname "$0")"/../ssl"

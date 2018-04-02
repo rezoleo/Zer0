@@ -4,9 +4,18 @@
 # File      : ./scripts/create-jar-dir.sh                                                              #
 # Author(s) : Zidmann (emmanuel.zidel@gmail.com)                                                       #
 # Function  : Script to create the JAR directory for each Java Project                                #
-# Version   : 1.0.0                                                                                    #
+# Version   : 1.1.0                                                                                    #
 ########################################################################################################
 
+
+# Root Id
+ROOT_UID=0
+
+#Check if user is not root
+if [ $UID == $ROOT_UID ]; then
+	echo -e "[-]Error : User must NOT be root to create JAR directories."
+	exit 0
+fi
 
 SCRIPT_DIR=$(dirname "$0")
 source $SCRIPT_DIR"/sources/sources.sh"
