@@ -5,15 +5,13 @@
  * Version  	: 1.0.0
  */
 
-var	isEmpty	    = require('toolbox')('ISEMPTY'),
-	mongoose    = require('mongoose'),
-	passhash    = require('password-hash'),
-	schema      = mongoose.Schema;
+var	isEmpty	 = require('toolbox')('ISEMPTY'),
+	bcrypt   = require('bcrypt'),
+	mongoose = require('mongoose'),
+	schema   = mongoose.Schema;
 
 //Hash settings
-var hash_settings={algorithm  : 'sha512',
-		   saltLength :  10,
-		   iterations :  5};
+var hash_settings={saltRounds : 14};
 
 //Schema definition
 var authentificationSchema = new schema({
@@ -60,12 +58,20 @@ authentificationModel.prototype.findElmtByLoginAndPass = function(callback){
 							else if(isEmpty(elmt)){
 								callback(null,elmt);
 							}
-							else if(passhash.verify(password, elmt.password)){
-								elmt.password="";
-								callback(err,elmt);
-							}
-							else {
-								callback(err,null);
+							else{
+								bcrypt.compare(password, elmt.password, function(err2, res) {
+									if(err2){
+										callback(err2,null);
+									}
+									else if(res==true){
+										elmt.password="";
+										callback(err2,elmt);
+
+									}
+									else{
+										callback(err2,null);
+									}
+								});
 							}
 						});
 };
@@ -81,8 +87,7 @@ authentificationModel.prototype.getAll = function(callback){
 
 //Add, remove elements
 authentificationModel.prototype.addElmt = function(callback){
-	this.password  = passhash.generate(this.password, hash_settings);
-
+	this.password       = bcrypt.hashSync(this.password, hash_settings.saltRounds);
 	this.created        = new Date();
 	this.updator        = null;
 	this.updated        = null;
@@ -145,14 +150,14 @@ authentificationModel.prototype.updateElmtByLogin = function(options, callback){
 				                                     	   updatorService : this.updatorService}}, null, auxi_function);
 	}
 	else{
-		this.password = passhash.generate(this.password, hash_settings);
+		this.password = bcrypt.hashSync(this.password, hash_settings.saltRounds);
 		authentificationModel.update({login : this.login}, { mail           : this.mail,
 								     password	    : this.password,
 								     status         : this.status,
-				                                     updator	    : this.updator,
-				                                     updated	    : this.updated,
+						                     updator	    : this.updator,
+						                     updated	    : this.updated,
 						  	             updatorIP 	    : this.updatorIP,
-				                                     updatorService : this.updatorService}, null, auxi_function);
+						                     updatorService : this.updatorService}, null, auxi_function);
 	}
 };
 

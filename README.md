@@ -21,7 +21,7 @@ The NodeJS servers are restricted and **can't run in 'root'** user.
 
 ### After cloning the project
 
-* If you are behind a proxy, you must update your proxy settings.
+* In the case you are behind a proxy, your proxy settings must be updated.
 
 Note : You have to type 'HTTP_PROXY' (in capital letter), not 'http_proxy' (in small letter), otherwise the bower installation will fail.
 
@@ -94,33 +94,12 @@ Moreover, during the module installation choose :
 ```
 
 ### To work on the Java sources and the JUnit test cases
-Java project directories to import in your IDE tool :
-* /opt/centrale-datacore/Development/Module_ApplicationCore/Java/Project
-* /opt/centrale-datacore/Development/Module_Cache/Java/Project
-* /opt/centrale-datacore/Development/Module_Core/Java/Project
-* /opt/centrale-datacore/Development/Module_WebServiceCore/Java/Project
-* /opt/centrale-datacore/Development/Service_Alert/Java/Project
-* /opt/centrale-datacore/Development/Service_Authentification/Java/Project
-* /opt/centrale-datacore/Development/Service_Card/Java/Project
-* /opt/centrale-datacore/Development/Service_Contributor/Java/Project
-* /opt/centrale-datacore/Development/Service_Group/Java/Project
-* /opt/centrale-datacore/Development/Service_People/Java/Project
-* /opt/centrale-datacore/Development/Service_Picture/Java/Project
-* /opt/centrale-datacore/Development/Template_JUnit/Project/
-
-JUnit test case directories to import in your IDE tool :
-* /opt/centrale-datacore/Development/Module_ApplicationCore/UnitTests/JUnit/
-* /opt/centrale-datacore/Development/Module_WebServiceCore/UnitTests/JUnit/
-* /opt/centrale-datacore/Development/Service_Alert/UnitTests/JUnit/
-* /opt/centrale-datacore/Development/Service_Authentification/UnitTests/JUnit/
-* /opt/centrale-datacore/Development/Service_Card/UnitTests/JUnit/
-* /opt/centrale-datacore/Development/Service_Contributor/UnitTests/JUnit/
-* /opt/centrale-datacore/Development/Service_Group/UnitTests/JUnit/
-* /opt/centrale-datacore/Development/Service_People/UnitTests/JUnit/
-* /opt/centrale-datacore/Development/Service_Picture/UnitTests/JUnit/
-* /opt/centrale-datacore/Development/Service_Provider/UnitTests/JUnit/
-* /opt/centrale-datacore/Development/Tool_UnitTests/JUnit/
-
+Select all the Java project directories in one time :
+  * Open Eclipse IDE 
+  * Click on 'File->Import'
+  * Choose 'General>Existing Projects into Workspace'
+  * Define '/opt/centrale-datacore/Development' as root directory 
+  * Click on 'Finish' button
 
 ### To generate the final files (JAR and DEB packages)
 
@@ -189,9 +168,32 @@ Each service relies on modules and also services.
 
 The communication between an application and a service or between the two services is based on HTTP.
 
+## Security
+
+The security of the system relies on several points.
+
+| Category | Description |
+| ---- | ---- |
+| Authentication | SSL certificates confirm client and server identities |
+| Encryption | SSL public and private keys are used to make the information unreadable for external users|
+| Flow control | Bruteforce protection is implemented by the FloodProtection module |
+| Network | Clients are filtered with their IP address |
+| Password hashing | A password broadcasted between servers is always hashed (with SHA512) and is also hashed when it is stored in the database (with bcrypt)|
+| Information filter | HTTP Headers are filtered by Helmet module and passwords (or their hash values) are never shown in the responses|
+| Permission management | JWT tokens are used to define permissions of one client|
+| Temporary files | Temporary files of the Picture service are purged after each request|
+
+* Helmet module - headers
+  * X-Frame-Options : set to "deny" to prevent from clickjacking attacks mitigating when the server responses are including in a frame like <frame/> <iframe/> or <object/>
+  * X-Powered-By : removed to make it slightly harder for attackers to see what potentially-vulnerable technology powers your site
+  * X-Download-Options : set to prevent Internet Explorer from executing downloads in your site’s context
+  * X-Content-Type-Options : set to "nosniff" to prevent browsers from trying to guess (“sniff”) the MIME type (it can have security implications)
+  * X-XSS-Protection : prevent reflected XSS attacks and some security problems for old IE versions
+  * Strict-Transport-Security : set to keep client on HTTPS connection when it is opened with the server
+
 ## Contributors
 
 * [Emmanuel ZIDEL-CAUFFET](mailto:emmanuel.zidel@gmail.com) :bow:
 * [Hugo LEHMANN](mailto:shogi31@gmail.com) :bow:
 * [Thomas GAUDIN](mailto:t.goudine@gmail.com) :bow:
-* [Tarik MEGZARI](mailto:tarikmegzari@gmail.com) :bow:
+* [Tarik MEGZARI](mailto:tarikmegzari@gmail.com) :bow: 
