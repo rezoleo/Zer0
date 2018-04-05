@@ -8,7 +8,6 @@
 var conf           = require('../conf/distant.js').authentification,
 	findError      = require('../errors/referential.js'),
 	checkAttribute = require('toolbox')('CHECKATTRIBUTE'),
-    sha512         = require('toolbox')('HASH').sha512,
     isEmpty        = require('toolbox')('ISEMPTY'),
     ws_client      = require('toolbox')('WSCLIENT')({ server_ca   : conf.security.ca,
 											          client_cert : conf.security.cert,
