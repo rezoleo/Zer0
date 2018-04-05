@@ -81,7 +81,6 @@ function updateFunc(data, callback){
 
 	if(!isEmpty(data.password)){
 		var hash = sha512(data.password, conf.salt);
-		hash = sha512(hash, "");
 		ws_client.put({ uri  : final_uri,
 				form : { login    : data.login,
 				     	 mail     : data.mail,

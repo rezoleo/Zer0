@@ -191,6 +191,7 @@ The security of the system relies on several points.
   * X-XSS-Protection : prevent reflected XSS attacks and some security problems for old IE versions
   * Strict-Transport-Security : set to keep client on HTTPS connection when it is opened with the server
 
+
 ## Contributors
 
 * [Emmanuel ZIDEL-CAUFFET](mailto:emmanuel.zidel@gmail.com) :bow:

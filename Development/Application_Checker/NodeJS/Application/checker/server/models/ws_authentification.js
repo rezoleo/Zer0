@@ -25,7 +25,6 @@ function checkFunc(data, callback){
 	}
 
 	var hash = sha512(data.password, conf.salt);
-	hash = sha512(hash, "");
 	ws_client.post({ uri  : final_uri,
 			 form : {password : hash}}, callback);
 }
