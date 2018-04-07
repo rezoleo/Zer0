@@ -173,7 +173,7 @@ The communication between an application and a service or between the two servic
 * To install the different DEBIAN packages of the project, you need :
 
 | Component | Category | Use in the project |
-| ---- | ---- |
+| ---- | ---- | ---- |
 | bash | Environment | To execute scripts |
 | nano | Text editor | To open the configuration files during installation steps |
 | openssl | Security | To generate the SSL certificate files |
@@ -198,7 +198,7 @@ The communication between an application and a service or between the two servic
 The security of the system relies on several points.
 
 | Category | Description |
-| ---- | ---- |
+| ---- | ---- | ---- |
 | Authentication | SSL certificates confirm client and server identities |
 | Encryption | SSL public and private keys are used to make the information unreadable for external users|
 | Flow control | Bruteforce protection is implemented by the FloodProtection module |
