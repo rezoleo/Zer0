@@ -116,7 +116,7 @@ do
 	elif [ "$serv_name" = "provider" ]
 	then
 		cd "$dest_dir/certificates/distant"
-		ls | grep -v auth | grep -v card | grep -v contributor | grep -v group | grep -v people | grep -v picture | xargs rm
+		ls | grep -v alert | grep -v auth | grep -v card | grep -v contributor | grep -v group | grep -v people | grep -v picture | xargs rm
 		cd $DEV_DIR/
 	else
 		rm -rf "$dest_dir/certificates/distant"
@@ -163,7 +163,7 @@ do
 	if [ "$app_name" = "administrator" ]
 	then
 		cd "$dest_dir/certificates/distant"
-		ls | grep -v auth | grep -v card | grep -v contributor | grep -v group | grep -v people | grep -v picture | xargs rm
+		ls | grep -v alert | grep -v auth | grep -v card | grep -v contributor | grep -v group | grep -v people | grep -v picture | xargs rm
 		cd $DEV_DIR/
 	elif [ "$app_name" = "checker" ]
 	then
