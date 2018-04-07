@@ -188,7 +188,7 @@ The communication between an application and a service or between the two servic
 * To develop on the project, you need those above and those beside :
 
 | Component | Category | Use in the project |
-| ---- | ---- | ---- |s
+| ---- | ---- | ---- |
 | bower | Package manager | To manage dependencies and generate web pages on front side |
 | npm | Process manager | To manage dependencies of back side |
 
