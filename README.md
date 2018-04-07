@@ -168,6 +168,31 @@ Each service relies on modules and also services.
 
 The communication between an application and a service or between the two services is based on HTTP.
 
+## Dependancies
+
+* To install the different DEBIAN packages of the project, you need :
+
+| Component | Category | Use in the project |
+| ---- | ---- |
+| bash | Environment | To execute scripts |
+| nano | Text editor | To open the configuration files during installation steps |
+| openssl | Security | To generate the SSL certificate files |
+| nodejs | Server | To launch the servers |
+| pm2 | Process manager | To manage the NodeJs servers |
+| mongodb | Database | To store information |
+| python | | Used for Arduino card listener (prototype) |
+| arduino | | Used for Arduino card listener (prototype) |
+| nginx | | Used for Arduino card listener (prototype) |
+
+
+* To develop on the project, you need those above and those beside :
+
+| Component | Category | Use in the project |
+| ---- | ---- |
+| bower | Package manager | To manage dependencies and generate web pages on front side |
+| npm | Process manager | To manage dependencies of back side |
+
+
 ## Security
 
 The security of the system relies on several points.
@@ -177,19 +202,19 @@ The security of the system relies on several points.
 | Authentication | SSL certificates confirm client and server identities |
 | Encryption | SSL public and private keys are used to make the information unreadable for external users|
 | Flow control | Bruteforce protection is implemented by the FloodProtection module |
-| Network | Clients are filtered with their IP address |
+| Network | Clients are filtered by their IP address |
 | Password hashing | A password broadcasted between servers is always hashed (with SHA512) and is also hashed when it is stored in the database (with bcrypt)|
 | Information filter | HTTP Headers are filtered by Helmet module and passwords (or their hash values) are never shown in the responses|
 | Permission management | JWT tokens are used to define permissions of one client|
 | Temporary files | Temporary files of the Picture service are purged after each request|
 
 * Helmet module - headers
-  * X-Frame-Options : set to "deny" to prevent from clickjacking attacks mitigating when the server responses are including in a frame like <frame/> <iframe/> or <object/>
-  * X-Powered-By : removed to make it slightly harder for attackers to see what potentially-vulnerable technology powers your site
+  * X-Frame-Options : set to "deny" to prevent from clickjacking attacks mitigating when the server responses are included in a frame like <frame/> <iframe/> or <object/>
+  * X-Powered-By : removed to make it slightly harder for attackers see what potentially-vulnerable technology powers your site
   * X-Download-Options : set to prevent Internet Explorer from executing downloads in your site’s context
   * X-Content-Type-Options : set to "nosniff" to prevent browsers from trying to guess (“sniff”) the MIME type (it can have security implications)
   * X-XSS-Protection : prevent reflected XSS attacks and some security problems for old IE versions
-  * Strict-Transport-Security : set to keep client on HTTPS connection when it is opened with the server
+  * Strict-Transport-Security : set to keep the client on HTTPS connection when it is opened to the server
 
 * Default password :
   * Value = Password1 
