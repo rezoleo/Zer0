@@ -11,7 +11,7 @@ db.caches.remove({});
 
 // Define the single authorization authorized (user=user && password=Password1)
 db.authentifications.remove({});
-db.authentifications.insert({login : 'user', mail : 'test@test.com', password : '$2a$14$Wv4KDe6CBUyGZ/IBEwMoZO8ywZuTPEvUHdt.NwmqNdij7gipqmnCa', status : "ON", created : new Date(), creator : '', creatorIP : '127.0.0.1', creatorService : 'JunitTests', updated : null, updator : null, updatorIP : null, updatorService : null });
+db.authentifications.insert({login : 'user', mail : 'test@test.com', password : '$2a$14$kgXx7D0MFRu.CWU26EWyJujtk7vW9XnctJW8I23IQF9nXjDENEV5W', status : "ON", created : new Date(), creator : '', creatorIP : '127.0.0.1', creatorService : 'JunitTests', updated : null, updator : null, updatorIP : null, updatorService : null });
 
 // Define the token for the local tests
 db.tokens.remove({});

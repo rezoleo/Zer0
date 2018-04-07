@@ -191,6 +191,9 @@ The security of the system relies on several points.
   * X-XSS-Protection : prevent reflected XSS attacks and some security problems for old IE versions
   * Strict-Transport-Security : set to keep client on HTTPS connection when it is opened with the server
 
+* Default password :
+  * Value = Password1 
+  * hash512->bcrypt = $2a$14$kgXx7D0MFRu.CWU26EWyJujtk7vW9XnctJW8I23IQF9nXjDENEV5W
 
 ## Contributors
 
