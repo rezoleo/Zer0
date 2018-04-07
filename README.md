@@ -173,7 +173,7 @@ The communication between an application and a service or between the two servic
 * To install the different DEBIAN packages of the project, you need :
 
 | Component | Category | Use in the project |
-| ---- | ---- |
+| ---- | ---- | ---- |
 | bash | Environment | To execute scripts |
 | nano | Text editor | To open the configuration files during installation steps |
 | openssl | Security | To generate the SSL certificate files |
@@ -188,7 +188,7 @@ The communication between an application and a service or between the two servic
 * To develop on the project, you need those above and those beside :
 
 | Component | Category | Use in the project |
-| ---- | ---- |
+| ---- | ---- | ---- |s
 | bower | Package manager | To manage dependencies and generate web pages on front side |
 | npm | Process manager | To manage dependencies of back side |
 
