@@ -23,8 +23,8 @@
 		"node": ">0.10.0"
 	},
 	"dependencies": {
+		"bcrypt"                 : "~1.0.3",
 		"mongoose"               : "~4.3.4",
-		"password-hash"          : "~1.2.2",
 		"underscore"             : "~1.8.3"
 	}
 }

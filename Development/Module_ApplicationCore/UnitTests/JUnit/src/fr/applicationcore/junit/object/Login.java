@@ -23,7 +23,7 @@ import fr.applicationcore.object.APIObject;
 /**
  * Description of a basic object which represents the login information on the server
  * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
- * @version 1.1.0
+ * @version 1.1.1
  */
 public class Login implements APIObject
 {
@@ -85,7 +85,6 @@ public class Login implements APIObject
 		return true;
 	}
 
-	@Override
 	public boolean isEmpty() {
 		return (this.system==null);
 	}

@@ -36,7 +36,7 @@ import fr.core.network.HttpCommunication;
  * This Test Case supposes that you started the NodeJS server and removed all the Group elements in the MongoDB database
  * </p>
  * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
- * @version 1.1.0
+ * @version 1.1.1
  */
 public class TestCase_Group_NoSecretPublication extends TestCase_Model
 { 
@@ -323,7 +323,7 @@ public class TestCase_Group_NoSecretPublication extends TestCase_Model
 
 		//Check to see if the JSON response does not contain the IP
 		assertEquals(-1, response.indexOf("IP"));
-		assertEquals(-1, response.indexOf("error"));
+		//assertEquals(-1, response.indexOf("error"));
 		assertEquals(-1, response.indexOf("CORE"));
 	}
 }

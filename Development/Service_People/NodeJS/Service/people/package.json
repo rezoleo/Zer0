@@ -23,9 +23,9 @@
 		"node": ">0.10.0"
 	},
 	"dependencies": {
-		"moment"         	: "~2.10.3",
+		"moment"         	: "~2.22.0",
 		"mongoose"		: "~4.3.4",
 		"underscore"      	: "~1.8.3",
-		"underscore.string"	: "~3.0.3"
+		"underscore.string"	: "~3.3.4"
 	}
 }

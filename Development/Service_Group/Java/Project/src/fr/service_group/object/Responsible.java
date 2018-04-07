@@ -21,7 +21,7 @@ import com.google.gson.annotations.Since;
 /**
  * Description of a responsible
  * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
- * @version 1.1.0
+ * @version 1.1.1
  */
 public class Responsible implements Comparable<Responsible> 
 {
@@ -101,7 +101,6 @@ public class Responsible implements Comparable<Responsible>
 		return true;
 	}
 
-	@Override
 	public int compareTo(Responsible arg0) {
 		if(arg0==null){
 			return +1;

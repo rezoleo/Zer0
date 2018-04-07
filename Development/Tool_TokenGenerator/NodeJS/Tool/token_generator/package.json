@@ -22,7 +22,7 @@
 	"dependencies": {
 		"hashmap"	  : "~2.0.1",
 		"jwt-simple"      : "~0.2.0",
-		"moment"	  : "~2.9.0",
+		"moment"	  : "~2.22.0",
 		"node.extend"     : "~1.1.2",
 		"password-hash"   : "~1.2.2"
 	}

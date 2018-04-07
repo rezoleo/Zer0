@@ -4,10 +4,19 @@
 # File      : ./copy-nodejs.sh                                                                         #
 # Author(s) : Zidmann (emmanuel.zidel@gmail.com)                                                       #
 # Function  : Script to copy NodeJS sources from Development directory                                 #
-# Version   : 1.0.0                                                                                    #
+# Version   : 1.1.0                                                                                    #
 #             The script was tested on Ubuntu 14.04                                                    #
 ########################################################################################################
 
+
+# Root Id
+ROOT_UID=0
+
+#Check if user is not root
+if [ $UID == $ROOT_UID ]; then
+	echo -e "[-]Error : User must NOT be root to copy NodeJs files."
+	exit 0
+fi
 
 SCRIPT_DIR=$(dirname "$0")
 source $SCRIPT_DIR"/../../Utils/scripts/sources/sources.sh"
@@ -107,7 +116,7 @@ do
 	elif [ "$serv_name" = "provider" ]
 	then
 		cd "$dest_dir/certificates/distant"
-		ls | grep -v auth | grep -v card | grep -v contributor | grep -v group | grep -v people | grep -v picture | xargs rm
+		ls | grep -v alert | grep -v auth | grep -v card | grep -v contributor | grep -v group | grep -v people | grep -v picture | xargs rm
 		cd $DEV_DIR/
 	else
 		rm -rf "$dest_dir/certificates/distant"
@@ -154,7 +163,7 @@ do
 	if [ "$app_name" = "administrator" ]
 	then
 		cd "$dest_dir/certificates/distant"
-		ls | grep -v auth | grep -v card | grep -v contributor | grep -v group | grep -v people | grep -v picture | xargs rm
+		ls | grep -v alert | grep -v auth | grep -v card | grep -v contributor | grep -v group | grep -v people | grep -v picture | xargs rm
 		cd $DEV_DIR/
 	elif [ "$app_name" = "checker" ]
 	then

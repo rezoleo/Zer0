@@ -23,7 +23,7 @@ import fr.webservicecore.object.APIObject;
 /**
  * Description of a card
  * @author Zidmann (Emmanuel ZIDEL-CAUFFET)
- * @version 1.1.0
+ * @version 1.1.1
  */
 public class Card implements APIObject
 {
@@ -272,7 +272,6 @@ public class Card implements APIObject
 		return true;
 	}
 
-	@Override
 	public boolean isEmpty() {
 		return (this._id==null);
 	}
