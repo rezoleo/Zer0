@@ -45,7 +45,7 @@ do
 	CHECK=`ls node_modules 2>/dev/null | wc -l`
 	if [ $CHECK -ne 0 ]
 	then
-		echo "Remove node_modules/ in the directory ${dir_tab[i]}"
+		echo "Remove node_modules/ in the directory ${dir_module_path[j]}"
 		rm -r node_modules/
 	fi
 	echo "-------------------------------"
@@ -59,7 +59,7 @@ do
 	CHECK=`ls node_modules 2>/dev/null | wc -l`
 	if [ $CHECK -ne 0 ]
 	then
-		echo "Remove node_modules/ in the directory ${dir_tab[i]}"
+		echo "Remove node_modules/ in the directory ${dir_front_path[k]}"
 		rm -r node_modules/
 	fi
 	echo ""
